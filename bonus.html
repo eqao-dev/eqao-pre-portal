@@ -78,7 +78,7 @@
       max-width: 500px;
       margin: 0 auto;
       padding: 20px 16px;
-      padding-bottom: 100px;
+      padding-bottom: 40px;
     }
     
     /* 特典ヒーロー */
@@ -141,166 +141,130 @@
       z-index: 1;
     }
     
-    /* セクション */
-    .section {
+    /* 特典カード */
+    .bonus-card {
       background: white;
       border-radius: 20px;
-      margin-bottom: 20px;
-      overflow: hidden;
+      padding: 24px;
+      margin-bottom: 16px;
       box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-    }
-    
-    .section-header {
-      padding: 20px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
       position: relative;
       overflow: hidden;
     }
     
-    .section-header.blue {
-      background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    .bonus-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
     }
     
-    .section-header.green {
-      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    .bonus-card:active {
+      transform: translateY(-2px);
     }
     
-    .section-header::before {
+    .bonus-card::before {
       content: '';
       position: absolute;
-      top: -30px;
-      right: -30px;
-      width: 100px;
-      height: 100px;
-      background: rgba(255,255,255,0.1);
+      top: 0;
+      right: 0;
+      width: 120px;
+      height: 120px;
       border-radius: 50%;
+      opacity: 0.1;
+      transform: translate(30%, -30%);
     }
     
-    .section-header::after {
-      content: '';
-      position: absolute;
-      bottom: -20px;
-      left: -20px;
-      width: 60px;
-      height: 60px;
-      background: rgba(255,255,255,0.1);
-      border-radius: 50%;
+    .bonus-card.blue::before {
+      background: #3b82f6;
     }
     
-    .section-icon {
-      width: 48px;
-      height: 48px;
-      background: rgba(255,255,255,0.2);
-      border-radius: 12px;
+    .bonus-card.green::before {
+      background: #10b981;
+    }
+    
+    .card-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 12px;
-      color: white;
-      position: relative;
-      z-index: 1;
+      margin-bottom: 16px;
     }
     
-    .section-title {
+    .card-icon.blue {
+      background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
       color: white;
+    }
+    
+    .card-icon.green {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: white;
+    }
+    
+    .card-title {
       font-size: 18px;
       font-weight: bold;
-      margin-bottom: 4px;
-      position: relative;
-      z-index: 1;
+      color: #1e3a5f;
+      margin-bottom: 8px;
     }
     
-    .section-count {
-      color: rgba(255,255,255,0.85);
-      font-size: 13px;
-      position: relative;
-      z-index: 1;
-    }
-    
-    /* リストアイテム */
-    .list {
-      padding: 8px 0;
-    }
-    
-    .list-item {
-      padding: 16px 20px;
-      border-bottom: 1px solid #f3f4f6;
-      transition: background 0.2s;
-    }
-    
-    .list-item:last-child {
-      border-bottom: none;
-    }
-    
-    .list-item:hover {
-      background: #f9fafb;
-    }
-    
-    .list-number {
+    .card-count {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      font-size: 12px;
-      font-weight: bold;
-      margin-right: 12px;
-      flex-shrink: 0;
+      gap: 4px;
+      font-size: 13px;
+      color: #6b7280;
+      margin-bottom: 12px;
     }
     
-    .list-number.blue {
-      background: #dbeafe;
+    .card-count strong {
+      font-size: 20px;
+      font-weight: bold;
+    }
+    
+    .card-count.blue strong {
       color: #2563eb;
     }
     
-    .list-number.green {
-      background: #d1fae5;
+    .card-count.green strong {
       color: #059669;
     }
     
-    .list-content {
-      flex: 1;
-    }
-    
-    .list-title {
-      font-size: 14px;
-      font-weight: bold;
-      color: #1e3a5f;
-      margin-bottom: 4px;
-      display: flex;
-      align-items: flex-start;
-    }
-    
-    .list-title-text {
-      flex: 1;
-    }
-    
-    .list-description {
+    .card-description {
       font-size: 13px;
       color: #6b7280;
       line-height: 1.6;
-      padding-left: 40px;
+      margin-bottom: 16px;
     }
     
-    /* ローディング */
-    .loading {
-      text-align: center;
-      padding: 40px 20px;
-      color: #9ca3af;
+    .card-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: bold;
+      color: white;
+      cursor: pointer;
+      transition: opacity 0.2s;
     }
     
-    .loading-spinner {
-      width: 32px;
-      height: 32px;
-      border: 3px solid #e5e7eb;
-      border-top-color: #3b82f6;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-      margin: 0 auto 12px;
+    .card-button:hover {
+      opacity: 0.9;
     }
     
-    @keyframes spin {
-      to { transform: rotate(360deg); }
+    .card-button.blue {
+      background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    }
+    
+    .card-button.green {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
     }
     
     /* フッターメッセージ */
@@ -358,39 +322,43 @@
       <p class="hero-subtitle">総合型選抜対策に役立つチェックリスト</p>
     </div>
     
-    <!-- セクション1: 向いている人 -->
-    <section class="section">
-      <div class="section-header blue">
-        <div class="section-icon">
-          <i data-lucide="user-check" style="width:24px;height:24px;"></i>
-        </div>
-        <h2 class="section-title">総合型選抜に向いている人の特徴</h2>
-        <p class="section-count" id="count-suitable">読み込み中...</p>
+    <!-- 特典カード1: 向いている人 -->
+    <div class="bonus-card blue" onclick="location.href='/bonus-suitable.html'">
+      <div class="card-icon blue">
+        <i data-lucide="user-check" style="width:28px;height:28px;"></i>
       </div>
-      <div class="list" id="list-suitable">
-        <div class="loading">
-          <div class="loading-spinner"></div>
-          読み込み中...
-        </div>
+      <h2 class="card-title">総合型選抜に向いている人の特徴</h2>
+      <p class="card-count blue">
+        <i data-lucide="list-checks" style="width:16px;height:16px;"></i>
+        全 <strong>20</strong> 項目
+      </p>
+      <p class="card-description">
+        総合型選抜に向いている人の特徴をチェックリスト形式でまとめました。自分に当てはまるか確認してみましょう。
+      </p>
+      <div class="card-button blue">
+        <span>チェックリストを見る</span>
+        <i data-lucide="chevron-right" style="width:18px;height:18px;"></i>
       </div>
-    </section>
+    </div>
     
-    <!-- セクション2: いい志望理由書 -->
-    <section class="section">
-      <div class="section-header green">
-        <div class="section-icon">
-          <i data-lucide="file-text" style="width:24px;height:24px;"></i>
-        </div>
-        <h2 class="section-title">良い志望理由書の特徴</h2>
-        <p class="section-count" id="count-essay">読み込み中...</p>
+    <!-- 特典カード2: いい志望理由書 -->
+    <div class="bonus-card green" onclick="location.href='/bonus-essay.html'">
+      <div class="card-icon green">
+        <i data-lucide="file-text" style="width:28px;height:28px;"></i>
       </div>
-      <div class="list" id="list-essay">
-        <div class="loading">
-          <div class="loading-spinner"></div>
-          読み込み中...
-        </div>
+      <h2 class="card-title">良い志望理由書の特徴</h2>
+      <p class="card-count green">
+        <i data-lucide="list-checks" style="width:16px;height:16px;"></i>
+        全 <strong>15</strong> 項目
+      </p>
+      <p class="card-description">
+        合格する志望理由書に共通する特徴をまとめました。自分の志望理由書と照らし合わせてみましょう。
+      </p>
+      <div class="card-button green">
+        <span>チェックリストを見る</span>
+        <i data-lucide="chevron-right" style="width:18px;height:18px;"></i>
       </div>
-    </section>
+    </div>
     
     <!-- フッターメッセージ -->
     <div class="footer-message">
@@ -406,116 +374,9 @@
   </main>
   
   <script>
-    // ============================================
-    // 設定
-    // ============================================
-    const CSV_URLS = {
-      suitable: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQOoqQ9pcNMfJI7sCs14WyXQ1g0I6_Qfc9ufyejwAY1GD9ilKLO_R-jiKenliivz0lsDn_awKoMmgu0/pub?gid=190506264&single=true&output=csv',
-      essay: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQOoqQ9pcNMfJI7sCs14WyXQ1g0I6_Qfc9ufyejwAY1GD9ilKLO_R-jiKenliivz0lsDn_awKoMmgu0/pub?gid=0&single=true&output=csv'
-    };
-    
-    // ============================================
-    // 初期化
-    // ============================================
     document.addEventListener('DOMContentLoaded', function() {
       lucide.createIcons();
-      loadData();
     });
-    
-    // ============================================
-    // データ読み込み
-    // ============================================
-    async function loadData() {
-      await Promise.all([
-        loadList('suitable', 'blue'),
-        loadList('essay', 'green')
-      ]);
-    }
-    
-    async function loadList(type, colorClass) {
-      try {
-        const response = await fetch(CSV_URLS[type]);
-        const csvText = await response.text();
-        const items = parseCSV(csvText);
-        renderList(type, items, colorClass);
-      } catch (error) {
-        console.error(`${type}の取得エラー:`, error);
-        document.getElementById(`list-${type}`).innerHTML = 
-          '<div class="loading">データを読み込めませんでした</div>';
-      }
-    }
-    
-    // CSVをパース
-    function parseCSV(csvText) {
-      const lines = csvText.trim().split('\n');
-      const items = [];
-      
-      // ヘッダー行をスキップ
-      for (let i = 1; i < lines.length; i++) {
-        const cols = parseCSVLine(lines[i]);
-        if (cols[0]) {
-          items.push({
-            title: cols[0],
-            description: cols[1] || ''
-          });
-        }
-      }
-      
-      return items;
-    }
-    
-    // CSV行をパース
-    function parseCSVLine(line) {
-      const result = [];
-      let current = '';
-      let inQuotes = false;
-      
-      for (let i = 0; i < line.length; i++) {
-        const char = line[i];
-        
-        if (char === '"') {
-          inQuotes = !inQuotes;
-        } else if (char === ',' && !inQuotes) {
-          result.push(current.trim());
-          current = '';
-        } else {
-          current += char;
-        }
-      }
-      result.push(current.trim());
-      
-      return result;
-    }
-    
-    // リストを描画
-    function renderList(type, items, colorClass) {
-      const listElement = document.getElementById(`list-${type}`);
-      const countElement = document.getElementById(`count-${type}`);
-      
-      countElement.textContent = `全${items.length}項目`;
-      
-      if (items.length === 0) {
-        listElement.innerHTML = '<div class="loading">データがありません</div>';
-        return;
-      }
-      
-      listElement.innerHTML = items.map((item, index) => `
-        <div class="list-item">
-          <div class="list-title">
-            <span class="list-number ${colorClass}">${index + 1}</span>
-            <span class="list-title-text">${escapeHtml(item.title)}</span>
-          </div>
-          ${item.description ? `<p class="list-description">${escapeHtml(item.description)}</p>` : ''}
-        </div>
-      `).join('');
-    }
-    
-    // HTMLエスケープ
-    function escapeHtml(text) {
-      const div = document.createElement('div');
-      div.textContent = text;
-      return div.innerHTML;
-    }
   </script>
 </body>
 </html>

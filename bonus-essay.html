@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>良い志望理由書の特徴 | EQAO</title>
+  
+  <!-- OGP -->
+  <meta property="og:title" content="良い志望理由書の特徴 | EQAO">
+  <meta property="og:description" content="良い志望理由書の特徴15選">
+  <meta property="og:type" content="website">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background: #f1f5f9;
+      min-height: 100vh;
+      color: #374151;
+    }
+    
+    /* ヘッダー */
+    .header {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      padding: 16px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 20px rgba(5, 150, 105, 0.3);
+    }
+    
+    .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    
+    .header-icon {
+      width: 36px;
+      height: 36px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+    
+    .header-title {
+      color: white;
+      font-size: 15px;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+    }
+    
+    /* メインコンテンツ */
+    .main {
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 20px 16px;
+      padding-bottom: 40px;
+    }
+    
+    /* セクションヘッダー */
+    .section-header {
+      background: white;
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      text-align: center;
+    }
+    
+    .section-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #d1fae5;
+      color: #059669;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+    
+    .section-title {
+      font-size: 20px;
+      font-weight: bold;
+      color: #1e3a5f;
+      margin-bottom: 8px;
+    }
+    
+    .section-count {
+      font-size: 13px;
+      color: #6b7280;
+    }
+    
+    .section-count strong {
+      color: #059669;
+      font-size: 18px;
+    }
+    
+    /* リスト */
+    .list {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    
+    .list-item {
+      padding: 16px 20px;
+      border-bottom: 1px solid #f3f4f6;
+      transition: background 0.2s;
+    }
+    
+    .list-item:last-child {
+      border-bottom: none;
+    }
+    
+    .list-item:hover {
+      background: #f9fafb;
+    }
+    
+    .list-title {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 6px;
+    }
+    
+    .list-number {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 28px;
+      height: 28px;
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: white;
+      border-radius: 50%;
+      font-size: 12px;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+    
+    .list-title-text {
+      font-size: 15px;
+      font-weight: bold;
+      color: #1e3a5f;
+      line-height: 1.5;
+      padding-top: 2px;
+    }
+    
+    .list-description {
+      font-size: 13px;
+      color: #6b7280;
+      line-height: 1.7;
+      padding-left: 40px;
+    }
+    
+    /* ローディング */
+    .loading {
+      text-align: center;
+      padding: 40px 20px;
+      color: #9ca3af;
+    }
+    
+    .loading-spinner {
+      width: 32px;
+      height: 32px;
+      border: 3px solid #e5e7eb;
+      border-top-color: #10b981;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 12px;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    /* 戻るリンク */
+    .back-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      color: #6b7280;
+      font-size: 13px;
+      text-decoration: none;
+      padding: 20px 12px;
+      transition: color 0.2s;
+    }
+    
+    .back-link:hover {
+      color: #059669;
+    }
+  </style>
+</head>
+<body>
+  <!-- ヘッダー -->
+  <header class="header">
+    <div class="header-content">
+      <div class="header-icon">
+        <i data-lucide="file-text" style="width:20px;height:20px;"></i>
+      </div>
+      <h1 class="header-title">良い志望理由書の特徴</h1>
+    </div>
+  </header>
+  
+  <!-- メインコンテンツ -->
+  <main class="main">
+    <!-- セクションヘッダー -->
+    <div class="section-header">
+      <div class="section-badge">
+        <i data-lucide="gift" style="width:14px;height:14px;"></i>
+        LINE登録特典
+      </div>
+      <h2 class="section-title">良い志望理由書の特徴</h2>
+      <p class="section-count">全 <strong id="item-count">--</strong> 項目</p>
+    </div>
+    
+    <!-- リスト -->
+    <div class="list" id="list">
+      <div class="loading">
+        <div class="loading-spinner"></div>
+        読み込み中...
+      </div>
+    </div>
+    
+    <!-- 戻るリンク -->
+    <a href="/bonus.html" class="back-link">
+      <i data-lucide="arrow-left" style="width:16px;height:16px;"></i>
+      特典一覧に戻る
+    </a>
+  </main>
+  
+  <script>
+    // CSV URL
+    const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQOoqQ9pcNMfJI7sCs14WyXQ1g0I6_Qfc9ufyejwAY1GD9ilKLO_R-jiKenliivz0lsDn_awKoMmgu0/pub?gid=0&single=true&output=csv';
+    
+    // 初期化
+    document.addEventListener('DOMContentLoaded', function() {
+      lucide.createIcons();
+      loadData();
+    });
+    
+    // データ読み込み
+    async function loadData() {
+      try {
+        const response = await fetch(CSV_URL);
+        const csvText = await response.text();
+        const items = parseCSV(csvText);
+        renderList(items);
+      } catch (error) {
+        console.error('データ取得エラー:', error);
+        document.getElementById('list').innerHTML = 
+          '<div class="loading">データを読み込めませんでした</div>';
+      }
+    }
+    
+    // CSVをパース
+    function parseCSV(csvText) {
+      const lines = csvText.trim().split('\n');
+      const items = [];
+      
+      for (let i = 1; i < lines.length; i++) {
+        const cols = parseCSVLine(lines[i]);
+        if (cols[0]) {
+          items.push({
+            title: cols[0],
+            description: cols[1] || ''
+          });
+        }
+      }
+      
+      return items;
+    }
+    
+    // CSV行をパース
+    function parseCSVLine(line) {
+      const result = [];
+      let current = '';
+      let inQuotes = false;
+      
+      for (let i = 0; i < line.length; i++) {
+        const char = line[i];
+        
+        if (char === '"') {
+          inQuotes = !inQuotes;
+        } else if (char === ',' && !inQuotes) {
+          result.push(current.trim());
+          current = '';
+        } else {
+          current += char;
+        }
+      }
+      result.push(current.trim());
+      
+      return result;
+    }
+    
+    // リストを描画
+    function renderList(items) {
+      const listElement = document.getElementById('list');
+      const countElement = document.getElementById('item-count');
+      
+      countElement.textContent = items.length;
+      
+      if (items.length === 0) {
+        listElement.innerHTML = '<div class="loading">データがありません</div>';
+        return;
+      }
+      
+      listElement.innerHTML = items.map((item, index) => `
+        <div class="list-item">
+          <div class="list-title">
+            <span class="list-number">${index + 1}</span>
+            <span class="list-title-text">${escapeHtml(item.title)}</span>
+          </div>
+          ${item.description ? `<p class="list-description">${escapeHtml(item.description)}</p>` : ''}
+        </div>
+      `).join('');
+    }
+    
+    // HTMLエスケープ
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+  </script>
+</body>
+</html>
