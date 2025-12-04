@@ -829,8 +829,12 @@
     // ユーティリティ
     // ============================================
     function openUrl(url) {
-      window.open(url, '_blank');
-    }
+     if (url.startsWith('/') || url.startsWith('http') === false) {
+    location.href = url;
+     } else {
+     window.open(url, '_blank');
+   }
+  }
     
     // トースト表示
     function showToast(message) {
