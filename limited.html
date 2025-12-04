@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>体験授業受講者限定 | EQAO</title>
+  
+  <!-- OGP -->
+  <meta property="og:title" content="体験授業受講者限定 | EQAO">
+  <meta property="og:description" content="EQAO教育グループ 体験授業受講者限定ページ">
+  <meta property="og:type" content="website">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background: #f1f5f9;
+      min-height: 100vh;
+      color: #374151;
+    }
+    
+    /* ヘッダー */
+    .header {
+      background: #1e3a5f;
+      padding: 16px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    
+    .logo {
+      width: 36px;
+      height: 36px;
+      background: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: #1e3a5f;
+      font-size: 14px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .header-title {
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+    }
+    
+    /* メインコンテンツ */
+    .main {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 16px;
+      padding-bottom: 100px;
+    }
+    
+    /* 限定バッジ */
+    .limited-badge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      color: white;
+      padding: 12px 16px;
+      border-radius: 12px;
+      margin-bottom: 16px;
+      font-size: 14px;
+      font-weight: bold;
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+    }
+    
+    /* 説明テキスト */
+    .description {
+      background: white;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 20px;
+      font-size: 13px;
+      line-height: 1.6;
+      color: #4b5563;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    
+    .description p {
+      margin-bottom: 8px;
+    }
+    
+    .description p:last-child {
+      margin-bottom: 0;
+    }
+    
+    /* フォームカード */
+    .form-card {
+      background: white;
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    
+    .form-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    }
+    
+    .form-card.disabled {
+      opacity: 0.6;
+      pointer-events: none;
+    }
+    
+    .form-card.disabled:hover {
+      transform: none;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    
+    .form-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+    }
+    
+    .form-icon.reserve {
+      background: #dbeafe;
+      color: #2563eb;
+    }
+    
+    .form-icon.enroll {
+      background: #dcfce7;
+      color: #16a34a;
+    }
+    
+    .form-title {
+      font-size: 18px;
+      font-weight: bold;
+      color: #1e3a5f;
+      margin-bottom: 8px;
+    }
+    
+    .form-description {
+      font-size: 13px;
+      color: #6b7280;
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+    
+    .form-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 14px 16px;
+      border: none;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+    
+    .form-button:hover {
+      opacity: 0.9;
+    }
+    
+    .form-button:active {
+      transform: scale(0.98);
+    }
+    
+    .form-button.reserve {
+      background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+      color: white;
+    }
+    
+    .form-button.enroll {
+      background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%);
+      color: white;
+    }
+    
+    .form-button.disabled {
+      background: #d1d5db;
+      color: #6b7280;
+      cursor: not-allowed;
+    }
+    
+    .form-button.disabled:hover {
+      opacity: 1;
+    }
+    
+    .form-button.disabled:active {
+      transform: none;
+    }
+    
+    /* 期間外メッセージ */
+    .unavailable-message {
+      background: #fef3c7;
+      border: 1px solid #fcd34d;
+      border-radius: 8px;
+      padding: 12px;
+      margin-top: 12px;
+      font-size: 12px;
+      color: #92400e;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    
+    .unavailable-message i {
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    
+    /* 戻るリンク */
+    .back-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      color: #6b7280;
+      font-size: 13px;
+      text-decoration: none;
+      padding: 12px;
+      transition: color 0.2s;
+    }
+    
+    .back-link:hover {
+      color: #1e3a5f;
+    }
+  </style>
+</head>
+<body>
+  <!-- ヘッダー -->
+  <header class="header">
+    <div class="header-content">
+      <div class="logo">E</div>
+      <h1 class="header-title">EQAO 入塾前ポータル</h1>
+    </div>
+  </header>
+  
+  <!-- メインコンテンツ -->
+  <main class="main">
+    <!-- 限定バッジ -->
+    <div class="limited-badge">
+      <i data-lucide="lock" style="width:18px;height:18px;"></i>
+      体験授業受講者限定ページ
+    </div>
+    
+    <!-- 説明 -->
+    <div class="description">
+      <p>無料体験授業のご受講ありがとうございました！</p>
+      <p>こちらから入塾に関するお手続きが可能です。ご不明な点がございましたら、お気軽にお問い合わせください。</p>
+    </div>
+    
+    <!-- 入塾仮予約 -->
+    <div class="form-card">
+      <div class="form-icon reserve">
+        <i data-lucide="calendar-clock" style="width:28px;height:28px;"></i>
+      </div>
+      <h2 class="form-title">入塾仮予約</h2>
+      <p class="form-description">
+        正式な受付開始前に、入塾の仮予約ができます。<br>
+        定員に達し次第、募集を締め切らせていただきます。
+      </p>
+      <button class="form-button reserve" onclick="openUrl('https://forms.gle/UTTEjNEWir2uRxrS6')">
+        <i data-lucide="edit" style="width:18px;height:18px;"></i>
+        仮予約フォームへ
+      </button>
+    </div>
+    
+    <!-- 本入塾申込 -->
+    <div class="form-card" id="enroll-card">
+      <div class="form-icon enroll">
+        <i data-lucide="user-check" style="width:28px;height:28px;"></i>
+      </div>
+      <h2 class="form-title">本入塾申込</h2>
+      <p class="form-description">
+        保護者同意のうえ、正式な入塾手続きを行います。<br>
+        必要事項をご入力ください。
+      </p>
+      <button class="form-button enroll" id="enroll-button" onclick="openUrl('https://forms.gle/FZy3KqW5TJDGNrucA')">
+        <i data-lucide="check-circle" style="width:18px;height:18px;"></i>
+        本入塾申込フォームへ
+      </button>
+      <div class="unavailable-message" id="unavailable-message" style="display:none;">
+        <i data-lucide="alert-triangle" style="width:16px;height:16px;"></i>
+        <span>現在、本入塾申込の受付期間外です。<br>12月25日以降に受付を開始いたします。</span>
+      </div>
+    </div>
+    
+    <!-- 戻るリンク -->
+    <a href="/" class="back-link">
+      <i data-lucide="arrow-left" style="width:16px;height:16px;"></i>
+      トップページに戻る
+    </a>
+  </main>
+  
+  <script>
+    // 初期化
+    document.addEventListener('DOMContentLoaded', function() {
+      lucide.createIcons();
+      checkEnrollAvailability();
+    });
+    
+    // 本入塾フォームの利用可否チェック
+    function checkEnrollAvailability() {
+      const now = new Date();
+      const year = now.getFullYear();
+      const month = now.getMonth() + 1; // 0-indexed
+      const day = now.getDate();
+      
+      // 12/1〜12/24は利用不可
+      const isUnavailable = (month === 12 && day >= 1 && day <= 24);
+      
+      if (isUnavailable) {
+        const card = document.getElementById('enroll-card');
+        const button = document.getElementById('enroll-button');
+        const message = document.getElementById('unavailable-message');
+        
+        card.classList.add('disabled');
+        button.classList.add('disabled');
+        button.classList.remove('enroll');
+        button.onclick = null;
+        message.style.display = 'flex';
+      }
+    }
+    
+    // URL を開く
+    function openUrl(url) {
+      window.open(url, '_blank');
+    }
+  </script>
+</body>
+</html>
