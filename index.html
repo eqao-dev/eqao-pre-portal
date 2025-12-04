@@ -52,23 +52,23 @@
     }
     
     .logo {
-  width: 36px;
-  height: 36px;
-  background: white;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  overflow: hidden;
-  padding: 4px;
-}
-
-.logo img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
+      width: 36px;
+      height: 36px;
+      background: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      overflow: hidden;
+      padding: 4px;
+    }
+    
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
     
     .header-title {
       color: white;
@@ -497,13 +497,158 @@
       color: #9ca3af;
       font-size: 13px;
     }
+    
+    /* パスワード認証画面 */
+    .auth-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
+      z-index: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    
+    .auth-overlay.hidden {
+      display: none;
+    }
+    
+    .auth-card {
+      background: white;
+      border-radius: 20px;
+      padding: 32px 24px;
+      max-width: 360px;
+      width: 100%;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    
+    .auth-icon {
+      width: 64px;
+      height: 64px;
+      background: #eff6ff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      color: #1e3a5f;
+    }
+    
+    .auth-title {
+      font-size: 20px;
+      font-weight: bold;
+      color: #1e3a5f;
+      margin-bottom: 8px;
+    }
+    
+    .auth-description {
+      font-size: 13px;
+      color: #6b7280;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+    
+    .auth-input {
+      width: 100%;
+      padding: 14px 16px;
+      border: 2px solid #e5e7eb;
+      border-radius: 10px;
+      font-size: 16px;
+      outline: none;
+      transition: border-color 0.2s;
+      text-align: center;
+      letter-spacing: 2px;
+    }
+    
+    .auth-input:focus {
+      border-color: #1e3a5f;
+    }
+    
+    .auth-input.error {
+      border-color: #ef4444;
+    }
+    
+    .auth-error {
+      color: #ef4444;
+      font-size: 12px;
+      margin-top: 8px;
+      display: none;
+    }
+    
+    .auth-error.show {
+      display: block;
+    }
+    
+    .auth-button {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, #1e3a5f 0%, #2d4a6f 100%);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 16px;
+      transition: transform 0.2s;
+    }
+    
+    .auth-button:hover {
+      transform: scale(1.02);
+    }
+    
+    .auth-button:active {
+      transform: scale(0.98);
+    }
+    
+    .auth-hint {
+      font-size: 11px;
+      color: #9ca3af;
+      margin-top: 16px;
+      line-height: 1.5;
+    }
+    
+    .auth-hint a {
+      color: #1e3a5f;
+      text-decoration: none;
+    }
+    
+    .auth-hint a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
+  <!-- パスワード認証画面 -->
+  <div class="auth-overlay" id="auth-overlay">
+    <div class="auth-card">
+      <div class="auth-icon">
+        <i data-lucide="lock" style="width:28px;height:28px;"></i>
+      </div>
+      <h2 class="auth-title">パスワードを入力</h2>
+      <p class="auth-description">
+        このページは公式LINE登録者限定です。<br>
+        自動返信メールに記載のパスワードを入力してください。
+      </p>
+      <input type="password" class="auth-input" id="auth-input" placeholder="パスワード">
+      <p class="auth-error" id="auth-error">パスワードが正しくありません</p>
+      <button class="auth-button" onclick="submitAuth()">確認</button>
+      <p class="auth-hint">
+        まだ登録がお済みでない方は<br>
+        <a href="https://lin.ee/QYnYtZN" target="_blank">公式LINEに登録する →</a>
+      </p>
+    </div>
+  </div>
+  
   <!-- ヘッダー -->
   <header class="header">
     <div class="header-content">
-     <div class="logo"><img src="/logo.png" alt="EQAO"></div>
+      <div class="logo"><img src="/logo.png" alt="EQAO"></div>
       <h1 class="header-title">EQAO 入塾前ポータル</h1>
     </div>
   </header>
@@ -574,17 +719,51 @@
   
   <script>
     // ============================================
+    // パスワード認証
+    // ============================================
+    const AUTH_PASSWORD = 'eqaotrial123';
+    const AUTH_KEY = 'eqao_portal_auth';
+    
+    function checkAuth() {
+      const isAuthed = localStorage.getItem(AUTH_KEY);
+      if (isAuthed === 'true') {
+        document.getElementById('auth-overlay').classList.add('hidden');
+      } else {
+        document.getElementById('auth-input').focus();
+      }
+    }
+    
+    function submitAuth() {
+      const input = document.getElementById('auth-input');
+      const password = input.value;
+      
+      if (password === AUTH_PASSWORD) {
+        localStorage.setItem(AUTH_KEY, 'true');
+        document.getElementById('auth-overlay').classList.add('hidden');
+      } else {
+        input.classList.add('error');
+        document.getElementById('auth-error').classList.add('show');
+      }
+    }
+    
+    // Enterキーで認証
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' && !document.getElementById('auth-overlay').classList.contains('hidden')) {
+        submitAuth();
+      }
+    });
+    
+    // ============================================
     // 設定（ここを編集してください）
     // ============================================
     
     // スプレッドシートのCSV公開URL
-    // シート → ファイル → 共有 → ウェブに公開 → お知らせシート → CSV形式
     const SPREADSHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQtY17_5p5tLBubM7hv0vHVYy5rBIgEo_Ri8p7h2q2ycu-jZ67c9oWXtlZ-g_T2yO5116wECliCsG5L/pub?gid=772755875&single=true&output=csv';
     
     // 限定コンテンツのパスワード
     const LIMITED_PASSWORD = 'eqao000';
     
-    // 限定コンテンツのURL（入塾仮予約フォームなど）
+    // 限定コンテンツのURL
     const LIMITED_CONTENT_URL = '/limited.html';
     
     // ============================================
@@ -609,11 +788,11 @@
         iconColor: '#06c755'
       },
       { 
-       id: 3, 
-       title: '無料特典', 
-       icon: 'gift', 
-       status: 'active',
-       url: '/bonus.html',
+        id: 3, 
+        title: '無料特典', 
+        icon: 'gift', 
+        status: 'active',
+        url: '/bonus.html',
         bgColor: '#fee2e2',
         iconColor: '#dc2626'
       },
@@ -635,20 +814,20 @@
         iconColor: '#0891b2'
       },
       { 
-  id: 6, 
-  title: 'ショート\nドラマHP', 
-  icon: 'clapperboard', 
-  status: 'active',
-  url: 'https://www.ao-senbatsu.jp/',
-  bgColor: '#fef3c7',
-  iconColor: '#d97706'
-},
+        id: 6, 
+        title: 'ショート\nドラマHP', 
+        icon: 'clapperboard', 
+        status: 'active',
+        url: 'https://www.ao-senbatsu.jp/',
+        bgColor: '#fef3c7',
+        iconColor: '#d97706'
+      },
       { 
-       id: 7, 
-       title: 'MCFF\nプレゼン大会', 
-       icon: 'trophy', 
-       status: 'active',
-       url: '/mcff.html',
+        id: 7, 
+        title: 'MCFF\nプレゼン大会', 
+        icon: 'trophy', 
+        status: 'active',
+        url: '/mcff.html',
         bgColor: '#fef3c7',
         iconColor: '#ea580c'
       },
@@ -661,13 +840,13 @@
         iconColor: '#059669'
       },
       { 
-      id: 9, 
-      title: '数字で見る\nEQAO', 
-      icon: 'bar-chart-3', 
-      status: 'active',
-      url: '/stats.html',
-      bgColor: '#e0e7ff',
-      iconColor: '#4f46e5'
+        id: 9, 
+        title: '数字で見る\nEQAO', 
+        icon: 'bar-chart-3', 
+        status: 'active',
+        url: '/stats.html',
+        bgColor: '#e0e7ff',
+        iconColor: '#4f46e5'
       },
       { 
         id: 10, 
@@ -691,6 +870,7 @@
     // 初期化
     // ============================================
     document.addEventListener('DOMContentLoaded', function() {
+      checkAuth();
       loadAnnouncements();
       renderIconGrid();
       lucide.createIcons();
@@ -716,7 +896,6 @@
       const lines = csvText.trim().split('\n');
       const announcements = [];
       
-      // ヘッダー行をスキップ（1行目から）
       for (let i = 1; i < lines.length && i <= 5; i++) {
         const cols = parseCSVLine(lines[i]);
         if (cols[0] && cols[1]) {
@@ -732,7 +911,7 @@
       return announcements;
     }
     
-    // CSV行をパース（カンマ区切り、引用符対応）
+    // CSV行をパース
     function parseCSVLine(line) {
       const result = [];
       let current = '';
@@ -836,12 +1015,12 @@
     // ユーティリティ
     // ============================================
     function openUrl(url) {
-     if (url.startsWith('/') || url.startsWith('http') === false) {
-    location.href = url;
-     } else {
-     window.open(url, '_blank');
-   }
-  }
+      if (url.startsWith('/') || url.startsWith('http') === false) {
+        location.href = url;
+      } else {
+        window.open(url, '_blank');
+      }
+    }
     
     // トースト表示
     function showToast(message) {
@@ -871,7 +1050,7 @@
       document.getElementById('modal-overlay').classList.remove('show');
     }
     
-    // パスワード認証（クライアント側）
+    // パスワード認証（限定コンテンツ用）
     function submitPassword() {
       const password = document.getElementById('password-input').value;
       
@@ -883,9 +1062,9 @@
       }
     }
     
-    // Enterキーでパスワード送信
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter' && document.getElementById('modal-overlay').classList.contains('show')) {
+    // Enterキーでパスワード送信（モーダル用）
+    document.getElementById('password-input').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
         submitPassword();
       }
     });
