@@ -151,36 +151,6 @@
       font-size: 13px;
       color: rgba(255,255,255,0.9);
       line-height: 1.6;
-      margin-bottom: 16px;
-    }
-    
-    .hero-progress {
-      background: rgba(255,255,255,0.15);
-      border-radius: 12px;
-      padding: 12px 16px;
-    }
-    
-    #progress-text {
-      font-size: 12px;
-      color: #fde047;
-      font-weight: bold;
-      display: block;
-      margin-bottom: 8px;
-    }
-    
-    .progress-bar {
-      height: 8px;
-      background: rgba(255,255,255,0.2);
-      border-radius: 4px;
-      overflow: hidden;
-    }
-    
-    .progress-fill {
-      height: 100%;
-      background: linear-gradient(90deg, #fde047, #facc15);
-      border-radius: 4px;
-      width: 0%;
-      transition: width 0.3s ease;
     }
     
     /* セクション */
@@ -230,10 +200,10 @@
       border-radius: 12px;
       overflow: hidden;
       box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      cursor: pointer;
       transition: transform 0.2s, box-shadow 0.2s;
       display: flex;
       gap: 12px;
-      position: relative;
     }
     
     .video-card:hover {
@@ -243,55 +213,6 @@
     
     .video-card:active {
       transform: translateY(0);
-    }
-    
-    .video-card.checked {
-      background: #f0fdf4;
-      border: 2px solid #22c55e;
-    }
-    
-    .video-link {
-      display: flex;
-      gap: 12px;
-      flex: 1;
-      cursor: pointer;
-      text-decoration: none;
-      color: inherit;
-    }
-    
-    .video-check {
-      position: absolute;
-      right: 12px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 28px;
-      height: 28px;
-      border: 2px solid #d1d5db;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.2s;
-      background: white;
-    }
-    
-    .video-check:hover {
-      border-color: #22c55e;
-    }
-    
-    .video-check.checked {
-      background: #22c55e;
-      border-color: #22c55e;
-      color: white;
-    }
-    
-    .video-check i {
-      display: none;
-    }
-    
-    .video-check.checked i {
-      display: block;
     }
     
     .video-thumbnail {
@@ -470,6 +391,55 @@
     .floating-button.disabled:hover {
       transform: none;
     }
+    
+    /* 確認チェックボックス */
+    .confirm-check {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #f9fafb;
+      border-radius: 10px;
+      padding: 12px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    
+    .confirm-check:hover {
+      background: #f3f4f6;
+    }
+    
+    .confirm-checkbox {
+      width: 24px;
+      height: 24px;
+      border: 2px solid #d1d5db;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+    
+    .confirm-check.checked .confirm-checkbox {
+      background: #22c55e;
+      border-color: #22c55e;
+      color: white;
+    }
+    
+    .confirm-checkbox i {
+      display: none;
+    }
+    
+    .confirm-check.checked .confirm-checkbox i {
+      display: block;
+    }
+    
+    .confirm-label {
+      font-size: 13px;
+      color: #374151;
+      font-weight: 500;
+    }
   </style>
 </head>
 <body>
@@ -494,14 +464,8 @@
       <h1 class="hero-title">受講前に必ずチェック！</h1>
       <p class="hero-description">
         体験授業の前に以下の動画をご覧ください。<br>
-        すべての動画を視聴後、申し込みが可能になります。
+        事前に視聴いただくと、より充実した体験になります。
       </p>
-      <div class="hero-progress">
-        <span id="progress-text">0 / 10 視聴済み</span>
-        <div class="progress-bar">
-          <div class="progress-fill" id="progress-fill"></div>
-        </div>
-      </div>
     </div>
     
     <!-- 動画一覧 -->
@@ -515,183 +479,133 @@
       </div>
       
       <div class="video-list">
-        <div class="video-card" id="video-1">
-          <div class="video-link" onclick="openVideo('D2UkGJkQTwc')">
-            <div class="video-thumbnail">
-              <img src="https://img.youtube.com/vi/D2UkGJkQTwc/mqdefault.jpg" alt="">
-              <div class="video-play-icon">
-                <i data-lucide="play" style="width:16px;height:16px;"></i>
-              </div>
-            </div>
-            <div class="video-content">
-              <span class="video-number">01</span>
-              <span class="video-title">EQAOってどんな塾？</span>
+        <div class="video-card" onclick="openVideo('D2UkGJkQTwc')">
+          <div class="video-thumbnail">
+            <img src="https://img.youtube.com/vi/D2UkGJkQTwc/mqdefault.jpg" alt="">
+            <div class="video-play-icon">
+              <i data-lucide="play" style="width:16px;height:16px;"></i>
             </div>
           </div>
-          <div class="video-check" onclick="toggleCheck(1)">
-            <i data-lucide="check" style="width:16px;height:16px;"></i>
+          <div class="video-content">
+            <span class="video-number">01</span>
+            <span class="video-title">EQAOってどんな塾？</span>
           </div>
         </div>
         
-        <div class="video-card" id="video-2">
-          <div class="video-link" onclick="openVideo('u2AOQfVHQB8')">
-            <div class="video-thumbnail">
-              <img src="https://img.youtube.com/vi/u2AOQfVHQB8/mqdefault.jpg" alt="">
-              <div class="video-play-icon">
-                <i data-lucide="play" style="width:16px;height:16px;"></i>
-              </div>
-            </div>
-            <div class="video-content">
-              <span class="video-number">02</span>
-              <span class="video-title">どんなサポートが受けられるの？</span>
+        <div class="video-card" onclick="openVideo('u2AOQfVHQB8')">
+          <div class="video-thumbnail">
+            <img src="https://img.youtube.com/vi/u2AOQfVHQB8/mqdefault.jpg" alt="">
+            <div class="video-play-icon">
+              <i data-lucide="play" style="width:16px;height:16px;"></i>
             </div>
           </div>
-          <div class="video-check" onclick="toggleCheck(2)">
-            <i data-lucide="check" style="width:16px;height:16px;"></i>
+          <div class="video-content">
+            <span class="video-number">02</span>
+            <span class="video-title">どんなサポートが受けられるの？</span>
           </div>
         </div>
         
-        <div class="video-card" id="video-3">
-          <div class="video-link" onclick="openVideo('qFpcwKeT88s')">
-            <div class="video-thumbnail">
-              <img src="https://img.youtube.com/vi/qFpcwKeT88s/mqdefault.jpg" alt="">
-              <div class="video-play-icon">
-                <i data-lucide="play" style="width:16px;height:16px;"></i>
-              </div>
-            </div>
-            <div class="video-content">
-              <span class="video-number">03</span>
-              <span class="video-title">EQAOはどうやって生まれた？</span>
+        <div class="video-card" onclick="openVideo('qFpcwKeT88s')">
+          <div class="video-thumbnail">
+            <img src="https://img.youtube.com/vi/qFpcwKeT88s/mqdefault.jpg" alt="">
+            <div class="video-play-icon">
+              <i data-lucide="play" style="width:16px;height:16px;"></i>
             </div>
           </div>
-          <div class="video-check" onclick="toggleCheck(3)">
-            <i data-lucide="check" style="width:16px;height:16px;"></i>
+          <div class="video-content">
+            <span class="video-number">03</span>
+            <span class="video-title">EQAOはどうやって生まれた？</span>
           </div>
         </div>
         
-        <div class="video-card" id="video-4">
-          <div class="video-link" onclick="openVideo('fqemGhlxWno')">
-            <div class="video-thumbnail">
-              <img src="https://img.youtube.com/vi/fqemGhlxWno/mqdefault.jpg" alt="">
-              <div class="video-play-icon">
-                <i data-lucide="play" style="width:16px;height:16px;"></i>
-              </div>
-            </div>
-            <div class="video-content">
-              <span class="video-number">04</span>
-              <span class="video-title">月額の費用はどれくらい？</span>
+        <div class="video-card" onclick="openVideo('fqemGhlxWno')">
+          <div class="video-thumbnail">
+            <img src="https://img.youtube.com/vi/fqemGhlxWno/mqdefault.jpg" alt="">
+            <div class="video-play-icon">
+              <i data-lucide="play" style="width:16px;height:16px;"></i>
             </div>
           </div>
-          <div class="video-check" onclick="toggleCheck(4)">
-            <i data-lucide="check" style="width:16px;height:16px;"></i>
+          <div class="video-content">
+            <span class="video-number">04</span>
+            <span class="video-title">月額の費用はどれくらい？</span>
           </div>
         </div>
         
-        <div class="video-card" id="video-5">
-          <div class="video-link" onclick="openVideo('43bCa32jG3o')">
-            <div class="video-thumbnail">
-              <img src="https://img.youtube.com/vi/43bCa32jG3o/mqdefault.jpg" alt="">
-              <div class="video-play-icon">
-                <i data-lucide="play" style="width:16px;height:16px;"></i>
-              </div>
-            </div>
-            <div class="video-content">
-              <span class="video-number">05</span>
-              <span class="video-title">体験授業では何をするの？</span>
+        <div class="video-card" onclick="openVideo('43bCa32jG3o')">
+          <div class="video-thumbnail">
+            <img src="https://img.youtube.com/vi/43bCa32jG3o/mqdefault.jpg" alt="">
+            <div class="video-play-icon">
+              <i data-lucide="play" style="width:16px;height:16px;"></i>
             </div>
           </div>
-          <div class="video-check" onclick="toggleCheck(5)">
-            <i data-lucide="check" style="width:16px;height:16px;"></i>
+          <div class="video-content">
+            <span class="video-number">05</span>
+            <span class="video-title">体験授業では何をするの？</span>
           </div>
         </div>
         
-        <div class="video-card" id="video-6">
-          <div class="video-link" onclick="openVideo('O_vDljIYAD0')">
-            <div class="video-thumbnail">
-              <img src="https://img.youtube.com/vi/O_vDljIYAD0/mqdefault.jpg" alt="">
-              <div class="video-play-icon">
-                <i data-lucide="play" style="width:16px;height:16px;"></i>
-              </div>
-            </div>
-            <div class="video-content">
-              <span class="video-number">06</span>
-              <span class="video-title">入塾に条件はあるの？</span>
+        <div class="video-card" onclick="openVideo('O_vDljIYAD0')">
+          <div class="video-thumbnail">
+            <img src="https://img.youtube.com/vi/O_vDljIYAD0/mqdefault.jpg" alt="">
+            <div class="video-play-icon">
+              <i data-lucide="play" style="width:16px;height:16px;"></i>
             </div>
           </div>
-          <div class="video-check" onclick="toggleCheck(6)">
-            <i data-lucide="check" style="width:16px;height:16px;"></i>
+          <div class="video-content">
+            <span class="video-number">06</span>
+            <span class="video-title">入塾に条件はあるの？</span>
           </div>
         </div>
         
-        <div class="video-card" id="video-7">
-          <div class="video-link" onclick="openVideo('cnIsN4cTgUA')">
-            <div class="video-thumbnail">
-              <img src="https://img.youtube.com/vi/cnIsN4cTgUA/mqdefault.jpg" alt="">
-              <div class="video-play-icon">
-                <i data-lucide="play" style="width:16px;height:16px;"></i>
-              </div>
-            </div>
-            <div class="video-content">
-              <span class="video-number">07</span>
-              <span class="video-title">合格者の声を聞いてみよう！</span>
+        <div class="video-card" onclick="openVideo('cnIsN4cTgUA')">
+          <div class="video-thumbnail">
+            <img src="https://img.youtube.com/vi/cnIsN4cTgUA/mqdefault.jpg" alt="">
+            <div class="video-play-icon">
+              <i data-lucide="play" style="width:16px;height:16px;"></i>
             </div>
           </div>
-          <div class="video-check" onclick="toggleCheck(7)">
-            <i data-lucide="check" style="width:16px;height:16px;"></i>
+          <div class="video-content">
+            <span class="video-number">07</span>
+            <span class="video-title">合格者の声を聞いてみよう！</span>
           </div>
         </div>
         
-        <div class="video-card" id="video-8">
-          <div class="video-link" onclick="openVideo('A8OmKPTIXd4')">
-            <div class="video-thumbnail">
-              <img src="https://img.youtube.com/vi/A8OmKPTIXd4/mqdefault.jpg" alt="">
-              <div class="video-play-icon">
-                <i data-lucide="play" style="width:16px;height:16px;"></i>
-              </div>
-            </div>
-            <div class="video-content">
-              <span class="video-number">08</span>
-              <span class="video-title">本当に実績はあるの？</span>
+        <div class="video-card" onclick="openVideo('A8OmKPTIXd4')">
+          <div class="video-thumbnail">
+            <img src="https://img.youtube.com/vi/A8OmKPTIXd4/mqdefault.jpg" alt="">
+            <div class="video-play-icon">
+              <i data-lucide="play" style="width:16px;height:16px;"></i>
             </div>
           </div>
-          <div class="video-check" onclick="toggleCheck(8)">
-            <i data-lucide="check" style="width:16px;height:16px;"></i>
+          <div class="video-content">
+            <span class="video-number">08</span>
+            <span class="video-title">本当に実績はあるの？</span>
           </div>
         </div>
         
-        <div class="video-card" id="video-9">
-          <div class="video-link" onclick="openVideo('8flVvu6jxBM')">
-            <div class="video-thumbnail">
-              <img src="https://img.youtube.com/vi/8flVvu6jxBM/mqdefault.jpg" alt="">
-              <div class="video-play-icon">
-                <i data-lucide="play" style="width:16px;height:16px;"></i>
-              </div>
-            </div>
-            <div class="video-content">
-              <span class="video-number">09</span>
-              <span class="video-title">どんなカリキュラムで学ぶの？</span>
+        <div class="video-card" onclick="openVideo('8flVvu6jxBM')">
+          <div class="video-thumbnail">
+            <img src="https://img.youtube.com/vi/8flVvu6jxBM/mqdefault.jpg" alt="">
+            <div class="video-play-icon">
+              <i data-lucide="play" style="width:16px;height:16px;"></i>
             </div>
           </div>
-          <div class="video-check" onclick="toggleCheck(9)">
-            <i data-lucide="check" style="width:16px;height:16px;"></i>
+          <div class="video-content">
+            <span class="video-number">09</span>
+            <span class="video-title">どんなカリキュラムで学ぶの？</span>
           </div>
         </div>
         
-        <div class="video-card" id="video-10">
-          <div class="video-link" onclick="openVideo('h1dgPEKrkUs')">
-            <div class="video-thumbnail">
-              <img src="https://img.youtube.com/vi/h1dgPEKrkUs/mqdefault.jpg" alt="">
-              <div class="video-play-icon">
-                <i data-lucide="play" style="width:16px;height:16px;"></i>
-              </div>
-            </div>
-            <div class="video-content">
-              <span class="video-number">10</span>
-              <span class="video-title">この1本で全体を把握！</span>
+        <div class="video-card" onclick="openVideo('h1dgPEKrkUs')">
+          <div class="video-thumbnail">
+            <img src="https://img.youtube.com/vi/h1dgPEKrkUs/mqdefault.jpg" alt="">
+            <div class="video-play-icon">
+              <i data-lucide="play" style="width:16px;height:16px;"></i>
             </div>
           </div>
-          <div class="video-check" onclick="toggleCheck(10)">
-            <i data-lucide="check" style="width:16px;height:16px;"></i>
+          <div class="video-content">
+            <span class="video-number">10</span>
+            <span class="video-title">この1本で全体を把握！</span>
           </div>
         </div>
       </div>
@@ -726,7 +640,12 @@
   <!-- フローティングCTA -->
   <div class="floating-cta">
     <div class="floating-content">
-      <p class="floating-note" id="floating-note">すべての動画をチェックしてください</p>
+      <div class="confirm-check" id="confirm-check" onclick="toggleConfirm()">
+        <div class="confirm-checkbox">
+          <i data-lucide="check" style="width:16px;height:16px;"></i>
+        </div>
+        <span class="confirm-label">全ての動画を視聴しました</span>
+      </div>
       <button class="floating-button disabled" id="submit-button" onclick="openForm()" disabled>
         <i data-lucide="calendar-check" style="width:20px;height:20px;"></i>
         無料体験授業に申し込む
@@ -737,59 +656,36 @@
   <script>
     // 申し込みフォームURL
     const FORM_URL = 'https://forms.gle/CgUDoreqhgu1xC276';
-    const TOTAL_VIDEOS = 10;
-    let checkedVideos = new Set();
+    let isConfirmed = false;
     
     document.addEventListener('DOMContentLoaded', function() {
       lucide.createIcons();
-      updateProgress();
     });
     
     function openVideo(videoId) {
       window.open('https://www.youtube.com/watch?v=' + videoId, '_blank');
     }
     
-    function toggleCheck(videoNum) {
-      const card = document.getElementById('video-' + videoNum);
-      const checkBox = card.querySelector('.video-check');
+    function toggleConfirm() {
+      isConfirmed = !isConfirmed;
+      const confirmCheck = document.getElementById('confirm-check');
+      const submitButton = document.getElementById('submit-button');
       
-      if (checkedVideos.has(videoNum)) {
-        checkedVideos.delete(videoNum);
-        card.classList.remove('checked');
-        checkBox.classList.remove('checked');
+      if (isConfirmed) {
+        confirmCheck.classList.add('checked');
+        submitButton.classList.remove('disabled');
+        submitButton.disabled = false;
       } else {
-        checkedVideos.add(videoNum);
-        card.classList.add('checked');
-        checkBox.classList.add('checked');
+        confirmCheck.classList.remove('checked');
+        submitButton.classList.add('disabled');
+        submitButton.disabled = true;
       }
       
-      updateProgress();
       lucide.createIcons();
     }
     
-    function updateProgress() {
-      const count = checkedVideos.size;
-      const progressText = document.getElementById('progress-text');
-      const progressFill = document.getElementById('progress-fill');
-      const submitButton = document.getElementById('submit-button');
-      const floatingNote = document.getElementById('floating-note');
-      
-      progressText.textContent = count + ' / ' + TOTAL_VIDEOS + ' 視聴済み';
-      progressFill.style.width = (count / TOTAL_VIDEOS * 100) + '%';
-      
-      if (count === TOTAL_VIDEOS) {
-        submitButton.classList.remove('disabled');
-        submitButton.disabled = false;
-        floatingNote.textContent = '準備完了！申し込みへ進みましょう';
-      } else {
-        submitButton.classList.add('disabled');
-        submitButton.disabled = true;
-        floatingNote.textContent = 'すべての動画をチェックしてください（残り' + (TOTAL_VIDEOS - count) + '本）';
-      }
-    }
-    
     function openForm() {
-      if (checkedVideos.size === TOTAL_VIDEOS) {
+      if (isConfirmed) {
         window.open(FORM_URL, '_blank');
       }
     }
