@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>無料特典 | EQAO</title>
+  
+  <!-- OGP -->
+  <meta property="og:title" content="無料特典 | EQAO">
+  <meta property="og:description" content="EQAO教育グループ LINE登録特典">
+  <meta property="og:type" content="website">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background: linear-gradient(135deg, #1e3a5f 0%, #2d4a6f 50%, #1e3a5f 100%);
+      min-height: 100vh;
+      color: #374151;
+    }
+    
+    /* ヘッダー */
+    .header {
+      background: rgba(30, 58, 95, 0.95);
+      backdrop-filter: blur(8px);
+      padding: 16px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+    
+    .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    
+    .logo {
+      width: 36px;
+      height: 36px;
+      background: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: #1e3a5f;
+      font-size: 14px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .header-title {
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+    }
+    
+    /* メインコンテンツ */
+    .main {
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 20px 16px;
+      padding-bottom: 100px;
+    }
+    
+    /* 特典ヒーロー */
+    .hero {
+      background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
+      border-radius: 20px;
+      padding: 28px 24px;
+      margin-bottom: 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(251, 191, 36, 0.4);
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 60%);
+      animation: shimmer 3s infinite;
+    }
+    
+    @keyframes shimmer {
+      0%, 100% { transform: rotate(0deg); }
+      50% { transform: rotate(180deg); }
+    }
+    
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,0.9);
+      color: #d97706;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+      margin-bottom: 12px;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .hero-title {
+      color: white;
+      font-size: 24px;
+      font-weight: bold;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      margin-bottom: 8px;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .hero-subtitle {
+      color: rgba(255,255,255,0.95);
+      font-size: 13px;
+      position: relative;
+      z-index: 1;
+    }
+    
+    /* セクション */
+    .section {
+      background: white;
+      border-radius: 20px;
+      margin-bottom: 20px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+    
+    .section-header {
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .section-header.blue {
+      background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    }
+    
+    .section-header.green {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    }
+    
+    .section-header::before {
+      content: '';
+      position: absolute;
+      top: -30px;
+      right: -30px;
+      width: 100px;
+      height: 100px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+    }
+    
+    .section-header::after {
+      content: '';
+      position: absolute;
+      bottom: -20px;
+      left: -20px;
+      width: 60px;
+      height: 60px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+    }
+    
+    .section-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+      color: white;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .section-title {
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 4px;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .section-count {
+      color: rgba(255,255,255,0.85);
+      font-size: 13px;
+      position: relative;
+      z-index: 1;
+    }
+    
+    /* リストアイテム */
+    .list {
+      padding: 8px 0;
+    }
+    
+    .list-item {
+      padding: 16px 20px;
+      border-bottom: 1px solid #f3f4f6;
+      transition: background 0.2s;
+    }
+    
+    .list-item:last-child {
+      border-bottom: none;
+    }
+    
+    .list-item:hover {
+      background: #f9fafb;
+    }
+    
+    .list-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      font-size: 12px;
+      font-weight: bold;
+      margin-right: 12px;
+      flex-shrink: 0;
+    }
+    
+    .list-number.blue {
+      background: #dbeafe;
+      color: #2563eb;
+    }
+    
+    .list-number.green {
+      background: #d1fae5;
+      color: #059669;
+    }
+    
+    .list-content {
+      flex: 1;
+    }
+    
+    .list-title {
+      font-size: 14px;
+      font-weight: bold;
+      color: #1e3a5f;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: flex-start;
+    }
+    
+    .list-title-text {
+      flex: 1;
+    }
+    
+    .list-description {
+      font-size: 13px;
+      color: #6b7280;
+      line-height: 1.6;
+      padding-left: 40px;
+    }
+    
+    /* ローディング */
+    .loading {
+      text-align: center;
+      padding: 40px 20px;
+      color: #9ca3af;
+    }
+    
+    .loading-spinner {
+      width: 32px;
+      height: 32px;
+      border: 3px solid #e5e7eb;
+      border-top-color: #3b82f6;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 12px;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    /* フッターメッセージ */
+    .footer-message {
+      background: rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      color: rgba(255,255,255,0.9);
+      font-size: 13px;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    
+    .footer-message strong {
+      color: #fbbf24;
+    }
+    
+    /* 戻るリンク */
+    .back-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      color: rgba(255,255,255,0.7);
+      font-size: 13px;
+      text-decoration: none;
+      padding: 12px;
+      transition: color 0.2s;
+    }
+    
+    .back-link:hover {
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <!-- ヘッダー -->
+  <header class="header">
+    <div class="header-content">
+      <div class="logo">E</div>
+      <h1 class="header-title">EQAO 入塾前ポータル</h1>
+    </div>
+  </header>
+  
+  <!-- メインコンテンツ -->
+  <main class="main">
+    <!-- ヒーロー -->
+    <div class="hero">
+      <div class="hero-badge">
+        <i data-lucide="gift" style="width:14px;height:14px;"></i>
+        LINE登録特典
+      </div>
+      <h1 class="hero-title">無料特典プレゼント</h1>
+      <p class="hero-subtitle">総合型選抜対策に役立つチェックリスト</p>
+    </div>
+    
+    <!-- セクション1: 向いている人 -->
+    <section class="section">
+      <div class="section-header blue">
+        <div class="section-icon">
+          <i data-lucide="user-check" style="width:24px;height:24px;"></i>
+        </div>
+        <h2 class="section-title">総合型選抜に向いている人の特徴</h2>
+        <p class="section-count" id="count-suitable">読み込み中...</p>
+      </div>
+      <div class="list" id="list-suitable">
+        <div class="loading">
+          <div class="loading-spinner"></div>
+          読み込み中...
+        </div>
+      </div>
+    </section>
+    
+    <!-- セクション2: いい志望理由書 -->
+    <section class="section">
+      <div class="section-header green">
+        <div class="section-icon">
+          <i data-lucide="file-text" style="width:24px;height:24px;"></i>
+        </div>
+        <h2 class="section-title">良い志望理由書の特徴</h2>
+        <p class="section-count" id="count-essay">読み込み中...</p>
+      </div>
+      <div class="list" id="list-essay">
+        <div class="loading">
+          <div class="loading-spinner"></div>
+          読み込み中...
+        </div>
+      </div>
+    </section>
+    
+    <!-- フッターメッセージ -->
+    <div class="footer-message">
+      <p>この特典が役に立ったら、ぜひ<strong>無料体験授業</strong>にもお越しください！</p>
+      <p>一緒に合格を目指しましょう 🎓</p>
+    </div>
+    
+    <!-- 戻るリンク -->
+    <a href="/" class="back-link">
+      <i data-lucide="arrow-left" style="width:16px;height:16px;"></i>
+      トップページに戻る
+    </a>
+  </main>
+  
+  <script>
+    // ============================================
+    // 設定
+    // ============================================
+    const CSV_URLS = {
+      suitable: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQOoqQ9pcNMfJI7sCs14WyXQ1g0I6_Qfc9ufyejwAY1GD9ilKLO_R-jiKenliivz0lsDn_awKoMmgu0/pub?gid=190506264&single=true&output=csv',
+      essay: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQOoqQ9pcNMfJI7sCs14WyXQ1g0I6_Qfc9ufyejwAY1GD9ilKLO_R-jiKenliivz0lsDn_awKoMmgu0/pub?gid=0&single=true&output=csv'
+    };
+    
+    // ============================================
+    // 初期化
+    // ============================================
+    document.addEventListener('DOMContentLoaded', function() {
+      lucide.createIcons();
+      loadData();
+    });
+    
+    // ============================================
+    // データ読み込み
+    // ============================================
+    async function loadData() {
+      await Promise.all([
+        loadList('suitable', 'blue'),
+        loadList('essay', 'green')
+      ]);
+    }
+    
+    async function loadList(type, colorClass) {
+      try {
+        const response = await fetch(CSV_URLS[type]);
+        const csvText = await response.text();
+        const items = parseCSV(csvText);
+        renderList(type, items, colorClass);
+      } catch (error) {
+        console.error(`${type}の取得エラー:`, error);
+        document.getElementById(`list-${type}`).innerHTML = 
+          '<div class="loading">データを読み込めませんでした</div>';
+      }
+    }
+    
+    // CSVをパース
+    function parseCSV(csvText) {
+      const lines = csvText.trim().split('\n');
+      const items = [];
+      
+      // ヘッダー行をスキップ
+      for (let i = 1; i < lines.length; i++) {
+        const cols = parseCSVLine(lines[i]);
+        if (cols[0]) {
+          items.push({
+            title: cols[0],
+            description: cols[1] || ''
+          });
+        }
+      }
+      
+      return items;
+    }
+    
+    // CSV行をパース
+    function parseCSVLine(line) {
+      const result = [];
+      let current = '';
+      let inQuotes = false;
+      
+      for (let i = 0; i < line.length; i++) {
+        const char = line[i];
+        
+        if (char === '"') {
+          inQuotes = !inQuotes;
+        } else if (char === ',' && !inQuotes) {
+          result.push(current.trim());
+          current = '';
+        } else {
+          current += char;
+        }
+      }
+      result.push(current.trim());
+      
+      return result;
+    }
+    
+    // リストを描画
+    function renderList(type, items, colorClass) {
+      const listElement = document.getElementById(`list-${type}`);
+      const countElement = document.getElementById(`count-${type}`);
+      
+      countElement.textContent = `全${items.length}項目`;
+      
+      if (items.length === 0) {
+        listElement.innerHTML = '<div class="loading">データがありません</div>';
+        return;
+      }
+      
+      listElement.innerHTML = items.map((item, index) => `
+        <div class="list-item">
+          <div class="list-title">
+            <span class="list-number ${colorClass}">${index + 1}</span>
+            <span class="list-title-text">${escapeHtml(item.title)}</span>
+          </div>
+          ${item.description ? `<p class="list-description">${escapeHtml(item.description)}</p>` : ''}
+        </div>
+      `).join('');
+    }
+    
+    // HTMLエスケープ
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+  </script>
+</body>
+</html>
