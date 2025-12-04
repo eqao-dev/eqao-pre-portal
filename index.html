@@ -753,6 +753,12 @@
       }
     });
     
+    // 再入力時にエラーをリセット
+    document.getElementById('auth-input').addEventListener('input', function() {
+      this.classList.remove('error');
+      document.getElementById('auth-error').classList.remove('show');
+    });
+    
     // ============================================
     // 設定（ここを編集してください）
     // ============================================
