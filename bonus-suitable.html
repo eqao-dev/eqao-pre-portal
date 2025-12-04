@@ -49,6 +49,26 @@
       gap: 12px;
       max-width: 400px;
       margin: 0 auto;
+      position: relative;
+    }
+    
+    .back-button {
+      position: absolute;
+      left: 0;
+      width: 36px;
+      height: 36px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    
+    .back-button:hover {
+      background: rgba(255,255,255,0.25);
     }
     
     .header-icon {
@@ -218,6 +238,9 @@
   <!-- ヘッダー -->
   <header class="header">
     <div class="header-content">
+      <a href="/bonus.html" class="back-button">
+        <i data-lucide="arrow-left" style="width:20px;height:20px;"></i>
+      </a>
       <div class="header-icon">
         <i data-lucide="user-check" style="width:20px;height:20px;"></i>
       </div>
