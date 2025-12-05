@@ -246,6 +246,12 @@
       color: #374151;
     }
     
+    .course-price-sub {
+      font-size: 11px;
+      color: #9ca3af;
+      margin-top: 2px;
+    }
+    
     .course-price {
       font-size: 12px;
       color: #6b7280;
@@ -472,32 +478,41 @@
           希望コース
         </div>
         <div class="course-options">
-          <div class="course-option" data-course="national" data-price="14800" onclick="selectCourse(this)">
+          <div class="course-option" data-course="overseas" data-price="15500" onclick="selectCourse(this)">
             <div class="course-radio"></div>
             <div class="course-info">
-              <div class="course-name">国立</div>
-              <div class="course-price">14,800円 / コマ</div>
+              <div class="course-name">海外大学</div>
+              <div class="course-price">15,500円 / コマ</div>
             </div>
           </div>
-          <div class="course-option" data-course="sskw" data-price="12800" onclick="selectCourse(this)">
+          <div class="course-option" data-course="national" data-price="15500" onclick="selectCourse(this)">
             <div class="course-radio"></div>
             <div class="course-info">
-              <div class="course-name">上智・慶應・早稲田</div>
+              <div class="course-name">難関国公立大</div>
+              <div class="course-price">15,500円 / コマ</div>
+            </div>
+          </div>
+          <div class="course-option selected" data-course="top-private" data-price="13500" onclick="selectCourse(this)">
+            <div class="course-radio"></div>
+            <div class="course-info">
+              <div class="course-name">最難関私大</div>
+              <div class="course-price-sub">早慶上智ICU / GMARCH / 関関同立</div>
+              <div class="course-price">13,500円 / コマ</div>
+            </div>
+          </div>
+          <div class="course-option" data-course="private" data-price="12800" onclick="selectCourse(this)">
+            <div class="course-radio"></div>
+            <div class="course-info">
+              <div class="course-name">難関私大</div>
+              <div class="course-price-sub">日東駒専 / 成成明学獨國武 / その他</div>
               <div class="course-price">12,800円 / コマ</div>
             </div>
           </div>
-          <div class="course-option selected" data-course="gmarch" data-price="11800" onclick="selectCourse(this)">
+          <div class="course-option" data-course="english" data-price="12800" onclick="selectCourse(this)">
             <div class="course-radio"></div>
             <div class="course-info">
-              <div class="course-name">GMARCH</div>
-              <div class="course-price">11,800円 / コマ</div>
-            </div>
-          </div>
-          <div class="course-option" data-course="nittokoma" data-price="10800" onclick="selectCourse(this)">
-            <div class="course-radio"></div>
-            <div class="course-info">
-              <div class="course-name">日東駒専</div>
-              <div class="course-price">10,800円 / コマ</div>
+              <div class="course-name">EQAO ENGLISH対策</div>
+              <div class="course-price">12,800円 / コマ</div>
             </div>
           </div>
         </div>
@@ -559,22 +574,22 @@
         <div class="result-item">
           <div>
             <div class="result-label">初回費用</div>
-            <div class="result-label-sub">入塾金 + 教材費</div>
+            <div class="result-label-sub">入塾金 + 教材費 + アカウント設定費</div>
           </div>
-          <div class="result-value" id="initial-cost">55,780円</div>
+          <div class="result-value" id="initial-cost">60,150円</div>
         </div>
         <div class="result-item">
           <div>
             <div class="result-label">月額目安</div>
-            <div class="result-label-sub">在籍基本料 + 授業料</div>
+            <div class="result-label-sub">在籍基本料 + システム費 + 授業料</div>
           </div>
-          <div class="result-value" id="monthly-cost">104,380円</div>
+          <div class="result-value" id="monthly-cost">122,960円</div>
         </div>
         <div class="result-item total">
           <div>
             <div class="result-label"><span id="months-label">6</span>ヶ月間の総額</div>
           </div>
-          <div class="result-value" id="total-cost">682,060円</div>
+          <div class="result-value" id="total-cost">797,910円</div>
         </div>
       </div>
     </div>
@@ -584,7 +599,9 @@
       <p class="footnote-title">料金について</p>
       <p class="footnote-text">
         ・表示金額はすべて税込価格です<br>
-        ・実際の料金は選択内容により変動する場合があります<br>
+        ・こちらはあくまで目安の料金です<br>
+        ・入塾時期やオプション（模試・合宿・課題図書対策等）により変動します<br>
+        ・まとめてお支払いによる割引制度もございます<br>
         ・詳細は体験授業時にご説明いたします
       </p>
     </div>
@@ -601,11 +618,13 @@
   <script>
     // 料金設定
     const ENROLLMENT_FEE = 39800;  // 入塾金
-    const MATERIAL_FEE = 15980;    // 教材費
-    const BASIC_FEE = 9980;        // 在籍基本料（月額）
+    const MATERIAL_FEE = 19800;    // 教材費
+    const ACCOUNT_FEE = 550;       // アカウント設定費用
+    const BASIC_FEE = 11980;       // 在籍基本料（月額）
+    const SYSTEM_FEE = 2980;       // システムサーバー費（月額）
     
     // 初期値
-    let selectedCoursePrice = 11800; // GMARCH
+    let selectedCoursePrice = 13500; // 最難関私大
     let lessonsPerMonth = 8;
     let months = 6;
     
@@ -645,11 +664,11 @@
     
     // 計算
     function calculate() {
-      // 初回費用
-      const initialCost = ENROLLMENT_FEE + MATERIAL_FEE;
+      // 初回費用（入塾金 + 教材費 + アカウント設定費用）
+      const initialCost = ENROLLMENT_FEE + MATERIAL_FEE + ACCOUNT_FEE;
       
-      // 月額
-      const monthlyCost = BASIC_FEE + (selectedCoursePrice * lessonsPerMonth);
+      // 月額（在籍基本料 + システムサーバー費 + 授業料）
+      const monthlyCost = BASIC_FEE + SYSTEM_FEE + (selectedCoursePrice * lessonsPerMonth);
       
       // 総額
       const totalCost = initialCost + (monthlyCost * months);
