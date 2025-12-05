@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>料金シミュレーター | EQAO</title>
+  
+  <!-- OGP -->
+  <meta property="og:title" content="料金シミュレーター | EQAO">
+  <meta property="og:description" content="EQAOの料金をシミュレーションできます">
+  <meta property="og:type" content="website">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
+      min-height: 100vh;
+      color: #374151;
+    }
+    
+    /* ヘッダー */
+    .header {
+      background: #1e3a5f;
+      padding: 16px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      max-width: 400px;
+      margin: 0 auto;
+      position: relative;
+    }
+    
+    .back-button {
+      position: absolute;
+      left: 0;
+      width: 36px;
+      height: 36px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    
+    .back-button:hover {
+      background: rgba(255,255,255,0.25);
+    }
+    
+    .logo {
+      width: 36px;
+      height: 36px;
+      background: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      overflow: hidden;
+      padding: 4px;
+    }
+    
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    
+    .header-title {
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+    }
+    
+    /* メインコンテンツ */
+    .main {
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 20px 16px;
+      padding-bottom: 40px;
+    }
+    
+    /* ヒーロー */
+    .hero {
+      text-align: center;
+      margin-bottom: 24px;
+      padding: 20px 0;
+    }
+    
+    .hero-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #1e3a5f;
+      color: white;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+    
+    .hero-title {
+      font-size: 24px;
+      font-weight: bold;
+      color: #1e3a5f;
+      margin-bottom: 8px;
+    }
+    
+    .hero-subtitle {
+      font-size: 13px;
+      color: #6b7280;
+      line-height: 1.6;
+    }
+    
+    /* 入力セクション */
+    .input-section {
+      background: white;
+      border-radius: 20px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    }
+    
+    .input-group {
+      margin-bottom: 24px;
+    }
+    
+    .input-group:last-child {
+      margin-bottom: 0;
+    }
+    
+    .input-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: bold;
+      color: #1e3a5f;
+      margin-bottom: 12px;
+    }
+    
+    .input-label-icon {
+      width: 28px;
+      height: 28px;
+      background: #eff6ff;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #1e3a5f;
+    }
+    
+    /* コース選択 */
+    .course-options {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    
+    .course-option {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      background: #f9fafb;
+      border: 2px solid #e5e7eb;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .course-option:hover {
+      border-color: #1e3a5f;
+      background: #f0f9ff;
+    }
+    
+    .course-option.selected {
+      border-color: #1e3a5f;
+      background: #eff6ff;
+    }
+    
+    .course-radio {
+      width: 20px;
+      height: 20px;
+      border: 2px solid #d1d5db;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+    
+    .course-option.selected .course-radio {
+      border-color: #1e3a5f;
+      background: #1e3a5f;
+    }
+    
+    .course-radio::after {
+      content: '';
+      width: 8px;
+      height: 8px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    
+    .course-option.selected .course-radio::after {
+      opacity: 1;
+    }
+    
+    .course-info {
+      flex: 1;
+    }
+    
+    .course-name {
+      font-size: 14px;
+      font-weight: bold;
+      color: #374151;
+    }
+    
+    .course-price {
+      font-size: 12px;
+      color: #6b7280;
+      margin-top: 2px;
+    }
+    
+    /* スライダー */
+    .slider-container {
+      padding: 0 4px;
+    }
+    
+    .slider-value {
+      text-align: center;
+      margin-bottom: 12px;
+    }
+    
+    .slider-number {
+      font-size: 36px;
+      font-weight: bold;
+      color: #1e3a5f;
+    }
+    
+    .slider-unit {
+      font-size: 16px;
+      color: #6b7280;
+      margin-left: 4px;
+    }
+    
+    .slider-hint {
+      font-size: 11px;
+      color: #9ca3af;
+      text-align: center;
+      margin-bottom: 12px;
+    }
+    
+    .slider {
+      width: 100%;
+      height: 8px;
+      -webkit-appearance: none;
+      appearance: none;
+      background: #e5e7eb;
+      border-radius: 4px;
+      outline: none;
+    }
+    
+    .slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 28px;
+      height: 28px;
+      background: #1e3a5f;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(30, 58, 95, 0.3);
+    }
+    
+    .slider::-moz-range-thumb {
+      width: 28px;
+      height: 28px;
+      background: #1e3a5f;
+      border-radius: 50%;
+      cursor: pointer;
+      border: none;
+      box-shadow: 0 2px 8px rgba(30, 58, 95, 0.3);
+    }
+    
+    .slider-labels {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 8px;
+      font-size: 11px;
+      color: #9ca3af;
+    }
+    
+    /* 結果セクション */
+    .result-section {
+      background: linear-gradient(135deg, #1e3a5f 0%, #2d4a6f 100%);
+      border-radius: 20px;
+      padding: 24px;
+      color: white;
+      box-shadow: 0 10px 30px rgba(30, 58, 95, 0.3);
+    }
+    
+    .result-title {
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .result-items {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    
+    .result-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+    }
+    
+    .result-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    
+    .result-item.total {
+      background: rgba(255,255,255,0.1);
+      margin: 0 -24px;
+      padding: 16px 24px;
+      border-radius: 12px;
+      border-bottom: none;
+    }
+    
+    .result-label {
+      font-size: 13px;
+      color: rgba(255,255,255,0.8);
+    }
+    
+    .result-label-sub {
+      font-size: 11px;
+      color: rgba(255,255,255,0.5);
+      margin-top: 2px;
+    }
+    
+    .result-value {
+      font-size: 18px;
+      font-weight: bold;
+    }
+    
+    .result-item.total .result-label {
+      font-size: 14px;
+      font-weight: bold;
+      color: white;
+    }
+    
+    .result-item.total .result-value {
+      font-size: 24px;
+      color: #fde047;
+    }
+    
+    /* 注釈 */
+    .footnote {
+      margin-top: 20px;
+      padding: 16px;
+      background: rgba(255,255,255,0.7);
+      border-radius: 12px;
+      border-left: 3px solid #d1d5db;
+    }
+    
+    .footnote-title {
+      font-size: 11px;
+      color: #6b7280;
+      font-weight: bold;
+      margin-bottom: 6px;
+    }
+    
+    .footnote-text {
+      font-size: 11px;
+      color: #9ca3af;
+      line-height: 1.6;
+    }
+    
+    /* フッターリンク */
+    .footer-link {
+      text-align: center;
+      margin-top: 24px;
+    }
+    
+    .footer-link a {
+      color: #1e3a5f;
+      font-size: 13px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    
+    .footer-link a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <!-- ヘッダー -->
+  <header class="header">
+    <div class="header-content">
+      <a href="/" class="back-button">
+        <i data-lucide="arrow-left" style="width:20px;height:20px;"></i>
+      </a>
+      <div class="logo"><img src="/logo.png" alt="EQAO"></div>
+      <h1 class="header-title">料金シミュレーター</h1>
+    </div>
+  </header>
+  
+  <!-- メインコンテンツ -->
+  <main class="main">
+    <!-- ヒーロー -->
+    <div class="hero">
+      <div class="hero-label">
+        <i data-lucide="calculator" style="width:14px;height:14px;"></i>
+        SIMULATOR
+      </div>
+      <h1 class="hero-title">料金シミュレーター</h1>
+      <p class="hero-subtitle">
+        希望のコースとコマ数を選択して<br>
+        料金の目安を確認できます
+      </p>
+    </div>
+    
+    <!-- 入力セクション -->
+    <div class="input-section">
+      <!-- コース選択 -->
+      <div class="input-group">
+        <div class="input-label">
+          <div class="input-label-icon">
+            <i data-lucide="graduation-cap" style="width:16px;height:16px;"></i>
+          </div>
+          希望コース
+        </div>
+        <div class="course-options">
+          <div class="course-option" data-course="national" data-price="14800" onclick="selectCourse(this)">
+            <div class="course-radio"></div>
+            <div class="course-info">
+              <div class="course-name">国立</div>
+              <div class="course-price">14,800円 / コマ</div>
+            </div>
+          </div>
+          <div class="course-option" data-course="sskw" data-price="12800" onclick="selectCourse(this)">
+            <div class="course-radio"></div>
+            <div class="course-info">
+              <div class="course-name">上智・慶應・早稲田</div>
+              <div class="course-price">12,800円 / コマ</div>
+            </div>
+          </div>
+          <div class="course-option selected" data-course="gmarch" data-price="11800" onclick="selectCourse(this)">
+            <div class="course-radio"></div>
+            <div class="course-info">
+              <div class="course-name">GMARCH</div>
+              <div class="course-price">11,800円 / コマ</div>
+            </div>
+          </div>
+          <div class="course-option" data-course="nittokoma" data-price="10800" onclick="selectCourse(this)">
+            <div class="course-radio"></div>
+            <div class="course-info">
+              <div class="course-name">日東駒専</div>
+              <div class="course-price">10,800円 / コマ</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- コマ数 -->
+      <div class="input-group">
+        <div class="input-label">
+          <div class="input-label-icon">
+            <i data-lucide="calendar" style="width:16px;height:16px;"></i>
+          </div>
+          月の実施希望コマ数
+        </div>
+        <div class="slider-container">
+          <div class="slider-value">
+            <span class="slider-number" id="lessons-value">8</span>
+            <span class="slider-unit">コマ / 月</span>
+          </div>
+          <div class="slider-hint">※ 在籍生の平均は8コマです</div>
+          <input type="range" class="slider" id="lessons-slider" min="1" max="20" value="8" oninput="updateLessons(this.value)">
+          <div class="slider-labels">
+            <span>1</span>
+            <span>10</span>
+            <span>20</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 月数 -->
+      <div class="input-group">
+        <div class="input-label">
+          <div class="input-label-icon">
+            <i data-lucide="clock" style="width:16px;height:16px;"></i>
+          </div>
+          シミュレーション期間
+        </div>
+        <div class="slider-container">
+          <div class="slider-value">
+            <span class="slider-number" id="months-value">6</span>
+            <span class="slider-unit">ヶ月</span>
+          </div>
+          <input type="range" class="slider" id="months-slider" min="1" max="12" value="6" oninput="updateMonths(this.value)">
+          <div class="slider-labels">
+            <span>1ヶ月</span>
+            <span>6ヶ月</span>
+            <span>12ヶ月</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 結果セクション -->
+    <div class="result-section">
+      <div class="result-title">
+        <i data-lucide="receipt" style="width:18px;height:18px;"></i>
+        料金シミュレーション結果
+      </div>
+      <div class="result-items">
+        <div class="result-item">
+          <div>
+            <div class="result-label">初回費用</div>
+            <div class="result-label-sub">入塾金 + 教材費</div>
+          </div>
+          <div class="result-value" id="initial-cost">55,780円</div>
+        </div>
+        <div class="result-item">
+          <div>
+            <div class="result-label">月額目安</div>
+            <div class="result-label-sub">在籍基本料 + 授業料</div>
+          </div>
+          <div class="result-value" id="monthly-cost">104,380円</div>
+        </div>
+        <div class="result-item total">
+          <div>
+            <div class="result-label"><span id="months-label">6</span>ヶ月間の総額</div>
+          </div>
+          <div class="result-value" id="total-cost">682,060円</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 注釈 -->
+    <div class="footnote">
+      <p class="footnote-title">料金について</p>
+      <p class="footnote-text">
+        ・表示金額はすべて税込価格です<br>
+        ・実際の料金は選択内容により変動する場合があります<br>
+        ・詳細は体験授業時にご説明いたします
+      </p>
+    </div>
+    
+    <!-- フッターリンク -->
+    <div class="footer-link">
+      <a href="/">
+        <i data-lucide="arrow-left" style="width:14px;height:14px;"></i>
+        トップページに戻る
+      </a>
+    </div>
+  </main>
+  
+  <script>
+    // 料金設定
+    const ENROLLMENT_FEE = 39800;  // 入塾金
+    const MATERIAL_FEE = 15980;    // 教材費
+    const BASIC_FEE = 9980;        // 在籍基本料（月額）
+    
+    // 初期値
+    let selectedCoursePrice = 11800; // GMARCH
+    let lessonsPerMonth = 8;
+    let months = 6;
+    
+    document.addEventListener('DOMContentLoaded', function() {
+      lucide.createIcons();
+      calculate();
+    });
+    
+    // コース選択
+    function selectCourse(element) {
+      // 選択状態をリセット
+      document.querySelectorAll('.course-option').forEach(opt => {
+        opt.classList.remove('selected');
+      });
+      
+      // 選択
+      element.classList.add('selected');
+      selectedCoursePrice = parseInt(element.dataset.price);
+      
+      calculate();
+    }
+    
+    // コマ数更新
+    function updateLessons(value) {
+      lessonsPerMonth = parseInt(value);
+      document.getElementById('lessons-value').textContent = value;
+      calculate();
+    }
+    
+    // 月数更新
+    function updateMonths(value) {
+      months = parseInt(value);
+      document.getElementById('months-value').textContent = value;
+      document.getElementById('months-label').textContent = value;
+      calculate();
+    }
+    
+    // 計算
+    function calculate() {
+      // 初回費用
+      const initialCost = ENROLLMENT_FEE + MATERIAL_FEE;
+      
+      // 月額
+      const monthlyCost = BASIC_FEE + (selectedCoursePrice * lessonsPerMonth);
+      
+      // 総額
+      const totalCost = initialCost + (monthlyCost * months);
+      
+      // 表示更新
+      document.getElementById('initial-cost').textContent = formatPrice(initialCost);
+      document.getElementById('monthly-cost').textContent = formatPrice(monthlyCost);
+      document.getElementById('total-cost').textContent = formatPrice(totalCost);
+    }
+    
+    // 金額フォーマット
+    function formatPrice(price) {
+      return price.toLocaleString() + '円';
+    }
+  </script>
+</body>
+</html>
