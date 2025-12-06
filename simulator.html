@@ -326,6 +326,13 @@
       color: #9ca3af;
     }
     
+    .slider-note {
+      margin-bottom: 16px;
+      font-size: 12px;
+      color: #6b7280;
+      line-height: 1.5;
+    }
+    
     /* 結果セクション */
     .result-section {
       background: linear-gradient(135deg, #1e3a5f 0%, #2d4a6f 100%);
@@ -380,6 +387,18 @@
       font-size: 11px;
       color: rgba(255,255,255,0.5);
       margin-top: 2px;
+    }
+    
+    .result-breakdown {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      margin-top: 4px;
+    }
+    
+    .result-breakdown span {
+      font-size: 11px;
+      color: rgba(255,255,255,0.6);
     }
     
     .result-value {
@@ -526,6 +545,7 @@
           </div>
           月の実施希望コマ数
         </div>
+        <div class="slider-note">※ 授業コマ数は毎月自由に変動させて予算を調整することが可能です。</div>
         <div class="slider-container">
           <div class="slider-value">
             <span class="slider-number" id="lessons-value">8</span>
@@ -574,14 +594,22 @@
         <div class="result-item">
           <div>
             <div class="result-label">初回費用</div>
-            <div class="result-label-sub">入塾金 + 教材費 + アカウント設定費</div>
+            <div class="result-breakdown">
+              <span>入塾金 39,800円</span>
+              <span>教材費 19,800円</span>
+              <span>アカウント設定費 550円</span>
+            </div>
           </div>
           <div class="result-value" id="initial-cost">60,150円</div>
         </div>
         <div class="result-item">
           <div>
             <div class="result-label">月額目安</div>
-            <div class="result-label-sub">在籍基本料 + システム費 + 授業料</div>
+            <div class="result-breakdown">
+              <span>在籍基本料 11,980円</span>
+              <span>システムサーバー費 2,980円</span>
+              <span>授業料 <span id="lesson-cost-display">108,000円</span></span>
+            </div>
           </div>
           <div class="result-value" id="monthly-cost">122,960円</div>
         </div>
@@ -667,8 +695,11 @@
       // 初回費用（入塾金 + 教材費 + アカウント設定費用）
       const initialCost = ENROLLMENT_FEE + MATERIAL_FEE + ACCOUNT_FEE;
       
+      // 授業料
+      const lessonCost = selectedCoursePrice * lessonsPerMonth;
+      
       // 月額（在籍基本料 + システムサーバー費 + 授業料）
-      const monthlyCost = BASIC_FEE + SYSTEM_FEE + (selectedCoursePrice * lessonsPerMonth);
+      const monthlyCost = BASIC_FEE + SYSTEM_FEE + lessonCost;
       
       // 総額
       const totalCost = initialCost + (monthlyCost * months);
@@ -676,6 +707,7 @@
       // 表示更新
       document.getElementById('initial-cost').textContent = formatPrice(initialCost);
       document.getElementById('monthly-cost').textContent = formatPrice(monthlyCost);
+      document.getElementById('lesson-cost-display').textContent = formatPrice(lessonCost);
       document.getElementById('total-cost').textContent = formatPrice(totalCost);
     }
     
