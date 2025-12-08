@@ -470,10 +470,8 @@
         // プルダウンを描画
         renderSegmentSelect();
         
-        // 初期表示
-        if (segments.length > 0) {
-          selectSegment(segments[0].id);
-        }
+        // 初期表示（全件表示）
+        selectSegment('all');
         
       } catch (error) {
         console.error('データ取得エラー:', error);
@@ -484,9 +482,13 @@
     // セグメントプルダウンを描画
     function renderSegmentSelect() {
       const select = document.getElementById('segment-select');
-      select.innerHTML = segments.map(seg => `
-        <option value="${seg.id}">${seg.name}（${allFaqData.filter(f => f.segmentId === seg.id).length}件）</option>
-      `).join('');
+      const allCount = allFaqData.length;
+      select.innerHTML = `
+        <option value="all">すべて表示（${allCount}件）</option>
+        ${segments.map(seg => `
+          <option value="${seg.id}">${seg.name}（${allFaqData.filter(f => f.segmentId === seg.id).length}件）</option>
+        `).join('')}
+      `;
     }
     
     // セグメント選択
@@ -500,8 +502,10 @@
       // 検索をクリア
       document.getElementById('search-input').value = '';
       
-      // FAQを描画
-      const filtered = allFaqData.filter(item => item.segmentId === currentSegmentId);
+      // FAQを描画（"all"の場合は全件表示）
+      const filtered = currentSegmentId === 'all' 
+        ? allFaqData 
+        : allFaqData.filter(item => item.segmentId === currentSegmentId);
       renderFaqList(filtered);
     }
     
@@ -523,7 +527,9 @@
       }
       
       const currentSegment = segments.find(s => s.id === currentSegmentId);
-      const headerTitle = isSearchMode ? '検索結果' : (currentSegment ? currentSegment.name : '');
+      const headerTitle = isSearchMode 
+        ? '検索結果' 
+        : (currentSegmentId === 'all' ? 'すべての質問' : (currentSegment ? currentSegment.name : ''));
       
       const searchBadge = isSearchMode ? `
         <span class="search-mode-badge">
@@ -617,7 +623,10 @@
       if (!query.trim()) {
         isSearchMode = false;
         if (currentSegmentId) {
-          renderFaqList(allFaqData.filter(item => item.segmentId === currentSegmentId));
+          const filtered = currentSegmentId === 'all' 
+            ? allFaqData 
+            : allFaqData.filter(item => item.segmentId === currentSegmentId);
+          renderFaqList(filtered);
         }
         return;
       }
@@ -637,7 +646,10 @@
       document.getElementById('search-input').value = '';
       isSearchMode = false;
       if (currentSegmentId) {
-        renderFaqList(allFaqData.filter(item => item.segmentId === currentSegmentId));
+        const filtered = currentSegmentId === 'all' 
+          ? allFaqData 
+          : allFaqData.filter(item => item.segmentId === currentSegmentId);
+        renderFaqList(filtered);
       }
     }
     
