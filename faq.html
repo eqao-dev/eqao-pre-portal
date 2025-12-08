@@ -418,15 +418,22 @@
         const data = JSON.parse(jsonString[1]);
         const rows = data.table.rows;
         
-        // ヘッダー行をスキップしてデータを整形
+        console.log('取得した行数:', rows.length);
+        console.log('最初の行:', rows[0]);
+        console.log('2行目:', rows[1]);
+        
+        // ヘッダー行をスキップしてデータを整形（IDは文字列に統一）
         allFaqData = rows.slice(1).map(row => ({
-          segmentId: row.c[0]?.v || '',
+          segmentId: String(row.c[0]?.v || ''),
           segmentName: row.c[1]?.v || '',
-          questionNumber: row.c[2]?.v || '',
+          questionNumber: String(row.c[2]?.v || ''),
           question: row.c[3]?.v || '',
           answer: row.c[4]?.v || '',
           videoUrl: row.c[5]?.v || ''
         })).filter(item => item.question); // 空の質問を除外
+        
+        console.log('読み込んだデータ:', allFaqData.length, '件');
+        console.log('サンプル:', allFaqData[0]);
         
         // セグメント一覧を抽出
         const segmentMap = new Map();
@@ -437,6 +444,7 @@
         });
         
         segments = Array.from(segmentMap, ([id, name]) => ({ id, name }));
+        console.log('セグメント:', segments);
         
         // 初期表示
         renderSegmentTabs();
@@ -462,18 +470,20 @@
     
     // セグメント選択
     function selectSegment(segmentId) {
-      currentSegmentId = segmentId;
+      currentSegmentId = String(segmentId);
       
       // タブのアクティブ状態を更新
       document.querySelectorAll('.segment-tab').forEach(tab => {
-        tab.classList.toggle('active', tab.dataset.segmentId === segmentId);
+        tab.classList.toggle('active', tab.dataset.segmentId === currentSegmentId);
       });
       
       // 検索をクリア
       document.getElementById('search-input').value = '';
       
       // FAQを描画
-      renderFaqList(allFaqData.filter(item => item.segmentId === segmentId));
+      const filtered = allFaqData.filter(item => item.segmentId === currentSegmentId);
+      console.log('フィルタ結果:', currentSegmentId, filtered.length, '件');
+      renderFaqList(filtered);
     }
     
     // FAQ一覧を描画
