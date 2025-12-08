@@ -375,6 +375,37 @@
       display: flex;
       align-items: center;
     }
+    
+    /* セグメント区切りヘッダー */
+    .segment-divider {
+      background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 100%);
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .segment-divider-number {
+      background: #fde047;
+      color: #1e3a5f;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 8px;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+    
+    .segment-divider-title {
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 600;
+      flex: 1;
+    }
+    
+    .segment-divider-count {
+      color: rgba(255,255,255,0.7);
+      font-size: 12px;
+    }
   </style>
 </head>
 <body>
@@ -540,6 +571,14 @@
         </span>
       ` : '';
       
+      // 「すべて表示」の場合はセグメントごとにグループ化
+      let faqListHtml = '';
+      if (currentSegmentId === 'all' && !isSearchMode) {
+        faqListHtml = renderFaqListGrouped(faqItems);
+      } else {
+        faqListHtml = faqItems.map(item => renderFaqItem(item)).join('');
+      }
+      
       container.innerHTML = `
         <div class="faq-container">
           <div class="faq-header">
@@ -561,12 +600,38 @@
             </button>
           </div>
           <div class="faq-list">
-            ${faqItems.map(item => renderFaqItem(item)).join('')}
+            ${faqListHtml}
           </div>
         </div>
       `;
       
       lucide.createIcons();
+    }
+    
+    // セグメントごとにグループ化して描画
+    function renderFaqListGrouped(faqItems) {
+      let html = '';
+      let currentSegId = null;
+      let segmentIndex = 0;
+      
+      faqItems.forEach(item => {
+        // 新しいセグメントになったら区切りヘッダーを挿入
+        if (item.segmentId !== currentSegId) {
+          currentSegId = item.segmentId;
+          segmentIndex++;
+          const segmentCount = faqItems.filter(f => f.segmentId === currentSegId).length;
+          html += `
+            <div class="segment-divider">
+              <span class="segment-divider-number">${segmentIndex}</span>
+              <span class="segment-divider-title">${item.segmentName}</span>
+              <span class="segment-divider-count">${segmentCount}件</span>
+            </div>
+          `;
+        }
+        html += renderFaqItem(item);
+      });
+      
+      return html;
     }
     
     // FAQ項目を描画
