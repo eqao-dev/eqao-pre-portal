@@ -130,11 +130,17 @@
     .section-count {
       font-size: 13px;
       color: #6b7280;
+      line-height: 1.6;
     }
     
     .section-count strong {
       color: #2563eb;
       font-size: 18px;
+    }
+    
+    .section-count .total {
+      color: #9ca3af;
+      font-size: 13px;
     }
     
     /* リスト */
@@ -216,6 +222,84 @@
       to { transform: rotate(360deg); }
     }
     
+    /* CTAセクション */
+    .cta-section {
+      background: linear-gradient(135deg, #1e3a5f 0%, #2d4a6f 100%);
+      border-radius: 16px;
+      padding: 24px 20px;
+      margin-top: 20px;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(30, 58, 95, 0.3);
+    }
+    
+    .cta-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(253, 224, 71, 0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 12px;
+      color: #fde047;
+    }
+    
+    .cta-title {
+      font-size: 16px;
+      font-weight: bold;
+      color: white;
+      margin-bottom: 8px;
+    }
+    
+    .cta-description {
+      font-size: 13px;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    
+    .cta-highlight {
+      display: inline-block;
+      background: rgba(253, 224, 71, 0.15);
+      color: #fde047;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 16px;
+    }
+    
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #fde047 0%, #facc15 100%);
+      color: #1e3a5f;
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 12px rgba(253, 224, 71, 0.3);
+    }
+    
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(253, 224, 71, 0.4);
+    }
+    
+    .cta-button:active {
+      transform: translateY(0);
+    }
+    
+    .cta-note {
+      font-size: 11px;
+      color: rgba(255,255,255,0.6);
+      margin-top: 12px;
+    }
+    
     /* 戻るリンク */
     .back-link {
       display: flex;
@@ -268,6 +352,19 @@
       .list-description {
         font-size: 14px;
       }
+      
+      .cta-section {
+        padding: 28px 24px;
+        border-radius: 20px;
+      }
+      
+      .cta-title {
+        font-size: 18px;
+      }
+      
+      .cta-description {
+        font-size: 14px;
+      }
     }
     
     /* デスクトップ (1024px以上) */
@@ -287,6 +384,14 @@
       
       .list-item {
         padding: 24px 28px;
+      }
+      
+      .cta-section {
+        padding: 32px;
+      }
+      
+      .cta-title {
+        font-size: 20px;
       }
     }
   </style>
@@ -314,7 +419,10 @@
         LINE登録特典
       </div>
       <h2 class="section-title">向いている人の特徴</h2>
-      <p class="section-count">全 <strong id="item-count">--</strong> 項目</p>
+      <p class="section-count">
+        全 <span class="total">40</span> 項目のうち<br>
+        <strong id="item-count">20</strong> 項目を特別公開中！
+      </p>
     </div>
     
     <!-- リスト -->
@@ -323,6 +431,26 @@
         <div class="loading-spinner"></div>
         読み込み中...
       </div>
+    </div>
+    
+    <!-- CTAセクション -->
+    <div class="cta-section">
+      <div class="cta-icon">
+        <i data-lucide="sparkles" style="width:24px;height:24px;"></i>
+      </div>
+      <h3 class="cta-title">続きが気になりませんか？</h3>
+      <p class="cta-description">
+        残り20項目の特徴や、他にもたくさんのカテゴリを<br>
+        無料体験授業でご紹介しています！
+      </p>
+      <div class="cta-highlight">
+        🎁 他にも10カテゴリ以上の特典あり
+      </div>
+      <a href="/trial.html" class="cta-button">
+        <i data-lucide="calendar-check" style="width:18px;height:18px;"></i>
+        無料体験授業に申し込む
+      </a>
+      <p class="cta-note">※ 完全無料・オンライン対応</p>
     </div>
     
     <!-- 戻るリンク -->
