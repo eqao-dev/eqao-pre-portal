@@ -1119,7 +1119,7 @@
         id: 7, 
         title: '料金\nシミュレーター', 
         icon: 'calculator', 
-        status: 'active',
+        status: 'locked',
         url: '/simulator.html',
         bgColor: '#d1fae5',
         iconColor: '#059669'
@@ -1313,7 +1313,12 @@
       if (item.status === 'active' && item.url) {
         openUrl(item.url);
       } else if (item.status === 'locked') {
-        showModal();
+        // lockedでもURLがあれば直接遷移（ページ側で認証）
+        if (item.url) {
+          openUrl(item.url);
+        } else {
+          showModal();
+        }
       } else if (item.status === 'pending') {
         showToast('準備中です\nもうしばらくお待ちください');
       } else if (item.status === 'coming') {
