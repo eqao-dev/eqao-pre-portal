@@ -327,6 +327,76 @@
     .back-link:hover {
       color: white;
     }
+    
+    /* ===========================================
+       レスポンシブ対応
+       =========================================== */
+    
+    /* タブレット (768px以上) */
+    @media (min-width: 768px) {
+      .header-content {
+        max-width: 700px;
+      }
+      
+      .main {
+        max-width: 700px;
+        padding: 28px 24px;
+      }
+      
+      .hero {
+        padding: 32px 28px;
+        border-radius: 24px;
+      }
+      
+      .hero-title {
+        font-size: 28px;
+      }
+      
+      .bonus-card {
+        padding: 28px;
+        border-radius: 24px;
+      }
+      
+      .card-title {
+        font-size: 20px;
+      }
+      
+      .card-description {
+        font-size: 14px;
+      }
+      
+      .footer-message {
+        padding: 24px;
+        border-radius: 20px;
+      }
+    }
+    
+    /* デスクトップ (1024px以上) */
+    @media (min-width: 1024px) {
+      .header-content {
+        max-width: 900px;
+      }
+      
+      .main {
+        max-width: 900px;
+        padding: 36px 32px;
+      }
+      
+      .hero-title {
+        font-size: 32px;
+      }
+      
+      /* 特典カードを横並びに */
+      .bonus-cards-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+      
+      .bonus-card {
+        margin-bottom: 0;
+      }
+    }
   </style>
 </head>
 <body>
@@ -353,41 +423,44 @@
       <p class="hero-subtitle">総合型選抜対策に役立つチェックリスト</p>
     </div>
     
-    <!-- 特典カード1: 向いている人 -->
-    <div class="bonus-card blue" onclick="location.href='/bonus-suitable.html'">
-      <div class="card-icon blue">
-        <i data-lucide="user-check" style="width:28px;height:28px;"></i>
+    <!-- 特典カード -->
+    <div class="bonus-cards-grid">
+      <!-- 特典カード1: 向いている人 -->
+      <div class="bonus-card blue" onclick="location.href='/bonus-suitable.html'">
+        <div class="card-icon blue">
+          <i data-lucide="user-check" style="width:28px;height:28px;"></i>
+        </div>
+        <h2 class="card-title">総合型選抜に向いている人の特徴</h2>
+        <p class="card-count blue">
+          <i data-lucide="list-checks" style="width:16px;height:16px;"></i>
+          <strong>20</strong> 項目を公開！
+        </p>
+        <p class="card-description">
+          総合型選抜に向いている人の特徴をチェックリスト形式でまとめました。自分に当てはまるか確認してみましょう。
+        </p>
+        <div class="card-button blue">
+          <span>チェックリストを見る</span>
+          <i data-lucide="chevron-right" style="width:18px;height:18px;"></i>
+        </div>
       </div>
-      <h2 class="card-title">総合型選抜に向いている人の特徴</h2>
-      <p class="card-count blue">
-        <i data-lucide="list-checks" style="width:16px;height:16px;"></i>
-        <strong>20</strong> 項目を公開！
-      </p>
-      <p class="card-description">
-        総合型選抜に向いている人の特徴をチェックリスト形式でまとめました。自分に当てはまるか確認してみましょう。
-      </p>
-      <div class="card-button blue">
-        <span>チェックリストを見る</span>
-        <i data-lucide="chevron-right" style="width:18px;height:18px;"></i>
-      </div>
-    </div>
-    
-    <!-- 特典カード2: いい志望理由書 -->
-    <div class="bonus-card green" onclick="location.href='/bonus-essay.html'">
-      <div class="card-icon green">
-        <i data-lucide="file-text" style="width:28px;height:28px;"></i>
-      </div>
-      <h2 class="card-title">良い志望理由書の特徴</h2>
-      <p class="card-count green">
-        <i data-lucide="list-checks" style="width:16px;height:16px;"></i>
-         <strong>15</strong> 項目を公開！
-      </p>
-      <p class="card-description">
-        合格する志望理由書に共通する特徴をまとめました。自分の志望理由書と照らし合わせてみましょう。
-      </p>
-      <div class="card-button green">
-        <span>チェックリストを見る</span>
-        <i data-lucide="chevron-right" style="width:18px;height:18px;"></i>
+      
+      <!-- 特典カード2: いい志望理由書 -->
+      <div class="bonus-card green" onclick="location.href='/bonus-essay.html'">
+        <div class="card-icon green">
+          <i data-lucide="file-text" style="width:28px;height:28px;"></i>
+        </div>
+        <h2 class="card-title">良い志望理由書の特徴</h2>
+        <p class="card-count green">
+          <i data-lucide="list-checks" style="width:16px;height:16px;"></i>
+           <strong>15</strong> 項目を公開！
+        </p>
+        <p class="card-description">
+          合格する志望理由書に共通する特徴をまとめました。自分の志望理由書と照らし合わせてみましょう。
+        </p>
+        <div class="card-button green">
+          <span>チェックリストを見る</span>
+          <i data-lucide="chevron-right" style="width:18px;height:18px;"></i>
+        </div>
       </div>
     </div>
     

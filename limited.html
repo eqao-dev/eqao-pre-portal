@@ -282,6 +282,76 @@
     .back-link:hover {
       color: #1e3a5f;
     }
+    
+    /* ===========================================
+       レスポンシブ対応
+       =========================================== */
+    
+    /* タブレット (768px以上) */
+    @media (min-width: 768px) {
+      .header-content {
+        max-width: 700px;
+      }
+      
+      .main {
+        max-width: 600px;
+        padding: 24px;
+        padding-bottom: 120px;
+      }
+      
+      .limited-badge {
+        padding: 14px 20px;
+        font-size: 15px;
+        border-radius: 14px;
+      }
+      
+      .description {
+        padding: 20px;
+        font-size: 14px;
+        border-radius: 14px;
+      }
+      
+      .form-card {
+        padding: 24px;
+        border-radius: 20px;
+      }
+      
+      .form-title {
+        font-size: 20px;
+      }
+      
+      .form-description {
+        font-size: 14px;
+      }
+      
+      .form-button {
+        padding: 16px 20px;
+        font-size: 15px;
+      }
+    }
+    
+    /* デスクトップ (1024px以上) */
+    @media (min-width: 1024px) {
+      .header-content {
+        max-width: 800px;
+      }
+      
+      .main {
+        max-width: 700px;
+        padding: 32px;
+      }
+      
+      /* フォームカードを横並びに */
+      .form-cards-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+      
+      .form-card {
+        margin-bottom: 0;
+      }
+    }
   </style>
 </head>
 <body>
@@ -310,39 +380,42 @@
       <p>こちらから入塾に関するお手続きが可能です。ご不明な点がございましたら、お気軽にお問い合わせください。</p>
     </div>
     
-    <!-- 入塾仮予約 -->
-    <div class="form-card">
-      <div class="form-icon reserve">
-        <i data-lucide="calendar-clock" style="width:28px;height:28px;"></i>
+    <!-- フォームカード -->
+    <div class="form-cards-grid">
+      <!-- 入塾仮予約 -->
+      <div class="form-card">
+        <div class="form-icon reserve">
+          <i data-lucide="calendar-clock" style="width:28px;height:28px;"></i>
+        </div>
+        <h2 class="form-title">入塾仮予約</h2>
+        <p class="form-description">
+          正式な受付開始前に、入塾の仮予約ができます。<br>
+          定員に達し次第、募集を締め切らせていただきます。
+        </p>
+        <button class="form-button reserve" onclick="openUrl('https://forms.gle/UTTEjNEWir2uRxrS6')">
+          <i data-lucide="edit" style="width:18px;height:18px;"></i>
+          仮予約フォームへ
+        </button>
       </div>
-      <h2 class="form-title">入塾仮予約</h2>
-      <p class="form-description">
-        正式な受付開始前に、入塾の仮予約ができます。<br>
-        定員に達し次第、募集を締め切らせていただきます。
-      </p>
-      <button class="form-button reserve" onclick="openUrl('https://forms.gle/UTTEjNEWir2uRxrS6')">
-        <i data-lucide="edit" style="width:18px;height:18px;"></i>
-        仮予約フォームへ
-      </button>
-    </div>
-    
-    <!-- 本入塾申込 -->
-    <div class="form-card" id="enroll-card">
-      <div class="form-icon enroll">
-        <i data-lucide="user-check" style="width:28px;height:28px;"></i>
-      </div>
-      <h2 class="form-title">本入塾申込</h2>
-      <p class="form-description">
-        保護者同意のうえ、正式な入塾手続きを行います。<br>
-        必要事項をご入力ください。
-      </p>
-      <button class="form-button enroll" id="enroll-button" onclick="openUrl('https://forms.gle/FZy3KqW5TJDGNrucA')">
-        <i data-lucide="check-circle" style="width:18px;height:18px;"></i>
-        本入塾申込フォームへ
-      </button>
-      <div class="unavailable-message" id="unavailable-message" style="display:none;">
-        <i data-lucide="alert-triangle" style="width:16px;height:16px;"></i>
-        <span>現在、本入塾申込の受付期間外です。<br>12月25日以降に受付を開始いたします。</span>
+      
+      <!-- 本入塾申込 -->
+      <div class="form-card" id="enroll-card">
+        <div class="form-icon enroll">
+          <i data-lucide="user-check" style="width:28px;height:28px;"></i>
+        </div>
+        <h2 class="form-title">本入塾申込</h2>
+        <p class="form-description">
+          保護者同意のうえ、正式な入塾手続きを行います。<br>
+          必要事項をご入力ください。
+        </p>
+        <button class="form-button enroll" id="enroll-button" onclick="openUrl('https://forms.gle/FZy3KqW5TJDGNrucA')">
+          <i data-lucide="check-circle" style="width:18px;height:18px;"></i>
+          本入塾申込フォームへ
+        </button>
+        <div class="unavailable-message" id="unavailable-message" style="display:none;">
+          <i data-lucide="alert-triangle" style="width:16px;height:16px;"></i>
+          <span>現在、本入塾申込の受付期間外です。<br>12月25日以降に受付を開始いたします。</span>
+        </div>
       </div>
     </div>
     
