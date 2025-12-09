@@ -459,6 +459,132 @@
     }
     
     /* ===========================================
+       パスワード認証画面
+       =========================================== */
+    .auth-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
+      z-index: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    
+    .auth-overlay.hidden {
+      display: none;
+    }
+    
+    .auth-card {
+      background: white;
+      border-radius: 20px;
+      padding: 32px 24px;
+      max-width: 360px;
+      width: 100%;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    
+    .auth-icon {
+      width: 64px;
+      height: 64px;
+      background: #eff6ff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      color: #1e3a5f;
+    }
+    
+    .auth-title {
+      font-size: 20px;
+      font-weight: bold;
+      color: #1e3a5f;
+      margin-bottom: 8px;
+    }
+    
+    .auth-description {
+      font-size: 13px;
+      color: #6b7280;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+    
+    .auth-input {
+      width: 100%;
+      padding: 14px 16px;
+      border: 2px solid #e5e7eb;
+      border-radius: 10px;
+      font-size: 16px;
+      outline: none;
+      transition: border-color 0.2s;
+      text-align: center;
+      letter-spacing: 2px;
+    }
+    
+    .auth-input:focus {
+      border-color: #1e3a5f;
+    }
+    
+    .auth-input.error {
+      border-color: #ef4444;
+    }
+    
+    .auth-error {
+      color: #ef4444;
+      font-size: 12px;
+      margin-top: 8px;
+      display: none;
+    }
+    
+    .auth-error.show {
+      display: block;
+    }
+    
+    .auth-button {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, #1e3a5f 0%, #2d4a6f 100%);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 16px;
+      transition: transform 0.2s;
+    }
+    
+    .auth-button:hover {
+      transform: scale(1.02);
+    }
+    
+    .auth-button:active {
+      transform: scale(0.98);
+    }
+    
+    .auth-hint {
+      font-size: 11px;
+      color: #9ca3af;
+      margin-top: 16px;
+      line-height: 1.5;
+    }
+    
+    .auth-hint a {
+      color: #1e3a5f;
+      text-decoration: none;
+    }
+    
+    .auth-hint a:hover {
+      text-decoration: underline;
+    }
+    
+    /* ===========================================
        レスポンシブ対応
        =========================================== */
     
@@ -501,6 +627,11 @@
       
       .result-item.total .result-value {
         font-size: 28px;
+      }
+      
+      .auth-card {
+        max-width: 400px;
+        padding: 40px;
       }
     }
     
@@ -550,6 +681,27 @@
   </style>
 </head>
 <body>
+  <!-- パスワード認証画面 -->
+  <div class="auth-overlay" id="auth-overlay">
+    <div class="auth-card">
+      <div class="auth-icon">
+        <i data-lucide="lock" style="width:28px;height:28px;"></i>
+      </div>
+      <h2 class="auth-title">パスワードを入力</h2>
+      <p class="auth-description">
+        このページは体験授業受講者限定です。<br>
+        体験授業後にお伝えしたパスワードを入力してください。
+      </p>
+      <input type="password" class="auth-input" id="auth-input" placeholder="パスワード">
+      <p class="auth-error" id="auth-error">パスワードが正しくありません</p>
+      <button class="auth-button" onclick="submitAuth()">確認</button>
+      <p class="auth-hint">
+        まだ体験授業を受講されていない方は<br>
+        <a href="/trial.html">無料体験授業に申し込む →</a>
+      </p>
+    </div>
+  </div>
+  
   <!-- ヘッダー -->
   <header class="header">
     <div class="header-content">
@@ -734,7 +886,52 @@
   </main>
   
   <script>
+    // ============================================
+    // 認証設定
+    // ============================================
+    const AUTH_PASSWORD = 'eqaotrial1234';
+    const AUTH_STORAGE_KEY = 'eqao_simulator_auth';
+    
+    // ============================================
+    // 認証チェック
+    // ============================================
+    function checkAuth() {
+      const isAuthenticated = sessionStorage.getItem(AUTH_STORAGE_KEY) === 'true';
+      if (isAuthenticated) {
+        document.getElementById('auth-overlay').classList.add('hidden');
+      }
+    }
+    
+    function submitAuth() {
+      const input = document.getElementById('auth-input');
+      const error = document.getElementById('auth-error');
+      const password = input.value;
+      
+      if (password === AUTH_PASSWORD) {
+        sessionStorage.setItem(AUTH_STORAGE_KEY, 'true');
+        document.getElementById('auth-overlay').classList.add('hidden');
+      } else {
+        input.classList.add('error');
+        error.classList.add('show');
+      }
+    }
+    
+    // Enterキーでパスワード送信
+    document.getElementById('auth-input').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        submitAuth();
+      }
+    });
+    
+    // 入力時にエラー解除
+    document.getElementById('auth-input').addEventListener('input', function() {
+      this.classList.remove('error');
+      document.getElementById('auth-error').classList.remove('show');
+    });
+    
+    // ============================================
     // 料金設定
+    // ============================================
     const ENROLLMENT_FEE = 39800;  // 入塾金
     const MATERIAL_FEE = 19800;    // 教材費
     const ACCOUNT_FEE = 550;       // アカウント設定費用
@@ -747,6 +944,7 @@
     let months = 6;
     
     document.addEventListener('DOMContentLoaded', function() {
+      checkAuth();
       lucide.createIcons();
       calculate();
     });
