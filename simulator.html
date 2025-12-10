@@ -333,6 +333,101 @@
       line-height: 1.5;
     }
     
+    .slider-note.highlight {
+      background: #f0f9ff;
+      color: #0369a1;
+      padding: 8px 12px;
+      border-radius: 8px;
+      border-left: 3px solid #0ea5e9;
+      font-weight: 500;
+    }
+    
+    /* 基本プラン説明（コンパクト版） */
+    .plan-guide {
+      background: #f8fafc;
+      border-radius: 10px;
+      padding: 12px;
+      margin-bottom: 16px;
+    }
+    
+    .plan-guide-title {
+      font-size: 11px;
+      font-weight: bold;
+      color: #6b7280;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    
+    .plan-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+    }
+    
+    .plan-item {
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 6px;
+      padding: 8px 10px;
+      font-size: 11px;
+      color: #374151;
+    }
+    
+    .plan-item.recommended {
+      border-color: #1e3a5f;
+      background: #f8fafc;
+    }
+    
+    .plan-item-header {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-bottom: 2px;
+    }
+    
+    .plan-name {
+      font-weight: bold;
+      color: #374151;
+      font-size: 10px;
+    }
+    
+    .plan-item.recommended .plan-name {
+      color: #1e3a5f;
+    }
+    
+    .plan-star {
+      color: #f59e0b;
+      font-size: 10px;
+    }
+    
+    .plan-koma {
+      font-weight: bold;
+      color: #1e3a5f;
+      font-size: 12px;
+    }
+    
+    .plan-target {
+      font-size: 9px;
+      color: #9ca3af;
+      margin-top: 1px;
+    }
+    
+    .plan-footer {
+      margin-top: 10px;
+      padding-top: 8px;
+      border-top: 1px dashed #e5e7eb;
+      font-size: 10px;
+      color: #9ca3af;
+      line-height: 1.5;
+    }
+    
+    .plan-footer a {
+      color: #1e3a5f;
+      text-decoration: underline;
+    }
+    
     /* 結果セクション */
     .result-section {
       background: linear-gradient(135deg, #1e3a5f 0%, #2d4a6f 100%);
@@ -437,6 +532,207 @@
       font-size: 11px;
       color: #9ca3af;
       line-height: 1.6;
+    }
+    
+    /* オプション一覧ボタン */
+    .option-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      margin-top: 12px;
+      padding: 12px 16px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #1e3a5f;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .option-button:hover {
+      background: #f1f5f9;
+      border-color: #cbd5e1;
+    }
+    
+    /* オプションモーダル */
+    .option-modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 600;
+      display: none;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 20px;
+      overflow-y: auto;
+    }
+    
+    .option-modal-overlay.show {
+      display: flex;
+    }
+    
+    .option-modal {
+      background: white;
+      border-radius: 20px;
+      width: 100%;
+      max-width: 480px;
+      margin: 20px auto;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      overflow: hidden;
+    }
+    
+    .option-modal-header {
+      background: linear-gradient(135deg, #1e3a5f 0%, #2d4a6f 100%);
+      padding: 20px;
+      color: white;
+      position: relative;
+    }
+    
+    .option-modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: rgba(255,255,255,0.2);
+      border: none;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: white;
+      transition: background 0.2s;
+    }
+    
+    .option-modal-close:hover {
+      background: rgba(255,255,255,0.3);
+    }
+    
+    .option-modal-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+    
+    .option-modal-subtitle {
+      font-size: 12px;
+      opacity: 0.8;
+    }
+    
+    .option-modal-body {
+      padding: 20px;
+      max-height: 60vh;
+      overflow-y: auto;
+    }
+    
+    .option-notice {
+      background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+      border: 1px solid #6ee7b7;
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    
+    .option-notice-icon {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      background: #10b981;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+    
+    .option-notice-text {
+      font-size: 12px;
+      color: #065f46;
+      line-height: 1.5;
+      font-weight: 500;
+    }
+    
+    .option-category {
+      margin-bottom: 16px;
+    }
+    
+    .option-category:last-child {
+      margin-bottom: 0;
+    }
+    
+    .option-category-title {
+      font-size: 12px;
+      font-weight: bold;
+      color: #6b7280;
+      margin-bottom: 8px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid #e5e7eb;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    
+    .option-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    
+    .option-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 10px 12px;
+      background: #f8fafc;
+      border-radius: 8px;
+      gap: 12px;
+    }
+    
+    .option-item-name {
+      font-size: 12px;
+      color: #374151;
+      line-height: 1.4;
+    }
+    
+    .option-item-name .sub {
+      display: block;
+      font-size: 10px;
+      color: #9ca3af;
+      margin-top: 2px;
+    }
+    
+    .option-item-price {
+      font-size: 12px;
+      font-weight: bold;
+      color: #1e3a5f;
+      white-space: nowrap;
+      text-align: right;
+    }
+    
+    .option-item-price .sub {
+      display: block;
+      font-size: 10px;
+      font-weight: normal;
+      color: #9ca3af;
+    }
+    
+    .option-discount {
+      background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    }
+    
+    .option-discount .option-item-price {
+      color: #b45309;
     }
     
     /* フッターリンク */
@@ -787,7 +1083,50 @@
           </div>
           月の実施希望コマ数
         </div>
-        <div class="slider-note">※ 授業コマ数は毎月自由に変動させて予算を調整することが可能です。</div>
+        <div class="slider-note highlight">※ 授業コマ数は毎月自由に変動させて予算を調整することが可能です。</div>
+        
+        <!-- 基本プラン説明 -->
+        <div class="plan-guide">
+          <div class="plan-guide-title">
+            <i data-lucide="info" style="width:12px;height:12px;color:#9ca3af;"></i>
+            プラン目安
+          </div>
+          <div class="plan-grid">
+            <div class="plan-item">
+              <div class="plan-item-header">
+                <span class="plan-name">ミニマム</span>
+              </div>
+              <div class="plan-koma">4〜6コマ</div>
+              <div class="plan-target">高1・2年生</div>
+            </div>
+            <div class="plan-item recommended">
+              <div class="plan-item-header">
+                <span class="plan-name">レギュラー</span>
+                <span class="plan-star">★</span>
+              </div>
+              <div class="plan-koma">7〜9コマ</div>
+              <div class="plan-target">高2冬〜高3 / 平均8コマ</div>
+            </div>
+            <div class="plan-item">
+              <div class="plan-item-header">
+                <span class="plan-name">ハイレベル</span>
+              </div>
+              <div class="plan-koma">10〜12コマ</div>
+              <div class="plan-target">高3 徹底プラン</div>
+            </div>
+            <div class="plan-item">
+              <div class="plan-item-header">
+                <span class="plan-name">プレミアム</span>
+              </div>
+              <div class="plan-koma">13コマ〜</div>
+              <div class="plan-target">要相談</div>
+            </div>
+          </div>
+          <div class="plan-footer">
+            ※ コマ数は志望校や科目数により変動します。
+          </div>
+        </div>
+        
         <div class="slider-container">
           <div class="slider-value">
             <span class="slider-number" id="lessons-value">8</span>
@@ -870,10 +1209,170 @@
       <p class="footnote-text">
         ・表示金額はすべて税込価格です<br>
         ・こちらはあくまで目安の料金です<br>
-        ・入塾時期やオプション（模試・合宿・課題図書対策等）により変動します<br>
+        ・入塾時期やオプションにより変動します<br>
         ・まとめてお支払いによる割引制度もございます<br>
         ・詳細は体験授業時にご説明いたします
       </p>
+      <button class="option-button" onclick="showOptionModal()">
+        <i data-lucide="list" style="width:16px;height:16px;"></i>
+        オプション一覧を見る
+      </button>
+    </div>
+    
+    <!-- オプション一覧モーダル -->
+    <div class="option-modal-overlay" id="option-modal-overlay" onclick="hideOptionModal(event)">
+      <div class="option-modal" onclick="event.stopPropagation()">
+        <div class="option-modal-header">
+          <button class="option-modal-close" onclick="hideOptionModal()">
+            <i data-lucide="x" style="width:18px;height:18px;"></i>
+          </button>
+          <h3 class="option-modal-title">オプション一覧</h3>
+          <p class="option-modal-subtitle">各種オプションメニューと料金</p>
+        </div>
+        <div class="option-modal-body">
+          <!-- 注意書き -->
+          <div class="option-notice">
+            <div class="option-notice-icon">
+              <i data-lucide="check" style="width:12px;height:12px;"></i>
+            </div>
+            <p class="option-notice-text">
+              オプションはすべて<strong>任意</strong>です。<br>
+              必ず申し込む必要はありません。<br>
+              必要に応じてご検討ください。
+            </p>
+          </div>
+          
+          <!-- 授業関連オプション -->
+          <div class="option-category">
+            <div class="option-category-title">
+              <i data-lucide="user-check" style="width:14px;height:14px;"></i>
+              授業関連オプション
+            </div>
+            <div class="option-list">
+              <div class="option-item">
+                <span class="option-item-name">
+                  講師指名料
+                  <span class="sub">特定の講師を指名する場合</span>
+                </span>
+                <span class="option-item-price">2,200円<span class="sub">/コマ</span></span>
+              </div>
+              <div class="option-item">
+                <span class="option-item-name">
+                  深夜授業対応
+                  <span class="sub">00:00〜9:00の時間帯</span>
+                </span>
+                <span class="option-item-price">+2,000円<span class="sub">/コマ</span></span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- 教材・模試 -->
+          <div class="option-category">
+            <div class="option-category-title">
+              <i data-lucide="book-open" style="width:14px;height:14px;"></i>
+              教材・模試
+            </div>
+            <div class="option-list">
+              <div class="option-item">
+                <span class="option-item-name">
+                  過去動画教材費
+                  <span class="sub">入塾時に購入の場合</span>
+                </span>
+                <span class="option-item-price">11,000円<span class="sub">/初回</span></span>
+              </div>
+              <div class="option-item">
+                <span class="option-item-name">
+                  過去動画教材費
+                  <span class="sub">入塾後に追加購入の場合</span>
+                </span>
+                <span class="option-item-price">39,800円<span class="sub">/払い切り</span></span>
+              </div>
+              <div class="option-item">
+                <span class="option-item-name">
+                  EQAO模試
+                  <span class="sub">10-11月実施 / 2回受験推奨</span>
+                </span>
+                <span class="option-item-price">15,980円<span class="sub">/回</span></span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- 特別プログラム -->
+          <div class="option-category">
+            <div class="option-category-title">
+              <i data-lucide="sparkles" style="width:14px;height:14px;"></i>
+              特別プログラム
+            </div>
+            <div class="option-list">
+              <div class="option-item">
+                <span class="option-item-name">
+                  EQAO CAMP
+                  <span class="sub">2泊3日 / 食事・宿泊代込み</span>
+                </span>
+                <span class="option-item-price">119,800円<span class="sub">/回</span></span>
+              </div>
+              <div class="option-item">
+                <span class="option-item-name">
+                  EQAO STUDY TOUR
+                  <span class="sub">航空券・食費・宿泊は別途</span>
+                </span>
+                <span class="option-item-price">131,780円<span class="sub">/回</span></span>
+              </div>
+              <div class="option-item">
+                <span class="option-item-name">
+                  EQAO FIELD WORK BODY制度
+                  <span class="sub">+スタッフ交通費</span>
+                </span>
+                <span class="option-item-price">33,000円<span class="sub">/回</span></span>
+              </div>
+              <div class="option-item">
+                <span class="option-item-name">
+                  課題図書対策プログラム
+                  <span class="sub">指定図書を踏まえた面接・小論文対策</span>
+                </span>
+                <span class="option-item-price">71,280円<span class="sub">/冊</span></span>
+              </div>
+              <div class="option-item">
+                <span class="option-item-name">
+                  動画資料作成サービス
+                  <span class="sub">提出用動画の作成サポート</span>
+                </span>
+                <span class="option-item-price">59,800円<span class="sub">/本</span></span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- 割引制度 -->
+          <div class="option-category">
+            <div class="option-category-title">
+              <i data-lucide="percent" style="width:14px;height:14px;"></i>
+              まとめ払い割引制度
+            </div>
+            <div class="option-list">
+              <div class="option-item option-discount">
+                <span class="option-item-name">4ヶ月まとめ払い</span>
+                <span class="option-item-price">-10,000円</span>
+              </div>
+              <div class="option-item option-discount">
+                <span class="option-item-name">6ヶ月まとめ払い</span>
+                <span class="option-item-price">-15,000円</span>
+              </div>
+              <div class="option-item option-discount">
+                <span class="option-item-name">8ヶ月まとめ払い</span>
+                <span class="option-item-price">-20,000円</span>
+              </div>
+              <div class="option-item option-discount">
+                <span class="option-item-name">10ヶ月まとめ払い</span>
+                <span class="option-item-price">-30,000円</span>
+              </div>
+              <div class="option-item option-discount">
+                <span class="option-item-name">12ヶ月まとめ払い</span>
+                <span class="option-item-price">-40,000円</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     
     <!-- フッターリンク -->
@@ -1002,6 +1501,21 @@
     // 金額フォーマット
     function formatPrice(price) {
       return price.toLocaleString() + '円';
+    }
+    
+    // オプションモーダル表示
+    function showOptionModal() {
+      document.getElementById('option-modal-overlay').classList.add('show');
+      document.body.style.overflow = 'hidden';
+      lucide.createIcons();
+    }
+    
+    // オプションモーダル非表示
+    function hideOptionModal(event) {
+      // イベントがある場合はオーバーレイクリック時のみ閉じる
+      if (event && event.target !== event.currentTarget) return;
+      document.getElementById('option-modal-overlay').classList.remove('show');
+      document.body.style.overflow = '';
     }
   </script>
 </body>
