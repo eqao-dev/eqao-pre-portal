@@ -342,81 +342,51 @@
       font-weight: 500;
     }
     
-    /* 基本プラン説明（コンパクト版） */
+    /* 基本プラン説明（テキストリスト版） */
     .plan-guide {
-      background: #f8fafc;
-      border-radius: 10px;
-      padding: 12px;
       margin-bottom: 16px;
+      padding: 10px 12px;
+      background: #f8fafc;
+      border-radius: 8px;
     }
     
     .plan-guide-title {
       font-size: 11px;
       font-weight: bold;
       color: #6b7280;
-      margin-bottom: 10px;
+      margin-bottom: 6px;
       display: flex;
       align-items: center;
       gap: 4px;
     }
     
-    .plan-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6px;
-    }
-    
-    .plan-item {
-      background: white;
-      border: 1px solid #e5e7eb;
-      border-radius: 6px;
-      padding: 8px 10px;
+    .plan-text-list {
       font-size: 11px;
+      color: #4b5563;
+      line-height: 1.7;
+    }
+    
+    .plan-text-list .plan-line {
+      display: block;
+    }
+    
+    .plan-text-list .plan-name {
+      font-weight: 600;
       color: #374151;
     }
     
-    .plan-item.recommended {
-      border-color: #1e3a5f;
-      background: #f8fafc;
-    }
-    
-    .plan-item-header {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      margin-bottom: 2px;
-    }
-    
-    .plan-name {
-      font-weight: bold;
-      color: #374151;
-      font-size: 10px;
-    }
-    
-    .plan-item.recommended .plan-name {
-      color: #1e3a5f;
-    }
-    
-    .plan-star {
+    .plan-text-list .plan-star {
       color: #f59e0b;
-      font-size: 10px;
     }
     
-    .plan-koma {
-      font-weight: bold;
-      color: #1e3a5f;
-      font-size: 12px;
-    }
-    
-    .plan-target {
-      font-size: 9px;
+    .plan-text-list .plan-sub {
       color: #9ca3af;
-      margin-top: 1px;
+      font-size: 10px;
     }
     
     .plan-footer {
-      margin-top: 10px;
-      padding-top: 8px;
+      margin-top: 6px;
+      padding-top: 6px;
       border-top: 1px dashed #e5e7eb;
       font-size: 10px;
       color: #9ca3af;
@@ -1091,36 +1061,11 @@
             <i data-lucide="info" style="width:12px;height:12px;color:#9ca3af;"></i>
             プラン目安
           </div>
-          <div class="plan-grid">
-            <div class="plan-item">
-              <div class="plan-item-header">
-                <span class="plan-name">ミニマム</span>
-              </div>
-              <div class="plan-koma">4〜6コマ</div>
-              <div class="plan-target">高1・2年生</div>
-            </div>
-            <div class="plan-item recommended">
-              <div class="plan-item-header">
-                <span class="plan-name">レギュラー</span>
-                <span class="plan-star">★</span>
-              </div>
-              <div class="plan-koma">7〜9コマ</div>
-              <div class="plan-target">高2冬〜高3 / 平均8コマ</div>
-            </div>
-            <div class="plan-item">
-              <div class="plan-item-header">
-                <span class="plan-name">ハイレベル</span>
-              </div>
-              <div class="plan-koma">10〜12コマ</div>
-              <div class="plan-target">高3 徹底プラン</div>
-            </div>
-            <div class="plan-item">
-              <div class="plan-item-header">
-                <span class="plan-name">プレミアム</span>
-              </div>
-              <div class="plan-koma">13コマ〜</div>
-              <div class="plan-target">要相談</div>
-            </div>
+          <div class="plan-text-list">
+            <span class="plan-line">・<span class="plan-name">ミニマム</span>：4〜6コマ <span class="plan-sub">（高1・2年生）</span></span>
+            <span class="plan-line">・<span class="plan-name">レギュラー</span>：7〜9コマ <span class="plan-sub">（高2冬〜高3）</span><span class="plan-star">★平均8コマ</span></span>
+            <span class="plan-line">・<span class="plan-name">ハイレベル</span>：10〜12コマ <span class="plan-sub">（高3徹底プラン）</span></span>
+            <span class="plan-line">・<span class="plan-name">プレミアム</span>：13コマ〜 <span class="plan-sub">（要相談）</span></span>
           </div>
           <div class="plan-footer">
             ※ コマ数は志望校や科目数により変動します。
