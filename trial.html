@@ -251,6 +251,198 @@
       line-height: 1.4;
     }
     
+    /* 体験授業の内容セクション */
+    .trial-content-section {
+      background: white;
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    
+    .trial-content-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    
+    .trial-content-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #d97706;
+    }
+    
+    .trial-content-title {
+      font-size: 15px;
+      font-weight: bold;
+      color: #1e3a5f;
+    }
+    
+    .trial-content-subtitle {
+      font-size: 11px;
+      color: #6b7280;
+    }
+    
+    .trial-highlight {
+      background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .trial-highlight-icon {
+      width: 36px;
+      height: 36px;
+      background: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #10b981;
+      flex-shrink: 0;
+    }
+    
+    .trial-highlight-text {
+      font-size: 13px;
+      color: #065f46;
+      line-height: 1.5;
+    }
+    
+    .trial-highlight-text strong {
+      color: #047857;
+    }
+    
+    .trial-group {
+      margin-bottom: 16px;
+    }
+    
+    .trial-group:last-child {
+      margin-bottom: 0;
+    }
+    
+    .trial-group-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 12px;
+      background: #f8fafc;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    
+    .trial-group-header:hover {
+      background: #f1f5f9;
+    }
+    
+    .trial-group-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    
+    .trial-group-icon.blue { background: #dbeafe; color: #2563eb; }
+    .trial-group-icon.green { background: #d1fae5; color: #059669; }
+    .trial-group-icon.yellow { background: #fef3c7; color: #d97706; }
+    .trial-group-icon.purple { background: #f3e8ff; color: #9333ea; }
+    
+    .trial-group-title {
+      flex: 1;
+      font-size: 13px;
+      font-weight: 600;
+      color: #374151;
+    }
+    
+    .trial-group-arrow {
+      color: #9ca3af;
+      transition: transform 0.2s;
+    }
+    
+    .trial-group.open .trial-group-arrow {
+      transform: rotate(180deg);
+    }
+    
+    .trial-group-content {
+      display: none;
+      padding: 0 8px 8px;
+    }
+    
+    .trial-group.open .trial-group-content {
+      display: block;
+    }
+    
+    .trial-item {
+      padding: 12px;
+      background: #fafafa;
+      border-radius: 8px;
+      margin-bottom: 8px;
+    }
+    
+    .trial-item:last-child {
+      margin-bottom: 0;
+    }
+    
+    .trial-item-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: #1e3a5f;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    
+    .trial-item-title::before {
+      content: '';
+      width: 4px;
+      height: 4px;
+      background: #1e3a5f;
+      border-radius: 50%;
+    }
+    
+    .trial-item-text {
+      font-size: 12px;
+      color: #6b7280;
+      line-height: 1.7;
+      padding-left: 10px;
+    }
+    
+    .trial-item-list {
+      margin-top: 8px;
+      padding-left: 10px;
+      list-style: none;
+    }
+    
+    .trial-item-list li {
+      font-size: 12px;
+      color: #6b7280;
+      line-height: 1.6;
+      margin-bottom: 4px;
+      position: relative;
+      padding-left: 14px;
+    }
+    
+    .trial-item-list li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: #9ca3af;
+    }
+    
     /* 校舎への行き方 */
     .access-section {
       background: white;
@@ -687,6 +879,181 @@
       </div>
     </section>
     
+    <!-- 体験授業でお伝えすること -->
+    <section class="trial-content-section">
+      <div class="trial-content-header">
+        <div class="trial-content-icon">
+          <i data-lucide="sparkles" style="width:20px;height:20px;"></i>
+        </div>
+        <div>
+          <h2 class="trial-content-title">体験授業でお伝えすること</h2>
+          <p class="trial-content-subtitle">生徒一人ひとりに最適な進路戦略と学習設計を行います</p>
+        </div>
+      </div>
+      
+      <div class="trial-highlight">
+        <div class="trial-highlight-icon">
+          <i data-lucide="heart-handshake" style="width:18px;height:18px;"></i>
+        </div>
+        <div class="trial-highlight-text">
+          <strong>営業は1割以下！</strong><br>
+          9割以上を純粋な指導に充て、指導の質と姿勢で信頼を得るというEQAOの方針を徹底しています。
+        </div>
+      </div>
+      
+      <!-- グループ1: 分析・戦略 -->
+      <div class="trial-group" id="group-analysis">
+        <div class="trial-group-header" onclick="toggleTrialGroup('group-analysis')">
+          <div class="trial-group-icon blue">
+            <i data-lucide="search" style="width:14px;height:14px;"></i>
+          </div>
+          <span class="trial-group-title">分析・戦略</span>
+          <i data-lucide="chevron-down" class="trial-group-arrow" style="width:16px;height:16px;"></i>
+        </div>
+        <div class="trial-group-content">
+          <div class="trial-item">
+            <div class="trial-item-title">学力状況と英語資格の精密分析</div>
+            <div class="trial-item-text">
+              高校の偏差値・評定平均・英語資格を確認し、志望校に対してどの位置にあるか客観的に分析します。
+            </div>
+            <ul class="trial-item-list">
+              <li>評定平均：偏差値と照らし合わせて伸びしろや注意点をアドバイス</li>
+              <li>英語資格：英検・TEAP・IELTSの受験計画や対策進捗をチェック</li>
+              <li>過去の合格者がどのように資格を活用したかの具体例も共有</li>
+            </ul>
+          </div>
+          <div class="trial-item">
+            <div class="trial-item-title">志望校・学部の選定と妥当性チェック</div>
+            <div class="trial-item-text">
+              志望校や学部が本人の希望に基づいているかを確認し、以下の観点から検証します。
+            </div>
+            <ul class="trial-item-list">
+              <li>学びたい内容との一致：学部で扱う内容と本人のテーマに齟齬がないか</li>
+              <li>向き不向きの確認：性格や志向性と学部の特色が噛み合っているか</li>
+              <li>実現可能性の検証：現在の学力や経験から挑戦可能か判断</li>
+            </ul>
+          </div>
+          <div class="trial-item">
+            <div class="trial-item-title">併願校戦略の仮設立案</div>
+            <div class="trial-item-text">
+              学力・地域・日程・志望内容などを考慮しながら、現実的かつ戦略的な併願校案を提案します。
+            </div>
+            <ul class="trial-item-list">
+              <li>安全校としてリスク分散のために受けておくべき視点も強調</li>
+              <li>推薦型、講義型、面接型、小論文型など方式を踏まえてバランス良く設計</li>
+              <li>仮決定として、入塾後の精査により変更可能</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <!-- グループ2: 自己分析・基礎知識 -->
+      <div class="trial-group" id="group-self">
+        <div class="trial-group-header" onclick="toggleTrialGroup('group-self')">
+          <div class="trial-group-icon green">
+            <i data-lucide="user-search" style="width:14px;height:14px;"></i>
+          </div>
+          <span class="trial-group-title">自己分析・基礎知識</span>
+          <i data-lucide="chevron-down" class="trial-group-arrow" style="width:16px;height:16px;"></i>
+        </div>
+        <div class="trial-group-content">
+          <div class="trial-item">
+            <div class="trial-item-title">生徒の背景・個性・経験の棚卸し</div>
+            <div class="trial-item-text">
+              志望理由書や自己推薦書、面接の基盤となる「これまでの自分」を丁寧に掘り下げ、素材を可視化します。
+            </div>
+            <ul class="trial-item-list">
+              <li>留学経験、部活動、委員会活動、ボランティアなどをヒアリング</li>
+              <li>どのような経験を、どのようなモチベーションで取り組んできたか</li>
+              <li>過去の体験・家庭環境・趣味関心から志望理由や研究テーマの「軸」を浮き彫りに</li>
+            </ul>
+          </div>
+          <div class="trial-item">
+            <div class="trial-item-title">総合型選抜の本質と基礎知識の徹底説明</div>
+            <div class="trial-item-text">
+              総合型選抜の制度を誤解しているケースが非常に多いため、基礎から本質まで明確に伝えます。
+            </div>
+            <ul class="trial-item-list">
+              <li>大学は研究機関であること：学びたいことの「学術性」が問われる</li>
+              <li>志望理由書の本質：「研究したいこと」「その理由」「自分であるべき理由」を論理的に構成</li>
+              <li>評価される3要素：①テーマに本気 ②あなたでなければならない理由 ③その分野での強み</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <!-- グループ3: 具体的な方針 -->
+      <div class="trial-group" id="group-plan">
+        <div class="trial-group-header" onclick="toggleTrialGroup('group-plan')">
+          <div class="trial-group-icon yellow">
+            <i data-lucide="compass" style="width:14px;height:14px;"></i>
+          </div>
+          <span class="trial-group-title">具体的な方針</span>
+          <i data-lucide="chevron-down" class="trial-group-arrow" style="width:16px;height:16px;"></i>
+        </div>
+        <div class="trial-group-content">
+          <div class="trial-item">
+            <div class="trial-item-title">自学自習・活動内容の具体的な方針提示</div>
+            <div class="trial-item-text">
+              入塾後に必要な行動や、今から準備すべきことを明確にし、実行可能な状態にまで落とし込みます。
+            </div>
+            <ul class="trial-item-list">
+              <li>論文・書籍の読み方：どのテーマで、どの分野の論文を読めば良いか具体的に提示</li>
+              <li>フィールドワークの考え方：現地調査・インタビュー・アンケートの実施方法を解説</li>
+              <li>ボランティア・取材活動の設計：過去の事例を紹介しながら解説</li>
+            </ul>
+          </div>
+          <div class="trial-item">
+            <div class="trial-item-title">倍率対策などのテクニック</div>
+            <div class="trial-item-text">
+              志望校の倍率を下げるための実質的なテクニックも、戦略設計の一環として簡潔に紹介します。
+            </div>
+          </div>
+          <div class="trial-item">
+            <div class="trial-item-title">これからのスケジュールと受講ペース</div>
+            <div class="trial-item-text">
+              体験後すぐに動き出せるよう、今後の授業スケジュールやペース配分の見通しを共有します。
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- グループ4: 入塾準備 -->
+      <div class="trial-group" id="group-prep">
+        <div class="trial-group-header" onclick="toggleTrialGroup('group-prep')">
+          <div class="trial-group-icon purple">
+            <i data-lucide="clipboard-check" style="width:14px;height:14px;"></i>
+          </div>
+          <span class="trial-group-title">入塾準備</span>
+          <i data-lucide="chevron-down" class="trial-group-arrow" style="width:16px;height:16px;"></i>
+        </div>
+        <div class="trial-group-content">
+          <div class="trial-item">
+            <div class="trial-item-title">生徒・保護者との質疑応答</div>
+            <div class="trial-item-text">
+              保護者・生徒からの質問タイムを設け、あらゆる不安や疑問を解消する時間を取ります。
+            </div>
+          </div>
+          <div class="trial-item">
+            <div class="trial-item-title">入塾後のルールと必須行動の説明</div>
+            <div class="trial-item-text">
+              入塾後のスムーズなスタートを切るため、EQAOで守ってほしいルールを明確に伝えます。
+            </div>
+            <ul class="trial-item-list">
+              <li>オンライン配信の視聴必須</li>
+              <li>自学自習の重視</li>
+            </ul>
+          </div>
+          <div class="trial-item">
+            <div class="trial-item-title">手続き・カリキュラム・EQAOの特徴の説明</div>
+            <div class="trial-item-text">
+              入塾手続きの流れや、EQAOのカリキュラム・指導体制・サポート体制・他塾との違いをすべて丁寧に説明します。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
     <!-- 校舎への行き方 -->
     <section class="access-section">
       <div class="access-header">
@@ -764,6 +1131,11 @@
       if (isConfirmed) {
         window.open(FORM_URL, '_blank');
       }
+    }
+    
+    function toggleTrialGroup(groupId) {
+      const group = document.getElementById(groupId);
+      group.classList.toggle('open');
     }
   </script>
 </body>
