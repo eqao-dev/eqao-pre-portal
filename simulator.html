@@ -512,20 +512,26 @@
       gap: 8px;
       width: 100%;
       margin-top: 12px;
-      padding: 12px 16px;
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
+      padding: 14px 16px;
+      background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+      border: 2px solid #f59e0b;
       border-radius: 10px;
-      font-size: 13px;
-      font-weight: 600;
-      color: #1e3a5f;
+      font-size: 14px;
+      font-weight: 700;
+      color: #92400e;
       cursor: pointer;
       transition: all 0.2s;
+      box-shadow: 0 2px 8px rgba(245, 158, 11, 0.25);
     }
     
     .option-button:hover {
-      background: #f1f5f9;
-      border-color: #cbd5e1;
+      background: linear-gradient(135deg, #fde68a 0%, #fcd34d 100%);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.35);
+    }
+    
+    .option-button:active {
+      transform: translateY(0);
     }
     
     /* オプションモーダル */
@@ -705,6 +711,266 @@
       color: #b45309;
     }
     
+    /* 税込表示バッジ */
+    .tax-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(253, 224, 71, 0.3);
+      color: #fde047;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: bold;
+      margin-left: 8px;
+    }
+    
+    /* 重要情報セクション */
+    .info-section {
+      background: white;
+      border-radius: 16px;
+      padding: 20px;
+      margin-top: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    
+    .info-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid #e5e7eb;
+    }
+    
+    .info-header-icon {
+      width: 32px;
+      height: 32px;
+      background: #dbeafe;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #2563eb;
+    }
+    
+    .info-header-title {
+      font-size: 14px;
+      font-weight: bold;
+      color: #1e3a5f;
+    }
+    
+    /* 支払いバッジ */
+    .payment-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+      border: 1px solid #93c5fd;
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin-bottom: 12px;
+    }
+    
+    .payment-badge-icon {
+      width: 28px;
+      height: 28px;
+      background: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #2563eb;
+      flex-shrink: 0;
+    }
+    
+    .payment-badge-text {
+      font-size: 12px;
+      color: #1e40af;
+      line-height: 1.5;
+    }
+    
+    .payment-badge-text strong {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 2px;
+    }
+    
+    /* 割引カード */
+    .discount-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    
+    .discount-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+      border: 1px solid #6ee7b7;
+      border-radius: 10px;
+      padding: 12px 14px;
+    }
+    
+    .discount-card-icon {
+      width: 32px;
+      height: 32px;
+      background: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #059669;
+      flex-shrink: 0;
+    }
+    
+    .discount-card-content {
+      flex: 1;
+    }
+    
+    .discount-card-title {
+      font-size: 13px;
+      font-weight: bold;
+      color: #065f46;
+      margin-bottom: 2px;
+    }
+    
+    .discount-card-desc {
+      font-size: 11px;
+      color: #047857;
+      line-height: 1.4;
+    }
+    
+    .discount-card-value {
+      font-size: 14px;
+      font-weight: bold;
+      color: #059669;
+      white-space: nowrap;
+    }
+    
+    /* 情報アコーディオン */
+    .info-accordion {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    
+    .info-accordion-item {
+      background: #f8fafc;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    
+    .info-accordion-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 14px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    
+    .info-accordion-header:hover {
+      background: #f1f5f9;
+    }
+    
+    .info-accordion-item.open .info-accordion-header {
+      background: #e2e8f0;
+    }
+    
+    .info-accordion-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    
+    .info-accordion-icon.blue { background: #dbeafe; color: #2563eb; }
+    .info-accordion-icon.green { background: #d1fae5; color: #059669; }
+    .info-accordion-icon.yellow { background: #fef3c7; color: #d97706; }
+    .info-accordion-icon.purple { background: #f3e8ff; color: #9333ea; }
+    .info-accordion-icon.red { background: #fee2e2; color: #dc2626; }
+    
+    .info-accordion-title {
+      flex: 1;
+      font-size: 13px;
+      font-weight: 600;
+      color: #374151;
+    }
+    
+    .info-accordion-arrow {
+      color: #9ca3af;
+      transition: transform 0.2s;
+    }
+    
+    .info-accordion-item.open .info-accordion-arrow {
+      transform: rotate(180deg);
+    }
+    
+    .info-accordion-content {
+      display: none;
+      padding: 0 14px 14px;
+    }
+    
+    .info-accordion-item.open .info-accordion-content {
+      display: block;
+    }
+    
+    .info-accordion-text {
+      font-size: 12px;
+      color: #6b7280;
+      line-height: 1.7;
+      background: white;
+      border-radius: 8px;
+      padding: 12px;
+    }
+    
+    .info-accordion-text p {
+      margin-bottom: 10px;
+    }
+    
+    .info-accordion-text p:last-child {
+      margin-bottom: 0;
+    }
+    
+    .info-accordion-text strong {
+      color: #374151;
+    }
+    
+    .info-accordion-text ul {
+      margin: 8px 0;
+      padding-left: 16px;
+    }
+    
+    .info-accordion-text li {
+      margin-bottom: 4px;
+    }
+    
+    .info-accordion-text .warning {
+      background: #fef2f2;
+      border-left: 3px solid #ef4444;
+      padding: 10px 12px;
+      margin-top: 10px;
+      border-radius: 0 6px 6px 0;
+      font-size: 11px;
+      color: #991b1b;
+    }
+    
+    .info-accordion-text .note {
+      background: #fffbeb;
+      border-left: 3px solid #f59e0b;
+      padding: 10px 12px;
+      margin-top: 10px;
+      border-radius: 0 6px 6px 0;
+      font-size: 11px;
+      color: #92400e;
+    }
+
     /* フッターリンク */
     .footer-link {
       text-align: center;
@@ -1115,6 +1381,10 @@
       <div class="result-title">
         <i data-lucide="receipt" style="width:18px;height:18px;"></i>
         料金シミュレーション結果
+        <span class="tax-badge">
+          <i data-lucide="check" style="width:10px;height:10px;"></i>
+          税込価格
+        </span>
       </div>
       <div class="result-items">
         <div class="result-item">
@@ -1162,6 +1432,165 @@
         <i data-lucide="list" style="width:16px;height:16px;"></i>
         オプション一覧を見る
       </button>
+    </div>
+    
+    <!-- 重要情報セクション -->
+    <div class="info-section">
+      <div class="info-header">
+        <div class="info-header-icon">
+          <i data-lucide="info" style="width:18px;height:18px;"></i>
+        </div>
+        <h3 class="info-header-title">お支払い・割引について</h3>
+      </div>
+      
+      <!-- 支払い方法 -->
+      <div class="payment-badge">
+        <div class="payment-badge-icon">
+          <i data-lucide="building-2" style="width:14px;height:14px;"></i>
+        </div>
+        <div class="payment-badge-text">
+          <strong>お支払いは口座振込のみ対応</strong>
+          クレジットカード等はご利用いただけません
+        </div>
+      </div>
+      
+      <!-- 割引カード -->
+      <div class="discount-cards">
+        <div class="discount-card">
+          <div class="discount-card-icon">
+            <i data-lucide="heart" style="width:16px;height:16px;"></i>
+          </div>
+          <div class="discount-card-content">
+            <div class="discount-card-title">母子・父子家庭割引</div>
+            <div class="discount-card-desc">条件を満たした方が対象<br>※補助金等を使用していない場合に限る</div>
+          </div>
+          <div class="discount-card-value">入塾金<br>1万円引</div>
+        </div>
+        <div class="discount-card">
+          <div class="discount-card-icon">
+            <i data-lucide="users" style="width:16px;height:16px;"></i>
+          </div>
+          <div class="discount-card-content">
+            <div class="discount-card-title">紹介割引</div>
+            <div class="discount-card-desc">元塾生やスタッフの知り合いからのご入塾</div>
+          </div>
+          <div class="discount-card-value">入塾金<br>1万円引</div>
+        </div>
+      </div>
+      
+      <!-- アコーディオン -->
+      <div class="info-accordion">
+        <!-- お支払いについて -->
+        <div class="info-accordion-item" id="info-payment">
+          <div class="info-accordion-header" onclick="toggleInfoAccordion('info-payment')">
+            <div class="info-accordion-icon blue">
+              <i data-lucide="credit-card" style="width:12px;height:12px;"></i>
+            </div>
+            <span class="info-accordion-title">お支払いについて</span>
+            <i data-lucide="chevron-down" class="info-accordion-arrow" style="width:14px;height:14px;"></i>
+          </div>
+          <div class="info-accordion-content">
+            <div class="info-accordion-text">
+              <p><strong>①初回のお支払い</strong><br>
+              初回は<strong>3ヶ月分</strong>のお支払いとなります。</p>
+              
+              <p><strong>②翌月以降のお支払い</strong><br>
+              翌月以降は、<strong>3ヶ月分ごとの更新</strong>か<strong>月額ごとの更新</strong>の選択が可能です。</p>
+              
+              <p><strong>③余剰コマの返金</strong><br>
+              余った授業コマは<strong>卒塾時に全て返金</strong>されます。</p>
+              
+              <p><strong>④返金時期について</strong><br>
+              卒塾後1月〜2月にかけて余剰コマを返金します。順番に手続きを行いますので、お手続き着手にお時間をいただく場合があります。</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 母子・父子家庭手当 -->
+        <div class="info-accordion-item" id="info-single-parent">
+          <div class="info-accordion-header" onclick="toggleInfoAccordion('info-single-parent')">
+            <div class="info-accordion-icon green">
+              <i data-lucide="file-text" style="width:12px;height:12px;"></i>
+            </div>
+            <span class="info-accordion-title">母子・父子家庭手当の申請方法</span>
+            <i data-lucide="chevron-down" class="info-accordion-arrow" style="width:14px;height:14px;"></i>
+          </div>
+          <div class="info-accordion-content">
+            <div class="info-accordion-text">
+              <p><strong>必要書類（計2通）</strong></p>
+              <ul>
+                <li>父子家庭、母子家庭であることを証明する書類 1通</li>
+                <li>世帯年収を証明する書類 1通</li>
+              </ul>
+              
+              <p><strong>提出方法</strong><br>
+              書類の発行年は最新のものであり、かつ年月が記載されているものを<strong>PDFで公式LINE</strong>にて送信してください。</p>
+              
+              <p>弊社の基準を満たしていれば、父子家庭・母子家庭手当を適用させていただきます。</p>
+              
+              <div class="warning">
+                万一適用されなかった場合は、経済的に困窮していないと判断したことになります。手当の申請が否認された場合、その結果に対する異議申し立ては一切受け付けませんので予めご了承ください。
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- クーリングオフ -->
+        <div class="info-accordion-item" id="info-cooling-off">
+          <div class="info-accordion-header" onclick="toggleInfoAccordion('info-cooling-off')">
+            <div class="info-accordion-icon yellow">
+              <i data-lucide="shield-check" style="width:12px;height:12px;"></i>
+            </div>
+            <span class="info-accordion-title">クーリングオフに関するポリシー</span>
+            <i data-lucide="chevron-down" class="info-accordion-arrow" style="width:14px;height:14px;"></i>
+          </div>
+          <div class="info-accordion-content">
+            <div class="info-accordion-text">
+              <p><strong>クーリングオフ期間</strong><br>
+              お客様は、商品やサービスの購入契約を締結した日から起算して、<strong>8日以内</strong>であれば、いかなる理由でも契約を解除することができます。</p>
+              
+              <p><strong>適用条件</strong><br>
+              クーリングオフを行うためには、<strong>「契約日から授業を一度も受けていない状態」</strong>であることが必要です。</p>
+              
+              <p><strong>手続き方法</strong><br>
+              クーリングオフを希望される場合は、期間内に <strong>info@eqao.co.jp</strong> までクーリングオフに必要な書類を送信してください。</p>
+              
+              <div class="note">
+                契約解除が成立した場合、既にお支払いいただいた金額は全額返金いたします。返金は、契約解除の通知を受けてから14日以内に行われます。
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 返金の流れ -->
+        <div class="info-accordion-item" id="info-refund">
+          <div class="info-accordion-header" onclick="toggleInfoAccordion('info-refund')">
+            <div class="info-accordion-icon purple">
+              <i data-lucide="refresh-cw" style="width:12px;height:12px;"></i>
+            </div>
+            <span class="info-accordion-title">返金の流れ</span>
+            <i data-lucide="chevron-down" class="info-accordion-arrow" style="width:14px;height:14px;"></i>
+          </div>
+          <div class="info-accordion-content">
+            <div class="info-accordion-text">
+              <p><strong>① 口座情報の提供</strong><br>
+              返金用の銀行口座情報（口座名義、銀行名、支店名、口座番号）をご提供いただきます。<br>
+              ※弊社から公式LINEにてご連絡させていただきます。</p>
+              
+              <p><strong>② 返金額の通知</strong><br>
+              返金額を計算し、その結果を書面にてお客様へお知らせいたします。<br>
+              ※弊社から公式LINEにてご連絡させていただきます。</p>
+              
+              <p><strong>③ 返金の実行</strong><br>
+              問題がなければ、お知らせした着金予定日にご指定の口座へ返金を行います。<br>
+              ※万一、着金のご確認が取れない場合は、公式メールにてお問合せください。</p>
+              
+              <p><strong>④ 入金の確認と連絡のお願い</strong><br>
+              返金が完了しましたら、お客様に入金の確認をしていただき、その旨を弊社のメールまでご連絡ください。</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     
     <!-- オプション一覧モーダル -->
@@ -1461,6 +1890,12 @@
       if (event && event.target !== event.currentTarget) return;
       document.getElementById('option-modal-overlay').classList.remove('show');
       document.body.style.overflow = '';
+    }
+    
+    // 情報アコーディオン開閉
+    function toggleInfoAccordion(itemId) {
+      const item = document.getElementById(itemId);
+      item.classList.toggle('open');
     }
   </script>
 </body>
