@@ -697,9 +697,15 @@
     
     .locked-section-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 10px;
       margin-bottom: 16px;
+    }
+    
+    @media (min-width: 480px) {
+      .locked-section-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
     }
     
     .locked-item {
@@ -839,7 +845,7 @@
       }
       
       .locked-section-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(4, 1fr);
         gap: 12px;
       }
       
@@ -1426,6 +1432,14 @@
       },
       { 
         id: 'locked-2', 
+        title: '授業の流れ\n個別／集団', 
+        icon: 'play-circle', 
+        url: '/lesson-flow.html',
+        bgColor: '#fce7f3',
+        iconColor: '#db2777'
+      },
+      { 
+        id: 'locked-3', 
         title: '科目\n詳細ガイド', 
         icon: 'layers', 
         url: '/subjects.html',
@@ -1433,7 +1447,7 @@
         iconColor: '#2563eb'
       },
       { 
-        id: 'locked-3', 
+        id: 'locked-4', 
         title: '入塾仮予約\n入塾希望', 
         icon: 'clipboard-check', 
         url: null, // 準備中
