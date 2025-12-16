@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>合格実績 | EQAO</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background: #f1f5f9;
+      min-height: 100vh;
+      color: #374151;
+    }
+    
+    /* ヘッダー */
+    .header {
+      background: linear-gradient(135deg, #1e3a5f 0%, #2d4a6f 100%);
+      padding: 16px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    
+    .header-content {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .back-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 50%;
+      color: white;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    
+    .back-button:hover {
+      background: rgba(255,255,255,0.25);
+    }
+    
+    .header-title {
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      flex: 1;
+    }
+    
+    /* メインコンテンツ */
+    .main {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px 16px 40px;
+    }
+    
+    /* ヒーロー */
+    .hero {
+      text-align: center;
+      margin-bottom: 24px;
+      padding: 20px 0;
+    }
+    
+    .hero-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #1e3a5f;
+      color: white;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+    
+    .hero-title {
+      font-size: 24px;
+      font-weight: bold;
+      color: #1e3a5f;
+      margin-bottom: 8px;
+    }
+    
+    .hero-subtitle {
+      font-size: 13px;
+      color: #6b7280;
+      line-height: 1.6;
+    }
+    
+    /* サマリーカード */
+    .summary-card {
+      background: linear-gradient(135deg, #1e3a5f 0%, #2d4a6f 100%);
+      border-radius: 20px;
+      padding: 24px;
+      color: white;
+      margin-bottom: 24px;
+      box-shadow: 0 10px 30px rgba(30, 58, 95, 0.3);
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    
+    .summary-icon {
+      width: 60px;
+      height: 60px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: #fde047;
+    }
+    
+    .summary-content {
+      flex: 1;
+    }
+    
+    .summary-label {
+      font-size: 12px;
+      opacity: 0.8;
+      margin-bottom: 4px;
+    }
+    
+    .summary-value {
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+    }
+    
+    .summary-number {
+      font-size: 40px;
+      font-weight: bold;
+      color: #fde047;
+    }
+    
+    .summary-unit {
+      font-size: 16px;
+      opacity: 0.9;
+    }
+    
+    .summary-sub {
+      font-size: 11px;
+      opacity: 0.7;
+      margin-top: 4px;
+    }
+    
+    /* 大学リスト */
+    .university-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    .university-card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      transition: all 0.3s ease;
+    }
+    
+    .university-card:hover {
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    }
+    
+    .university-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 20px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    
+    .university-header:hover {
+      background: #f8fafc;
+    }
+    
+    .university-card.open .university-header {
+      background: #eff6ff;
+      border-bottom: 1px solid #dbeafe;
+    }
+    
+    .university-rank {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, #1e3a5f 0%, #2d4a6f 100%);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 14px;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+    
+    .university-rank.gold {
+      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    }
+    
+    .university-rank.silver {
+      background: linear-gradient(135deg, #9ca3af 0%, #6b7280 100%);
+    }
+    
+    .university-rank.bronze {
+      background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+    }
+    
+    .university-info {
+      flex: 1;
+      min-width: 0;
+    }
+    
+    .university-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: #1e3a5f;
+      margin-bottom: 2px;
+    }
+    
+    .university-faculties-count {
+      font-size: 11px;
+      color: #6b7280;
+    }
+    
+    .university-count {
+      display: flex;
+      align-items: baseline;
+      gap: 2px;
+      flex-shrink: 0;
+    }
+    
+    .university-count-number {
+      font-size: 22px;
+      font-weight: bold;
+      color: #1e3a5f;
+    }
+    
+    .university-count-unit {
+      font-size: 12px;
+      color: #6b7280;
+    }
+    
+    .university-arrow {
+      color: #9ca3af;
+      transition: transform 0.3s;
+      flex-shrink: 0;
+    }
+    
+    .university-card.open .university-arrow {
+      transform: rotate(180deg);
+    }
+    
+    /* 学部詳細 */
+    .faculty-list {
+      display: none;
+      background: #f8fafc;
+      padding: 0;
+    }
+    
+    .university-card.open .faculty-list {
+      display: block;
+    }
+    
+    .faculty-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 20px 12px 66px;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    
+    .faculty-item:last-child {
+      border-bottom: none;
+    }
+    
+    .faculty-name {
+      font-size: 13px;
+      color: #374151;
+    }
+    
+    .faculty-department {
+      font-size: 11px;
+      color: #9ca3af;
+      margin-top: 2px;
+    }
+    
+    .faculty-count {
+      font-size: 14px;
+      font-weight: bold;
+      color: #1e3a5f;
+    }
+    
+    /* ローディング */
+    .loading {
+      text-align: center;
+      padding: 40px;
+      color: #6b7280;
+    }
+    
+    .loading-spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid #e5e7eb;
+      border-top-color: #1e3a5f;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 12px;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    /* 注釈 */
+    .footnote {
+      margin-top: 24px;
+      padding: 16px;
+      background: rgba(255,255,255,0.7);
+      border-radius: 12px;
+      border-left: 3px solid #d1d5db;
+    }
+    
+    .footnote-title {
+      font-size: 11px;
+      color: #6b7280;
+      font-weight: bold;
+      margin-bottom: 6px;
+    }
+    
+    .footnote-text {
+      font-size: 11px;
+      color: #9ca3af;
+      line-height: 1.6;
+    }
+    
+    /* フッターリンク */
+    .footer-link {
+      text-align: center;
+      margin-top: 24px;
+    }
+    
+    .footer-link a {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #6b7280;
+      text-decoration: none;
+      font-size: 13px;
+      padding: 12px 20px;
+      background: white;
+      border-radius: 10px;
+      transition: all 0.2s;
+    }
+    
+    .footer-link a:hover {
+      background: #f3f4f6;
+      color: #1e3a5f;
+    }
+    
+    /* レスポンシブ */
+    @media (min-width: 768px) {
+      .main {
+        max-width: 700px;
+        padding: 28px 24px 48px;
+      }
+      
+      .hero-title {
+        font-size: 28px;
+      }
+      
+      .summary-card {
+        padding: 28px;
+      }
+      
+      .summary-number {
+        font-size: 48px;
+      }
+      
+      .university-name {
+        font-size: 16px;
+      }
+      
+      .university-count-number {
+        font-size: 26px;
+      }
+    }
+    
+    @media (min-width: 1024px) {
+      .header {
+        padding: 20px 32px;
+      }
+      
+      .header-content {
+        max-width: 800px;
+      }
+      
+      .main {
+        max-width: 800px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- ヘッダー -->
+  <header class="header">
+    <div class="header-content">
+      <a href="/" class="back-button">
+        <i data-lucide="arrow-left" style="width:20px;height:20px;"></i>
+      </a>
+      <h1 class="header-title">合格実績</h1>
+    </div>
+  </header>
+  
+  <!-- メインコンテンツ -->
+  <main class="main">
+    <!-- ヒーロー -->
+    <div class="hero">
+      <div class="hero-label">
+        <i data-lucide="trophy" style="width:14px;height:14px;"></i>
+        RESULTS
+      </div>
+      <h1 class="hero-title">合格実績</h1>
+      <p class="hero-subtitle">塾発足からの累計合格者数</p>
+    </div>
+    
+    <!-- サマリー -->
+    <div class="summary-card">
+      <div class="summary-icon">
+        <i data-lucide="graduation-cap" style="width:32px;height:32px;"></i>
+      </div>
+      <div class="summary-content">
+        <div class="summary-label">累計合格者数</div>
+        <div class="summary-value">
+          <span class="summary-number" id="total-count">-</span>
+          <span class="summary-unit">名</span>
+        </div>
+        <div class="summary-sub" id="university-count">- 大学</div>
+      </div>
+    </div>
+    
+    <!-- 大学リスト -->
+    <div id="university-list" class="university-list">
+      <div class="loading">
+        <div class="loading-spinner"></div>
+        読み込み中...
+      </div>
+    </div>
+    
+    <!-- 注釈 -->
+    <div class="footnote">
+      <p class="footnote-title">データについて</p>
+      <p class="footnote-text">
+        ・塾発足からの累計合格者数です<br>
+        ・同一年度に複数合格した場合もそれぞれカウント<br>
+        ・データは年に1回更新されます
+      </p>
+    </div>
+    
+    <!-- フッターリンク -->
+    <div class="footer-link">
+      <a href="/">
+        <i data-lucide="arrow-left" style="width:14px;height:14px;"></i>
+        トップページに戻る
+      </a>
+    </div>
+  </main>
+  
+  <script>
+    // JSONのURL
+    const JSON_URL = 'results.json';
+    
+    // ページ読み込み時
+    document.addEventListener('DOMContentLoaded', function() {
+      lucide.createIcons();
+      loadResults();
+    });
+    
+    // データ読み込み
+    async function loadResults() {
+      try {
+        const response = await fetch(JSON_URL);
+        if (!response.ok) throw new Error('データを取得できませんでした');
+        
+        const data = await response.json();
+        renderResults(data);
+      } catch (error) {
+        console.error('Error:', error);
+        document.getElementById('university-list').innerHTML = `
+          <div style="text-align:center;padding:40px;color:#6b7280;">
+            <i data-lucide="alert-circle" style="width:48px;height:48px;color:#d1d5db;"></i>
+            <p style="margin-top:12px;">データを読み込めませんでした</p>
+          </div>
+        `;
+        lucide.createIcons();
+      }
+    }
+    
+    // 結果を描画
+    function renderResults(data) {
+      // 大学ごとに集計
+      const universities = {};
+      
+      data.forEach(item => {
+        const uniName = item.university;
+        if (!universities[uniName]) {
+          universities[uniName] = {
+            name: uniName,
+            total: 0,
+            faculties: []
+          };
+        }
+        universities[uniName].total += item.count;
+        universities[uniName].faculties.push({
+          faculty: item.faculty,
+          department: item.department,
+          count: item.count
+        });
+      });
+      
+      // 合計人数順にソート
+      const sortedUniversities = Object.values(universities).sort((a, b) => b.total - a.total);
+      
+      // 総合計を計算
+      const totalCount = sortedUniversities.reduce((sum, uni) => sum + uni.total, 0);
+      const universityCount = sortedUniversities.length;
+      
+      // サマリー更新
+      document.getElementById('total-count').textContent = totalCount.toLocaleString();
+      document.getElementById('university-count').textContent = `${universityCount} 大学`;
+      
+      // 大学リストを描画
+      const listHtml = sortedUniversities.map((uni, index) => {
+        const rankClass = index === 0 ? 'gold' : index === 1 ? 'silver' : index === 2 ? 'bronze' : '';
+        
+        // 学部リスト（人数順）
+        const sortedFaculties = uni.faculties.sort((a, b) => b.count - a.count);
+        const facultiesHtml = sortedFaculties.map(f => `
+          <div class="faculty-item">
+            <div>
+              <div class="faculty-name">${f.faculty || '（学部未記載）'}</div>
+              ${f.department ? `<div class="faculty-department">${f.department}</div>` : ''}
+            </div>
+            <div class="faculty-count">${f.count}名</div>
+          </div>
+        `).join('');
+        
+        return `
+          <div class="university-card" id="uni-${index}">
+            <div class="university-header" onclick="toggleUniversity(${index})">
+              <div class="university-rank ${rankClass}">${index + 1}</div>
+              <div class="university-info">
+                <div class="university-name">${uni.name}</div>
+                <div class="university-faculties-count">${uni.faculties.length} 学部・学科</div>
+              </div>
+              <div class="university-count">
+                <span class="university-count-number">${uni.total}</span>
+                <span class="university-count-unit">名</span>
+              </div>
+              <i data-lucide="chevron-down" class="university-arrow" style="width:20px;height:20px;"></i>
+            </div>
+            <div class="faculty-list">
+              ${facultiesHtml}
+            </div>
+          </div>
+        `;
+      }).join('');
+      
+      document.getElementById('university-list').innerHTML = listHtml;
+      lucide.createIcons();
+    }
+    
+    // 大学カードの開閉
+    function toggleUniversity(index) {
+      const card = document.getElementById(`uni-${index}`);
+      card.classList.toggle('open');
+    }
+  </script>
+</body>
+</html>
