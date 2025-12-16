@@ -696,16 +696,11 @@
     }
     
     .locked-section-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
       margin-bottom: 16px;
-    }
-    
-    @media (min-width: 480px) {
-      .locked-section-grid {
-        grid-template-columns: repeat(4, 1fr);
-      }
+      flex-wrap: wrap;
     }
     
     .locked-item {
@@ -719,6 +714,17 @@
       cursor: pointer;
       transition: all 0.2s;
       box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      width: calc(33.333% - 10px);
+      min-width: 90px;
+      max-width: 130px;
+    }
+    
+    @media (min-width: 480px) {
+      .locked-item {
+        min-width: 120px;
+        max-width: 160px;
+        padding: 20px 16px;
+      }
     }
     
     .locked-item:hover {
@@ -798,7 +804,7 @@
       .main {
         max-width: 700px;
         padding: 24px;
-        padding-bottom: 120px;
+        padding-bottom: 140px;
       }
       
       .floating-cta {
@@ -845,12 +851,13 @@
       }
       
       .locked-section-grid {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 12px;
+        gap: 16px;
       }
       
       .locked-item {
-        padding: 18px 14px;
+        min-width: 140px;
+        max-width: 180px;
+        padding: 22px 18px;
       }
       
       .locked-item-icon {
@@ -881,7 +888,7 @@
       .main {
         max-width: 1100px;
         padding: 40px;
-        padding-bottom: 120px;
+        padding-bottom: 160px;
       }
       
       /* 上部セクション: お知らせ + CTA を横並び */
@@ -1025,12 +1032,13 @@
       }
       
       .locked-section-grid {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 16px;
+        gap: 20px;
       }
       
       .locked-item {
-        padding: 20px 16px;
+        min-width: 160px;
+        max-width: 200px;
+        padding: 24px 20px;
         border-radius: 14px;
       }
       
@@ -1053,6 +1061,7 @@
       .main {
         max-width: 1200px;
         padding: 48px;
+        padding-bottom: 160px;
       }
       
       .top-section {
@@ -1440,14 +1449,6 @@
       },
       { 
         id: 'locked-3', 
-        title: '科目\n詳細ガイド', 
-        icon: 'layers', 
-        url: '/subjects.html',
-        bgColor: '#dbeafe',
-        iconColor: '#2563eb'
-      },
-      { 
-        id: 'locked-4', 
         title: '入塾仮予約\n入塾希望', 
         icon: 'clipboard-check', 
         url: null, // 準備中
