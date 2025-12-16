@@ -648,6 +648,138 @@
     }
     
     /* ===========================================
+       体験授業受講者限定セクション
+       =========================================== */
+    .locked-section {
+      background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+      border-radius: 16px;
+      padding: 20px;
+      margin-top: 24px;
+      box-shadow: 0 4px 16px rgba(245, 158, 11, 0.2);
+      border: 2px solid #f59e0b;
+    }
+    
+    .locked-section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    
+    .locked-section-icon {
+      width: 40px;
+      height: 40px;
+      background: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #d97706;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      flex-shrink: 0;
+    }
+    
+    .locked-section-text {
+      flex: 1;
+    }
+    
+    .locked-section-title {
+      font-size: 14px;
+      font-weight: bold;
+      color: #92400e;
+      margin-bottom: 2px;
+    }
+    
+    .locked-section-desc {
+      font-size: 11px;
+      color: #b45309;
+    }
+    
+    .locked-section-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    
+    .locked-item {
+      background: white;
+      border-radius: 12px;
+      padding: 16px 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    
+    .locked-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    }
+    
+    .locked-item:active {
+      transform: translateY(0);
+    }
+    
+    .locked-item-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 8px;
+      position: relative;
+    }
+    
+    .locked-item-lock {
+      position: absolute;
+      bottom: -2px;
+      right: -2px;
+      width: 20px;
+      height: 20px;
+      background: #f59e0b;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    
+    .locked-item-title {
+      font-size: 11px;
+      font-weight: 600;
+      color: #374151;
+      white-space: pre-line;
+      line-height: 1.3;
+    }
+    
+    .locked-section-cta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 12px 16px;
+      background: linear-gradient(135deg, #1e3a5f 0%, #2d4a6f 100%);
+      color: white;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    
+    .locked-section-cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(30, 58, 95, 0.3);
+    }
+
+    /* ===========================================
        レスポンシブ対応
        =========================================== */
     
@@ -704,6 +836,25 @@
       .auth-card {
         max-width: 400px;
         padding: 40px;
+      }
+      
+      .locked-section-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+      }
+      
+      .locked-item {
+        padding: 18px 14px;
+      }
+      
+      .locked-item-icon {
+        width: 52px;
+        height: 52px;
+      }
+      
+      .locked-section-cta {
+        font-size: 13px;
+        padding: 14px 20px;
       }
     }
     
@@ -849,6 +1000,42 @@
         font-size: 15px;
         border-radius: 14px;
       }
+      
+      .locked-section {
+        padding: 24px;
+        margin-top: 32px;
+      }
+      
+      .locked-section-header {
+        margin-bottom: 20px;
+      }
+      
+      .locked-section-title {
+        font-size: 16px;
+      }
+      
+      .locked-section-desc {
+        font-size: 12px;
+      }
+      
+      .locked-section-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+      }
+      
+      .locked-item {
+        padding: 20px 16px;
+        border-radius: 14px;
+      }
+      
+      .locked-item-icon {
+        width: 56px;
+        height: 56px;
+      }
+      
+      .locked-item-title {
+        font-size: 12px;
+      }
     }
     
     /* 大画面 (1280px以上) */
@@ -984,6 +1171,27 @@
     <div class="icon-grid" id="icon-grid">
       <!-- JavaScriptで生成 -->
     </div>
+    
+    <!-- 体験授業受講者限定セクション -->
+    <section class="locked-section">
+      <div class="locked-section-header">
+        <div class="locked-section-icon">
+          <i data-lucide="lock" style="width:20px;height:20px;"></i>
+        </div>
+        <div class="locked-section-text">
+          <h3 class="locked-section-title">体験授業受講者限定コンテンツ</h3>
+          <p class="locked-section-desc">体験授業でお伝えするパスワードで閲覧できます</p>
+        </div>
+      </div>
+      <div class="locked-section-grid" id="locked-grid">
+        <!-- JavaScriptで生成 -->
+      </div>
+      <a href="/trial.html" class="locked-section-cta">
+        <i data-lucide="calendar-check" style="width:16px;height:16px;"></i>
+        無料体験授業を受けてコンテンツを解放する
+        <i data-lucide="chevron-right" style="width:16px;height:16px;"></i>
+      </a>
+    </section>
   </main>
   
   <!-- フローティングCTA -->
@@ -1152,15 +1360,6 @@
         iconColor: '#d97706'
       },
       { 
-        id: 7, 
-        title: '料金\nシミュレーター', 
-        icon: 'calculator', 
-        status: 'locked',
-        url: '/simulator.html',
-        bgColor: '#d1fae5',
-        iconColor: '#059669'
-      },
-      { 
         id: 7.5, 
         title: 'よくある\n質問', 
         icon: 'help-circle', 
@@ -1177,14 +1376,6 @@
         url: '/curriculum.html',
         bgColor: '#dbeafe',
         iconColor: '#2563eb'
-      },
-      { 
-        id: 8, 
-        title: '入塾仮予約\n入塾希望', 
-        icon: 'clipboard-check', 
-        status: 'locked',
-        bgColor: '#e0e7ff',
-        iconColor: '#6366f1'
       },
       // === 準備中のページ ===
       { 
@@ -1222,12 +1413,43 @@
     ];
     
     // ============================================
+    // 体験授業受講者限定コンテンツ
+    // ============================================
+    const lockedMenuItems = [
+      { 
+        id: 'locked-1', 
+        title: '料金\nシミュレーター', 
+        icon: 'calculator', 
+        url: '/simulator.html',
+        bgColor: '#d1fae5',
+        iconColor: '#059669'
+      },
+      { 
+        id: 'locked-2', 
+        title: '科目\n詳細ガイド', 
+        icon: 'layers', 
+        url: '/subjects.html',
+        bgColor: '#dbeafe',
+        iconColor: '#2563eb'
+      },
+      { 
+        id: 'locked-3', 
+        title: '入塾仮予約\n入塾希望', 
+        icon: 'clipboard-check', 
+        url: null, // 準備中
+        bgColor: '#e0e7ff',
+        iconColor: '#6366f1'
+      },
+    ];
+    
+    // ============================================
     // 初期化
     // ============================================
     document.addEventListener('DOMContentLoaded', function() {
       checkAuth();
       loadAnnouncements();
       renderIconGrid();
+      renderLockedGrid();
       lucide.createIcons();
     });
     
@@ -1348,6 +1570,41 @@
       }).join('');
       
       lucide.createIcons();
+    }
+    
+    // 鍵付きコンテンツグリッドを描画
+    function renderLockedGrid() {
+      const grid = document.getElementById('locked-grid');
+      
+      grid.innerHTML = lockedMenuItems.map(item => {
+        const isComingSoon = !item.url;
+        
+        return `
+          <div class="locked-item ${isComingSoon ? 'coming-soon' : ''}" onclick="handleLockedItemClick('${item.id}')">
+            <div class="locked-item-icon" style="background:${item.bgColor};">
+              <i data-lucide="${item.icon}" style="width:22px;height:22px;color:${item.iconColor};"></i>
+              <div class="locked-item-lock">
+                <i data-lucide="${isComingSoon ? 'clock' : 'lock'}" style="width:10px;height:10px;"></i>
+              </div>
+            </div>
+            <span class="locked-item-title">${item.title}</span>
+          </div>
+        `;
+      }).join('');
+      
+      lucide.createIcons();
+    }
+    
+    // 鍵付きアイテムクリック処理
+    function handleLockedItemClick(id) {
+      const item = lockedMenuItems.find(i => i.id === id);
+      if (!item) return;
+      
+      if (item.url) {
+        openUrl(item.url);
+      } else {
+        showToast('準備中です\nもうしばらくお待ちください');
+      }
     }
     
     // アイテムクリック処理
