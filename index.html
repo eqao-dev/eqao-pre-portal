@@ -110,6 +110,26 @@
     
     .announcements-list {
       list-style: none;
+      max-height: 180px;
+      overflow-y: auto;
+    }
+    
+    /* スクロールバーのスタイル */
+    .announcements-list::-webkit-scrollbar {
+      width: 6px;
+    }
+    
+    .announcements-list::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    
+    .announcements-list::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 3px;
+    }
+    
+    .announcements-list::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
     }
     
     .announcement-item {
@@ -976,6 +996,10 @@
       
       .announcements-title {
         font-size: 15px;
+      }
+      
+      .announcements-list {
+        max-height: 200px;
       }
       
       .announcement-item {
