@@ -354,6 +354,10 @@
       background: #6366f1;
     }
     
+    .status-badge.custom {
+      background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
+    }
+    
     /* フローティングCTA */
     .floating-cta {
       position: fixed;
@@ -1515,14 +1519,6 @@
       },
       // === 準備中のページ ===
       { 
-        id: 9, 
-        title: '無料特典\n動画', 
-        icon: 'play-circle', 
-        status: 'coming',
-        bgColor: '#fce7f3',
-        iconColor: '#db2777'
-      },
-      { 
         id: 10, 
         title: 'カリキュラム\n動画', 
         icon: 'book-open', 
@@ -1535,6 +1531,7 @@
         title: 'パンフレット', 
         icon: 'file-text', 
         status: 'coming',
+        customBadge: '2月末公開予定',
         bgColor: '#f3e8ff',
         iconColor: '#9333ea'
       },
@@ -1648,6 +1645,13 @@
         return;
       }
       
+      // 日付で新しい順にソート
+      announcements.sort((a, b) => {
+        const dateA = new Date(a.date.replace(/\//g, '-'));
+        const dateB = new Date(b.date.replace(/\//g, '-'));
+        return dateB - dateA;
+      });
+      
       list.innerHTML = announcements.map(item => `
         <li class="announcement-item">
           <span class="announcement-date">${item.date}</span>
@@ -1680,6 +1684,11 @@
           badgeHtml = '<span class="status-badge pending">準備中</span>';
         } else if (item.status === 'locked') {
           badgeHtml = '<span class="status-badge locked">限定</span>';
+        }
+        
+        // カスタムバッジがあればそれを優先
+        if (item.customBadge) {
+          badgeHtml = `<span class="status-badge custom">${item.customBadge}</span>`;
         }
         
         const bgStyle = isDisabled ? 'background:#e5e7eb;' : `background:${item.bgColor};`;
