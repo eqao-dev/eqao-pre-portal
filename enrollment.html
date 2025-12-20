@@ -1,0 +1,2917 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>入塾同意書 | EQAO</title>
+  
+  <!-- OGP -->
+  <meta property="og:title" content="入塾同意書 | EQAO">
+  <meta property="og:description" content="EQAO教育グループ 入塾同意書フォーム">
+  <meta property="og:type" content="website">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background: #f1f5f9;
+      min-height: 100vh;
+      color: #374151;
+    }
+    
+    /* ヘッダー */
+    .header {
+      background: #1e3a5f;
+      padding: 16px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+    }
+    
+    .back-button {
+      position: absolute;
+      left: 0;
+      width: 36px;
+      height: 36px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    
+    .back-button:hover {
+      background: rgba(255,255,255,0.25);
+    }
+    
+    .logo {
+      width: 36px;
+      height: 36px;
+      background: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      overflow: hidden;
+      padding: 4px;
+    }
+    
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    
+    .header-title {
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+    }
+    
+    /* メインコンテンツ */
+    .main {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px 16px;
+      padding-bottom: 180px;
+    }
+    
+    /* ヒーローセクション */
+    .hero {
+      text-align: center;
+      margin-bottom: 24px;
+      padding: 20px 0;
+    }
+    
+    .hero-icon {
+      width: 64px;
+      height: 64px;
+      background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      color: #16a34a;
+    }
+    
+    .hero-title {
+      font-size: 22px;
+      font-weight: bold;
+      color: #1e3a5f;
+      margin-bottom: 8px;
+    }
+    
+    .hero-description {
+      font-size: 13px;
+      color: #6b7280;
+      line-height: 1.6;
+    }
+    
+    /* プログレスバー（下固定） */
+    .progress-container {
+      background: white;
+      padding: 12px 16px;
+      box-shadow: 0 -4px 12px rgba(0,0,0,0.1);
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 90;
+      border-top: 1px solid #e5e7eb;
+    }
+    
+    .progress-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    .progress-top-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    
+    .progress-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: bold;
+      color: #1e3a5f;
+    }
+    
+    .progress-title-icon {
+      width: 24px;
+      height: 24px;
+      background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #16a34a;
+    }
+    
+    .save-status {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      color: #6b7280;
+      background: #f3f4f6;
+      padding: 4px 10px;
+      border-radius: 12px;
+    }
+    
+    .save-status.saving {
+      color: #f59e0b;
+    }
+    
+    .save-status.saved {
+      color: #16a34a;
+    }
+    
+    .progress-middle-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+    
+    .progress-bar-wrapper {
+      flex: 1;
+    }
+    
+    .progress-bar {
+      height: 8px;
+      background: #e5e7eb;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%);
+      border-radius: 4px;
+      transition: width 0.3s ease;
+    }
+    
+    .progress-count {
+      font-size: 12px;
+      color: #6b7280;
+      white-space: nowrap;
+    }
+    
+    .progress-bottom-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .progress-info {
+      flex: 1;
+    }
+    
+    .progress-submit-btn {
+      padding: 12px 24px;
+      background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.3s;
+      white-space: nowrap;
+    }
+    
+    .progress-submit-btn.show {
+      display: flex;
+    }
+    
+    .progress-submit-btn:hover {
+      transform: scale(1.02);
+      box-shadow: 0 4px 12px rgba(22, 163, 74, 0.3);
+    }
+    
+    .progress-submit-btn:active {
+      transform: scale(0.98);
+    }
+    
+    .remaining-info {
+      font-size: 12px;
+      color: #6b7280;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    
+    .remaining-info.complete {
+      color: #16a34a;
+      font-weight: 500;
+    }
+    
+    /* 復元モーダル */
+    .restore-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 300;
+      padding: 20px;
+    }
+    
+    .restore-modal.show {
+      display: flex;
+    }
+    
+    .restore-modal-content {
+      background: white;
+      border-radius: 16px;
+      padding: 24px;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    }
+    
+    .restore-modal-icon {
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      color: #2563eb;
+    }
+    
+    .restore-modal-title {
+      font-size: 18px;
+      font-weight: bold;
+      color: #1e3a5f;
+      margin-bottom: 8px;
+    }
+    
+    .restore-modal-text {
+      font-size: 14px;
+      color: #6b7280;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    
+    .restore-modal-buttons {
+      display: flex;
+      gap: 12px;
+    }
+    
+    .restore-btn {
+      flex: 1;
+      padding: 12px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .restore-btn.secondary {
+      background: #f3f4f6;
+      border: 1px solid #e5e7eb;
+      color: #374151;
+    }
+    
+    .restore-btn.secondary:hover {
+      background: #e5e7eb;
+    }
+    
+    .restore-btn.primary {
+      background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+      border: none;
+      color: white;
+    }
+    
+    .restore-btn.primary:hover {
+      opacity: 0.9;
+    }
+    
+    /* フォームセクション */
+    .form-section {
+      background: white;
+      border-radius: 16px;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      overflow: hidden;
+    }
+    
+    .section-header {
+      background: #1e3a5f;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    
+    .section-header:hover {
+      background: #2d4a6f;
+    }
+    
+    .section-icon {
+      width: 28px;
+      height: 28px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+    
+    .section-title {
+      flex: 1;
+      color: white;
+      font-size: 14px;
+      font-weight: bold;
+    }
+    
+    .section-toggle {
+      color: white;
+      transition: transform 0.3s;
+    }
+    
+    .form-section.open .section-toggle {
+      transform: rotate(180deg);
+    }
+    
+    .section-content {
+      padding: 20px;
+      display: none;
+    }
+    
+    .form-section.open .section-content {
+      display: block;
+    }
+    
+    /* フォーム要素 */
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-group:last-child {
+      margin-bottom: 0;
+    }
+    
+    .form-label {
+      display: block;
+      font-size: 14px;
+      font-weight: 500;
+      color: #374151;
+      margin-bottom: 8px;
+    }
+    
+    .form-label .required {
+      color: #ef4444;
+      margin-left: 4px;
+    }
+    
+    /* ツールチップ */
+    .tooltip-trigger {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
+      background: #e5e7eb;
+      border-radius: 50%;
+      margin-left: 6px;
+      cursor: help;
+      position: relative;
+      vertical-align: middle;
+      color: #6b7280;
+      transition: all 0.2s;
+    }
+    
+    .tooltip-trigger:hover {
+      background: #1e3a5f;
+      color: white;
+    }
+    
+    .tooltip-trigger .tooltip-text {
+      visibility: hidden;
+      opacity: 0;
+      position: absolute;
+      bottom: calc(100% + 8px);
+      left: 0;
+      transform: none;
+      background: #1e3a5f;
+      color: white;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: normal;
+      line-height: 1.5;
+      width: max-content;
+      max-width: 280px;
+      text-align: left;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      z-index: 100;
+      transition: all 0.2s;
+    }
+    
+    .tooltip-trigger .tooltip-text::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 16px;
+      border: 6px solid transparent;
+      border-top-color: #1e3a5f;
+    }
+    
+    .tooltip-trigger:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+    }
+    
+    /* モバイルではタップで表示＆幅調整 */
+    @media (max-width: 767px) {
+      .tooltip-trigger .tooltip-text {
+        max-width: 220px;
+        left: 0;
+        right: auto;
+      }
+      
+      .tooltip-trigger .tooltip-text::after {
+        left: 16px;
+        right: auto;
+      }
+    }
+    
+    .form-hint {
+      font-size: 12px;
+      color: #6b7280;
+      margin-top: 4px;
+      line-height: 1.5;
+    }
+    
+    .form-input {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #d1d5db;
+      border-radius: 10px;
+      font-size: 15px;
+      font-family: inherit;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      background: white;
+    }
+    
+    .form-input:focus {
+      outline: none;
+      border-color: #1e3a5f;
+      box-shadow: 0 0 0 3px rgba(30, 58, 95, 0.1);
+    }
+    
+    .form-input::placeholder {
+      color: #9ca3af;
+    }
+    
+    .form-input.error {
+      border-color: #ef4444;
+    }
+    
+    .form-textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+    
+    /* ラジオ・チェックボックス */
+    .option-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    
+    .option-group.horizontal {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    
+    .option-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 14px;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .option-item:hover {
+      background: #f3f4f6;
+      border-color: #d1d5db;
+    }
+    
+    .option-item.selected {
+      background: #eff6ff;
+      border-color: #1e3a5f;
+    }
+    
+    .option-item input {
+      display: none;
+    }
+    
+    .option-radio,
+    .option-checkbox {
+      width: 20px;
+      height: 20px;
+      border: 2px solid #d1d5db;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+    
+    .option-checkbox {
+      border-radius: 6px;
+    }
+    
+    .option-item.selected .option-radio,
+    .option-item.selected .option-checkbox {
+      background: #1e3a5f;
+      border-color: #1e3a5f;
+    }
+    
+    .option-radio::after {
+      content: '';
+      width: 8px;
+      height: 8px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    
+    .option-item.selected .option-radio::after {
+      opacity: 1;
+    }
+    
+    .option-checkbox i {
+      color: white;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    
+    .option-item.selected .option-checkbox i {
+      opacity: 1;
+    }
+    
+    .option-label {
+      font-size: 14px;
+      color: #374151;
+      line-height: 1.4;
+    }
+    
+    /* インラインオプション（横並び小さめ） */
+    .option-group.inline {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    
+    .option-group.inline .option-item {
+      padding: 8px 12px;
+      flex: 0 0 auto;
+    }
+    
+    .option-group.inline .option-radio,
+    .option-group.inline .option-checkbox {
+      width: 16px;
+      height: 16px;
+    }
+    
+    .option-group.inline .option-label {
+      font-size: 13px;
+    }
+    
+    /* その他入力欄 */
+    .other-input-container {
+      margin-top: 10px;
+      display: none;
+    }
+    
+    .other-input-container.show {
+      display: block;
+    }
+    
+    /* 同意セクション */
+    .consent-box {
+      background: #fefce8;
+      border: 1px solid #fde047;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+    
+    .consent-title {
+      font-size: 14px;
+      font-weight: bold;
+      color: #854d0e;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .consent-description {
+      font-size: 13px;
+      color: #713f12;
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+    
+    .consent-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #1e3a5f;
+      font-size: 13px;
+      font-weight: 500;
+      text-decoration: none;
+      margin-bottom: 12px;
+    }
+    
+    .consent-link:hover {
+      text-decoration: underline;
+    }
+    
+    /* 送信ボタン */
+    .submit-container {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: white;
+      padding: 16px;
+      box-shadow: 0 -4px 12px rgba(0,0,0,0.1);
+      z-index: 50;
+    }
+    
+    .submit-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .submit-button {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+    
+    .submit-button:hover {
+      opacity: 0.9;
+    }
+    
+    .submit-button:active {
+      transform: scale(0.98);
+    }
+    
+    .submit-button:disabled {
+      background: #d1d5db;
+      cursor: not-allowed;
+    }
+    
+    .submit-button:disabled:hover {
+      opacity: 1;
+    }
+    
+    /* 日付入力 */
+    .date-input {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    
+    .date-input select {
+      padding: 12px;
+      border: 1px solid #d1d5db;
+      border-radius: 10px;
+      font-size: 15px;
+      font-family: inherit;
+      background: white;
+      cursor: pointer;
+    }
+    
+    .date-input select:focus {
+      outline: none;
+      border-color: #1e3a5f;
+    }
+    
+    .date-separator {
+      color: #6b7280;
+      font-size: 14px;
+    }
+    
+    /* トースト */
+    .toast {
+      position: fixed;
+      bottom: 100px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: #1e3a5f;
+      color: white;
+      padding: 14px 24px;
+      border-radius: 12px;
+      font-size: 14px;
+      opacity: 0;
+      transition: all 0.3s;
+      z-index: 200;
+      text-align: center;
+      max-width: 90%;
+    }
+    
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+    
+    .toast.error {
+      background: #ef4444;
+    }
+    
+    .toast.success {
+      background: #16a34a;
+    }
+    
+    /* レスポンシブ */
+    @media (min-width: 768px) {
+      .main {
+        padding: 24px;
+        padding-bottom: 180px;
+      }
+      
+      .hero-title {
+        font-size: 26px;
+      }
+      
+      .section-content {
+        padding: 24px;
+      }
+      
+      .option-group.grid-2 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (min-width: 1024px) {
+      .main {
+        max-width: 900px;
+      }
+      
+      .header-content {
+        max-width: 900px;
+      }
+      
+      .submit-content {
+        max-width: 900px;
+      }
+      
+      .section-content {
+        padding: 28px;
+      }
+      
+      /* PC時は一部フォームを2カラムに */
+      .form-row {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+    }
+    
+    /* 完了画面 */
+    .completion-screen {
+      display: none;
+      text-align: center;
+      padding: 40px 20px;
+    }
+    
+    .completion-screen.show {
+      display: block;
+    }
+    
+    .completion-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      color: #16a34a;
+    }
+    
+    .completion-title {
+      font-size: 24px;
+      font-weight: bold;
+      color: #1e3a5f;
+      margin-bottom: 12px;
+    }
+    
+    .completion-message {
+      font-size: 14px;
+      color: #6b7280;
+      line-height: 1.8;
+      margin-bottom: 32px;
+    }
+    
+    .next-steps {
+      background: white;
+      border-radius: 16px;
+      padding: 24px;
+      text-align: left;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    
+    .next-steps-title {
+      font-size: 16px;
+      font-weight: bold;
+      color: #1e3a5f;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .step-item {
+      display: flex;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid #f3f4f6;
+    }
+    
+    .step-item:last-child {
+      border-bottom: none;
+    }
+    
+    .step-number {
+      width: 28px;
+      height: 28px;
+      background: #1e3a5f;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+    
+    .step-content {
+      flex: 1;
+    }
+    
+    .step-title {
+      font-size: 14px;
+      font-weight: 500;
+      color: #374151;
+      margin-bottom: 4px;
+    }
+    
+    .step-description {
+      font-size: 12px;
+      color: #6b7280;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  <!-- ヘッダー -->
+  <header class="header">
+    <div class="header-content">
+      <a href="/limited.html" class="back-button">
+        <i data-lucide="arrow-left" style="width:20px;height:20px;"></i>
+      </a>
+      <div class="logo"><img src="/logo.png" alt="EQAO"></div>
+      <h1 class="header-title">入塾同意書</h1>
+    </div>
+  </header>
+  
+  <!-- メインコンテンツ -->
+  <main class="main" id="form-container">
+    <!-- ヒーロー -->
+    <div class="hero">
+      <div class="hero-icon">
+        <i data-lucide="file-check" style="width:32px;height:32px;"></i>
+      </div>
+      <h2 class="hero-title">入塾同意書</h2>
+      <p class="hero-description">
+        以下の項目をご入力のうえ、<br>
+        入塾手続きを完了してください。
+      </p>
+    </div>
+    
+    <!-- セクション1: 生徒情報 -->
+    <div class="form-section open" data-section="1">
+      <div class="section-header" onclick="toggleSection(1)">
+        <div class="section-icon">
+          <i data-lucide="user" style="width:16px;height:16px;"></i>
+        </div>
+        <span class="section-title">生徒情報</span>
+        <i data-lucide="chevron-down" class="section-toggle" style="width:20px;height:20px;"></i>
+      </div>
+      <div class="section-content">
+        <!-- 氏名 -->
+        <div class="form-group">
+          <label class="form-label">
+            氏名（受講者本人）<span class="required">*</span>
+          </label>
+          <input type="text" class="form-input" id="student-name" placeholder="例：山田 太郎" required>
+        </div>
+        
+        <!-- フリガナ -->
+        <div class="form-group">
+          <label class="form-label">
+            フリガナ<span class="required">*</span>
+            <span class="tooltip-trigger">
+              <i data-lucide="help-circle" style="width:12px;height:12px;"></i>
+              <span class="tooltip-text">全角カタカナで、姓と名の間にスペースを入れてご入力ください。</span>
+            </span>
+          </label>
+          <input type="text" class="form-input" id="student-furigana" placeholder="例：ヤマダ タロウ" required>
+        </div>
+        
+        <!-- 高校名 -->
+        <div class="form-group">
+          <label class="form-label">
+            高校名<span class="required">*</span>
+          </label>
+          <input type="text" class="form-input" id="school-name" placeholder="例：東京都立日比谷高等学校" required>
+          <p class="form-hint">※正式名称でご入力ください（例：○○県立○○高等学校、私立○○高等学校）</p>
+        </div>
+        
+        <!-- 高校区分：公立/私立 -->
+        <div class="form-group">
+          <label class="form-label">
+            高校の設置区分<span class="required">*</span>
+          </label>
+          <div class="option-group inline">
+            <label class="option-item" data-value="公立">
+              <input type="radio" name="school-type" value="公立">
+              <span class="option-radio"></span>
+              <span class="option-label">公立</span>
+            </label>
+            <label class="option-item" data-value="私立">
+              <input type="radio" name="school-type" value="私立">
+              <span class="option-radio"></span>
+              <span class="option-label">私立</span>
+            </label>
+            <label class="option-item" data-value="国立">
+              <input type="radio" name="school-type" value="国立">
+              <span class="option-radio"></span>
+              <span class="option-label">国立</span>
+            </label>
+          </div>
+        </div>
+        
+        <!-- 高校区分：男女 -->
+        <div class="form-group">
+          <label class="form-label">
+            高校の男女区分<span class="required">*</span>
+          </label>
+          <div class="option-group inline">
+            <label class="option-item" data-value="共学">
+              <input type="radio" name="school-gender" value="共学">
+              <span class="option-radio"></span>
+              <span class="option-label">共学</span>
+            </label>
+            <label class="option-item" data-value="男子校">
+              <input type="radio" name="school-gender" value="男子校">
+              <span class="option-radio"></span>
+              <span class="option-label">男子校</span>
+            </label>
+            <label class="option-item" data-value="女子校">
+              <input type="radio" name="school-gender" value="女子校">
+              <span class="option-radio"></span>
+              <span class="option-label">女子校</span>
+            </label>
+          </div>
+        </div>
+        
+        <!-- 附属校 -->
+        <div class="form-group">
+          <label class="form-label">
+            大学附属校ですか？<span class="required">*</span>
+            <span class="tooltip-trigger">
+              <i data-lucide="help-circle" style="width:12px;height:12px;"></i>
+              <span class="tooltip-text">「〇〇大学附属高等学校」のように、大学名が高校名に入っている学校のことです。内部進学制度がある場合が多いです。</span>
+            </span>
+          </label>
+          <div class="option-group inline">
+            <label class="option-item" data-value="はい">
+              <input type="radio" name="school-attached" value="はい">
+              <span class="option-radio"></span>
+              <span class="option-label">はい</span>
+            </label>
+            <label class="option-item" data-value="いいえ">
+              <input type="radio" name="school-attached" value="いいえ">
+              <span class="option-radio"></span>
+              <span class="option-label">いいえ</span>
+            </label>
+          </div>
+        </div>
+        
+        <!-- 通信制 -->
+        <div class="form-group">
+          <label class="form-label">
+            通信制高校ですか？<span class="required">*</span>
+            <span class="tooltip-trigger">
+              <i data-lucide="help-circle" style="width:12px;height:12px;"></i>
+              <span class="tooltip-text">毎日通学せず、主にオンラインや郵送で学習を進める形式の高校です。N高等学校、クラーク記念国際高等学校などが該当します。</span>
+            </span>
+          </label>
+          <div class="option-group inline">
+            <label class="option-item" data-value="はい">
+              <input type="radio" name="school-correspondence" value="はい">
+              <span class="option-radio"></span>
+              <span class="option-label">はい</span>
+            </label>
+            <label class="option-item" data-value="いいえ">
+              <input type="radio" name="school-correspondence" value="いいえ">
+              <span class="option-radio"></span>
+              <span class="option-label">いいえ</span>
+            </label>
+          </div>
+        </div>
+        
+        <!-- 学年 -->
+        <div class="form-group">
+          <label class="form-label">
+            学年<span class="required">*</span>
+          </label>
+          <div class="option-group inline">
+            <label class="option-item" data-value="高校1年生">
+              <input type="radio" name="grade" value="高校1年生">
+              <span class="option-radio"></span>
+              <span class="option-label">高校1年生</span>
+            </label>
+            <label class="option-item" data-value="高校2年生">
+              <input type="radio" name="grade" value="高校2年生">
+              <span class="option-radio"></span>
+              <span class="option-label">高校2年生</span>
+            </label>
+            <label class="option-item" data-value="高校3年生">
+              <input type="radio" name="grade" value="高校3年生">
+              <span class="option-radio"></span>
+              <span class="option-label">高校3年生</span>
+            </label>
+            <label class="option-item" data-value="その他">
+              <input type="radio" name="grade" value="その他">
+              <span class="option-radio"></span>
+              <span class="option-label">その他</span>
+            </label>
+          </div>
+          <div class="other-input-container" id="grade-other-container">
+            <input type="text" class="form-input" id="grade-other" placeholder="その他の場合はご記入ください">
+          </div>
+        </div>
+        
+        <!-- 資格 -->
+        <div class="form-group">
+          <label class="form-label">
+            資格を所持している場合にはご記入ください
+          </label>
+          <input type="text" class="form-input" id="qualifications" placeholder="例：英検準一級、簿記検定二級">
+          <p class="form-hint">※英検準1級相当以上の英語資格をお持ちの方は、割引の対象となる場合がございます。</p>
+        </div>
+        
+        <!-- 生年月日 -->
+        <div class="form-group">
+          <label class="form-label">
+            生年月日（受講者本人）<span class="required">*</span>
+          </label>
+          <div class="date-input">
+            <select id="birth-year">
+              <option value="">年</option>
+            </select>
+            <span class="date-separator">年</span>
+            <select id="birth-month">
+              <option value="">月</option>
+            </select>
+            <span class="date-separator">月</span>
+            <select id="birth-day">
+              <option value="">日</option>
+            </select>
+            <span class="date-separator">日</span>
+          </div>
+        </div>
+        
+        <!-- 住所 -->
+        <div class="form-group">
+          <label class="form-label">
+            住所<span class="required">*</span>
+          </label>
+          <input type="text" class="form-input" id="address" placeholder="例：東京都港区芝大門2-8-9" required>
+        </div>
+        
+        <!-- 電話番号（生徒） -->
+        <div class="form-group">
+          <label class="form-label">
+            電話番号（受講者本人）<span class="required">*</span>
+          </label>
+          <input type="tel" class="form-input" id="student-phone" placeholder="例：090-1234-5678" required>
+        </div>
+        
+        <!-- メールアドレス（生徒） -->
+        <div class="form-group">
+          <label class="form-label">
+            メールアドレス（受講者本人）<span class="required">*</span>
+          </label>
+          <input type="email" class="form-input" id="student-email" placeholder="例：taro@example.com" required>
+        </div>
+      </div>
+    </div>
+    
+    <!-- セクション2: 保護者情報 -->
+    <div class="form-section" data-section="2">
+      <div class="section-header" onclick="toggleSection(2)">
+        <div class="section-icon">
+          <i data-lucide="users" style="width:16px;height:16px;"></i>
+        </div>
+        <span class="section-title">保護者情報</span>
+        <i data-lucide="chevron-down" class="section-toggle" style="width:20px;height:20px;"></i>
+      </div>
+      <div class="section-content">
+        <!-- 保護者氏名 -->
+        <div class="form-group">
+          <label class="form-label">
+            氏名（保護者様）<span class="required">*</span>
+          </label>
+          <input type="text" class="form-input" id="parent-name" placeholder="例：山田 花子" required>
+        </div>
+        
+        <!-- 保護者電話番号 -->
+        <div class="form-group">
+          <label class="form-label">
+            電話番号（保護者様）<span class="required">*</span>
+          </label>
+          <input type="tel" class="form-input" id="parent-phone" placeholder="例：090-1234-5678" required>
+        </div>
+        
+        <!-- 保護者メールアドレス -->
+        <div class="form-group">
+          <label class="form-label">
+            メールアドレス（保護者様）<span class="required">*</span>
+          </label>
+          <input type="email" class="form-input" id="parent-email" placeholder="例：hanako@example.com" required>
+        </div>
+        
+        <!-- 保護者職業 -->
+        <div class="form-group">
+          <label class="form-label">
+            ご職業（保護者様）
+          </label>
+          <p class="form-hint" style="margin-bottom: 8px;">今後のご案内やサポート体制の参考にさせていただきます</p>
+          <div class="option-group">
+            <label class="option-item" data-value="公務員">
+              <input type="radio" name="parent-job" value="公務員">
+              <span class="option-radio"></span>
+              <span class="option-label">公務員</span>
+            </label>
+            <label class="option-item" data-value="会社員">
+              <input type="radio" name="parent-job" value="会社員">
+              <span class="option-radio"></span>
+              <span class="option-label">会社員</span>
+            </label>
+            <label class="option-item" data-value="自営業">
+              <input type="radio" name="parent-job" value="自営業">
+              <span class="option-radio"></span>
+              <span class="option-label">自営業</span>
+            </label>
+            <label class="option-item" data-value="パート・アルバイト">
+              <input type="radio" name="parent-job" value="パート・アルバイト">
+              <span class="option-radio"></span>
+              <span class="option-label">パート・アルバイト</span>
+            </label>
+            <label class="option-item" data-value="回答しない">
+              <input type="radio" name="parent-job" value="回答しない">
+              <span class="option-radio"></span>
+              <span class="option-label">回答しない</span>
+            </label>
+            <label class="option-item" data-value="その他">
+              <input type="radio" name="parent-job" value="その他">
+              <span class="option-radio"></span>
+              <span class="option-label">その他</span>
+            </label>
+          </div>
+          <div class="other-input-container" id="parent-job-other-container">
+            <input type="text" class="form-input" id="parent-job-other" placeholder="その他の場合はご記入ください">
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- セクション3: 受講情報 -->
+    <div class="form-section" data-section="3">
+      <div class="section-header" onclick="toggleSection(3)">
+        <div class="section-icon">
+          <i data-lucide="laptop" style="width:16px;height:16px;"></i>
+        </div>
+        <span class="section-title">受講情報</span>
+        <i data-lucide="chevron-down" class="section-toggle" style="width:20px;height:20px;"></i>
+      </div>
+      <div class="section-content">
+        <!-- 受講デバイス -->
+        <div class="form-group">
+          <label class="form-label">
+            授業を受講する際のデバイス<span class="required">*</span>
+          </label>
+          <div class="option-group">
+            <label class="option-item" data-value="スマートフォン">
+              <input type="radio" name="device" value="スマートフォン">
+              <span class="option-radio"></span>
+              <span class="option-label">スマートフォン</span>
+            </label>
+            <label class="option-item" data-value="ラップトップ">
+              <input type="radio" name="device" value="ラップトップ">
+              <span class="option-radio"></span>
+              <span class="option-label">ラップトップ</span>
+            </label>
+            <label class="option-item" data-value="パッド">
+              <input type="radio" name="device" value="パッド">
+              <span class="option-radio"></span>
+              <span class="option-label">タブレット（iPad等）</span>
+            </label>
+            <label class="option-item" data-value="パソコン">
+              <input type="radio" name="device" value="パソコン">
+              <span class="option-radio"></span>
+              <span class="option-label">デスクトップPC</span>
+            </label>
+          </div>
+        </div>
+        
+        <!-- 対策内容 -->
+        <div class="form-group">
+          <label class="form-label">
+            対策内容（複数選択可）<span class="required">*</span>
+          </label>
+          <div class="option-group">
+            <label class="option-item checkbox" data-value="総合型選抜（書類作成〜面接）">
+              <input type="checkbox" name="course" value="総合型選抜（書類作成〜面接）">
+              <span class="option-checkbox"><i data-lucide="check" style="width:12px;height:12px;"></i></span>
+              <span class="option-label">総合型選抜（書類作成〜面接）</span>
+            </label>
+            <label class="option-item checkbox" data-value="英語資格（IELTS・英検・TEAP）">
+              <input type="checkbox" name="course" value="英語資格（IELTS・英検・TEAP）">
+              <span class="option-checkbox"><i data-lucide="check" style="width:12px;height:12px;"></i></span>
+              <span class="option-label">英語資格（IELTS・英検・TEAP）</span>
+            </label>
+            <label class="option-item checkbox" data-value="一般入試対策（日本史・世界史・現代文・古文・漢文）">
+              <input type="checkbox" name="course" value="一般入試対策（日本史・世界史・現代文・古文・漢文）">
+              <span class="option-checkbox"><i data-lucide="check" style="width:12px;height:12px;"></i></span>
+              <span class="option-label">一般入試対策（日本史・世界史・現代文・古文・漢文）</span>
+            </label>
+          </div>
+        </div>
+        
+        <!-- 受講方法 -->
+        <div class="form-group">
+          <label class="form-label">
+            受講方法<span class="required">*</span>
+            <span class="tooltip-trigger">
+              <i data-lucide="help-circle" style="width:12px;height:12px;"></i>
+              <span class="tooltip-text">ハイブリッドは、オンラインと校舎での対面授業を組み合わせる方式です。状況に応じて柔軟に切り替えられます。</span>
+            </span>
+          </label>
+          <div class="option-group">
+            <label class="option-item" data-value="オンライン">
+              <input type="radio" name="method" value="オンライン">
+              <span class="option-radio"></span>
+              <span class="option-label">オンライン</span>
+            </label>
+            <label class="option-item" data-value="オフライン（校舎）">
+              <input type="radio" name="method" value="オフライン（校舎）">
+              <span class="option-radio"></span>
+              <span class="option-label">オフライン（校舎）</span>
+            </label>
+            <label class="option-item" data-value="ハイブリッド">
+              <input type="radio" name="method" value="ハイブリッド">
+              <span class="option-radio"></span>
+              <span class="option-label">ハイブリッド</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- セクション4: 同意事項 -->
+    <div class="form-section" data-section="4">
+      <div class="section-header" onclick="toggleSection(4)">
+        <div class="section-icon">
+          <i data-lucide="shield-check" style="width:16px;height:16px;"></i>
+        </div>
+        <span class="section-title">同意事項</span>
+        <i data-lucide="chevron-down" class="section-toggle" style="width:20px;height:20px;"></i>
+      </div>
+      <div class="section-content">
+        <div class="consent-box">
+          <div class="consent-title">
+            <i data-lucide="alert-circle" style="width:18px;height:18px;"></i>
+            EQAOへの入塾に同意されますか？
+          </div>
+          <p class="consent-description">
+            同意した時点で弊社が提示する「基本事項規定書/生徒ルール」「料金表」の内容に同意したものとさせていただきます。
+          </p>
+          <p style="margin-bottom: 8px; font-size: 13px; color: #713f12;">以下のリンクから各資料をご確認ください：</p>
+          <div style="margin-bottom: 16px;">
+            <a href="/curriculum.html" target="_blank" class="consent-link">
+              <i data-lucide="external-link" style="width:14px;height:14px;"></i>
+              基本事項規定・カリキュラム
+            </a><br>
+            <a href="/lesson-flow.html" target="_blank" class="consent-link">
+              <i data-lucide="external-link" style="width:14px;height:14px;"></i>
+              授業の流れ・生徒ルール
+            </a>
+          </div>
+          <label class="option-item checkbox" data-value="同意する" style="background:#fff;">
+            <input type="checkbox" name="consent-main" value="同意する" id="consent-main">
+            <span class="option-checkbox"><i data-lucide="check" style="width:12px;height:12px;"></i></span>
+            <span class="option-label" style="font-weight:500;">同意する</span>
+          </label>
+        </div>
+        
+        <!-- 同意書記入日 -->
+        <div class="form-group">
+          <label class="form-label">
+            同意書記入日<span class="required">*</span>
+          </label>
+          <div class="date-input">
+            <select id="consent-year">
+              <option value="">年</option>
+            </select>
+            <span class="date-separator">年</span>
+            <select id="consent-month">
+              <option value="">月</option>
+            </select>
+            <span class="date-separator">月</span>
+            <select id="consent-day">
+              <option value="">日</option>
+            </select>
+            <span class="date-separator">日</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- セクション5: 請求に関するご確認 -->
+    <div class="form-section" data-section="5">
+      <div class="section-header" onclick="toggleSection(5)">
+        <div class="section-icon">
+          <i data-lucide="credit-card" style="width:16px;height:16px;"></i>
+        </div>
+        <span class="section-title">入塾後のご請求に関するご確認</span>
+        <i data-lucide="chevron-down" class="section-toggle" style="width:20px;height:20px;"></i>
+      </div>
+      <div class="section-content">
+        <!-- 希望コマ数 -->
+        <div class="form-group">
+          <label class="form-label">
+            月あたりの希望コマ数（半角数字のみ）<span class="required">*</span>
+          </label>
+          <p class="form-hint" style="margin-bottom: 8px;">
+            高校3年生には<strong>月8コマ（週2回程度）</strong>の受講を推奨しております。<br>
+            ※毎月の具体的なスケジュールは、生徒様の申請フォームで調整します。<br>
+            （例：来月は6コマなど、柔軟に対応可能です）<br>
+            本設問は、初回請求（例：月8コマ・3ヶ月分＝24コマなど）の参考とさせていただきます。
+          </p>
+          <input type="number" class="form-input" id="monthly-lessons" placeholder="例：8" min="1" required>
+        </div>
+        
+        <!-- 初回支払い月数 -->
+        <div class="form-group">
+          <label class="form-label">
+            初回のお支払いは、何ヶ月分をご希望されますか？<span class="required">*</span>
+          </label>
+          <p class="form-hint" style="margin-bottom: 8px;">※初回は<strong>3ヶ月分〜</strong>のご案内となります</p>
+          <div class="option-group">
+            <label class="option-item" data-value="3ヶ月分">
+              <input type="radio" name="payment-months" value="3ヶ月分">
+              <span class="option-radio"></span>
+              <span class="option-label">3ヶ月分</span>
+            </label>
+            <label class="option-item" data-value="4ヶ月分">
+              <input type="radio" name="payment-months" value="4ヶ月分">
+              <span class="option-radio"></span>
+              <span class="option-label">4ヶ月分</span>
+            </label>
+            <label class="option-item" data-value="5ヶ月分">
+              <input type="radio" name="payment-months" value="5ヶ月分">
+              <span class="option-radio"></span>
+              <span class="option-label">5ヶ月分</span>
+            </label>
+            <label class="option-item" data-value="6ヶ月分（※半数近くの方がご選択）">
+              <input type="radio" name="payment-months" value="6ヶ月分">
+              <span class="option-radio"></span>
+              <span class="option-label">6ヶ月分（※半数近くの方がご選択）</span>
+            </label>
+            <label class="option-item" data-value="その他">
+              <input type="radio" name="payment-months" value="その他">
+              <span class="option-radio"></span>
+              <span class="option-label">その他</span>
+            </label>
+          </div>
+          <div class="other-input-container" id="payment-months-other-container">
+            <input type="text" class="form-input" id="payment-months-other" placeholder="その他の場合はご記入ください">
+          </div>
+        </div>
+        
+        <!-- 銀行振込了承 -->
+        <div class="form-group">
+          <label class="form-label">
+            お支払い方法については「銀行振込」のみとなります。ご了承いただけますか？<span class="required">*</span>
+          </label>
+          <p class="form-hint" style="margin-bottom: 8px;">※確認のための設問です</p>
+          <label class="option-item checkbox" data-value="はい、了承しました">
+            <input type="checkbox" name="bank-transfer" value="はい、了承しました" id="bank-transfer">
+            <span class="option-checkbox"><i data-lucide="check" style="width:12px;height:12px;"></i></span>
+            <span class="option-label">はい、了承しました</span>
+          </label>
+        </div>
+        
+        <!-- 家庭状況（割引判定用） -->
+        <div class="form-group">
+          <label class="form-label">
+            ご家庭の状況によって、割引の対象となる場合がございます
+            <span class="tooltip-trigger">
+              <i data-lucide="help-circle" style="width:12px;height:12px;"></i>
+              <span class="tooltip-text">ひとり親家庭を対象とした割引制度です。該当される場合、後日証明書類のご提出をお願いする場合があります。</span>
+            </span>
+          </label>
+          <p class="form-hint" style="margin-bottom: 8px;">
+            ※本項目へのご回答は<strong>任意</strong>です。<br>
+            ※該当される方には、後日必要書類のご提出をお願いする予定です。<br>
+            ※ご提出いただいた書類をもとに社内規定に基づき審査を行いますが、<span style="color:#ef4444;font-weight:500;">審査基準は社内規定によるものであり、個別の開示は行っておりません。</span>あらかじめご了承ください。
+          </p>
+          <div class="option-group">
+            <label class="option-item checkbox" data-value="母子家庭">
+              <input type="checkbox" name="family-status" value="母子家庭">
+              <span class="option-checkbox"><i data-lucide="check" style="width:12px;height:12px;"></i></span>
+              <span class="option-label">母子家庭</span>
+            </label>
+            <label class="option-item checkbox" data-value="父子家庭">
+              <input type="checkbox" name="family-status" value="父子家庭">
+              <span class="option-checkbox"><i data-lucide="check" style="width:12px;height:12px;"></i></span>
+              <span class="option-label">父子家庭</span>
+            </label>
+            <label class="option-item checkbox" data-value="該当なし／回答を希望しない">
+              <input type="checkbox" name="family-status" value="該当なし／回答を希望しない">
+              <span class="option-checkbox"><i data-lucide="check" style="width:12px;height:12px;"></i></span>
+              <span class="option-label">該当なし／回答を希望しない</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- セクション6: EQAOについて -->
+    <div class="form-section" data-section="6">
+      <div class="section-header" onclick="toggleSection(6)">
+        <div class="section-icon">
+          <i data-lucide="heart" style="width:16px;height:16px;"></i>
+        </div>
+        <span class="section-title">EQAOについて</span>
+        <i data-lucide="chevron-down" class="section-toggle" style="width:20px;height:20px;"></i>
+      </div>
+      <div class="section-content">
+        <!-- EQAOを選んだ理由 -->
+        <div class="form-group">
+          <label class="form-label">
+            EQAOを選んだ理由を教えてください（複数選択可・必須）<span class="required">*</span>
+          </label>
+          <div class="option-group">
+            <label class="option-item checkbox" data-value="カリキュラム">
+              <input type="checkbox" name="reason" value="カリキュラム">
+              <span class="option-checkbox"><i data-lucide="check" style="width:12px;height:12px;"></i></span>
+              <span class="option-label">カリキュラム</span>
+            </label>
+            <label class="option-item checkbox" data-value="合格実績／合格率">
+              <input type="checkbox" name="reason" value="合格実績／合格率">
+              <span class="option-checkbox"><i data-lucide="check" style="width:12px;height:12px;"></i></span>
+              <span class="option-label">合格実績／合格率</span>
+            </label>
+            <label class="option-item checkbox" data-value="オンラインと対面両方可能">
+              <input type="checkbox" name="reason" value="オンラインと対面両方可能">
+              <span class="option-checkbox"><i data-lucide="check" style="width:12px;height:12px;"></i></span>
+              <span class="option-label">オンラインと対面両方可能</span>
+            </label>
+            <label class="option-item checkbox" data-value="オーダーメイドカリキュラム">
+              <input type="checkbox" name="reason" value="オーダーメイドカリキュラム">
+              <span class="option-checkbox"><i data-lucide="check" style="width:12px;height:12px;"></i></span>
+              <span class="option-label">オーダーメイドカリキュラム</span>
+            </label>
+            <label class="option-item checkbox" data-value="オーダーメイドスケジュール">
+              <input type="checkbox" name="reason" value="オーダーメイドスケジュール">
+              <span class="option-checkbox"><i data-lucide="check" style="width:12px;height:12px;"></i></span>
+              <span class="option-label">オーダーメイドスケジュール</span>
+            </label>
+            <label class="option-item checkbox" data-value="進捗管理システム">
+              <input type="checkbox" name="reason" value="進捗管理システム">
+              <span class="option-checkbox"><i data-lucide="check" style="width:12px;height:12px;"></i></span>
+              <span class="option-label">進捗管理システム</span>
+            </label>
+            <label class="option-item checkbox" data-value="EQAO模試">
+              <input type="checkbox" name="reason" value="EQAO模試">
+              <span class="option-checkbox"><i data-lucide="check" style="width:12px;height:12px;"></i></span>
+              <span class="option-label">EQAO模試</span>
+            </label>
+            <label class="option-item checkbox" data-value="多様な試験の対応可能体制">
+              <input type="checkbox" name="reason" value="多様な試験の対応可能体制">
+              <span class="option-checkbox"><i data-lucide="check" style="width:12px;height:12px;"></i></span>
+              <span class="option-label">多様な試験の対応可能体制</span>
+            </label>
+            <label class="option-item checkbox" data-value="活動プログラム">
+              <input type="checkbox" name="reason" value="活動プログラム">
+              <span class="option-checkbox"><i data-lucide="check" style="width:12px;height:12px;"></i></span>
+              <span class="option-label">活動プログラム</span>
+            </label>
+            <label class="option-item checkbox" data-value="マンツーマン指導">
+              <input type="checkbox" name="reason" value="マンツーマン指導">
+              <span class="option-checkbox"><i data-lucide="check" style="width:12px;height:12px;"></i></span>
+              <span class="option-label">マンツーマン指導</span>
+            </label>
+            <label class="option-item checkbox" data-value="理念や方針">
+              <input type="checkbox" name="reason" value="理念や方針">
+              <span class="option-checkbox"><i data-lucide="check" style="width:12px;height:12px;"></i></span>
+              <span class="option-label">理念や方針</span>
+            </label>
+            <label class="option-item checkbox" data-value="各種教材">
+              <input type="checkbox" name="reason" value="各種教材">
+              <span class="option-checkbox"><i data-lucide="check" style="width:12px;height:12px;"></i></span>
+              <span class="option-label">各種教材</span>
+            </label>
+            <label class="option-item checkbox" data-value="サポート体制">
+              <input type="checkbox" name="reason" value="サポート体制">
+              <span class="option-checkbox"><i data-lucide="check" style="width:12px;height:12px;"></i></span>
+              <span class="option-label">サポート体制</span>
+            </label>
+            <label class="option-item checkbox" data-value="雰囲気">
+              <input type="checkbox" name="reason" value="雰囲気">
+              <span class="option-checkbox"><i data-lucide="check" style="width:12px;height:12px;"></i></span>
+              <span class="option-label">雰囲気</span>
+            </label>
+            <label class="option-item checkbox" data-value="講師の質">
+              <input type="checkbox" name="reason" value="講師の質">
+              <span class="option-checkbox"><i data-lucide="check" style="width:12px;height:12px;"></i></span>
+              <span class="option-label">講師の質</span>
+            </label>
+            <label class="option-item checkbox" data-value="提供される情報">
+              <input type="checkbox" name="reason" value="提供される情報">
+              <span class="option-checkbox"><i data-lucide="check" style="width:12px;height:12px;"></i></span>
+              <span class="option-label">提供される情報</span>
+            </label>
+            <label class="option-item checkbox" data-value="代表者の考え方・人柄">
+              <input type="checkbox" name="reason" value="代表者の考え方・人柄">
+              <span class="option-checkbox"><i data-lucide="check" style="width:12px;height:12px;"></i></span>
+              <span class="option-label">代表者の考え方・人柄</span>
+            </label>
+            <label class="option-item checkbox" data-value="その他">
+              <input type="checkbox" name="reason" value="その他">
+              <span class="option-checkbox"><i data-lucide="check" style="width:12px;height:12px;"></i></span>
+              <span class="option-label">その他</span>
+            </label>
+          </div>
+          <div class="other-input-container" id="reason-other-container">
+            <input type="text" class="form-input" id="reason-other" placeholder="その他の場合はご記入ください">
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- セクション7: 学習状況 -->
+    <div class="form-section" data-section="7">
+      <div class="section-header" onclick="toggleSection(7)">
+        <div class="section-icon">
+          <i data-lucide="graduation-cap" style="width:16px;height:16px;"></i>
+        </div>
+        <span class="section-title">学習状況</span>
+        <i data-lucide="chevron-down" class="section-toggle" style="width:20px;height:20px;"></i>
+      </div>
+      <div class="section-content">
+        <!-- 現在の評定平均 -->
+        <div class="form-group">
+          <label class="form-label">
+            現時点で確定している最新の評定平均を小数第1位まで半角数字で入力してください<span class="required">*</span>
+            <span class="tooltip-trigger">
+              <i data-lucide="help-circle" style="width:12px;height:12px;"></i>
+              <span class="tooltip-text">成績表に記載されている5段階評価の平均値です。通知表や成績証明書でご確認ください。</span>
+            </span>
+          </label>
+          <p class="form-hint" style="margin-bottom: 8px;">※例：4.2、3.8など</p>
+          <input type="text" class="form-input" id="current-gpa" placeholder="例：4.2" required>
+        </div>
+        
+        <!-- 第一志望校 -->
+        <div class="form-group">
+          <label class="form-label">
+            第一志望の大学名と学部・学科名をご記入ください<span class="required">*</span>
+          </label>
+          <p class="form-hint" style="margin-bottom: 8px;">
+            ※第一志望校によって授業料が異なるため、必須項目となります。<br>
+            まだ未定の場合は、現時点で最も有力と考えている大学名・学部学科名をご記入ください。
+          </p>
+          <input type="text" class="form-input" id="first-choice" placeholder="例：早稲田大学 政治経済学部 政治学科" required>
+        </div>
+        
+        <!-- 併願校 -->
+        <div class="form-group">
+          <label class="form-label">
+            現時点で、併願校が決まっていれば大学名と学部・学科を教えてください
+          </label>
+          <p class="form-hint" style="margin-bottom: 8px;">未定の場合は『未定』と入力してください。</p>
+          <textarea class="form-input form-textarea" id="other-choices" placeholder="例：慶應義塾大学 法学部 政治学科&#10;上智大学 法学部 国際関係法学科"></textarea>
+        </div>
+        
+        <!-- 志望理由 -->
+        <div class="form-group">
+          <label class="form-label">
+            第一志望を志望する主な理由を簡単に教えてください
+          </label>
+          <textarea class="form-input form-textarea" id="reason-first-choice" placeholder="例：国際政治について深く学びたいため"></textarea>
+        </div>
+        
+        <!-- 書類・小論文・面接以外の対策 -->
+        <div class="form-group">
+          <label class="form-label">
+            書類作成、小論文、面接以外に対策必要なものがあれば教えてください
+          </label>
+          <input type="text" class="form-input" id="other-prep" placeholder="例：プレゼンテーション、グループディスカッション">
+        </div>
+        
+        <!-- 筆記試験科目 -->
+        <div class="form-group">
+          <label class="form-label">
+            筆記試験がある場合、その科目名を入力してください。複数ある場合は全て入力してください。
+          </label>
+          <input type="text" class="form-input" id="written-exam-subjects" placeholder="例：英語、小論文">
+        </div>
+        
+        <!-- 筆記試験対策状況 -->
+        <div class="form-group">
+          <label class="form-label">
+            筆記試験の科目の対策状況を選んでください
+          </label>
+          <div class="option-group">
+            <label class="option-item" data-value="ほとんど対策していない">
+              <input type="radio" name="written-exam-status" value="ほとんど対策していない">
+              <span class="option-radio"></span>
+              <span class="option-label">ほとんど対策していない</span>
+            </label>
+            <label class="option-item" data-value="少しだけ対策している">
+              <input type="radio" name="written-exam-status" value="少しだけ対策している">
+              <span class="option-radio"></span>
+              <span class="option-label">少しだけ対策している</span>
+            </label>
+            <label class="option-item" data-value="半分程度は対策できている">
+              <input type="radio" name="written-exam-status" value="半分程度は対策できている">
+              <span class="option-radio"></span>
+              <span class="option-label">半分程度は対策できている</span>
+            </label>
+            <label class="option-item" data-value="かなり対策できている">
+              <input type="radio" name="written-exam-status" value="かなり対策できている">
+              <span class="option-radio"></span>
+              <span class="option-label">かなり対策できている</span>
+            </label>
+            <label class="option-item" data-value="ほぼ仕上がっている">
+              <input type="radio" name="written-exam-status" value="ほぼ仕上がっている">
+              <span class="option-radio"></span>
+              <span class="option-label">ほぼ仕上がっている</span>
+            </label>
+            <label class="option-item" data-value="その他">
+              <input type="radio" name="written-exam-status" value="その他">
+              <span class="option-radio"></span>
+              <span class="option-label">その他</span>
+            </label>
+          </div>
+          <div class="other-input-container" id="written-exam-status-other-container">
+            <input type="text" class="form-input" id="written-exam-status-other" placeholder="その他の場合はご記入ください">
+          </div>
+        </div>
+        
+        <!-- 指定校推薦志望校 -->
+        <div class="form-group">
+          <label class="form-label">
+            指定校推薦を視野に入れている場合は、志望している大学名・学部・学科を教えてください
+            <span class="tooltip-trigger">
+              <i data-lucide="help-circle" style="width:12px;height:12px;"></i>
+              <span class="tooltip-text">高校が持つ推薦枠を利用して出願する入試方式です。校内選考があり、出願できれば合格率が高いのが特徴です。</span>
+            </span>
+          </label>
+          <input type="text" class="form-input" id="designated-school" placeholder="例：明治大学 商学部 商学科">
+        </div>
+      </div>
+    </div>
+    
+    <!-- セクション8: 評定・定期テスト対策 -->
+    <div class="form-section" data-section="8">
+      <div class="section-header" onclick="toggleSection(8)">
+        <div class="section-icon">
+          <i data-lucide="target" style="width:16px;height:16px;"></i>
+        </div>
+        <span class="section-title">評定・定期テスト対策</span>
+        <i data-lucide="chevron-down" class="section-toggle" style="width:20px;height:20px;"></i>
+      </div>
+      <div class="section-content">
+        <!-- 目標評定平均 -->
+        <div class="form-group">
+          <label class="form-label">
+            目標とする評定平均（5段階評価）を、小数第1位まで半角数字で入力してください<span class="required">*</span>
+          </label>
+          <p class="form-hint" style="margin-bottom: 8px;">例：4.0、3.8</p>
+          <input type="text" class="form-input" id="target-gpa" placeholder="例：4.5" required>
+        </div>
+        
+        <!-- 評定を上げたい気持ち -->
+        <div class="form-group">
+          <label class="form-label">
+            評定を上げたい気持ちの強さを教えてください<span class="required">*</span>
+          </label>
+          <div class="option-group">
+            <label class="option-item" data-value="5：絶対に上げたい">
+              <input type="radio" name="gpa-motivation" value="5：絶対に上げたい">
+              <span class="option-radio"></span>
+              <span class="option-label">5：絶対に上げたい</span>
+            </label>
+            <label class="option-item" data-value="4：できれば上げたい">
+              <input type="radio" name="gpa-motivation" value="4：できれば上げたい">
+              <span class="option-radio"></span>
+              <span class="option-label">4：できれば上げたい</span>
+            </label>
+            <label class="option-item" data-value="3：上げられるなら嬉しい">
+              <input type="radio" name="gpa-motivation" value="3：上げられるなら嬉しい">
+              <span class="option-radio"></span>
+              <span class="option-label">3：上げられるなら嬉しい</span>
+            </label>
+            <label class="option-item" data-value="2：特に意識していない">
+              <input type="radio" name="gpa-motivation" value="2：特に意識していない">
+              <span class="option-radio"></span>
+              <span class="option-label">2：特に意識していない</span>
+            </label>
+            <label class="option-item" data-value="1：上げる必要はない">
+              <input type="radio" name="gpa-motivation" value="1：上げる必要はない">
+              <span class="option-radio"></span>
+              <span class="option-label">1：上げる必要はない</span>
+            </label>
+          </div>
+        </div>
+        
+        <!-- 定期テスト対策希望 -->
+        <div class="form-group">
+          <label class="form-label">
+            評定をあげるための対策（以下、「定期テスト対策」と表記）をEQAOで行いたいですか？<span class="required">*</span>
+          </label>
+          <div class="option-group">
+            <label class="option-item" data-value="はい">
+              <input type="radio" name="test-prep-want" value="はい">
+              <span class="option-radio"></span>
+              <span class="option-label">はい</span>
+            </label>
+            <label class="option-item" data-value="いいえ（他塾または自分で対策している）">
+              <input type="radio" name="test-prep-want" value="いいえ（他塾または自分で対策している）">
+              <span class="option-radio"></span>
+              <span class="option-label">いいえ（他塾または自分で対策している）</span>
+            </label>
+          </div>
+        </div>
+        
+        <!-- 定期テスト対策詳細 -->
+        <div class="form-group">
+          <label class="form-label">
+            定期テスト対策として、特に求めるものを教えてください
+          </label>
+          <p class="form-hint" style="margin-bottom: 8px;">科目によって異なる場合は『その他』を選び、次の設問にて詳細をご記入ください。</p>
+          <div class="option-group">
+            <label class="option-item" data-value="スケジューリング／コーチング">
+              <input type="radio" name="test-prep-type" value="スケジューリング／コーチング">
+              <span class="option-radio"></span>
+              <span class="option-label">スケジューリング／コーチング（例：次の授業までにやるべきことの提示、宿題の提示、確認テストの実施など）</span>
+            </label>
+            <label class="option-item" data-value="勉強内容そのものの指導">
+              <input type="radio" name="test-prep-type" value="勉強内容そのものの指導">
+              <span class="option-radio"></span>
+              <span class="option-label">勉強内容そのものの指導</span>
+            </label>
+            <label class="option-item" data-value="その他">
+              <input type="radio" name="test-prep-type" value="その他">
+              <span class="option-radio"></span>
+              <span class="option-label">その他</span>
+            </label>
+          </div>
+        </div>
+        
+        <!-- 定期テスト対策その他 -->
+        <div class="form-group">
+          <label class="form-label">
+            一つ前の設問で『その他』を選んだ方は、希望する定期テスト対策の内容を具体的にご記入ください
+          </label>
+          <p class="form-hint" style="margin-bottom: 8px;">科目名や希望するサポートの形があれば、あわせてお書きください。</p>
+          <textarea class="form-input form-textarea" id="test-prep-other-detail" placeholder="例：数学はスケジューリングのみ、英語は内容指導もお願いしたい"></textarea>
+        </div>
+      </div>
+    </div>
+    
+    <!-- セクション9: 一般入試対策 -->
+    <div class="form-section" data-section="9">
+      <div class="section-header" onclick="toggleSection(9)">
+        <div class="section-icon">
+          <i data-lucide="book-open" style="width:16px;height:16px;"></i>
+        </div>
+        <span class="section-title">一般入試対策</span>
+        <i data-lucide="chevron-down" class="section-toggle" style="width:20px;height:20px;"></i>
+      </div>
+      <div class="section-content">
+        <!-- 一般入試併用状況 -->
+        <div class="form-group">
+          <label class="form-label">
+            一般入試との併用について、現時点での状況を教えてください<span class="required">*</span>
+            <span class="tooltip-trigger">
+              <i data-lucide="help-circle" style="width:12px;height:12px;"></i>
+              <span class="tooltip-text">総合型選抜と一般入試の両方を受験する戦略です。総合型が不合格だった場合の保険として準備される方が多いです。</span>
+            </span>
+          </label>
+          <div class="option-group">
+            <label class="option-item" data-value="併用を考えており、すでに対策している">
+              <input type="radio" name="general-exam" value="併用を考えており、すでに対策している">
+              <span class="option-radio"></span>
+              <span class="option-label">併用を考えており、すでに対策している</span>
+            </label>
+            <label class="option-item" data-value="併用を考えているが、まだ対策していない">
+              <input type="radio" name="general-exam" value="併用を考えているが、まだ対策していない">
+              <span class="option-radio"></span>
+              <span class="option-label">併用を考えているが、まだ対策していない</span>
+            </label>
+            <label class="option-item" data-value="併用は考えていない">
+              <input type="radio" name="general-exam" value="併用は考えていない">
+              <span class="option-radio"></span>
+              <span class="option-label">併用は考えていない</span>
+            </label>
+          </div>
+        </div>
+        
+        <!-- 一般入試対策詳細 -->
+        <div class="form-group">
+          <label class="form-label">
+            一般入試対策として、特に求めるものを教えてください
+          </label>
+          <p class="form-hint" style="margin-bottom: 8px;">科目によって異なる場合は『その他』を選び、次の設問にて詳細をご記入ください。</p>
+          <div class="option-group">
+            <label class="option-item" data-value="スケジューリング／コーチング">
+              <input type="radio" name="general-exam-type" value="スケジューリング／コーチング">
+              <span class="option-radio"></span>
+              <span class="option-label">スケジューリング／コーチング（例：次の授業までにやるべきことの提示、宿題の提示、確認テストの実施など）</span>
+            </label>
+            <label class="option-item" data-value="勉強内容そのものの指導">
+              <input type="radio" name="general-exam-type" value="勉強内容そのものの指導">
+              <span class="option-radio"></span>
+              <span class="option-label">勉強内容そのものの指導</span>
+            </label>
+            <label class="option-item" data-value="その他">
+              <input type="radio" name="general-exam-type" value="その他">
+              <span class="option-radio"></span>
+              <span class="option-label">その他</span>
+            </label>
+          </div>
+        </div>
+        
+        <!-- 一般入試対策その他 -->
+        <div class="form-group">
+          <label class="form-label">
+            一つ前の設問で『その他』を選んだ方は、希望する一般入試対策の内容を具体的にご記入ください
+          </label>
+          <p class="form-hint" style="margin-bottom: 8px;">科目名や希望するサポートの形があれば、あわせてお書きください。</p>
+          <textarea class="form-input form-textarea" id="general-exam-other-detail" placeholder="例：日本史は内容指導、英語はスケジューリングのみ"></textarea>
+        </div>
+      </div>
+    </div>
+    
+    <!-- セクション10: 講師・期待 -->
+    <div class="form-section" data-section="10">
+      <div class="section-header" onclick="toggleSection(10)">
+        <div class="section-icon">
+          <i data-lucide="star" style="width:16px;height:16px;"></i>
+        </div>
+        <span class="section-title">講師・EQAOへの期待</span>
+        <i data-lucide="chevron-down" class="section-toggle" style="width:20px;height:20px;"></i>
+      </div>
+      <div class="section-content">
+        <!-- 講師希望 -->
+        <div class="form-group">
+          <label class="form-label">
+            講師に関して希望があれば教えてください（大学・学部・学科、性格など）
+          </label>
+          <p class="form-hint" style="margin-bottom: 8px;">完全に希望に沿えるとは限りませんので、あらかじめご了承ください。</p>
+          <div class="option-group">
+            <label class="option-item checkbox" data-value="出身大学や学部で選びたい">
+              <input type="checkbox" name="instructor-pref" value="出身大学や学部で選びたい">
+              <span class="option-checkbox"><i data-lucide="check" style="width:12px;height:12px;"></i></span>
+              <span class="option-label">出身大学や学部で選びたい</span>
+            </label>
+            <label class="option-item checkbox" data-value="性格や雰囲気で選びたい">
+              <input type="checkbox" name="instructor-pref" value="性格や雰囲気で選びたい">
+              <span class="option-checkbox"><i data-lucide="check" style="width:12px;height:12px;"></i></span>
+              <span class="option-label">性格や雰囲気で選びたい</span>
+            </label>
+            <label class="option-item checkbox" data-value="指導経験や専門分野で選びたい">
+              <input type="checkbox" name="instructor-pref" value="指導経験や専門分野で選びたい">
+              <span class="option-checkbox"><i data-lucide="check" style="width:12px;height:12px;"></i></span>
+              <span class="option-label">指導経験や専門分野で選びたい</span>
+            </label>
+            <label class="option-item checkbox" data-value="特に希望はない">
+              <input type="checkbox" name="instructor-pref" value="特に希望はない">
+              <span class="option-checkbox"><i data-lucide="check" style="width:12px;height:12px;"></i></span>
+              <span class="option-label">特に希望はない</span>
+            </label>
+            <label class="option-item checkbox" data-value="その他">
+              <input type="checkbox" name="instructor-pref" value="その他">
+              <span class="option-checkbox"><i data-lucide="check" style="width:12px;height:12px;"></i></span>
+              <span class="option-label">その他</span>
+            </label>
+          </div>
+        </div>
+        
+        <!-- 講師希望詳細 -->
+        <div class="form-group">
+          <label class="form-label">
+            希望する講師の大学名・学部、性格、指導スタイルなど、具体的な希望があればご記入ください
+          </label>
+          <textarea class="form-input form-textarea" id="instructor-detail" placeholder="例：明るく話しやすい雰囲気の講師がいい、法学部出身の講師を希望"></textarea>
+        </div>
+        
+        <!-- EQAOへの期待 -->
+        <div class="form-group">
+          <label class="form-label">
+            EQAOにどんなことを期待しますか？<span class="required">*</span>
+          </label>
+          <div class="option-group">
+            <label class="option-item checkbox" data-value="志望校合格のための具体的な指導">
+              <input type="checkbox" name="expectation" value="志望校合格のための具体的な指導">
+              <span class="option-checkbox"><i data-lucide="check" style="width:12px;height:12px;"></i></span>
+              <span class="option-label">志望校合格のための具体的な指導</span>
+            </label>
+            <label class="option-item checkbox" data-value="学習習慣の定着・学習管理">
+              <input type="checkbox" name="expectation" value="学習習慣の定着・学習管理">
+              <span class="option-checkbox"><i data-lucide="check" style="width:12px;height:12px;"></i></span>
+              <span class="option-label">学習習慣の定着・学習管理</span>
+            </label>
+            <label class="option-item checkbox" data-value="モチベーション維持・精神的サポート">
+              <input type="checkbox" name="expectation" value="モチベーション維持・精神的サポート">
+              <span class="option-checkbox"><i data-lucide="check" style="width:12px;height:12px;"></i></span>
+              <span class="option-label">モチベーション維持・精神的サポート</span>
+            </label>
+            <label class="option-item checkbox" data-value="自己推薦書・志望理由書などの書類作成指導">
+              <input type="checkbox" name="expectation" value="自己推薦書・志望理由書などの書類作成指導">
+              <span class="option-checkbox"><i data-lucide="check" style="width:12px;height:12px;"></i></span>
+              <span class="option-label">自己推薦書・志望理由書などの書類作成指導</span>
+            </label>
+            <label class="option-item checkbox" data-value="面接・プレゼンテーション対策">
+              <input type="checkbox" name="expectation" value="面接・プレゼンテーション対策">
+              <span class="option-checkbox"><i data-lucide="check" style="width:12px;height:12px;"></i></span>
+              <span class="option-label">面接・プレゼンテーション対策</span>
+            </label>
+            <label class="option-item checkbox" data-value="定期テスト対策">
+              <input type="checkbox" name="expectation" value="定期テスト対策">
+              <span class="option-checkbox"><i data-lucide="check" style="width:12px;height:12px;"></i></span>
+              <span class="option-label">定期テスト対策</span>
+            </label>
+            <label class="option-item checkbox" data-value="その他">
+              <input type="checkbox" name="expectation" value="その他">
+              <span class="option-checkbox"><i data-lucide="check" style="width:12px;height:12px;"></i></span>
+              <span class="option-label">その他</span>
+            </label>
+          </div>
+          <div class="other-input-container" id="expectation-other-container">
+            <input type="text" class="form-input" id="expectation-other" placeholder="その他の場合はご記入ください">
+          </div>
+        </div>
+        
+        <!-- MBTI -->
+        <div class="form-group">
+          <label class="form-label">
+            参考のため、あなたのMBTI（性格タイプ）を教えてください<span class="required">*</span>
+            <span class="tooltip-trigger">
+              <i data-lucide="help-circle" style="width:12px;height:12px;"></i>
+              <span class="tooltip-text">16種類の性格タイプ診断です。わからない場合は「16personalities」などで無料診断できます。講師とのマッチングの参考にさせていただきます。</span>
+            </span>
+          </label>
+          <select class="form-input" id="mbti" required>
+            <option value="">選択してください</option>
+            <option value="INTJ">INTJ（建築家）</option>
+            <option value="INTP">INTP（論理学者）</option>
+            <option value="ENTJ">ENTJ（指揮官）</option>
+            <option value="ENTP">ENTP（討論者）</option>
+            <option value="INFJ">INFJ（提唱者）</option>
+            <option value="INFP">INFP（仲介者）</option>
+            <option value="ENFJ">ENFJ（主人公）</option>
+            <option value="ENFP">ENFP（運動家）</option>
+            <option value="ISTJ">ISTJ（管理者）</option>
+            <option value="ISFJ">ISFJ（擁護者）</option>
+            <option value="ESTJ">ESTJ（幹部）</option>
+            <option value="ESFJ">ESFJ（領事）</option>
+            <option value="ISTP">ISTP（巨匠）</option>
+            <option value="ISFP">ISFP（冒険家）</option>
+            <option value="ESTP">ESTP（起業家）</option>
+            <option value="ESFP">ESFP（エンターテイナー）</option>
+            <option value="わからない">わからない</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <!-- 完了画面 -->
+  <main class="main completion-screen" id="completion-screen">
+    <div class="completion-icon">
+      <i data-lucide="check" style="width:40px;height:40px;"></i>
+    </div>
+    <h2 class="completion-title">送信が完了しました</h2>
+    <p class="completion-message">
+      入塾同意書のご提出ありがとうございました。<br>
+      ご登録いただいたメールアドレス宛に<br>
+      確認メールをお送りしますので、ご確認ください。
+    </p>
+    
+    <div class="next-steps">
+      <div class="next-steps-title">
+        <i data-lucide="list-checks" style="width:20px;height:20px;"></i>
+        次のステップ
+      </div>
+      <div class="step-item">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <div class="step-title">確認メールをチェック</div>
+          <div class="step-description">ご登録いただいたメールアドレスに確認メールが届きます。</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <div class="step-title">請求書のご確認・お支払い</div>
+          <div class="step-description">後日、請求書をお送りしますので、銀行振込にてお支払いください。</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <div class="step-title">チュートリアル面談の予約</div>
+          <div class="step-description">入塾後の流れや今後のスケジュールについてご説明します。メールに記載のリンクからご予約ください。</div>
+        </div>
+      </div>
+    </div>
+    
+    <a href="/" class="back-link" style="margin-top: 24px;">
+      <i data-lucide="arrow-left" style="width:16px;height:16px;"></i>
+      トップページに戻る
+    </a>
+  </main>
+  
+  <!-- プログレスバー（下固定） -->
+  <div class="progress-container" id="progress-container">
+    <div class="progress-inner">
+      <div class="progress-top-row">
+        <div class="progress-title">
+          <div class="progress-title-icon">
+            <i data-lucide="file-check" style="width:14px;height:14px;"></i>
+          </div>
+          入塾同意書を入力中
+        </div>
+        <div class="save-status" id="save-status">
+          <i data-lucide="cloud" style="width:12px;height:12px;"></i>
+          <span id="save-status-text">自動保存オン</span>
+        </div>
+      </div>
+      <div class="progress-middle-row">
+        <div class="progress-bar-wrapper">
+          <div class="progress-bar">
+            <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+          </div>
+        </div>
+        <span class="progress-count" id="progress-count">0 / 10</span>
+      </div>
+      <div class="progress-bottom-row">
+        <div class="remaining-info" id="remaining-info">
+          <i data-lucide="alert-circle" style="width:14px;height:14px;"></i>
+          <span id="remaining-text">必須項目を入力してください</span>
+        </div>
+        <button class="progress-submit-btn" id="progress-submit-btn" onclick="submitForm()">
+          <i data-lucide="send" style="width:16px;height:16px;"></i>
+          送信する
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 復元確認モーダル -->
+  <div class="restore-modal" id="restore-modal">
+    <div class="restore-modal-content">
+      <div class="restore-modal-icon">
+        <i data-lucide="history" style="width:28px;height:28px;"></i>
+      </div>
+      <h3 class="restore-modal-title">入力途中のデータがあります</h3>
+      <p class="restore-modal-text">
+        前回の入力内容を復元しますか？<br>
+        <span id="restore-date" style="font-size:12px;color:#9ca3af;"></span>
+      </p>
+      <div class="restore-modal-buttons">
+        <button class="restore-btn secondary" onclick="clearSavedData()">
+          最初から入力
+        </button>
+        <button class="restore-btn primary" onclick="restoreSavedData()">
+          復元する
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- トースト -->
+  <div class="toast" id="toast"></div>
+  
+  <script>
+    // ============================================
+    // 定数
+    // ============================================
+    const STORAGE_KEY = 'eqao_enrollment_form_data';
+    const SAVE_INTERVAL = 3000; // 3秒ごとに自動保存
+    let saveTimeout = null;
+    let tempFormData = null; // 復元用の一時データ
+    
+    // ============================================
+    // 初期化
+    // ============================================
+    document.addEventListener('DOMContentLoaded', function() {
+      lucide.createIcons();
+      initDateSelects();
+      initOptionItems();
+      initOtherInputs();
+      initAutoSave();
+      setTodayAsConsentDate();
+      checkSavedData();
+      updateProgress();
+    });
+    
+    // ============================================
+    // 日付セレクト初期化
+    // ============================================
+    function initDateSelects() {
+      // 生年月日
+      const birthYear = document.getElementById('birth-year');
+      const birthMonth = document.getElementById('birth-month');
+      const birthDay = document.getElementById('birth-day');
+      
+      // 同意書記入日
+      const consentYear = document.getElementById('consent-year');
+      const consentMonth = document.getElementById('consent-month');
+      const consentDay = document.getElementById('consent-day');
+      
+      // 年（2000年〜2012年）
+      for (let y = 2012; y >= 2000; y--) {
+        const opt = document.createElement('option');
+        opt.value = y;
+        opt.textContent = y;
+        birthYear.appendChild(opt);
+      }
+      
+      // 同意書記入日の年（2024年〜2030年）
+      for (let y = 2024; y <= 2030; y++) {
+        const opt = document.createElement('option');
+        opt.value = y;
+        opt.textContent = y;
+        consentYear.appendChild(opt);
+      }
+      
+      // 月
+      for (let m = 1; m <= 12; m++) {
+        const opt1 = document.createElement('option');
+        opt1.value = m;
+        opt1.textContent = m;
+        birthMonth.appendChild(opt1);
+        
+        const opt2 = document.createElement('option');
+        opt2.value = m;
+        opt2.textContent = m;
+        consentMonth.appendChild(opt2);
+      }
+      
+      // 日
+      for (let d = 1; d <= 31; d++) {
+        const opt1 = document.createElement('option');
+        opt1.value = d;
+        opt1.textContent = d;
+        birthDay.appendChild(opt1);
+        
+        const opt2 = document.createElement('option');
+        opt2.value = d;
+        opt2.textContent = d;
+        consentDay.appendChild(opt2);
+      }
+    }
+    
+    // 今日の日付を同意書記入日にセット
+    function setTodayAsConsentDate() {
+      const today = new Date();
+      document.getElementById('consent-year').value = today.getFullYear();
+      document.getElementById('consent-month').value = today.getMonth() + 1;
+      document.getElementById('consent-day').value = today.getDate();
+    }
+    
+    // ============================================
+    // オプションアイテム（ラジオ・チェックボックス）
+    // ============================================
+    function initOptionItems() {
+      document.querySelectorAll('.option-item').forEach(item => {
+        item.addEventListener('click', function(e) {
+          const input = this.querySelector('input');
+          const isCheckbox = input.type === 'checkbox';
+          const name = input.name;
+          
+          if (isCheckbox) {
+            // チェックボックスの場合はトグル
+            this.classList.toggle('selected');
+            input.checked = this.classList.contains('selected');
+          } else {
+            // ラジオの場合は排他選択
+            document.querySelectorAll(`.option-item input[name="${name}"]`).forEach(otherInput => {
+              otherInput.closest('.option-item').classList.remove('selected');
+            });
+            this.classList.add('selected');
+            input.checked = true;
+          }
+          
+          updateProgress();
+          scheduleSave();
+          lucide.createIcons();
+        });
+      });
+    }
+    
+    // ============================================
+    // その他入力欄の表示制御
+    // ============================================
+    function initOtherInputs() {
+      const mappings = [
+        { radio: 'grade', container: 'grade-other-container' },
+        { radio: 'parent-job', container: 'parent-job-other-container' },
+        { radio: 'payment-months', container: 'payment-months-other-container' },
+        { checkbox: 'reason', container: 'reason-other-container' },
+        { radio: 'written-exam-status', container: 'written-exam-status-other-container' },
+        { checkbox: 'expectation', container: 'expectation-other-container' },
+      ];
+      
+      mappings.forEach(mapping => {
+        const container = document.getElementById(mapping.container);
+        if (!container) return;
+        
+        if (mapping.radio) {
+          document.querySelectorAll(`input[name="${mapping.radio}"]`).forEach(input => {
+            input.addEventListener('change', function() {
+              if (this.value === 'その他' && this.checked) {
+                container.classList.add('show');
+              } else if (this.value !== 'その他') {
+                container.classList.remove('show');
+              }
+            });
+          });
+        }
+        
+        if (mapping.checkbox) {
+          document.querySelectorAll(`input[name="${mapping.checkbox}"]`).forEach(input => {
+            input.addEventListener('change', function() {
+              const otherChecked = document.querySelector(`input[name="${mapping.checkbox}"][value="その他"]:checked`);
+              if (otherChecked) {
+                container.classList.add('show');
+              } else {
+                container.classList.remove('show');
+              }
+            });
+          });
+        }
+      });
+    }
+    
+    // ============================================
+    // 自動保存機能
+    // ============================================
+    function initAutoSave() {
+      // テキスト入力の変更を監視
+      document.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"], input[type="number"], textarea, select').forEach(el => {
+        el.addEventListener('input', () => {
+          updateProgress();
+          scheduleSave();
+        });
+        el.addEventListener('change', () => {
+          updateProgress();
+          scheduleSave();
+        });
+      });
+    }
+    
+    function scheduleSave() {
+      if (saveTimeout) {
+        clearTimeout(saveTimeout);
+      }
+      
+      // 保存中表示
+      const saveStatus = document.getElementById('save-status');
+      const saveStatusText = document.getElementById('save-status-text');
+      saveStatus.classList.remove('saved');
+      saveStatus.classList.add('saving');
+      saveStatusText.textContent = '保存中...';
+      
+      saveTimeout = setTimeout(() => {
+        saveFormData();
+      }, SAVE_INTERVAL);
+    }
+    
+    function saveFormData() {
+      const formData = collectFormData();
+      formData.savedAt = new Date().toISOString();
+      
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
+        
+        // 保存完了表示
+        const saveStatus = document.getElementById('save-status');
+        const saveStatusText = document.getElementById('save-status-text');
+        saveStatus.classList.remove('saving');
+        saveStatus.classList.add('saved');
+        saveStatusText.textContent = '保存済み';
+        lucide.createIcons();
+      } catch (e) {
+        console.error('保存エラー:', e);
+      }
+    }
+    
+    function checkSavedData() {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+          tempFormData = JSON.parse(saved);
+          
+          // 保存日時を表示
+          if (tempFormData.savedAt) {
+            const savedDate = new Date(tempFormData.savedAt);
+            const dateStr = savedDate.toLocaleDateString('ja-JP', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+              hour: '2-digit',
+              minute: '2-digit'
+            });
+            document.getElementById('restore-date').textContent = `保存日時: ${dateStr}`;
+          }
+          
+          // モーダル表示
+          document.getElementById('restore-modal').classList.add('show');
+        }
+      } catch (e) {
+        console.error('保存データの読み込みエラー:', e);
+      }
+    }
+    
+    function restoreSavedData() {
+      if (!tempFormData) return;
+      
+      // テキスト入力の復元
+      const textFields = [
+        'student-name', 'student-furigana', 'school-name', 'address',
+        'student-phone', 'student-email', 'qualifications',
+        'parent-name', 'parent-phone', 'parent-email',
+        'parent-job-other', 'monthly-lessons', 'payment-months-other',
+        'reason-other', 'current-gpa', 'first-choice', 'other-choices',
+        'reason-first-choice', 'other-prep', 'written-exam-subjects',
+        'written-exam-status-other', 'designated-school', 'target-gpa',
+        'test-prep-other-detail', 'general-exam-other-detail',
+        'instructor-detail', 'expectation-other', 'grade-other'
+      ];
+      
+      textFields.forEach(id => {
+        const el = document.getElementById(id);
+        const key = id.replace(/-([a-z])/g, (m, p1) => p1.toUpperCase());
+        if (el && tempFormData[key]) {
+          el.value = tempFormData[key];
+        }
+      });
+      
+      // 生年月日の復元
+      if (tempFormData.birthDate) {
+        const parts = tempFormData.birthDate.split('/');
+        if (parts.length === 3) {
+          document.getElementById('birth-year').value = parts[0];
+          document.getElementById('birth-month').value = parts[1];
+          document.getElementById('birth-day').value = parts[2];
+        }
+      }
+      
+      // ラジオボタンの復元
+      const radioFields = {
+        'school-type': 'schoolType',
+        'school-gender': 'schoolGender',
+        'school-attached': 'schoolAttached',
+        'school-correspondence': 'schoolCorrespondence',
+        'grade': 'grade',
+        'parent-job': 'parentJob',
+        'device': 'device',
+        'method': 'method',
+        'payment-months': 'paymentMonths',
+        'written-exam-status': 'writtenExamStatus',
+        'gpa-motivation': 'gpaMotivation',
+        'test-prep-want': 'testPrepWant',
+        'test-prep-type': 'testPrepType',
+        'general-exam': 'generalExam',
+        'general-exam-type': 'generalExamType',
+      };
+      
+      Object.entries(radioFields).forEach(([name, key]) => {
+        if (tempFormData[key]) {
+          const input = document.querySelector(`input[name="${name}"][value="${tempFormData[key]}"]`);
+          if (input) {
+            input.checked = true;
+            input.closest('.option-item')?.classList.add('selected');
+          }
+        }
+      });
+      
+      // チェックボックスの復元
+      const checkboxFields = {
+        'course': 'courses',
+        'reason': 'reasons',
+        'family-status': 'familyStatus',
+        'instructor-pref': 'instructorPrefs',
+        'expectation': 'expectations',
+      };
+      
+      Object.entries(checkboxFields).forEach(([name, key]) => {
+        if (tempFormData[key] && Array.isArray(tempFormData[key])) {
+          tempFormData[key].forEach(value => {
+            const input = document.querySelector(`input[name="${name}"][value="${value}"]`);
+            if (input) {
+              input.checked = true;
+              input.closest('.option-item')?.classList.add('selected');
+            }
+          });
+        }
+      });
+      
+      // 同意チェックボックスの復元
+      if (tempFormData.consentMain) {
+        const el = document.getElementById('consent-main');
+        el.checked = true;
+        el.closest('.option-item')?.classList.add('selected');
+      }
+      if (tempFormData.bankTransfer) {
+        const el = document.getElementById('bank-transfer');
+        el.checked = true;
+        el.closest('.option-item')?.classList.add('selected');
+      }
+      
+      // セレクトの復元
+      if (tempFormData.mbti) {
+        document.getElementById('mbti').value = tempFormData.mbti;
+      }
+      
+      // その他入力欄の表示
+      showOtherInputsIfNeeded();
+      
+      // モーダルを閉じる
+      document.getElementById('restore-modal').classList.remove('show');
+      
+      // 進捗更新
+      updateProgress();
+      lucide.createIcons();
+      
+      showToast('入力内容を復元しました', 'success');
+    }
+    
+    function showOtherInputsIfNeeded() {
+      const mappings = [
+        { name: 'grade', container: 'grade-other-container' },
+        { name: 'parent-job', container: 'parent-job-other-container' },
+        { name: 'payment-months', container: 'payment-months-other-container' },
+        { name: 'reason', container: 'reason-other-container' },
+        { name: 'written-exam-status', container: 'written-exam-status-other-container' },
+        { name: 'expectation', container: 'expectation-other-container' },
+      ];
+      
+      mappings.forEach(mapping => {
+        const container = document.getElementById(mapping.container);
+        const otherChecked = document.querySelector(`input[name="${mapping.name}"][value="その他"]:checked`);
+        if (otherChecked && container) {
+          container.classList.add('show');
+        }
+      });
+    }
+    
+    function clearSavedData() {
+      localStorage.removeItem(STORAGE_KEY);
+      tempFormData = null;
+      document.getElementById('restore-modal').classList.remove('show');
+      showToast('新規入力を開始します', '');
+    }
+    
+    // ============================================
+    // セクション開閉
+    // ============================================
+    function toggleSection(sectionNum) {
+      const section = document.querySelector(`[data-section="${sectionNum}"]`);
+      section.classList.toggle('open');
+      lucide.createIcons();
+    }
+    
+    // ============================================
+    // プログレス更新
+    // ============================================
+    function updateProgress() {
+      const validationResults = validateAllSections();
+      const completedCount = validationResults.filter(r => r.complete).length;
+      const totalSections = validationResults.length;
+      const progress = (completedCount / totalSections) * 100;
+      
+      // プログレスバー更新
+      document.getElementById('progress-fill').style.width = progress + '%';
+      document.getElementById('progress-count').textContent = `${completedCount} / ${totalSections} セクション`;
+      
+      // 残り項目表示
+      const remainingInfo = document.getElementById('remaining-info');
+      const remainingText = document.getElementById('remaining-text');
+      const submitBtn = document.getElementById('progress-submit-btn');
+      
+      if (progress === 100) {
+        remainingInfo.classList.add('complete');
+        remainingText.textContent = '全ての必須項目が入力されました！';
+        submitBtn.classList.add('show');
+      } else {
+        remainingInfo.classList.remove('complete');
+        const incompleteSection = validationResults.find(r => !r.complete);
+        if (incompleteSection) {
+          remainingText.textContent = `未入力: ${incompleteSection.name}`;
+        } else {
+          remainingText.textContent = '必須項目を入力してください';
+        }
+        submitBtn.classList.remove('show');
+      }
+      
+      lucide.createIcons();
+    }
+    
+    function validateAllSections() {
+      return [
+        {
+          name: '生徒情報',
+          complete: validateSection1()
+        },
+        {
+          name: '保護者情報',
+          complete: validateSection2()
+        },
+        {
+          name: '受講情報',
+          complete: validateSection3()
+        },
+        {
+          name: '同意事項',
+          complete: validateSection4()
+        },
+        {
+          name: '請求に関するご確認',
+          complete: validateSection5()
+        },
+        {
+          name: 'EQAOについて',
+          complete: validateSection6()
+        },
+        {
+          name: '学習状況',
+          complete: validateSection7()
+        },
+        {
+          name: '評定・定期テスト対策',
+          complete: validateSection8()
+        },
+        {
+          name: '一般入試対策',
+          complete: validateSection9()
+        },
+        {
+          name: '講師・EQAOへの期待',
+          complete: validateSection10()
+        }
+      ];
+    }
+    
+    function validateSection1() {
+      return (
+        document.getElementById('student-name').value.trim() !== '' &&
+        document.getElementById('student-furigana').value.trim() !== '' &&
+        document.getElementById('school-name').value.trim() !== '' &&
+        document.querySelector('input[name="school-type"]:checked') !== null &&
+        document.querySelector('input[name="school-gender"]:checked') !== null &&
+        document.querySelector('input[name="school-attached"]:checked') !== null &&
+        document.querySelector('input[name="school-correspondence"]:checked') !== null &&
+        document.querySelector('input[name="grade"]:checked') !== null &&
+        document.getElementById('birth-year').value !== '' &&
+        document.getElementById('birth-month').value !== '' &&
+        document.getElementById('birth-day').value !== '' &&
+        document.getElementById('address').value.trim() !== '' &&
+        document.getElementById('student-phone').value.trim() !== '' &&
+        document.getElementById('student-email').value.trim() !== ''
+      );
+    }
+    
+    function validateSection2() {
+      return (
+        document.getElementById('parent-name').value.trim() !== '' &&
+        document.getElementById('parent-phone').value.trim() !== '' &&
+        document.getElementById('parent-email').value.trim() !== ''
+      );
+    }
+    
+    function validateSection3() {
+      return (
+        document.querySelector('input[name="device"]:checked') !== null &&
+        document.querySelectorAll('input[name="course"]:checked').length > 0 &&
+        document.querySelector('input[name="method"]:checked') !== null
+      );
+    }
+    
+    function validateSection4() {
+      return (
+        document.getElementById('consent-main').checked &&
+        document.getElementById('consent-year').value !== '' &&
+        document.getElementById('consent-month').value !== '' &&
+        document.getElementById('consent-day').value !== ''
+      );
+    }
+    
+    function validateSection5() {
+      return (
+        document.getElementById('monthly-lessons').value.trim() !== '' &&
+        document.querySelector('input[name="payment-months"]:checked') !== null &&
+        document.getElementById('bank-transfer').checked
+      );
+    }
+    
+    function validateSection6() {
+      return document.querySelectorAll('input[name="reason"]:checked').length > 0;
+    }
+    
+    function validateSection7() {
+      return (
+        document.getElementById('current-gpa').value.trim() !== '' &&
+        document.getElementById('first-choice').value.trim() !== ''
+      );
+    }
+    
+    function validateSection8() {
+      return (
+        document.getElementById('target-gpa').value.trim() !== '' &&
+        document.querySelector('input[name="gpa-motivation"]:checked') !== null &&
+        document.querySelector('input[name="test-prep-want"]:checked') !== null
+      );
+    }
+    
+    function validateSection9() {
+      return document.querySelector('input[name="general-exam"]:checked') !== null;
+    }
+    
+    function validateSection10() {
+      return (
+        document.querySelectorAll('input[name="expectation"]:checked').length > 0 &&
+        document.getElementById('mbti').value !== ''
+      );
+    }
+    
+    // ============================================
+    // フォーム送信
+    // ============================================
+    function submitForm() {
+      // 最終バリデーション
+      const validationResults = validateAllSections();
+      const allComplete = validationResults.every(r => r.complete);
+      
+      if (!allComplete) {
+        const incompleteSection = validationResults.find(r => !r.complete);
+        showToast(`「${incompleteSection.name}」の必須項目を入力してください`, 'error');
+        return;
+      }
+      
+      // フォームデータ収集
+      const formData = collectFormData();
+      console.log('送信データ:', formData);
+      
+      // TODO: 実際の送信処理（GAS連携）
+      
+      // 保存データをクリア
+      localStorage.removeItem(STORAGE_KEY);
+      
+      // 完了画面を表示
+      showCompletionScreen();
+    }
+    
+    // フォームデータ収集
+    function collectFormData() {
+      return {
+        // 生徒情報
+        studentName: document.getElementById('student-name').value,
+        studentFurigana: document.getElementById('student-furigana').value,
+        schoolName: document.getElementById('school-name').value,
+        schoolType: document.querySelector('input[name="school-type"]:checked')?.value,
+        schoolGender: document.querySelector('input[name="school-gender"]:checked')?.value,
+        schoolAttached: document.querySelector('input[name="school-attached"]:checked')?.value,
+        schoolCorrespondence: document.querySelector('input[name="school-correspondence"]:checked')?.value,
+        grade: document.querySelector('input[name="grade"]:checked')?.value,
+        gradeOther: document.getElementById('grade-other')?.value,
+        qualifications: document.getElementById('qualifications').value,
+        birthDate: `${document.getElementById('birth-year').value}/${document.getElementById('birth-month').value}/${document.getElementById('birth-day').value}`,
+        address: document.getElementById('address').value,
+        studentPhone: document.getElementById('student-phone').value,
+        studentEmail: document.getElementById('student-email').value,
+        
+        // 保護者情報
+        parentName: document.getElementById('parent-name').value,
+        parentPhone: document.getElementById('parent-phone').value,
+        parentEmail: document.getElementById('parent-email').value,
+        parentJob: document.querySelector('input[name="parent-job"]:checked')?.value,
+        parentJobOther: document.getElementById('parent-job-other')?.value,
+        
+        // 受講情報
+        device: document.querySelector('input[name="device"]:checked')?.value,
+        courses: Array.from(document.querySelectorAll('input[name="course"]:checked')).map(el => el.value),
+        method: document.querySelector('input[name="method"]:checked')?.value,
+        
+        // 同意
+        consentMain: document.getElementById('consent-main').checked,
+        consentDate: `${document.getElementById('consent-year').value}/${document.getElementById('consent-month').value}/${document.getElementById('consent-day').value}`,
+        
+        // 請求関連
+        monthlyLessons: document.getElementById('monthly-lessons').value,
+        paymentMonths: document.querySelector('input[name="payment-months"]:checked')?.value,
+        paymentMonthsOther: document.getElementById('payment-months-other')?.value,
+        bankTransfer: document.getElementById('bank-transfer').checked,
+        familyStatus: Array.from(document.querySelectorAll('input[name="family-status"]:checked')).map(el => el.value),
+        
+        // EQAOについて
+        reasons: Array.from(document.querySelectorAll('input[name="reason"]:checked')).map(el => el.value),
+        reasonOther: document.getElementById('reason-other')?.value,
+        
+        // 学習状況
+        currentGpa: document.getElementById('current-gpa').value,
+        firstChoice: document.getElementById('first-choice').value,
+        otherChoices: document.getElementById('other-choices').value,
+        reasonFirstChoice: document.getElementById('reason-first-choice').value,
+        otherPrep: document.getElementById('other-prep').value,
+        writtenExamSubjects: document.getElementById('written-exam-subjects').value,
+        writtenExamStatus: document.querySelector('input[name="written-exam-status"]:checked')?.value,
+        writtenExamStatusOther: document.getElementById('written-exam-status-other')?.value,
+        designatedSchool: document.getElementById('designated-school').value,
+        
+        // 評定・定期テスト
+        targetGpa: document.getElementById('target-gpa').value,
+        gpaMotivation: document.querySelector('input[name="gpa-motivation"]:checked')?.value,
+        testPrepWant: document.querySelector('input[name="test-prep-want"]:checked')?.value,
+        testPrepType: document.querySelector('input[name="test-prep-type"]:checked')?.value,
+        testPrepOtherDetail: document.getElementById('test-prep-other-detail').value,
+        
+        // 一般入試
+        generalExam: document.querySelector('input[name="general-exam"]:checked')?.value,
+        generalExamType: document.querySelector('input[name="general-exam-type"]:checked')?.value,
+        generalExamOtherDetail: document.getElementById('general-exam-other-detail').value,
+        
+        // 講師・期待
+        instructorPrefs: Array.from(document.querySelectorAll('input[name="instructor-pref"]:checked')).map(el => el.value),
+        instructorDetail: document.getElementById('instructor-detail').value,
+        expectations: Array.from(document.querySelectorAll('input[name="expectation"]:checked')).map(el => el.value),
+        expectationOther: document.getElementById('expectation-other')?.value,
+        mbti: document.getElementById('mbti').value,
+        
+        // メタ情報
+        submittedAt: new Date().toISOString(),
+      };
+    }
+    
+    // 完了画面表示
+    function showCompletionScreen() {
+      document.getElementById('form-container').style.display = 'none';
+      document.getElementById('progress-container').style.display = 'none';
+      document.getElementById('completion-screen').classList.add('show');
+      window.scrollTo(0, 0);
+      lucide.createIcons();
+    }
+    
+    // トースト表示
+    function showToast(message, type = '') {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.className = 'toast show ' + type;
+      
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 4000);
+    }
+  </script>
+</body>
+</html>
