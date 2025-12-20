@@ -790,6 +790,71 @@
       transform: translateY(-1px);
       box-shadow: 0 4px 12px rgba(30, 58, 95, 0.3);
     }
+    
+    /* ===========================================
+       YouTube モーダル
+       =========================================== */
+    .video-modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.85);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .video-modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .video-modal {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+    }
+    
+    .video-modal-close {
+      position: absolute;
+      top: -44px;
+      right: 0;
+      background: transparent;
+      border: none;
+      color: white;
+      cursor: pointer;
+      padding: 8px;
+      opacity: 0.8;
+      transition: opacity 0.2s;
+    }
+    
+    .video-modal-close:hover {
+      opacity: 1;
+    }
+    
+    .video-modal-content {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      background: #000;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    
+    .video-modal-content iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
 
     /* ===========================================
        レスポンシブ対応
@@ -1032,23 +1097,27 @@
       }
       
       .locked-section-grid {
-        gap: 20px;
+        gap: 16px;
       }
       
       .locked-item {
-        min-width: 160px;
-        max-width: 200px;
-        padding: 24px 20px;
-        border-radius: 14px;
+        min-width: 140px;
+        max-width: 180px;
+        padding: 20px 16px;
       }
       
       .locked-item-icon {
-        width: 56px;
-        height: 56px;
+        width: 52px;
+        height: 52px;
       }
       
       .locked-item-title {
         font-size: 12px;
+      }
+      
+      .locked-section-cta {
+        font-size: 13px;
+        padding: 14px 20px;
       }
     }
     
@@ -1207,6 +1276,25 @@
         <i data-lucide="chevron-right" style="width:16px;height:16px;"></i>
       </a>
     </section>
+    
+    <!-- YouTube モーダル -->
+    <div class="video-modal-overlay" id="video-modal" onclick="closeVideoModal(event)">
+      <div class="video-modal">
+        <button class="video-modal-close" onclick="closeVideoModal(event)">
+          <i data-lucide="x" style="width:24px;height:24px;"></i>
+        </button>
+        <div class="video-modal-content">
+          <iframe 
+            id="youtube-iframe"
+            src="" 
+            title="EQAO PV動画"
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+    </div>
   </main>
   
   <!-- フローティングCTA -->
@@ -1339,6 +1427,15 @@
         iconColor: '#dc2626'
       },
       { 
+        id: 3.6, 
+        title: 'PV動画', 
+        icon: 'play-circle', 
+        status: 'active',
+        url: 'video:Mq5gDtpVKsQ',
+        bgColor: '#fce7f3',
+        iconColor: '#db2777'
+      },
+      { 
         id: 4, 
         title: 'ショート\nドラマHP', 
         icon: 'clapperboard', 
@@ -1410,14 +1507,6 @@
         iconColor: '#059669'
       },
       { 
-        id: 11, 
-        title: 'PV', 
-        icon: 'film', 
-        status: 'coming',
-        bgColor: '#fce7f3',
-        iconColor: '#be185d'
-      },
-      { 
         id: 12, 
         title: 'パンフレット', 
         icon: 'file-text', 
@@ -1451,7 +1540,7 @@
         id: 'locked-3', 
         title: '入塾仮予約\n入塾希望', 
         icon: 'clipboard-check', 
-        url: '/limited.html',
+        url: null, // 準備中
         bgColor: '#e0e7ff',
         iconColor: '#6366f1'
       },
@@ -1647,11 +1736,38 @@
     // ユーティリティ
     // ============================================
     function openUrl(url) {
+      // video:で始まる場合はモーダル再生
+      if (url.startsWith('video:')) {
+        const videoId = url.replace('video:', '');
+        openVideoModal(videoId);
+        return;
+      }
+      
       if (url.startsWith('/') || url.startsWith('http') === false) {
         location.href = url;
       } else {
         window.open(url, '_blank');
       }
+    }
+    
+    // YouTube モーダル
+    function openVideoModal(videoId) {
+      const modal = document.getElementById('video-modal');
+      const iframe = document.getElementById('youtube-iframe');
+      iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeVideoModal(event) {
+      // モーダル内部のクリックは無視（オーバーレイまたは閉じるボタンのみ反応）
+      if (event && event.target !== event.currentTarget) return;
+      
+      const modal = document.getElementById('video-modal');
+      const iframe = document.getElementById('youtube-iframe');
+      iframe.src = '';
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
     }
     
     // トースト表示
