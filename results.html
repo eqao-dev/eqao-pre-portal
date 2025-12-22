@@ -111,164 +111,99 @@
     
     /* サマリーカード */
     .summary-card {
-      background: linear-gradient(135deg, #1e3a5f 0%, #2d4a6f 50%, #1e3a5f 100%);
+      background: linear-gradient(135deg, #1e3a5f 0%, #2d4a6f 100%);
       border-radius: 24px;
-      padding: 24px 16px;
+      padding: 24px 20px;
       color: white;
       margin-bottom: 24px;
-      box-shadow: 
-        0 10px 40px rgba(30, 58, 95, 0.4),
-        0 0 60px rgba(253, 224, 71, 0.1),
-        inset 0 1px 0 rgba(255,255,255,0.1);
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .summary-card::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(253, 224, 71, 0.1) 0%, transparent 50%);
-      animation: rotate 10s linear infinite;
-    }
-    
-    @keyframes rotate {
-      to { transform: rotate(360deg); }
-    }
-    
-    /* キラキラ */
-    .summary-sparkles {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      overflow: hidden;
-    }
-    
-    .sparkle {
-      position: absolute;
-      width: 6px;
-      height: 6px;
-      background: #fde047;
-      border-radius: 50%;
-      animation: sparkle 2s ease-in-out infinite;
-      box-shadow: 0 0 10px #fde047, 0 0 20px #fde047;
-    }
-    
-    .sparkle:nth-child(1) { top: 15%; left: 10%; animation-delay: 0s; }
-    .sparkle:nth-child(2) { top: 25%; left: 85%; animation-delay: 0.3s; }
-    .sparkle:nth-child(3) { top: 70%; left: 15%; animation-delay: 0.6s; }
-    .sparkle:nth-child(4) { top: 80%; left: 75%; animation-delay: 0.9s; }
-    .sparkle:nth-child(5) { top: 40%; left: 50%; animation-delay: 1.2s; }
-    .sparkle:nth-child(6) { top: 60%; left: 90%; animation-delay: 1.5s; }
-    
-    @keyframes sparkle {
-      0%, 100% { 
-        opacity: 0; 
-        transform: scale(0) rotate(0deg); 
-      }
-      50% { 
-        opacity: 1; 
-        transform: scale(1) rotate(180deg); 
-      }
+      box-shadow: 0 10px 40px rgba(30, 58, 95, 0.4);
+      text-align: center;
     }
     
     .summary-header {
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      justify-content: center;
-      gap: 8px;
-      margin-bottom: 20px;
-      font-size: 14px;
+      gap: 6px;
+      font-size: 12px;
       font-weight: bold;
       text-transform: uppercase;
       letter-spacing: 2px;
-      position: relative;
-      z-index: 1;
+      opacity: 0.9;
+      margin-bottom: 16px;
     }
     
-    .summary-stats {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      position: relative;
-      z-index: 1;
+    .summary-main {
+      margin-bottom: 20px;
     }
     
-    .stat-item {
-      flex: 1;
-      text-align: center;
-      padding: 8px 4px;
-    }
-    
-    .stat-icon {
-      width: 50px;
-      height: 50px;
+    .main-icon {
+      width: 64px;
+      height: 64px;
       background: rgba(253, 224, 71, 0.15);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 10px;
+      margin: 0 auto 12px;
       color: #fde047;
-      box-shadow: 0 0 20px rgba(253, 224, 71, 0.2);
-      animation: pulse 2s ease-in-out infinite;
     }
     
-    .stat-item:nth-child(1) .stat-icon { animation-delay: 0s; }
-    .stat-item:nth-child(3) .stat-icon { animation-delay: 0.3s; }
-    .stat-item:nth-child(5) .stat-icon { animation-delay: 0.6s; }
-    
-    @keyframes pulse {
-      0%, 100% { 
-        box-shadow: 0 0 20px rgba(253, 224, 71, 0.2);
-        transform: scale(1);
-      }
-      50% { 
-        box-shadow: 0 0 30px rgba(253, 224, 71, 0.4);
-        transform: scale(1.05);
-      }
-    }
-    
-    .stat-value {
+    .main-value {
       display: flex;
       align-items: baseline;
       justify-content: center;
-      gap: 2px;
-      margin-bottom: 4px;
+      gap: 4px;
     }
     
-    .stat-number {
-      font-size: 32px;
+    .main-number {
+      font-size: 56px;
       font-weight: bold;
       color: #fde047;
-      text-shadow: 0 0 20px rgba(253, 224, 71, 0.5);
-      font-feature-settings: "tnum";
-      font-variant-numeric: tabular-nums;
+      text-shadow: 0 0 30px rgba(253, 224, 71, 0.4);
+      line-height: 1;
     }
     
-    .stat-unit {
-      font-size: 14px;
-      opacity: 0.9;
+    .main-unit {
+      font-size: 20px;
+      color: #fde047;
     }
     
-    .stat-label {
-      font-size: 11px;
+    .main-label {
+      font-size: 13px;
       opacity: 0.7;
-      letter-spacing: 1px;
+      margin-top: 4px;
     }
     
-    .stat-divider {
+    .summary-sub-stats {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255,255,255,0.15);
+    }
+    
+    .sub-stat {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      opacity: 0.8;
+    }
+    
+    .sub-number {
+      font-size: 18px;
+      font-weight: bold;
+    }
+    
+    .sub-unit {
+      font-size: 13px;
+      opacity: 0.8;
+    }
+    
+    .sub-divider {
       width: 1px;
-      height: 60px;
-      background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.3), transparent);
-      flex-shrink: 0;
+      height: 20px;
+      background: rgba(255,255,255,0.3);
     }
     
     /* 大学リスト */
@@ -498,29 +433,33 @@
       }
       
       .summary-card {
-        padding: 32px 24px;
+        padding: 32px;
       }
       
-      .stat-icon {
-        width: 60px;
-        height: 60px;
+      .main-icon {
+        width: 80px;
+        height: 80px;
       }
       
-      .stat-icon i {
-        width: 32px !important;
-        height: 32px !important;
+      .main-icon i {
+        width: 44px !important;
+        height: 44px !important;
       }
       
-      .stat-number {
-        font-size: 42px;
+      .main-number {
+        font-size: 72px;
       }
       
-      .stat-unit {
-        font-size: 16px;
+      .main-unit {
+        font-size: 24px;
       }
       
-      .stat-label {
-        font-size: 12px;
+      .sub-number {
+        font-size: 22px;
+      }
+      
+      .sub-unit {
+        font-size: 14px;
       }
       
       .university-name {
@@ -572,50 +511,31 @@
     
     <!-- サマリー -->
     <div class="summary-card">
-      <div class="summary-sparkles">
-        <div class="sparkle"></div>
-        <div class="sparkle"></div>
-        <div class="sparkle"></div>
-        <div class="sparkle"></div>
-        <div class="sparkle"></div>
-        <div class="sparkle"></div>
-      </div>
       <div class="summary-header">
-        <i data-lucide="trophy" style="width:20px;height:20px;color:#fde047;"></i>
+        <i data-lucide="trophy" style="width:18px;height:18px;color:#fde047;"></i>
         <span>累計合格実績</span>
       </div>
-      <div class="summary-stats">
-        <div class="stat-item">
-          <div class="stat-icon">
-            <i data-lucide="graduation-cap" style="width:28px;height:28px;"></i>
-          </div>
-          <div class="stat-value">
-            <span class="stat-number" id="total-count" data-target="0">0</span>
-            <span class="stat-unit">名</span>
-          </div>
-          <div class="stat-label">合格者数</div>
+      <div class="summary-main">
+        <div class="main-icon">
+          <i data-lucide="graduation-cap" style="width:36px;height:36px;"></i>
         </div>
-        <div class="stat-divider"></div>
-        <div class="stat-item">
-          <div class="stat-icon">
-            <i data-lucide="building-2" style="width:28px;height:28px;"></i>
-          </div>
-          <div class="stat-value">
-            <span class="stat-number" id="university-count" data-target="0">0</span>
-            <span class="stat-unit">校</span>
-          </div>
-          <div class="stat-label">大学数</div>
+        <div class="main-value">
+          <span class="main-number" id="total-count">0</span>
+          <span class="main-unit">名</span>
         </div>
-        <div class="stat-divider"></div>
-        <div class="stat-item">
-          <div class="stat-icon">
-            <i data-lucide="book-open" style="width:28px;height:28px;"></i>
-          </div>
-          <div class="stat-value">
-            <span class="stat-number" id="department-count" data-target="0">0</span>
-            <span class="stat-unit">学科</span>
-          </div>
-          <div class="stat-label">学科数</div>
+        <div class="main-label">合格</div>
+      </div>
+      <div class="summary-sub-stats">
+        <div class="sub-stat">
+          <i data-lucide="building-2" style="width:16px;height:16px;"></i>
+          <span class="sub-number" id="university-count">0</span>
+          <span class="sub-unit">大学</span>
+        </div>
+        <div class="sub-divider"></div>
+        <div class="sub-stat">
+          <i data-lucide="book-open" style="width:16px;height:16px;"></i>
+          <span class="sub-number" id="department-count">0</span>
+          <span class="sub-unit">学科</span>
         </div>
       </div>
     </div>
