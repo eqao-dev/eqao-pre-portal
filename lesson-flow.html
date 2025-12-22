@@ -2,75 +2,59 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <title>授業の流れ | EQAO</title>
-  
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <title>授業の流れ - EQAO PORTAL</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
-  
-  <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: 'Noto Sans JP', sans-serif;
-      background: #f1f5f9;
+      background: linear-gradient(135deg, #f8f9fc 0%, #e8ecf4 100%);
       min-height: 100vh;
-      color: #374151;
+      padding-bottom: 40px;
     }
 
     /* ヘッダー */
     .header {
       background: linear-gradient(135deg, #1e3a5f 0%, #2d4a6f 100%);
-      padding: 16px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    }
-
-    .header-content {
+      color: white;
+      padding: 14px 16px;
       display: flex;
       align-items: center;
       gap: 12px;
-      max-width: 900px;
-      margin: 0 auto;
+      box-shadow: 0 4px 20px rgba(26, 35, 126, 0.3);
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
 
-    .back-button {
+    .back-btn {
       display: flex;
       align-items: center;
       justify-content: center;
       width: 36px;
       height: 36px;
       background: rgba(255,255,255,0.15);
+      border: none;
       border-radius: 50%;
       color: white;
+      cursor: pointer;
       text-decoration: none;
-      transition: background 0.2s;
+      transition: background 0.3s;
     }
 
-    .back-button:hover {
-      background: rgba(255,255,255,0.25);
-    }
+    .back-btn:hover { background: rgba(255,255,255,0.25); }
 
-    .header-title {
-      color: white;
-      font-size: 16px;
-      font-weight: bold;
-      flex: 1;
-    }
+    .header-title { font-size: 17px; font-weight: 700; }
 
-    /* メインコンテンツ */
-    .main {
+    .container {
       max-width: 900px;
       margin: 0 auto;
-      padding: 20px 16px 40px;
+      padding: 20px 16px;
     }
 
     /* タブ切り替え */
@@ -90,7 +74,7 @@
       border: none;
       border-radius: 10px;
       background: transparent;
-      color: #6b7280;
+      color: #666;
       font-size: 14px;
       font-weight: 600;
       cursor: pointer;
@@ -102,14 +86,18 @@
       font-family: inherit;
     }
 
+    .tab-btn .material-icons {
+      font-size: 20px;
+    }
+
     .tab-btn.active {
       background: linear-gradient(135deg, #1e3a5f 0%, #2d4a6f 100%);
       color: white;
-      box-shadow: 0 4px 12px rgba(30, 58, 95, 0.3);
+      box-shadow: 0 4px 12px rgba(26, 35, 126, 0.3);
     }
 
     .tab-btn:hover:not(.active) {
-      background: #f3f4f6;
+      background: #f5f5f5;
     }
 
     .tab-content {
@@ -128,7 +116,7 @@
 
     /* イントロセクション */
     .intro-section {
-      background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+      background: linear-gradient(135deg, #E8EAF6 0%, #C5CAE9 100%);
       border-radius: 16px;
       padding: 24px;
       margin-bottom: 20px;
@@ -145,10 +133,14 @@
       gap: 8px;
     }
 
+    .intro-title .material-icons {
+      font-size: 22px;
+    }
+
     .intro-text {
       font-size: 14px;
       line-height: 1.8;
-      color: #374151;
+      color: #333;
     }
 
     /* Why-How-What説明 */
@@ -181,45 +173,28 @@
       align-items: center;
       justify-content: center;
       margin: 0 auto 10px;
+    }
+
+    .whw-icon .material-icons {
+      font-size: 24px;
       color: white;
     }
 
-    .whw-icon.why { background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%); }
-    .whw-icon.how { background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%); }
-    .whw-icon.what { background: linear-gradient(135deg, #ea580c 0%, #fb923c 100%); }
+    .whw-icon.why { background: linear-gradient(135deg, #1565C0 0%, #42A5F5 100%); }
+    .whw-icon.how { background: linear-gradient(135deg, #7B1FA2 0%, #BA68C8 100%); }
+    .whw-icon.what { background: linear-gradient(135deg, #E65100 0%, #FFA726 100%); }
 
     .whw-title {
       font-size: 14px;
       font-weight: 700;
-      color: #374151;
+      color: #333;
       margin-bottom: 6px;
     }
 
     .whw-desc {
       font-size: 12px;
-      color: #6b7280;
+      color: #666;
       line-height: 1.6;
-    }
-
-    /* ガイドリンクボタン */
-    .guide-link-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 16px;
-      padding: 12px 20px;
-      background: linear-gradient(135deg, #1e3a5f 0%, #2d4a6f 100%);
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-      font-size: 14px;
-      font-weight: 600;
-      transition: all 0.3s;
-    }
-
-    .guide-link-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 15px rgba(30, 58, 95, 0.3);
     }
 
     /* 大科目アコーディオン */
@@ -233,7 +208,7 @@
       background: white;
       border-radius: 16px;
       overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
     }
 
     .major-header {
@@ -246,7 +221,7 @@
     }
 
     .major-header:hover {
-      background: #f8fafc;
+      background: #f9f9f9;
     }
 
     .major-number {
@@ -270,17 +245,17 @@
     .major-title {
       font-size: 15px;
       font-weight: 700;
-      color: #1e3a5f;
+      color: #333;
       margin-bottom: 4px;
     }
 
     .major-count {
       font-size: 12px;
-      color: #9ca3af;
+      color: #888;
     }
 
     .major-arrow {
-      color: #9ca3af;
+      color: #bbb;
       transition: transform 0.3s;
     }
 
@@ -306,7 +281,7 @@
     }
 
     .minor-item {
-      background: #f8fafc;
+      background: #f8f9fa;
       border-radius: 10px;
       padding: 14px 16px;
       border-left: 4px solid #2d4a6f;
@@ -322,28 +297,36 @@
       gap: 6px;
     }
 
-    .minor-title-icon {
-      color: #059669;
-      flex-shrink: 0;
+    .minor-title .material-icons {
+      font-size: 16px;
+      color: #00897B;
     }
 
     .minor-desc {
       font-size: 13px;
-      color: #4b5563;
+      color: #555;
       line-height: 1.7;
-      padding-left: 24px;
     }
 
     /* 集団授業セクション */
+    .group-intro {
+      background: linear-gradient(135deg, #E8EAF6 0%, #C5CAE9 100%);
+      border-left: 5px solid #1e3a5f;
+    }
+
+    .group-intro .intro-title {
+      color: #1e3a5f;
+    }
+
     .group-schedule {
       background: white;
       border-radius: 16px;
       overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
     }
 
     .group-category {
-      border-bottom: 1px solid #e5e7eb;
+      border-bottom: 1px solid #eee;
     }
 
     .group-category:last-child {
@@ -355,13 +338,12 @@
       align-items: center;
       gap: 12px;
       padding: 16px 20px;
-      background: #f8fafc;
+      background: #f9f9f9;
       cursor: pointer;
-      transition: background 0.2s;
     }
 
     .group-category-header:hover {
-      background: #f1f5f9;
+      background: #f5f5f5;
     }
 
     .category-icon {
@@ -373,6 +355,10 @@
       justify-content: center;
       flex-shrink: 0;
       background: linear-gradient(135deg, #1e3a5f 0%, #2d4a6f 100%);
+    }
+
+    .category-icon .material-icons {
+      font-size: 18px;
       color: white;
     }
 
@@ -383,17 +369,17 @@
     .category-title {
       font-size: 14px;
       font-weight: 700;
-      color: #1e3a5f;
+      color: #333;
     }
 
     .category-range {
       font-size: 12px;
-      color: #9ca3af;
+      color: #888;
       margin-top: 2px;
     }
 
     .category-arrow {
-      color: #9ca3af;
+      color: #bbb;
       transition: transform 0.3s;
     }
 
@@ -423,13 +409,13 @@
       align-items: center;
       gap: 12px;
       padding: 12px 14px;
-      background: #f8fafc;
+      background: #f8f9fa;
       border-radius: 10px;
       transition: background 0.2s;
     }
 
     .lesson-item:hover {
-      background: #eff6ff;
+      background: #E8EAF6;
     }
 
     .lesson-number {
@@ -448,247 +434,162 @@
 
     .lesson-title {
       font-size: 13px;
-      color: #374151;
+      color: #333;
       flex: 1;
     }
 
-    /* フッターリンク */
-    .footer-link {
-      text-align: center;
-      margin-top: 24px;
-    }
-
-    .footer-link a {
-      display: inline-flex;
+    /* ハンバーガーメニュー */
+    .hamburger-btn {
+      position: fixed;
+      top: 12px;
+      right: 12px;
+      z-index: 100;
+      display: flex;
       align-items: center;
-      gap: 6px;
-      color: #6b7280;
-      text-decoration: none;
-      font-size: 13px;
-      padding: 12px 20px;
-      background: white;
-      border-radius: 10px;
-      transition: all 0.2s;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #1e3a5f 0%, #2d4a6f 100%);
+      border: none;
+      border-radius: 50%;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.25);
     }
 
-    .footer-link a:hover {
-      background: #f3f4f6;
-      color: #1e3a5f;
-    }
-
-    /* ===========================================
-       パスワード認証画面
-       =========================================== */
-    .auth-overlay {
+    .nav-overlay {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
       bottom: 0;
-      background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
-      z-index: 500;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
+      background: rgba(0,0,0,0.5);
+      z-index: 200;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
     }
 
-    .auth-overlay.hidden {
-      display: none;
+    .nav-overlay.open {
+      opacity: 1;
+      visibility: visible;
     }
 
-    .auth-card {
+    .nav-menu {
+      position: fixed;
+      top: 0;
+      right: -300px;
+      width: 280px;
+      height: 100%;
       background: white;
-      border-radius: 20px;
-      padding: 32px 24px;
-      max-width: 360px;
-      width: 100%;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-      text-align: center;
+      z-index: 201;
+      transition: right 0.3s ease;
+      box-shadow: -4px 0 20px rgba(0,0,0,0.15);
+      overflow-y: auto;
     }
 
-    .auth-icon {
-      width: 64px;
-      height: 64px;
-      background: #fef3c7;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 20px;
-      color: #d97706;
-    }
+    .nav-menu.open { right: 0; }
 
-    .auth-title {
-      font-size: 20px;
-      font-weight: bold;
-      color: #1e3a5f;
-      margin-bottom: 8px;
-    }
-
-    .auth-description {
-      font-size: 13px;
-      color: #6b7280;
-      line-height: 1.6;
-      margin-bottom: 24px;
-    }
-
-    .auth-note {
-      background: #eff6ff;
-      border-radius: 10px;
-      padding: 12px;
-      margin-bottom: 20px;
-      font-size: 12px;
-      color: #1e40af;
-      line-height: 1.6;
-    }
-
-    .auth-input {
-      width: 100%;
-      padding: 14px 16px;
-      border: 2px solid #e5e7eb;
-      border-radius: 10px;
-      font-size: 16px;
-      outline: none;
-      transition: border-color 0.2s;
-      text-align: center;
-      letter-spacing: 2px;
-    }
-
-    .auth-input:focus {
-      border-color: #1e3a5f;
-    }
-
-    .auth-input.error {
-      border-color: #ef4444;
-      animation: shake 0.3s ease;
-    }
-
-    @keyframes shake {
-      0%, 100% { transform: translateX(0); }
-      25% { transform: translateX(-8px); }
-      75% { transform: translateX(8px); }
-    }
-
-    .auth-button {
-      width: 100%;
-      margin-top: 16px;
-      padding: 14px;
+    .nav-header {
       background: linear-gradient(135deg, #1e3a5f 0%, #2d4a6f 100%);
       color: white;
-      border: none;
-      border-radius: 10px;
-      font-size: 15px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: all 0.2s;
+      padding: 20px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-header-title {
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .nav-close {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      width: 36px;
+      height: 36px;
+      background: rgba(255,255,255,0.15);
+      border: none;
+      border-radius: 50%;
+      color: white;
+      cursor: pointer;
     }
 
-    .auth-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(30, 58, 95, 0.3);
+    .nav-section {
+      padding: 8px 0;
+      border-bottom: 1px solid #eee;
     }
 
-    .auth-error {
-      color: #ef4444;
-      font-size: 12px;
-      margin-top: 12px;
-      display: none;
-    }
-
-    .auth-error.show {
-      display: block;
-    }
-
-    .auth-back {
-      margin-top: 20px;
-    }
-
-    .auth-back a {
-      color: #6b7280;
-      font-size: 13px;
-      text-decoration: none;
-      display: inline-flex;
+    .nav-item {
+      display: flex;
       align-items: center;
-      gap: 4px;
+      gap: 12px;
+      padding: 12px 16px;
+      color: #333;
+      text-decoration: none;
+      transition: background 0.2s;
     }
 
-    .auth-back a:hover {
+    .nav-item:hover { background: #f5f5f5; }
+
+    .nav-item .material-icons {
+      font-size: 22px;
       color: #1e3a5f;
     }
 
-    /* レスポンシブ */
-    @media (min-width: 768px) {
-      .main {
-        padding: 28px 24px 48px;
-      }
-      
-      .intro-section {
-        padding: 28px;
-      }
+    .nav-item span {
+      font-size: 14px;
+      font-weight: 500;
     }
+.guide-link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  padding: 12px 20px;
+  background: linear-gradient(135deg, #1e3a5f 0%, #2d4a6f 100%);
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.guide-link-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(26, 35, 126, 0.3);
+}
+
+.guide-link-btn .material-icons {
+  font-size: 18px;
+}
+    
   </style>
 </head>
 <body>
-  <!-- パスワード認証 -->
-  <div class="auth-overlay" id="auth-overlay">
-    <div class="auth-card">
-      <div class="auth-icon">
-        <i data-lucide="lock" style="width:32px;height:32px;"></i>
-      </div>
-      <h2 class="auth-title">限定コンテンツ</h2>
-      <p class="auth-description">
-        このページは体験授業を受講された方限定のコンテンツです
-      </p>
-      <div class="auth-note">
-        <i data-lucide="info" style="width:14px;height:14px;display:inline;vertical-align:middle;margin-right:4px;"></i>
-        体験授業時にお伝えしたパスワードを入力してください
-      </div>
-      <input 
-        type="password" 
-        class="auth-input" 
-        id="password-input"
-        placeholder="パスワード"
-        onkeypress="if(event.key==='Enter')checkPassword()"
-      >
-      <p class="auth-error" id="auth-error">パスワードが正しくありません</p>
-      <button class="auth-button" onclick="checkPassword()">
-        <i data-lucide="unlock" style="width:18px;height:18px;"></i>
-        認証する
-      </button>
-      <div class="auth-back">
-        <a href="/">
-          <i data-lucide="arrow-left" style="width:14px;height:14px;"></i>
-          トップページに戻る
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <!-- ヘッダー -->
   <header class="header">
-    <div class="header-content">
-      <a href="/" class="back-button">
-        <i data-lucide="arrow-left" style="width:20px;height:20px;"></i>
-      </a>
-      <h1 class="header-title">授業の流れ／カリキュラム</h1>
-    </div>
+    <a href="#" onclick="history.back(); return false;" class="back-btn">
+      <span class="material-icons">arrow_back</span>
+    </a>
+    <h1 class="header-title">授業の流れ／カリキュラム</h1>
   </header>
 
-  <!-- メインコンテンツ -->
-  <main class="main">
+  <button class="hamburger-btn" onclick="openNav()">
+    <span class="material-icons">menu</span>
+  </button>
+
+  <div class="container">
     <!-- タブ切り替え -->
     <div class="tab-container">
       <button class="tab-btn active" onclick="switchTab('individual')">
-        <i data-lucide="user" style="width:18px;height:18px;"></i>
+        <span class="material-icons">person</span>
         個別授業
       </button>
       <button class="tab-btn" onclick="switchTab('group')">
-        <i data-lucide="users" style="width:18px;height:18px;"></i>
+        <span class="material-icons">groups</span>
         集団授業
       </button>
     </div>
@@ -698,36 +599,35 @@
       <!-- イントロ -->
       <div class="intro-section">
         <div class="intro-title">
-          <i data-lucide="lightbulb" style="width:22px;height:22px;"></i>
+          <span class="material-icons">lightbulb</span>
           EQAOの授業が大切にしていること
         </div>
         <div class="intro-text">
           EQAOでは「なぜそれをやるのか（Why）」を最も大切にしています。表面的なテクニックではなく、本質を理解することで、書類・小論文・面接のすべてで安定した実力を発揮できるようになります。
         </div>
-        
-        <a href="/subjects.html" class="guide-link-btn">
-          <i data-lucide="book-open" style="width:18px;height:18px;"></i>
-          科目詳細ガイドを見る
-        </a>
+        <a href="curriculum-guide.html" class="guide-link-btn">
+  <span class="material-icons">menu_book</span>
+  科目詳細ガイドを見る
+</a>
         
         <div class="whw-container">
           <div class="whw-card">
             <div class="whw-icon why">
-              <i data-lucide="help-circle" style="width:24px;height:24px;"></i>
+              <span class="material-icons">help</span>
             </div>
             <div class="whw-title">Why（なぜ）</div>
             <div class="whw-desc">その科目が必要な理由・目的を理解する</div>
           </div>
           <div class="whw-card">
             <div class="whw-icon how">
-              <i data-lucide="wrench" style="width:24px;height:24px;"></i>
+              <span class="material-icons">build</span>
             </div>
             <div class="whw-title">How（どうやって）</div>
             <div class="whw-desc">具体的な方法・手順・視点を学ぶ</div>
           </div>
           <div class="whw-card">
             <div class="whw-icon what">
-              <i data-lucide="pencil" style="width:24px;height:24px;"></i>
+              <span class="material-icons">edit</span>
             </div>
             <div class="whw-title">What（何を）</div>
             <div class="whw-desc">実際に手を動かして実践する</div>
@@ -744,9 +644,9 @@
     <!-- 集団授業タブ -->
     <div id="groupTab" class="tab-content">
       <!-- イントロ -->
-      <div class="intro-section">
+      <div class="group-intro intro-section">
         <div class="intro-title">
-          <i data-lucide="users" style="width:22px;height:22px;"></i>
+          <span class="material-icons">groups</span>
           集団授業について
         </div>
         <div class="intro-text">
@@ -759,20 +659,9 @@
         <!-- JSで生成 -->
       </div>
     </div>
-
-    <!-- フッターリンク -->
-    <div class="footer-link">
-      <a href="/">
-        <i data-lucide="arrow-left" style="width:14px;height:14px;"></i>
-        トップページに戻る
-      </a>
-    </div>
-  </main>
+  </div>
 
   <script>
-    // パスワード
-    const CORRECT_PASSWORD = 'eqaotrial1234';
-    
     // ============================================
     // 個別授業データ（10大科目）
     // ============================================
@@ -780,6 +669,7 @@
       {
         id: 1,
         title: '全体像理解・進路理解',
+        icon: 'explore',
         subjects: [
           { title: '総合型選抜の全体理解', desc: '総合型選抜とは何か、従来入試との違い、大学側が見ている評価軸を体系的に理解します。' },
           { title: '評定平均と英語資格の位置づけ理解', desc: '評定・英語資格がどのように扱われるのか、自分がどの程度有利/不利かを可視化します。' },
@@ -791,6 +681,7 @@
       {
         id: 2,
         title: '自己分析・現状把握・原材料抽出',
+        icon: 'psychology',
         subjects: [
           { title: '過去の振り返り（ライフライン分析）', desc: '成功体験・失敗体験・感情の山谷を整理し、価値観の根源を特定します。' },
           { title: '現在の自己理解と価値観整理', desc: '興味・強み・弱み・課題・モチベーション要因を言語化します。' },
@@ -803,6 +694,7 @@
       {
         id: 3,
         title: '研究テーマ・志望校マッチング',
+        icon: 'search',
         subjects: [
           { title: '合格者事例の理解', desc: '過去の合格者の共通項を分析し、評価される構造を学びます。' },
           { title: '研究テーマの意義理解', desc: '研究テーマが総合型選抜の核心である理由と、どこで使うのかを整理します。' },
@@ -816,6 +708,7 @@
       {
         id: 4,
         title: '研究実践',
+        icon: 'science',
         subjects: [
           { title: '研究テーマの実践', desc: 'フィールドワーク・簡易調査・読書分析など小さな研究を実施します。' },
           { title: '先行研究・論文・書籍の読み込み', desc: '関連領域の知識と専門用語を吸収し、主張の根拠を補強します。' },
@@ -825,6 +718,7 @@
       {
         id: 5,
         title: '小論文準備',
+        icon: 'edit_note',
         subjects: [
           { title: '小論文の本質理解', desc: '小論文が「思考の試験」であることを理解し、論理構造を学びます。' },
           { title: '小論文でやってはいけないこと', desc: '感情論・一般論・断定など、落ちる書き方を排除します。' },
@@ -837,6 +731,7 @@
       {
         id: 6,
         title: '書類作成（志望理由書と自己推薦書）',
+        icon: 'description',
         subjects: [
           { title: '志望理由書の本質理解', desc: '志望理由書は「研究テーマ×大学の思想の接続」で作ることを理解します。' },
           { title: '志望理由書の禁止事項理解', desc: '抽象論・熱量だけ・関係ない経験の羅列を排除します。' },
@@ -852,6 +747,7 @@
       {
         id: 7,
         title: '課題レポート',
+        icon: 'article',
         subjects: [
           { title: '課題レポートの本質理解', desc: '大学から与えられたテーマに対し、論理的に思考する力を示す科目です。' },
           { title: '課題レポートの禁止事項', desc: '感情論・抽象論・テーマ逸脱など"点数が下がる要素"を明確に排除します。' },
@@ -863,6 +759,7 @@
       {
         id: 8,
         title: 'プレゼンテーション',
+        icon: 'present_to_all',
         subjects: [
           { title: 'プレゼンテーション本質理解', desc: 'プレゼンは「伝える」ではなく「理解させる」技術であることを学びます。' },
           { title: 'プレゼン資料の構造・デザイン', desc: '論理構成・ビジュアル配置・スライドの役割を理解します。' },
@@ -873,6 +770,7 @@
       {
         id: 9,
         title: '面接',
+        icon: 'record_voice_over',
         subjects: [
           { title: '面接の本質理解', desc: '面接は「研究テーマ・書類の深掘り」であることを理解します。' },
           { title: '面接禁止事項理解', desc: '抽象論・矛盾・視線逸れなど減点リスクを排除します。' },
@@ -884,6 +782,7 @@
       {
         id: 10,
         title: '最終確認・調整',
+        icon: 'check_circle',
         subjects: [
           { title: '最終確認と調整・メンタルケア', desc: 'すべての科目の最終調整を行う総仕上げの科目です。書類・小論文・面接の最終チェック、受験直前のメンタルケアを行います。' }
         ]
@@ -966,41 +865,6 @@
     ];
 
     // ============================================
-    // 初期化
-    // ============================================
-    document.addEventListener('DOMContentLoaded', function() {
-      lucide.createIcons();
-      
-      // 認証チェック
-      const isAuthed = sessionStorage.getItem('lesson_flow_authed');
-      if (isAuthed === 'true') {
-        document.getElementById('auth-overlay').classList.add('hidden');
-      }
-      
-      renderCurriculum();
-      renderGroupSchedule();
-    });
-
-    // ============================================
-    // パスワード認証
-    // ============================================
-    function checkPassword() {
-      const input = document.getElementById('password-input');
-      const error = document.getElementById('auth-error');
-      
-      if (input.value === CORRECT_PASSWORD) {
-        sessionStorage.setItem('lesson_flow_authed', 'true');
-        document.getElementById('auth-overlay').classList.add('hidden');
-      } else {
-        input.classList.add('error');
-        error.classList.add('show');
-        setTimeout(() => {
-          input.classList.remove('error');
-        }, 300);
-      }
-    }
-
-    // ============================================
     // 描画処理
     // ============================================
     function renderCurriculum() {
@@ -1016,14 +880,14 @@
                 <div class="major-title">${major.title}</div>
                 <div class="major-count">${major.subjects.length}科目</div>
               </div>
-              <i data-lucide="chevron-down" class="major-arrow" style="width:20px;height:20px;"></i>
+              <span class="material-icons major-arrow">expand_more</span>
             </div>
             <div class="major-content">
               <div class="minor-list">
                 ${major.subjects.map(sub => `
                   <div class="minor-item">
                     <div class="minor-title">
-                      <i data-lucide="check-circle" class="minor-title-icon" style="width:16px;height:16px;"></i>
+                      <span class="material-icons">check_circle</span>
                       ${sub.title}
                     </div>
                     <div class="minor-desc">${sub.desc}</div>
@@ -1036,7 +900,6 @@
       });
 
       container.innerHTML = html;
-      lucide.createIcons();
     }
 
     function renderGroupSchedule() {
@@ -1048,13 +911,13 @@
           <div class="group-category" data-index="${index}">
             <div class="group-category-header" onclick="toggleCategory(${index})">
               <div class="category-icon">
-                <i data-lucide="graduation-cap" style="width:18px;height:18px;"></i>
+                <span class="material-icons">school</span>
               </div>
               <div class="category-info">
                 <div class="category-title">${cat.category}</div>
                 <div class="category-range">${cat.range}（${cat.lessons.length}コマ）</div>
               </div>
-              <i data-lucide="chevron-down" class="category-arrow" style="width:20px;height:20px;"></i>
+              <span class="material-icons category-arrow">expand_more</span>
             </div>
             <div class="category-content">
               <div class="lesson-list">
@@ -1071,7 +934,6 @@
       });
 
       container.innerHTML = html;
-      lucide.createIcons();
     }
 
     // ============================================
@@ -1099,6 +961,12 @@
       const element = document.querySelector(`.group-category[data-index="${index}"]`);
       element.classList.toggle('open');
     }
+// 初期化
+    document.addEventListener('DOMContentLoaded', function() {
+      renderCurriculum();
+      renderGroupSchedule();
+    });
   </script>
+  
 </body>
 </html>
