@@ -549,9 +549,19 @@
       const totalCount = sortedUniversities.reduce((sum, uni) => sum + uni.total, 0);
       const universityCount = sortedUniversities.length;
       
+      // ユニークな学科数をカウント（空でないdepartmentのみ）
+      const uniqueDepartments = new Set();
+      data.forEach(item => {
+        if (item.department && item.department.trim() !== '') {
+          // 大学+学部+学科の組み合わせでユニークにする
+          uniqueDepartments.add(`${item.university}|${item.faculty}|${item.department}`);
+        }
+      });
+      const departmentCount = uniqueDepartments.size;
+      
       // サマリー更新
       document.getElementById('total-count').textContent = totalCount.toLocaleString();
-      document.getElementById('university-count').textContent = `${universityCount} 大学`;
+      document.getElementById('university-count').textContent = `${universityCount} 大学・${departmentCount} 学科`;
       
       // 大学リストを描画
       const listHtml = sortedUniversities.map((uni, index) => {
