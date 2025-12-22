@@ -1245,6 +1245,19 @@
       color: #92400e;
     }
     
+    .discount-confirm-btn.error {
+      background: #fef2f2;
+      color: #dc2626;
+      border: 2px solid #dc2626;
+      animation: shake 0.5s ease-in-out;
+    }
+    
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      75% { transform: translateX(5px); }
+    }
+    
     .discount-confirm-btn.confirmed {
       background: #dcfce7;
       color: #166534;
@@ -1265,13 +1278,19 @@
       color: #92400e;
     }
     
+    .discount-confirm-status.error {
+      background: #fef2f2;
+      color: #dc2626;
+      border: 1px solid #fca5a5;
+    }
+    
     .discount-confirm-status.completed {
       background: #dcfce7;
       color: #166534;
     }
     
-    /* 割引モーダル */
-    .discount-modal-overlay {
+    /* 割引モーダル（v4_2形式） */
+    .modal-overlay {
       position: fixed;
       top: 0;
       left: 0;
@@ -1285,11 +1304,11 @@
       padding: 20px;
     }
     
-    .discount-modal-overlay.show {
+    .modal-overlay.show {
       display: flex;
     }
     
-    .discount-modal-content {
+    .modal-content {
       background: white;
       border-radius: 16px;
       max-width: 500px;
@@ -1299,110 +1318,138 @@
       box-shadow: 0 20px 40px rgba(0,0,0,0.2);
     }
     
-    .discount-modal-header {
+    .modal-header {
       background: #1e3a5f;
       padding: 16px 20px;
       display: flex;
       align-items: center;
       gap: 10px;
-      color: white;
-      border-radius: 16px 16px 0 0;
+      position: sticky;
+      top: 0;
     }
     
-    .discount-modal-header h3 {
-      flex: 1;
-      font-size: 16px;
-      font-weight: bold;
-    }
-    
-    .discount-modal-close {
-      background: rgba(255,255,255,0.2);
-      border: none;
-      border-radius: 50%;
+    .modal-header-icon {
       width: 32px;
       height: 32px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
       color: white;
-      cursor: pointer;
     }
     
-    .discount-modal-body {
+    .modal-header-title {
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      flex: 1;
+    }
+    
+    .modal-close {
+      width: 32px;
+      height: 32px;
+      background: rgba(255,255,255,0.1);
+      border: none;
+      border-radius: 50%;
+      color: white;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    
+    .modal-close:hover {
+      background: rgba(255,255,255,0.2);
+    }
+    
+    .modal-body {
       padding: 20px;
     }
     
-    .discount-modal-section {
+    .modal-section {
       margin-bottom: 20px;
       padding-bottom: 20px;
       border-bottom: 1px solid #e5e7eb;
     }
     
-    .discount-modal-section:last-child {
-      border-bottom: none;
+    .modal-section:last-child {
       margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
     }
     
-    .discount-modal-section-title {
+    .modal-section-title {
       font-size: 14px;
       font-weight: bold;
       color: #1e3a5f;
       margin-bottom: 8px;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
     }
     
-    .discount-modal-section-title .number {
+    .modal-section-title .number {
+      width: 22px;
+      height: 22px;
       background: #1e3a5f;
       color: white;
-      width: 20px;
-      height: 20px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 11px;
+      font-size: 12px;
     }
     
-    .discount-modal-section-text {
+    .modal-section-text {
       font-size: 13px;
-      color: #4b5563;
+      color: #374151;
       line-height: 1.7;
     }
     
-    .discount-modal-section-text .highlight {
+    .modal-section-text .highlight {
       background: #fef3c7;
-      padding: 2px 6px;
+      padding: 2px 4px;
       border-radius: 4px;
-      font-weight: 600;
+      font-weight: 500;
     }
     
-    .discount-modal-section-text .warning {
+    .modal-section-text .warning {
       color: #dc2626;
-      font-weight: 600;
+      font-weight: 500;
     }
     
-    .discount-modal-footer {
+    .modal-footer {
       padding: 16px 20px;
       background: #f9fafb;
-      border-radius: 0 0 16px 16px;
+      border-top: 1px solid #e5e7eb;
+      display: flex;
+      gap: 12px;
     }
     
-    .discount-modal-confirm-btn {
-      width: 100%;
-      padding: 14px 20px;
-      background: #1e3a5f;
-      color: white;
-      border: none;
+    .modal-btn {
+      flex: 1;
+      padding: 12px;
       border-radius: 10px;
       font-size: 14px;
       font-weight: 600;
       cursor: pointer;
+      transition: all 0.2s;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: 6px;
+      border: none;
+    }
+    
+    .modal-btn.primary {
+      background: #1e3a5f;
+      color: white;
+    }
+    
+    .modal-btn.primary:hover {
+      background: #2d4a6f;
     }
     
     /* レスポンシブ */
@@ -2125,40 +2172,102 @@
         </div>
       </div>
       <div class="section-form">
-        <!-- コース選択 -->
-        <div class="form-group">
-          <label class="form-label">希望するコースを選択してください<span class="required">*</span></label>
-          <p class="form-hint">コースによって1コマあたりの料金が異なります。</p>
-          <div class="course-cards" id="course-cards"></div>
+        
+        <div class="section-divider" style="margin-top: 0;">
+          <div class="section-divider-line"></div>
+          <span class="section-divider-text">総合型選抜コース</span>
+          <div class="section-divider-line"></div>
         </div>
         
-        <!-- 希望コマ数 -->
+        <!-- 総合型選抜コース購入有無 -->
         <div class="form-group">
-          <label class="form-label">月あたりの希望コマ数<span class="required">*</span></label>
-          <p class="form-hint">高校3年生には月8コマ（週2回程度）の受講を推奨しております。<br>※毎月の具体的なスケジュールは、生徒様の申請フォームで調整します。</p>
-          <input type="number" class="form-input" id="monthly-lessons" placeholder="例：8" min="1" max="30" style="max-width:200px;" data-section="8" oninput="calculatePrice()">
+          <label class="form-label">総合型選抜コースを購入しますか？<span class="required">*</span></label>
+          <div class="option-group inline" id="main-course-purchase-group"></div>
         </div>
         
-        <!-- 初回支払い月数 -->
+        <!-- 総合型選抜コース詳細（購入する場合のみ） -->
+        <div id="main-course-details" style="display: none;">
+          <!-- コース選択 -->
+          <div class="form-group">
+            <label class="form-label">希望するコースを選択してください<span class="required">*</span></label>
+            <p class="form-hint">コースによって1コマあたりの料金が異なります。</p>
+            <div class="course-cards" id="course-cards"></div>
+          </div>
+          
+          <!-- 月あたり希望コマ数 -->
+          <div class="form-group">
+            <label class="form-label">月あたりの希望コマ数<span class="required">*</span></label>
+            <p class="form-hint">高校3年生には<strong>月8コマ（週2回程度）</strong>の受講を推奨しております。<br>※毎月の具体的なスケジュールは、生徒様の申請フォームで調整できます。</p>
+            <input type="number" class="form-input" id="monthly-lessons" placeholder="例：8" min="1" max="30" style="max-width:200px;" data-section="8" oninput="calculatePrice()">
+          </div>
+          
+          <!-- 初回支払い月数 -->
+          <div class="form-group">
+            <label class="form-label">初回のお支払いは何ヶ月分をご希望されますか？<span class="required">*</span></label>
+            <p class="form-hint">※初回は<strong>3ヶ月分〜</strong>のご案内となります</p>
+            <select class="form-input" id="payment-months" style="max-width:320px;" data-section="8" onchange="calculatePrice()">
+              <option value="">選択してください</option>
+              <option value="3">3ヶ月分</option>
+              <option value="4">4ヶ月分（まとめ払い割引 -¥10,000）</option>
+              <option value="5">5ヶ月分</option>
+              <option value="6">6ヶ月分（まとめ払い割引 -¥15,000）★人気</option>
+              <option value="7">7ヶ月分</option>
+              <option value="8">8ヶ月分（まとめ払い割引 -¥20,000）</option>
+              <option value="9">9ヶ月分</option>
+              <option value="10">10ヶ月分（まとめ払い割引 -¥30,000）</option>
+              <option value="11">11ヶ月分</option>
+              <option value="12">12ヶ月分（まとめ払い割引 -¥40,000）</option>
+            </select>
+            <div class="notice-box info" style="margin-top: 12px;">
+              <div class="notice-box-title"><i data-lucide="info" style="width:14px;height:14px;"></i>まとめ払い割引について</div>
+              <div class="notice-box-text">6ヶ月分を選択される方が半数近くいらっしゃいます。<br>4ヶ月以上のまとめ払いで割引が適用されます。</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 割引制度 -->
+        <div class="section-divider">
+          <div class="section-divider-line"></div>
+          <span class="section-divider-text">割引制度</span>
+          <div class="section-divider-line"></div>
+        </div>
+        
         <div class="form-group">
-          <label class="form-label">初回のお支払いは、何ヶ月分をご希望されますか？<span class="required">*</span></label>
-          <p class="form-hint">※初回は3ヶ月分〜のご案内となります。まとめてお支払いいただくと割引が適用されます。</p>
-          <select class="form-input" id="payment-months" style="max-width:320px;" data-section="8" onchange="calculatePrice()">
-            <option value="">選択してください</option>
-            <option value="3">3ヶ月分</option>
-            <option value="4">4ヶ月分（まとめ払い割引 -¥10,000）</option>
-            <option value="5">5ヶ月分</option>
-            <option value="6">6ヶ月分（まとめ払い割引 -¥15,000）★人気</option>
-            <option value="7">7ヶ月分</option>
-            <option value="8">8ヶ月分（まとめ払い割引 -¥20,000）</option>
-            <option value="9">9ヶ月分</option>
-            <option value="10">10ヶ月分（まとめ払い割引 -¥30,000）</option>
-            <option value="11">11ヶ月分</option>
-            <option value="12">12ヶ月分（まとめ払い割引 -¥40,000）</option>
-          </select>
-          <div class="notice-box info" style="margin-top: 12px;">
-            <div class="notice-box-title"><i data-lucide="info" style="width:14px;height:14px;"></i>まとめ払い割引について</div>
-            <div class="notice-box-text">6ヶ月分を選択される方が半数近くいらっしゃいます。4ヶ月以上のまとめ払いで割引が適用されます。</div>
+          <label class="form-label">割引制度について<span class="required">*</span></label>
+          <div class="discount-confirm-area">
+            <button type="button" class="discount-confirm-btn not-confirmed" id="discount-confirm-btn" onclick="openDiscountModal()">
+              <i data-lucide="alert-circle" style="width:16px;height:16px;"></i>
+              <span id="discount-btn-text">注意事項を確認する（必須）</span>
+            </button>
+            <div class="discount-confirm-status pending" id="discount-status">
+              <i data-lucide="alert-triangle" style="width:14px;height:14px;"></i>
+              <span>まだ確認が完了していません。上のボタンから確認してください。</span>
+            </div>
+          </div>
+          
+          <div id="discount-section" style="display: none;">
+            <!-- 母子父子家庭 -->
+            <div class="form-group" style="margin-bottom: 20px; margin-top: 16px;">
+              <label class="form-label" style="font-size: 13px;">ひとり親家庭割引</label>
+              <p class="form-hint">該当される場合、後日証明書類のご提出をお願いする場合があります。</p>
+              <div class="option-group" id="family-discount-group"></div>
+            </div>
+            
+            <!-- 紹介割引 -->
+            <div class="form-group" style="margin-bottom: 20px;">
+              <label class="form-label" style="font-size: 13px;">紹介割引</label>
+              <div class="option-group" id="referral-discount-group"></div>
+              
+              <div id="referral-input-container" style="display: none; margin-top: 12px;">
+                <label class="form-label" style="font-size: 13px;">紹介者のお名前<span class="required">*</span></label>
+                <input type="text" class="form-input" id="referrer-name" placeholder="例：山田 太郎（フルネーム）" style="max-width: 300px;" data-section="8">
+                <p class="form-hint" style="margin-top: 6px;"><strong>※必ずフルネーム（姓名）でご記入ください。</strong></p>
+                <p style="font-size:12px;color:#dc2626;margin-top:4px;display:flex;align-items:flex-start;gap:4px;">
+                  <i data-lucide="alert-circle" style="width:12px;height:12px;flex-shrink:0;margin-top:2px;"></i>
+                  <span>紹介者のお名前が正確に記載されていない場合、割引が適用できないことがあります。</span>
+                </p>
+              </div>
+            </div>
           </div>
         </div>
         
@@ -2176,54 +2285,53 @@
           <div class="option-group inline" id="video-material-group"></div>
         </div>
         
+        <!-- EQAO ENGLISH コース -->
         <div class="section-divider">
           <div class="section-divider-line"></div>
-          <span class="section-divider-text">割引制度</span>
+          <span class="section-divider-text">EQAO ENGLISH コース（任意）</span>
           <div class="section-divider-line"></div>
         </div>
         
-        <!-- 割引制度確認 -->
         <div class="form-group">
-          <label class="form-label">割引制度について<span class="required">*</span></label>
-          <div class="discount-confirm-area">
-            <button type="button" class="discount-confirm-btn not-confirmed" id="discount-confirm-btn" onclick="openDiscountModal()">
-              <i data-lucide="alert-circle" style="width:16px;height:16px;"></i>
-              <span id="discount-btn-text">注意事項を確認する（必須）</span>
-            </button>
-            <div class="discount-confirm-status pending" id="discount-status">
-              <i data-lucide="alert-triangle" style="width:14px;height:14px;"></i>
-              <span>まだ確認が完了していません。上のボタンから確認してください。</span>
-            </div>
+          <label class="form-label">EQAO ENGLISHコースを購入しますか？</label>
+          <p class="form-hint">英語資格対策（英検・IELTS・TEAP）専門のコースです。</p>
+          <div class="option-group inline" id="english-course-group"></div>
+        </div>
+        
+        <!-- ENGLISHコース詳細 -->
+        <div id="english-course-section" style="display: none;">
+          <div class="form-group">
+            <label class="form-label">月あたりの希望コマ数（EQAO ENGLISH）<span class="required">*</span></label>
+            <input type="number" class="form-input" id="english-monthly-lessons" placeholder="例：4" min="1" max="20" style="max-width: 200px;" data-section="8" oninput="calculatePrice()">
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">何ヶ月分を購入しますか？<span class="required">*</span></label>
+            <p class="form-hint">※ENGLISHコースにはまとめ払い割引はありません</p>
+            <select class="form-input" id="english-payment-months" style="max-width: 200px;" data-section="8" onchange="calculatePrice()">
+              <option value="">選択してください</option>
+              <option value="1">1ヶ月分</option>
+              <option value="2">2ヶ月分</option>
+              <option value="3">3ヶ月分</option>
+              <option value="4">4ヶ月分</option>
+              <option value="5">5ヶ月分</option>
+              <option value="6">6ヶ月分</option>
+              <option value="7">7ヶ月分</option>
+              <option value="8">8ヶ月分</option>
+              <option value="9">9ヶ月分</option>
+              <option value="10">10ヶ月分</option>
+              <option value="11">11ヶ月分</option>
+              <option value="12">12ヶ月分</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">どの対策を希望しますか？（複数選択可）<span class="required">*</span></label>
+            <div class="option-group" id="english-prep-group"></div>
           </div>
         </div>
         
-        <!-- 割引オプション（確認後に表示） -->
-        <div id="discount-options-section" style="display: none;">
-          <!-- 母子父子家庭 -->
-          <div class="form-group">
-            <label class="form-label">ひとり親家庭割引</label>
-            <p class="form-hint">該当される場合、後日証明書類のご提出をお願いする場合があります。</p>
-            <div class="option-group" id="family-status-group"></div>
-          </div>
-          
-          <!-- 紹介割引 -->
-          <div class="form-group">
-            <label class="form-label">紹介割引</label>
-            <div class="option-group" id="referral-discount-group"></div>
-          </div>
-          
-          <!-- 紹介者名入力（紹介ありの場合のみ表示） -->
-          <div class="form-group" id="referrer-name-container" style="display: none;">
-            <label class="form-label">紹介者のお名前<span class="required">*</span></label>
-            <input type="text" class="form-input" id="referrer-name" placeholder="例：山田 太郎（フルネーム）" style="max-width:300px;" data-section="8">
-            <p class="form-hint" style="margin-top:6px;"><strong>※必ずフルネーム（姓名）でご記入ください。</strong></p>
-            <p style="font-size:12px;color:#dc2626;margin-top:4px;display:flex;align-items:flex-start;gap:4px;">
-              <i data-lucide="alert-circle" style="width:12px;height:12px;flex-shrink:0;margin-top:2px;"></i>
-              <span>紹介者のお名前が正確に記載されていない場合、割引が適用できないことがあります。</span>
-            </p>
-          </div>
-        </div>
-        
+        <!-- 最終確認 -->
         <div class="section-divider">
           <div class="section-divider-line"></div>
           <span class="section-divider-text">お支払い概算</span>
@@ -2239,7 +2347,7 @@
           </div>
           
           <!-- 初回費用 -->
-          <div class="price-category">
+          <div class="price-category" id="initial-fee-category">
             <div class="price-category-title">
               <i data-lucide="flag" style="width:12px;height:12px;"></i>
               初回費用（入塾時のみ）
@@ -2280,12 +2388,19 @@
               <span class="label">システムサーバー費</span>
               <span class="value">¥2,980</span>
             </div>
-            <div class="price-row" id="lesson-row">
+            <div class="price-row" id="main-lesson-row" style="display: none;">
               <span class="label">
-                授業料
-                <small id="lesson-detail"></small>
+                総合型選抜 授業料
+                <small id="main-lesson-detail"></small>
               </span>
-              <span class="value" id="lesson-cost">-</span>
+              <span class="value" id="main-lesson-cost">-</span>
+            </div>
+            <div class="price-row" id="english-lesson-row" style="display: none;">
+              <span class="label">
+                ENGLISH 授業料
+                <small id="english-lesson-detail"></small>
+              </span>
+              <span class="value" id="english-lesson-cost">-</span>
             </div>
             <div class="price-row subtotal">
               <span class="label">月額 小計</span>
@@ -2340,52 +2455,56 @@
       </div>
     </div>
     
-    <!-- 割引制度モーダル -->
-    <div class="discount-modal-overlay" id="discount-modal">
-      <div class="discount-modal-content">
-        <div class="discount-modal-header">
-          <i data-lucide="alert-triangle" style="width:18px;height:18px;"></i>
-          <h3>割引制度に関する重要事項</h3>
-          <button class="discount-modal-close" onclick="closeDiscountModal()">
+    <!-- 割引制度注意事項モーダル -->
+    <div class="modal-overlay" id="discount-modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="modal-header-icon">
+            <i data-lucide="alert-triangle" style="width:18px;height:18px;"></i>
+          </div>
+          <h3 class="modal-header-title">割引制度に関する重要事項</h3>
+          <button class="modal-close" onclick="closeDiscountModal()">
             <i data-lucide="x" style="width:18px;height:18px;"></i>
           </button>
         </div>
-        <div class="discount-modal-body">
-          <div class="discount-modal-section">
-            <div class="discount-modal-section-title">
+        <div class="modal-body">
+          <div class="modal-section">
+            <div class="modal-section-title">
               <span class="number">1</span>
               割引制度の申告について（重要）
             </div>
-            <div class="discount-modal-section-text">
-              ひとり親家庭割引（母子家庭・父子家庭）、紹介割引、その他キャンペーン割引など、入塾時に適用される全ての割引制度は、<span class="highlight">「入塾時に申告された場合のみ」適用</span>となります。<br><br>
+            <div class="modal-section-text">
+              親子家庭割引（母子家庭・父子家庭）、紹介割引、その他キャンペーン割引など、入塾時に適用される全ての割引制度は、<span class="highlight">「入塾時に申告された場合のみ」適用</span>となります。<br><br>
               入塾後に申告漏れが発覚した場合、<span class="warning">割引の遡及適用は一切できません</span>。申告漏れは、保護者様・ご家庭側の責任となりますので、必ず入塾時にご確認ください。
             </div>
           </div>
-          <div class="discount-modal-section">
-            <div class="discount-modal-section-title">
+          
+          <div class="modal-section">
+            <div class="modal-section-title">
               <span class="number">2</span>
-              紹介割引の注意事項
+              割引適用の条件
             </div>
-            <div class="discount-modal-section-text">
-              紹介者のお名前は、<span class="highlight">必ずフルネーム（姓名）</span>でご記入ください。ニックネームや略称でのご記入の場合、割引の適用ができない場合がございます。<br><br>
-              EQAOでの勤務経験者、体験のみの方からの紹介は割引対象外となります。
+            <div class="modal-section-text">
+              割引制度は、<span class="highlight">「入塾時点で該当条件を満たしている場合」のみ</span>適用可能です。<br><br>
+              入塾後に新たに条件を満たした場合（例：後から母子家庭となった等）は、<span class="warning">割引の新規適用は不可</span>となります。<br>
+              あくまで入塾時点での状況を基準として審査・適用いたします。
             </div>
           </div>
-          <div class="discount-modal-section">
-            <div class="discount-modal-section-title">
+          
+          <div class="modal-section">
+            <div class="modal-section-title">
               <span class="number">3</span>
-              ひとり親家庭割引について
+              事前説明と確認の徹底
             </div>
-            <div class="discount-modal-section-text">
-              ひとり親家庭割引は、該当される場合に<span class="highlight">証明書類のご提出</span>をお願いしております。後日、担当者よりご連絡いたします。<br><br>
-              書類のご提出が難しい場合は「該当なし／回答を希望しない」をご選択ください。
+            <div class="modal-section-text">
+              割引制度については、入塾手続きの際に事前説明を行います。保護者様には、内容をご理解いただき、<span class="highlight">必ず入塾時の申込フォーム内で該当項目を選択・申告</span>していただく必要があります。
             </div>
           </div>
         </div>
-        <div class="discount-modal-footer">
-          <button type="button" class="discount-modal-confirm-btn" onclick="confirmDiscountRead()">
+        <div class="modal-footer">
+          <button class="modal-btn primary" onclick="confirmDiscountTerms()">
             <i data-lucide="check" style="width:16px;height:16px;"></i>
-            上記内容を確認しました
+            確認しました
           </button>
         </div>
       </div>
@@ -2568,7 +2687,7 @@
     // ============================================
     // 設定・定数
     // ============================================
-    const STORAGE_KEY = 'eqao_enrollment_data_v4'; // v4: 請求セクション完成版
+    const STORAGE_KEY = 'eqao_enrollment_data_v5'; // v5: v4_2請求セクション完成版
     const TOTAL_SECTIONS = 10;
     
     // セクション定義
@@ -2800,15 +2919,23 @@
       ]);
       
       // === セクション8: ご請求関連 ===
+      // 総合型選抜コース購入有無
+      createRadioGroup('main-course-purchase-group', 'main-course-purchase', [
+        { value: '購入する', label: '購入する' },
+        { value: '購入しない', label: '購入しない' }
+      ]);
+      
       initCourseCards();
       initPaymentMonthsSelect();
       
+      // 動画教材
       createRadioGroup('video-material-group', 'video-material', [
         { value: '購入する', label: '購入する（¥11,000）' },
         { value: '購入しない', label: '購入しない' }
       ]);
       
-      createRadioGroup('family-status-group', 'family-status', [
+      // 割引関連
+      createRadioGroup('family-discount-group', 'family-discount', [
         { value: '母子・父子家庭', label: '母子・父子家庭' },
         { value: '該当なし', label: '該当なし／回答を希望しない' }
       ]);
@@ -2816,6 +2943,19 @@
       createRadioGroup('referral-discount-group', 'referral-discount', [
         { value: '紹介あり', label: '紹介あり' },
         { value: '紹介なし', label: '紹介なし' }
+      ]);
+      
+      // ENGLISHコース
+      createRadioGroup('english-course-group', 'english-course', [
+        { value: '購入する', label: '購入する' },
+        { value: '購入しない', label: '購入しない' }
+      ]);
+      
+      createCheckboxGroup('english-prep-group', 'english-prep', [
+        { value: '英検', label: '英検' },
+        { value: 'IELTS', label: 'IELTS' },
+        { value: 'TEAP', label: 'TEAP' },
+        { value: 'その他', label: 'その他' }
       ]);
       
       createCheckboxGroup('billing-consent-group', 'billing-consent', [
@@ -2899,14 +3039,38 @@
           if (name === 'general-exam-type') {
             toggleGeneralExamOther();
           }
+          if (name === 'main-course-purchase') {
+            toggleMainCourseSection();
+            calculatePrice();
+          }
           if (name === 'video-material') {
             calculatePrice();
           }
           if (name === 'referral-discount') {
             toggleReferrerInput();
           }
+          if (name === 'english-course') {
+            toggleEnglishSection();
+            calculatePrice();
+          }
         });
       });
+    }
+    
+    // 総合型選抜コースセクション表示切替
+    function toggleMainCourseSection() {
+      const section = document.getElementById('main-course-details');
+      if (section) {
+        section.style.display = formData['main-course-purchase'] === '購入する' ? 'block' : 'none';
+      }
+    }
+    
+    // ENGLISHコースセクション表示切替
+    function toggleEnglishSection() {
+      const section = document.getElementById('english-course-section');
+      if (section) {
+        section.style.display = formData['english-course'] === '購入する' ? 'block' : 'none';
+      }
     }
     
     // 定期テスト対策詳細の表示切り替え
@@ -3259,8 +3423,10 @@
     }
     
     // ============================================
-    // 料金計算
+    // 料金計算（v4_2形式）
     // ============================================
+    const ENGLISH_PRICE = 12800; // ENGLISHコースの単価
+    
     function calculatePrice() {
       // 初回費用
       let initialTotal = ENROLLMENT_FEE + MATERIAL_FEE + ACCOUNT_FEE;
@@ -3279,37 +3445,72 @@
       
       // 月額費用
       let monthlyTotal = BASIC_FEE + SYSTEM_FEE;
-      let lessonCost = 0;
-      let paymentMonths = parseInt(document.getElementById('payment-months')?.value) || 0;
+      let mainLessonCost = 0;
+      let englishLessonCost = 0;
+      let paymentMonths = 0;
       let bulkDiscount = 0;
       
       const monthlyCategoryEl = document.getElementById('monthly-fee-category');
       const periodCategoryEl = document.getElementById('period-fee-category');
-      const lessonRow = document.getElementById('lesson-row');
+      const mainLessonRow = document.getElementById('main-lesson-row');
+      const englishLessonRow = document.getElementById('english-lesson-row');
       
-      // 授業料計算
-      if (selectedCoursePrice > 0) {
+      // 総合型選抜コース
+      const mainCoursePurchase = formData['main-course-purchase'];
+      if (mainCoursePurchase === '購入する' && selectedCoursePrice > 0) {
         const monthlyLessons = parseInt(document.getElementById('monthly-lessons')?.value) || 0;
+        paymentMonths = parseInt(document.getElementById('payment-months')?.value) || 0;
         
         if (monthlyLessons > 0) {
-          lessonCost = selectedCoursePrice * monthlyLessons;
-          monthlyTotal += lessonCost;
+          mainLessonCost = selectedCoursePrice * monthlyLessons;
+          monthlyTotal += mainLessonCost;
           
-          if (lessonRow) {
-            lessonRow.style.display = 'flex';
-            document.getElementById('lesson-detail').textContent = `¥${selectedCoursePrice.toLocaleString()} × ${monthlyLessons}コマ`;
-            document.getElementById('lesson-cost').textContent = `¥${lessonCost.toLocaleString()}`;
+          if (mainLessonRow) {
+            mainLessonRow.style.display = 'flex';
+            document.getElementById('main-lesson-detail').textContent = `¥${selectedCoursePrice.toLocaleString()} × ${monthlyLessons}コマ`;
+            document.getElementById('main-lesson-cost').textContent = `¥${mainLessonCost.toLocaleString()}`;
           }
           
           // まとめ払い割引
           if (BULK_DISCOUNTS[paymentMonths]) {
             bulkDiscount = BULK_DISCOUNTS[paymentMonths];
           }
+        } else {
+          if (mainLessonRow) mainLessonRow.style.display = 'none';
         }
+      } else {
+        if (mainLessonRow) mainLessonRow.style.display = 'none';
+      }
+      
+      // ENGLISHコース
+      const englishSelected = formData['english-course'];
+      if (englishSelected === '購入する') {
+        const englishMonthly = parseInt(document.getElementById('english-monthly-lessons')?.value) || 0;
+        const englishMonths = parseInt(document.getElementById('english-payment-months')?.value) || 0;
+        
+        if (englishMonthly > 0) {
+          englishLessonCost = ENGLISH_PRICE * englishMonthly;
+          monthlyTotal += englishLessonCost;
+          
+          if (englishLessonRow) {
+            englishLessonRow.style.display = 'flex';
+            document.getElementById('english-lesson-detail').textContent = `¥${ENGLISH_PRICE.toLocaleString()} × ${englishMonthly}コマ`;
+            document.getElementById('english-lesson-cost').textContent = `¥${englishLessonCost.toLocaleString()}`;
+          }
+          
+          // ENGLISHの月数を使用（総合型がない場合）
+          if (paymentMonths === 0) {
+            paymentMonths = englishMonths;
+          }
+        } else {
+          if (englishLessonRow) englishLessonRow.style.display = 'none';
+        }
+      } else {
+        if (englishLessonRow) englishLessonRow.style.display = 'none';
       }
       
       // 月額・期間カテゴリの表示
-      if (lessonCost > 0) {
+      if (mainLessonCost > 0 || englishLessonCost > 0) {
         if (monthlyCategoryEl) {
           monthlyCategoryEl.style.display = 'block';
           document.getElementById('monthly-subtotal').textContent = `¥${monthlyTotal.toLocaleString()}`;
@@ -3362,24 +3563,27 @@
       document.getElementById('discount-modal').classList.remove('show');
     }
     
-    function confirmDiscountRead() {
+    function confirmDiscountTerms() {
       discountConfirmed = true;
       formData['discount-confirmed'] = true;
       
-      // ボタン状態を更新
+      // ボタン状態を更新（エラー状態もクリア）
       const btn = document.getElementById('discount-confirm-btn');
-      btn.classList.remove('not-confirmed');
+      btn.classList.remove('not-confirmed', 'error');
       btn.classList.add('confirmed');
       document.getElementById('discount-btn-text').textContent = '確認済み';
       
-      // ステータス更新
+      // ステータス更新（エラー状態もクリア）
       const status = document.getElementById('discount-status');
-      status.classList.remove('pending');
+      status.classList.remove('pending', 'error');
       status.classList.add('completed');
       status.innerHTML = '<i data-lucide="check-circle" style="width:14px;height:14px;"></i><span>確認が完了しました。割引オプションを選択できます。</span>';
       
       // 割引オプションセクションを表示
-      document.getElementById('discount-options-section').style.display = 'block';
+      const discountSection = document.getElementById('discount-section');
+      if (discountSection) {
+        discountSection.style.display = 'block';
+      }
       
       closeDiscountModal();
       lucide.createIcons();
@@ -3389,7 +3593,7 @@
     // 紹介割引の表示切替
     function toggleReferrerInput() {
       const show = formData['referral-discount'] === '紹介あり';
-      const container = document.getElementById('referrer-name-container');
+      const container = document.getElementById('referral-input-container');
       if (container) {
         container.style.display = show ? 'block' : 'none';
       }
@@ -3835,31 +4039,50 @@
     function validateSection8() {
       let isValid = true;
       
-      // コース選択
-      if (!formData['selected-course']) {
-        const courseCards = document.getElementById('course-cards');
-        if (courseCards) {
-          courseCards.classList.add('error');
-          courseCards.closest('.form-group')?.classList.add('error');
+      // 総合型選抜コース購入有無の確認
+      if (!formData['main-course-purchase']) {
+        markOptionError('main-course-purchase-group');
+        isValid = false;
+      }
+      
+      // 総合型選抜コースを購入する場合
+      if (formData['main-course-purchase'] === '購入する') {
+        // コース選択
+        if (!formData['selected-course']) {
+          const courseCards = document.getElementById('course-cards');
+          if (courseCards) {
+            courseCards.classList.add('error');
+            courseCards.closest('.form-group')?.classList.add('error');
+          }
+          isValid = false;
         }
-        isValid = false;
-      }
-      
-      const monthlyLessons = document.getElementById('monthly-lessons')?.value;
-      if (!monthlyLessons) {
-        markError('monthly-lessons');
-        isValid = false;
-      }
-      
-      const paymentMonths = document.getElementById('payment-months')?.value;
-      if (!paymentMonths) {
-        markError('payment-months');
-        isValid = false;
+        
+        const monthlyLessons = document.getElementById('monthly-lessons')?.value;
+        if (!monthlyLessons) {
+          markError('monthly-lessons');
+          isValid = false;
+        }
+        
+        const paymentMonths = document.getElementById('payment-months')?.value;
+        if (!paymentMonths) {
+          markError('payment-months');
+          isValid = false;
+        }
       }
       
       // 割引確認
       if (!discountConfirmed && !formData['discount-confirmed']) {
         showToast('割引制度の注意事項を確認してください', 'error');
+        // ボタンに赤枠を追加
+        const discountBtn = document.getElementById('discount-confirm-btn');
+        if (discountBtn) {
+          discountBtn.classList.add('error');
+        }
+        // ステータス表示もエラー状態に
+        const discountStatus = document.getElementById('discount-status');
+        if (discountStatus) {
+          discountStatus.classList.add('error');
+        }
         isValid = false;
       }
       
@@ -3868,6 +4091,26 @@
         const referrerName = document.getElementById('referrer-name')?.value.trim();
         if (!referrerName) {
           markError('referrer-name');
+          isValid = false;
+        }
+      }
+      
+      // ENGLISHコースを購入する場合
+      if (formData['english-course'] === '購入する') {
+        const englishMonthly = document.getElementById('english-monthly-lessons')?.value;
+        if (!englishMonthly) {
+          markError('english-monthly-lessons');
+          isValid = false;
+        }
+        
+        const englishPaymentMonths = document.getElementById('english-payment-months')?.value;
+        if (!englishPaymentMonths) {
+          markError('english-payment-months');
+          isValid = false;
+        }
+        
+        if (!formData['english-prep'] || formData['english-prep'].length === 0) {
+          markOptionError('english-prep-group');
           isValid = false;
         }
       }
@@ -4102,6 +4345,7 @@
         localStorage.removeItem('eqao_enrollment_data'); // v1
         localStorage.removeItem('eqao_enrollment_data_v2'); // v2
         localStorage.removeItem('eqao_enrollment_data_v3'); // v3
+        localStorage.removeItem('eqao_enrollment_data_v4'); // v4
         
         formData = {};
         sectionCompleted = new Array(TOTAL_SECTIONS).fill(false);
