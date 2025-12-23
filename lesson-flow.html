@@ -662,6 +662,15 @@
   </div>
 
   <script>
+    // 埋め込みモードの場合、ヘッダーを非表示
+(function() {
+  if (new URLSearchParams(window.location.search).get('embed') === 'true') {
+    // CSSを即座に追加（ちらつき防止）
+    var style = document.createElement('style');
+    style.textContent = '.header { display: none !important; } body { padding-top: 0 !important; }';
+    document.head.appendChild(style);
+  }
+})();
     // ============================================
     // 個別授業データ（10大科目）
     // ============================================
