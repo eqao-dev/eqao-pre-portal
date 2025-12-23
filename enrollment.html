@@ -1118,6 +1118,17 @@
       color: #1e3a5f;
     }
     
+    .course-card-examples {
+      font-size: 11px;
+      color: #6b7280;
+      margin: 8px 0;
+      line-height: 1.4;
+    }
+    
+    .course-card.selected .course-card-examples {
+      color: #4b5563;
+    }
+    
     .course-card-price {
       font-size: 20px;
       font-weight: bold;
@@ -2215,13 +2226,13 @@
           <div class="section-divider-line"></div>
         </div>
         
-        <!-- 総合型選抜コース購入有無 -->
+        <!-- 総合型選抜コース受講有無 -->
         <div class="form-group">
-          <label class="form-label">総合型選抜コースを購入しますか？<span class="required">*</span></label>
+          <label class="form-label">総合型選抜コースを受講しますか？<span class="required">*</span></label>
           <div class="option-group inline" id="main-course-purchase-group"></div>
         </div>
         
-        <!-- 総合型選抜コース詳細（購入する場合のみ） -->
+        <!-- 総合型選抜コース詳細（受講する場合のみ） -->
         <div id="main-course-details" style="display: none;">
           <!-- コース選択 -->
           <div class="form-group">
@@ -2356,7 +2367,7 @@
         </div>
         
         <div class="form-group">
-          <label class="form-label">EQAO ENGLISHコースを購入しますか？</label>
+          <label class="form-label">EQAO ENGLISHコースを受講しますか？</label>
           <p class="form-hint">英語資格対策（英検・IELTS・TEAP）専門のコースです。</p>
           <div class="option-group inline" id="english-course-group"></div>
         </div>
@@ -2369,7 +2380,7 @@
           </div>
           
           <div class="form-group">
-            <label class="form-label">何ヶ月分を購入しますか？<span class="required">*</span></label>
+            <label class="form-label">何ヶ月分を受講しますか？<span class="required">*</span></label>
             <p class="form-hint">※ENGLISHコースにはまとめ払い割引はありません</p>
             <select class="form-input" id="english-payment-months" style="max-width: 200px;" data-section="8" onchange="calculatePrice()">
               <option value="">選択してください</option>
@@ -3044,10 +3055,10 @@
       ]);
       
       // === セクション8: ご請求関連 ===
-      // 総合型選抜コース購入有無
+      // 総合型選抜コース受講有無
       createRadioGroup('main-course-purchase-group', 'main-course-purchase', [
-        { value: '購入する', label: '購入する' },
-        { value: '購入しない', label: '購入しない' }
+        { value: '受講する', label: '受講する' },
+        { value: '受講しない', label: '受講しない' }
       ]);
       
       initCourseCards();
@@ -3072,8 +3083,8 @@
       
       // ENGLISHコース
       createRadioGroup('english-course-group', 'english-course', [
-        { value: '購入する', label: '購入する' },
-        { value: '購入しない', label: '購入しない' }
+        { value: '受講する', label: '受講する' },
+        { value: '受講しない', label: '受講しない' }
       ]);
       
       createCheckboxGroup('english-prep-group', 'english-prep', [
@@ -3354,7 +3365,7 @@
     function toggleMainCourseSection() {
       const section = document.getElementById('main-course-details');
       if (section) {
-        section.style.display = formData['main-course-purchase'] === '購入する' ? 'block' : 'none';
+        section.style.display = formData['main-course-purchase'] === '受講する' ? 'block' : 'none';
       }
     }
     
@@ -3362,7 +3373,7 @@
     function toggleEnglishSection() {
       const section = document.getElementById('english-course-section');
       if (section) {
-        section.style.display = formData['english-course'] === '購入する' ? 'block' : 'none';
+        section.style.display = formData['english-course'] === '受講する' ? 'block' : 'none';
       }
     }
     
@@ -3670,10 +3681,26 @@
       if (!container) return;
       
       const courses = [
-        { name: '海外大学', price: 15500 },
-        { name: '難関国公立大学', price: 15500 },
-        { name: '最難関私大', price: 13500 },
-        { name: '難関私大', price: 12800 }
+        { 
+          name: '海外大学', 
+          price: 15500,
+          examples: ''
+        },
+        { 
+          name: '難関国公立大学', 
+          price: 15500,
+          examples: ''
+        },
+        { 
+          name: '最難関私大', 
+          price: 13500,
+          examples: '早慶上智ICU / GMARCH / 関関同立'
+        },
+        { 
+          name: '難関私大', 
+          price: 12800,
+          examples: '日東駒専 / 成成明学獨國武 / その他'
+        }
       ];
       
       container.innerHTML = courses.map(course => `
@@ -3682,6 +3709,7 @@
             <div class="course-card-radio"></div>
             <span class="course-card-name">${course.name}</span>
           </div>
+          ${course.examples ? `<div class="course-card-examples">${course.examples}</div>` : ''}
           <div class="course-card-price">¥${course.price.toLocaleString()}<span>/コマ</span></div>
         </div>
       `).join('');
@@ -3749,7 +3777,7 @@
       
       // ===== 総合型選抜パック =====
       const mainCoursePurchase = formData['main-course-purchase'];
-      if (mainCoursePurchase === '購入する' && selectedCoursePrice > 0) {
+      if (mainCoursePurchase === '受講する' && selectedCoursePrice > 0) {
         const monthlyLessons = parseInt(document.getElementById('monthly-lessons')?.value) || 0;
         const paymentMonths = parseInt(document.getElementById('payment-months')?.value) || 0;
         
@@ -3800,7 +3828,7 @@
       
       // ===== ENGLISHコース =====
       const englishSelected = formData['english-course'];
-      if (englishSelected === '購入する') {
+      if (englishSelected === '受講する') {
         const englishMonthly = parseInt(document.getElementById('english-monthly-lessons')?.value) || 0;
         const englishMonths = parseInt(document.getElementById('english-payment-months')?.value) || 0;
         
@@ -4404,7 +4432,7 @@
       }
       
       // 総合型選抜コースを購入する場合
-      if (formData['main-course-purchase'] === '購入する') {
+      if (formData['main-course-purchase'] === '受講する') {
         // コース選択
         if (!formData['selected-course']) {
           const courseCards = document.getElementById('course-cards');
@@ -4464,7 +4492,7 @@
       }
       
       // ENGLISHコースを購入する場合
-      if (formData['english-course'] === '購入する') {
+      if (formData['english-course'] === '受講する') {
         const englishMonthly = document.getElementById('english-monthly-lessons')?.value;
         if (!englishMonthly) {
           markError('english-monthly-lessons');
@@ -4797,6 +4825,37 @@
     // GAS WebアプリのURL
     const GAS_URL = 'https://script.google.com/macros/s/AKfycbyFJMfjgZzOw9v16PEoQQrRqqYe__oSn6zHdajEXdeXaUf6ACxwBhcMaGf449Qju-t-/exec';
     
+    // 送信前にすべてのフォームデータを収集
+    function collectAllFormData() {
+      // テキスト入力
+      document.querySelectorAll('.form-input').forEach(input => {
+        if (input.id && input.value) {
+          formData[input.id] = input.value;
+        }
+      });
+      
+      // セレクトボックス
+      document.querySelectorAll('.date-select, select').forEach(select => {
+        if (select.id && select.value) {
+          formData[select.id] = select.value;
+        }
+      });
+      
+      // 月コマ数・支払月数のセレクト
+      const monthlyLessons = document.getElementById('monthly-lessons');
+      const paymentMonths = document.getElementById('payment-months');
+      const englishMonthlyLessons = document.getElementById('english-monthly-lessons');
+      const englishPaymentMonths = document.getElementById('english-payment-months');
+      
+      if (monthlyLessons) formData['monthly-lessons'] = monthlyLessons.value;
+      if (paymentMonths) formData['payment-months'] = paymentMonths.value;
+      if (englishMonthlyLessons) formData['english-monthly-lessons'] = englishMonthlyLessons.value;
+      if (englishPaymentMonths) formData['english-payment-months'] = englishPaymentMonths.value;
+      
+      console.log('収集したフォームデータ:', formData);
+      return formData;
+    }
+    
     async function submitForm() {
       const submitBtn = document.getElementById('submit-btn');
       const submitHint = document.getElementById('submit-hint');
@@ -4808,18 +4867,20 @@
       lucide.createIcons();
       
       try {
-        // フォームデータを送信
+        // 送信前にすべてのデータを収集
+        const dataToSend = collectAllFormData();
+        
+        // GASに送信（Google Apps Script用の形式）
         const response = await fetch(GAS_URL, {
           method: 'POST',
-          mode: 'no-cors', // CORSを回避
+          mode: 'no-cors',
           headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'text/plain',
           },
-          body: JSON.stringify(formData)
+          body: JSON.stringify(dataToSend)
         });
         
         // no-corsモードではレスポンスを読めないので、成功として扱う
-        // 実際の結果はメール送信で確認
         
         // 保存データをクリア
         localStorage.removeItem(STORAGE_KEY);
