@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>セクション10：同意事項 - EQAO入塾申込</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background: linear-gradient(135deg, #f8f9fc 0%, #e8ecf4 100%);
+      min-height: 100vh;
+      padding: 20px;
+      color: #333;
+    }
+    
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    /* セクションヘッダー */
+    .section-header {
+      background: linear-gradient(135deg, #1e3a5f 0%, #2d4a6f 100%);
+      color: white;
+      padding: 20px 24px;
+      border-radius: 16px 16px 0 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .section-number {
+      width: 36px;
+      height: 36px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 16px;
+    }
+    
+    .section-title {
+      font-size: 18px;
+      font-weight: 700;
+    }
+    
+    /* セクションコンテンツ */
+    .section-content {
+      background: white;
+      border-radius: 0 0 16px 16px;
+      padding: 24px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    
+    .section-intro {
+      background: #f0f4f8;
+      border-left: 4px solid #1e3a5f;
+      padding: 16px;
+      margin-bottom: 24px;
+      border-radius: 0 8px 8px 0;
+    }
+    
+    .section-intro p {
+      font-size: 14px;
+      color: #555;
+      line-height: 1.7;
+    }
+    
+    /* 同意項目カード */
+    .consent-items {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    
+    .consent-card {
+      background: #fafbfc;
+      border: 2px solid #e8ecf4;
+      border-radius: 12px;
+      padding: 20px;
+      transition: all 0.3s ease;
+    }
+    
+    .consent-card.confirmed {
+      border-color: #00897B;
+      background: #f0fdf9;
+    }
+    
+    .consent-card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    
+    .consent-number {
+      width: 28px;
+      height: 28px;
+      background: #1e3a5f;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    
+    .consent-card.confirmed .consent-number {
+      background: #00897B;
+    }
+    
+    .consent-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #333;
+      flex: 1;
+    }
+    
+    .consent-card-body {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    
+    .confirm-btn {
+      background: linear-gradient(135deg, #1e3a5f 0%, #2d4a6f 100%);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+      font-family: inherit;
+    }
+    
+    .confirm-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(30, 58, 95, 0.3);
+    }
+    
+    .confirm-btn .material-icons {
+      font-size: 18px;
+    }
+    
+    .consent-card.confirmed .confirm-btn {
+      background: #00897B;
+    }
+    
+    .consent-checkbox {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .consent-checkbox input {
+      width: 20px;
+      height: 20px;
+      accent-color: #00897B;
+      cursor: pointer;
+    }
+    
+    .consent-checkbox label {
+      font-size: 14px;
+      color: #555;
+      cursor: pointer;
+    }
+    
+    /* 区切り線 */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #ddd, transparent);
+      margin: 24px 0;
+    }
+    
+    /* 同意日入力 */
+    .agreement-date {
+      margin-bottom: 24px;
+    }
+    
+    .agreement-date-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 12px;
+      display: block;
+    }
+    
+    .date-inputs {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    
+    .date-input {
+      width: 80px;
+      padding: 12px 16px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 16px;
+      font-family: inherit;
+      text-align: center;
+      transition: border-color 0.3s;
+    }
+    
+    .date-input:focus {
+      outline: none;
+      border-color: #1e3a5f;
+    }
+    
+    .date-unit {
+      font-size: 14px;
+      color: #666;
+    }
+    
+    /* 最終同意チェック */
+    .final-consent {
+      background: linear-gradient(135deg, #fff8e1 0%, #fff3cd 100%);
+      border: 2px solid #ffc107;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+    
+    .final-consent.enabled {
+      background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+      border-color: #4caf50;
+    }
+    
+    .final-consent-checkbox {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    
+    .final-consent-checkbox input {
+      width: 24px;
+      height: 24px;
+      accent-color: #4caf50;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+    
+    .final-consent-checkbox input:disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+    
+    .final-consent-checkbox label {
+      font-size: 15px;
+      font-weight: 600;
+      color: #333;
+      line-height: 1.6;
+    }
+    
+    .final-consent-note {
+      font-size: 13px;
+      color: #666;
+      margin-top: 8px;
+      padding-left: 36px;
+    }
+    
+    /* 送信ボタン */
+    .submit-btn {
+      width: 100%;
+      background: linear-gradient(135deg, #1e3a5f 0%, #2d4a6f 100%);
+      color: white;
+      border: none;
+      padding: 18px;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: all 0.3s ease;
+      font-family: inherit;
+    }
+    
+    .submit-btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(30, 58, 95, 0.4);
+    }
+    
+    .submit-btn:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+    
+    .submit-btn .material-icons {
+      font-size: 20px;
+    }
+    
+    /* ========== モーダル ========== */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.6);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 16px;
+    }
+    
+    .modal-overlay.active {
+      display: flex;
+      animation: fadeIn 0.3s ease;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    .modal {
+      background: white;
+      border-radius: 16px;
+      width: 100%;
+      max-width: 900px;
+      height: 90vh;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+      animation: slideUp 0.3s ease;
+    }
+    
+    @keyframes slideUp {
+      from { transform: translateY(30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    
+    .modal-header {
+      background: linear-gradient(135deg, #1e3a5f 0%, #2d4a6f 100%);
+      color: white;
+      padding: 18px 24px;
+      border-radius: 16px 16px 0 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+    
+    .modal-title {
+      font-size: 17px;
+      font-weight: 700;
+    }
+    
+    .modal-close {
+      background: rgba(255,255,255,0.2);
+      border: none;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: white;
+      transition: background 0.3s;
+    }
+    
+    .modal-close:hover {
+      background: rgba(255,255,255,0.3);
+    }
+    
+    .modal-body {
+      flex: 1;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .modal-body iframe {
+      flex: 1;
+      width: 100%;
+      border: none;
+    }
+    
+    .modal-body-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 24px;
+    }
+    
+    .modal-footer {
+      padding: 16px 24px;
+      border-top: 1px solid #eee;
+      display: flex;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    
+    .modal-confirm-btn {
+      background: linear-gradient(135deg, #00897B 0%, #00695C 100%);
+      color: white;
+      border: none;
+      padding: 14px 40px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s;
+      font-family: inherit;
+    }
+    
+    .modal-confirm-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 137, 123, 0.4);
+    }
+    
+    /* ========== 基本事項規定用スタイル ========== */
+    .rule-category {
+      margin-bottom: 24px;
+    }
+    
+    .rule-category-title {
+      background: #f5f7fa;
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      color: #1e3a5f;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .rule-item {
+      background: #fafbfc;
+      border-left: 3px solid #1e3a5f;
+      padding: 14px 16px;
+      margin-bottom: 10px;
+      border-radius: 0 8px 8px 0;
+    }
+    
+    .rule-item-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 6px;
+    }
+    
+    .rule-item-content {
+      font-size: 13px;
+      color: #555;
+      line-height: 1.7;
+      white-space: pre-wrap;
+    }
+    
+    /* ========== 料金表用スタイル ========== */
+    .price-section {
+      margin-bottom: 28px;
+    }
+    
+    .price-section:last-child {
+      margin-bottom: 0;
+    }
+    
+    .price-section-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #1e3a5f;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #e8ecf4;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .price-section-title .material-icons {
+      font-size: 22px;
+      color: #00897B;
+    }
+    
+    .price-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 8px;
+    }
+    
+    .price-table th,
+    .price-table td {
+      padding: 12px 14px;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+      font-size: 14px;
+    }
+    
+    .price-table th {
+      background: #f5f7fa;
+      font-weight: 600;
+      color: #333;
+    }
+    
+    .price-table td {
+      color: #444;
+    }
+    
+    .price-table .price {
+      text-align: right;
+      font-weight: 600;
+      color: #1e3a5f;
+      white-space: nowrap;
+    }
+    
+    .price-table .total-row {
+      background: #f0f4f8;
+    }
+    
+    .price-note {
+      font-size: 12px;
+      color: #888;
+      font-weight: 400;
+    }
+    
+    .price-footnote {
+      font-size: 13px;
+      color: #666;
+      margin-top: 10px;
+    }
+    
+    .price-notes {
+      margin: 0;
+      padding-left: 20px;
+    }
+    
+    .price-notes li {
+      font-size: 14px;
+      color: #555;
+      line-height: 1.8;
+      margin-bottom: 4px;
+    }
+
+    /* ローディング */
+    .loading {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      gap: 16px;
+    }
+    
+    .loading-spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid #e0e0e0;
+      border-top-color: #1e3a5f;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    .loading-text {
+      font-size: 14px;
+      color: #666;
+    }
+    
+    /* レスポンシブ */
+    @media (max-width: 600px) {
+      body { padding: 12px; }
+      .section-header { padding: 16px 20px; }
+      .section-content { padding: 20px; }
+      .consent-card { padding: 16px; }
+      .consent-card-body { flex-direction: column; align-items: stretch; }
+      .confirm-btn { justify-content: center; }
+      .date-inputs { justify-content: center; }
+      .modal { height: 95vh; max-height: 95vh; }
+      .modal-header { padding: 14px 16px; }
+      .modal-footer { padding: 12px 16px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- セクションヘッダー -->
+    <div class="section-header">
+      <div class="section-number">10</div>
+      <div class="section-title">同意事項</div>
+    </div>
+    
+    <!-- セクションコンテンツ -->
+    <div class="section-content">
+      <div class="section-intro">
+        <p>入塾にあたり、以下の4項目すべてをご確認いただき、同意のチェックをお願いいたします。各項目の「内容を確認する」ボタンを押すと、詳細を確認できます。</p>
+      </div>
+      
+      <!-- 同意項目 -->
+      <div class="consent-items">
+        <!-- ① 基本事項規定 -->
+        <div class="consent-card" id="consent-1">
+          <div class="consent-card-header">
+            <div class="consent-number">1</div>
+            <div class="consent-title">基本事項規定・生徒保護者規則</div>
+          </div>
+          <div class="consent-card-body">
+            <button type="button" class="confirm-btn" onclick="openModal(1)">
+              <span class="material-icons">visibility</span>
+              内容を確認する
+            </button>
+            <div class="consent-checkbox">
+              <input type="checkbox" id="check-1" disabled onchange="updateConsentState()">
+              <label for="check-1">確認しました</label>
+            </div>
+          </div>
+        </div>
+        
+        <!-- ② 授業の流れ -->
+        <div class="consent-card" id="consent-2">
+          <div class="consent-card-header">
+            <div class="consent-number">2</div>
+            <div class="consent-title">授業の流れ</div>
+          </div>
+          <div class="consent-card-body">
+            <button type="button" class="confirm-btn" onclick="openModal(2)">
+              <span class="material-icons">visibility</span>
+              内容を確認する
+            </button>
+            <div class="consent-checkbox">
+              <input type="checkbox" id="check-2" disabled onchange="updateConsentState()">
+              <label for="check-2">確認しました</label>
+            </div>
+          </div>
+        </div>
+        
+        <!-- ③ カリキュラム・サポート体制 -->
+        <div class="consent-card" id="consent-3">
+          <div class="consent-card-header">
+            <div class="consent-number">3</div>
+            <div class="consent-title">カリキュラム・サポート体制</div>
+          </div>
+          <div class="consent-card-body">
+            <button type="button" class="confirm-btn" onclick="openModal(3)">
+              <span class="material-icons">visibility</span>
+              内容を確認する
+            </button>
+            <div class="consent-checkbox">
+              <input type="checkbox" id="check-3" disabled onchange="updateConsentState()">
+              <label for="check-3">確認しました</label>
+            </div>
+          </div>
+        </div>
+        
+        <!-- ④ 料金表 -->
+        <div class="consent-card" id="consent-4">
+          <div class="consent-card-header">
+            <div class="consent-number">4</div>
+            <div class="consent-title">料金表</div>
+          </div>
+          <div class="consent-card-body">
+            <button type="button" class="confirm-btn" onclick="openModal(4)">
+              <span class="material-icons">visibility</span>
+              内容を確認する
+            </button>
+            <div class="consent-checkbox">
+              <input type="checkbox" id="check-4" disabled onchange="updateConsentState()">
+              <label for="check-4">確認しました</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="divider"></div>
+      
+      <!-- 同意日入力 -->
+      <div class="agreement-date">
+        <label class="agreement-date-label">同意書記入日</label>
+        <div class="date-inputs">
+          <input type="number" class="date-input" id="year-input" placeholder="2025" min="2020" max="2030">
+          <span class="date-unit">年</span>
+          <input type="number" class="date-input" id="month-input" placeholder="12" min="1" max="12">
+          <span class="date-unit">月</span>
+          <input type="number" class="date-input" id="day-input" placeholder="25" min="1" max="31">
+          <span class="date-unit">日</span>
+        </div>
+      </div>
+      
+      <!-- 最終同意 -->
+      <div class="final-consent" id="final-consent">
+        <div class="final-consent-checkbox">
+          <input type="checkbox" id="final-check" disabled onchange="updateSubmitState()">
+          <label for="final-check">上記すべての内容を確認し、同意のうえ入塾を希望します</label>
+        </div>
+        <div class="final-consent-note">※すべての項目を確認後、チェックできるようになります</div>
+      </div>
+      
+      <!-- 送信ボタン -->
+      <button type="button" class="submit-btn" id="submit-btn" disabled onclick="handleSubmit()">
+        <span class="material-icons">check_circle</span>
+        完了して一覧へ
+      </button>
+    </div>
+  </div>
+  
+  <!-- ========== モーダル ========== -->
+  
+  <!-- モーダル1: 基本事項規定（APIから取得） -->
+  <div class="modal-overlay" id="modal-1">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title">基本事項規定・生徒保護者規則</div>
+        <button type="button" class="modal-close" onclick="closeModal(1)">
+          <span class="material-icons">close</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-body-content" id="modal-1-body">
+          <div class="loading">
+            <div class="loading-spinner"></div>
+            <div class="loading-text">読み込み中...</div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="modal-confirm-btn" onclick="confirmConsent(1)">
+          <span class="material-icons">check</span>
+          確認しました
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- モーダル2: 授業の流れ（iframe） -->
+  <div class="modal-overlay" id="modal-2">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title">授業の流れ</div>
+        <button type="button" class="modal-close" onclick="closeModal(2)">
+          <span class="material-icons">close</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <iframe id="iframe-2" src="about:blank"></iframe>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="modal-confirm-btn" onclick="confirmConsent(2)">
+          <span class="material-icons">check</span>
+          確認しました
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- モーダル3: カリキュラム・サポート体制（iframe） -->
+  <div class="modal-overlay" id="modal-3">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title">カリキュラム・サポート体制</div>
+        <button type="button" class="modal-close" onclick="closeModal(3)">
+          <span class="material-icons">close</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <iframe id="iframe-3" src="about:blank"></iframe>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="modal-confirm-btn" onclick="confirmConsent(3)">
+          <span class="material-icons">check</span>
+          確認しました
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- モーダル4: 料金表（静的コンテンツ） -->
+  <div class="modal-overlay" id="modal-4">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title">料金表</div>
+        <button type="button" class="modal-close" onclick="closeModal(4)">
+          <span class="material-icons">close</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-body-content">
+          <div class="price-section">
+            <h3 class="price-section-title"><span class="material-icons">payments</span>初期費用</h3>
+            <table class="price-table">
+              <tr><th>項目</th><th class="price">金額（税込）</th></tr>
+              <tr><td>入塾金</td><td class="price">39,800円</td></tr>
+              <tr><td>教材費</td><td class="price">19,800円</td></tr>
+              <tr><td>アカウント設定費</td><td class="price">550円</td></tr>
+              <tr class="total-row"><td><strong>初期費用合計</strong></td><td class="price"><strong>60,150円</strong></td></tr>
+            </table>
+          </div>
+          
+          <div class="price-section">
+            <h3 class="price-section-title"><span class="material-icons">calendar_month</span>月額費用</h3>
+            <table class="price-table">
+              <tr><th>項目</th><th class="price">金額（税込）</th></tr>
+              <tr><td>在籍基本料</td><td class="price">11,980円/月</td></tr>
+              <tr><td>システムサーバー費</td><td class="price">2,980円/月</td></tr>
+            </table>
+          </div>
+          
+          <div class="price-section">
+            <h3 class="price-section-title"><span class="material-icons">school</span>授業料（1コマ90分）</h3>
+            <table class="price-table">
+              <tr><th>志望校コース</th><th class="price">金額（税込）</th></tr>
+              <tr><td>海外大学・国公立大学</td><td class="price">15,500円/コマ</td></tr>
+              <tr><td>難関私立大学<br><span class="price-note">早慶上智ICU / GMARCH / 関関同立</span></td><td class="price">13,500円/コマ</td></tr>
+              <tr><td>一般私立大学<br><span class="price-note">日東駒専 / 成成明学獨國武 / その他</span></td><td class="price">12,800円/コマ</td></tr>
+              <tr><td>英語資格コース</td><td class="price">12,800円/コマ</td></tr>
+            </table>
+          </div>
+          
+          <div class="price-section">
+            <h3 class="price-section-title"><span class="material-icons">add_circle</span>オプションメニュー</h3>
+            <table class="price-table">
+              <tr><th>オプション</th><th class="price">金額（税込）</th></tr>
+              <tr><td>対面（出張）授業</td><td class="price">+2,200円/コマ</td></tr>
+              <tr><td>難関対面授業</td><td class="price">+2,000円/コマ</td></tr>
+              <tr><td>受験戦略策定<br><span class="price-note">入塾時に購入の場合</span></td><td class="price">11,000円</td></tr>
+              <tr><td>受験戦略策定<br><span class="price-note">入塾後に追加購入の場合</span></td><td class="price">39,800円</td></tr>
+              <tr><td>面接練習（月1回追加）</td><td class="price">15,980円/回</td></tr>
+              <tr><td>春期・夏期合宿</td><td class="price">119,800円/回</td></tr>
+              <tr><td>冬期合宿</td><td class="price">131,780円/回</td></tr>
+              <tr><td>国公立小論対策</td><td class="price">33,000円/回</td></tr>
+              <tr><td>志望理由書執筆代行</td><td class="price">71,280円/冊</td></tr>
+              <tr><td>1分間自己PR動画制作</td><td class="price">59,800円/本</td></tr>
+            </table>
+          </div>
+          
+          <div class="price-section">
+            <h3 class="price-section-title"><span class="material-icons">discount</span>割引制度</h3>
+            <table class="price-table">
+              <tr><th>割引種別</th><th class="price">割引額</th></tr>
+              <tr><td>紹介割引<br><span class="price-note">元塾生やスタッフの知り合いからのご入塾</span></td><td class="price">入塾金 10,000円引</td></tr>
+            </table>
+            <p class="price-footnote">※その他の割引制度については、お問い合わせください</p>
+          </div>
+          
+          <div class="price-section">
+            <h3 class="price-section-title"><span class="material-icons">info</span>料金に関する注意事項</h3>
+            <ul class="price-notes">
+              <li>上記はすべて税込価格です</li>
+              <li>授業料は月ごとにコマ数に応じて請求いたします</li>
+              <li>料金は予告なく変更される場合があります</li>
+              <li>詳細は担当者にお問い合わせください</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="modal-confirm-btn" onclick="confirmConsent(4)">
+          <span class="material-icons">check</span>
+          確認しました
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ========== 設定 ==========
+    const GAS_API_URL = 'https://script.google.com/macros/s/AKfycbyXdCxzPU6oXAm2Mi9mfMDeNvQAyE0mmTOABA2EOYelvX6J2Rr48VcizS0vMgIS7Qc7/exec';
+    
+    // iframeで読み込むファイルのパス（同じディレクトリに配置する想定）
+    const IFRAME_SOURCES = {
+      2: 'lesson-flow.html?embed=true',
+      3: 'curriculum.html?embed=true'
+    };
+    
+    // 同意状態
+    const consentState = {
+      1: false,
+      2: false,
+      3: false,
+      4: false
+    };
+    
+    // ========== 初期化 ==========
+    document.addEventListener('DOMContentLoaded', () => {
+      // 今日の日付をセット
+      const today = new Date();
+      document.getElementById('year-input').value = today.getFullYear();
+      document.getElementById('month-input').value = today.getMonth() + 1;
+      document.getElementById('day-input').value = today.getDate();
+      
+      // 基本事項規定を読み込み
+      loadBasicRules();
+    });
+    
+    // ========== 基本事項規定をAPIから読み込み ==========
+    async function loadBasicRules() {
+      const modalBody = document.getElementById('modal-1-body');
+      
+      try {
+        const response = await fetch(`${GAS_API_URL}?action=getBasicRules`);
+        const data = await response.json();
+        
+        if (data.success && data.categories && data.rules) {
+          let html = '';
+          
+          // カテゴリごとに規定を表示
+          data.categories.forEach(category => {
+            const categoryRules = data.rules.filter(r => r.categoryNumber === category.number);
+            if (categoryRules.length === 0) return;
+            
+            html += `
+              <div class="rule-category">
+                <div class="rule-category-title">
+                  <span class="material-icons">${category.icon || 'description'}</span>
+                  ${category.number}. ${category.name}
+                </div>
+            `;
+            
+            categoryRules.forEach(rule => {
+              html += `
+                <div class="rule-item">
+                  <div class="rule-item-title">${rule.itemNumber ? rule.itemNumber + '. ' : ''}${rule.title}</div>
+                  <div class="rule-item-content">${escapeHtml(rule.content)}</div>
+                </div>
+              `;
+            });
+            
+            html += '</div>';
+          });
+          
+          modalBody.innerHTML = html || '<p>規定データがありません</p>';
+        } else {
+          throw new Error('データ形式が不正です');
+        }
+      } catch (error) {
+        console.error('基本事項規定の読み込みエラー:', error);
+        modalBody.innerHTML = `
+          <div style="padding: 20px; text-align: center;">
+            <p style="color: #d32f2f; margin-bottom: 12px;">データの読み込みに失敗しました。</p>
+            <p style="color: #666;">お手数ですが、ページを再読み込みするか、担当者にお問い合わせください。</p>
+          </div>
+        `;
+      }
+    }
+    
+    // HTMLエスケープ
+    function escapeHtml(text) {
+      if (!text) return '';
+      return text
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;')
+        .replace(/\n/g, '<br>');
+    }
+    
+    // ========== モーダル操作 ==========
+    function openModal(num) {
+      const modal = document.getElementById(`modal-${num}`);
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      
+      // iframe の場合、初回のみ src を設定
+      if (IFRAME_SOURCES[num]) {
+        const iframe = document.getElementById(`iframe-${num}`);
+        if (iframe.src === 'about:blank' || iframe.src.endsWith('about:blank')) {
+          iframe.src = IFRAME_SOURCES[num];
+        }
+      }
+    }
+    
+    function closeModal(num) {
+      document.getElementById(`modal-${num}`).classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    
+    // ========== 同意処理 ==========
+    function confirmConsent(num) {
+      consentState[num] = true;
+      
+      // チェックボックスを有効化＆チェック
+      const checkbox = document.getElementById(`check-${num}`);
+      checkbox.disabled = false;
+      checkbox.checked = true;
+      
+      // カードにconfirmedクラスを追加
+      document.getElementById(`consent-${num}`).classList.add('confirmed');
+      
+      // モーダルを閉じる
+      closeModal(num);
+      
+      // 全体の状態を更新
+      updateConsentState();
+    }
+    
+    function updateConsentState() {
+      // 各チェックボックスの状態を確認
+      const check1 = document.getElementById('check-1').checked;
+      const check2 = document.getElementById('check-2').checked;
+      const check3 = document.getElementById('check-3').checked;
+      const check4 = document.getElementById('check-4').checked;
+      
+      const allChecked = check1 && check2 && check3 && check4;
+      
+      // 最終同意チェックボックスを有効化
+      const finalCheck = document.getElementById('final-check');
+      const finalConsent = document.getElementById('final-consent');
+      
+      if (allChecked) {
+        finalCheck.disabled = false;
+        finalConsent.classList.add('enabled');
+      } else {
+        finalCheck.disabled = true;
+        finalCheck.checked = false;
+        finalConsent.classList.remove('enabled');
+      }
+      
+      updateSubmitState();
+    }
+    
+    function updateSubmitState() {
+      const finalCheck = document.getElementById('final-check').checked;
+      const submitBtn = document.getElementById('submit-btn');
+      submitBtn.disabled = !finalCheck;
+    }
+    
+    // ========== 送信処理 ==========
+    function handleSubmit() {
+      const year = document.getElementById('year-input').value;
+      const month = document.getElementById('month-input').value;
+      const day = document.getElementById('day-input').value;
+      
+      if (!year || !month || !day) {
+        alert('同意書記入日を入力してください');
+        return;
+      }
+      
+      const consentDate = `${year}年${month}月${day}日`;
+      
+      // データを収集
+      const formData = {
+        section: 10,
+        consentDate: consentDate,
+        consentItems: {
+          basicRules: true,
+          lessonFlow: true,
+          curriculum: true,
+          priceTable: true
+        },
+        finalConsent: true,
+        timestamp: new Date().toISOString()
+      };
+      
+      console.log('Section 10 完了:', formData);
+      
+      // 完了メッセージ
+      alert(`同意が完了しました。\n\n同意日: ${consentDate}\n\n入塾申込を続けてください。`);
+      
+      // 必要に応じてリダイレクトや次のセクションへの遷移
+      // window.location.href = 'enrollment-list.html';
+    }
+    
+    // ========== イベントリスナー ==========
+    
+    // オーバーレイクリックでモーダルを閉じる
+    document.querySelectorAll('.modal-overlay').forEach(overlay => {
+      overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) {
+          const num = overlay.id.replace('modal-', '');
+          closeModal(num);
+        }
+      });
+    });
+    
+    // ESCキーでモーダルを閉じる
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.modal-overlay.active').forEach(overlay => {
+          const num = overlay.id.replace('modal-', '');
+          closeModal(num);
+        });
+      }
+    });
+  </script>
+</body>
+</html>
