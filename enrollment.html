@@ -4034,6 +4034,10 @@
       
       currentSection = sectionId;
       window.scrollTo(0, 0);
+      
+      // フォームデータをDOMに復元
+      restoreFormDataToDOM();
+      
       lucide.createIcons();
       
       // セクション7を開く時は日付の最小値を再計算
@@ -4045,6 +4049,19 @@
           });
         }
       }
+    }
+    
+    // フォームデータをDOMに復元する関数
+    function restoreFormDataToDOM() {
+      // テキスト入力・セレクトの復元
+      Object.keys(formData).forEach(key => {
+        const element = document.getElementById(key);
+        if (element && (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA' || element.tagName === 'SELECT')) {
+          if (formData[key] && element.value !== formData[key]) {
+            element.value = formData[key];
+          }
+        }
+      });
     }
     
     function goBackToTop() {
@@ -4564,10 +4581,17 @@
     // 自動保存
     // ============================================
     function autoSave() {
-      // input要素からデータ収集
+      // input要素からデータ収集（空の値は上書きしない）
       document.querySelectorAll('.form-input').forEach(input => {
-        if (input.id) {
+        if (input.id && input.value && input.value.trim() !== '') {
           formData[input.id] = input.value;
+        }
+      });
+      
+      // date-selectからデータ収集
+      document.querySelectorAll('.date-select').forEach(select => {
+        if (select.id && select.value && select.value !== '') {
+          formData[select.id] = select.value;
         }
       });
       
