@@ -2207,11 +2207,11 @@
         
         <!-- 総合型選抜コース購入有無 -->
         <div class="form-group">
-          <label class="form-label">総合型選抜コースを購入しますか？<span class="required">*</span></label>
+          <label class="form-label">総合型選抜コースを受講しますか？<span class="required">*</span></label>
           <div class="option-group inline" id="main-course-purchase-group"></div>
         </div>
         
-        <!-- 総合型選抜コース詳細（購入する場合のみ） -->
+        <!-- 総合型選抜コース詳細（受講する場合のみ） -->
         <div id="main-course-details" style="display: none;">
           <!-- コース選択 -->
           <div class="form-group">
@@ -3020,8 +3020,8 @@
       // === セクション8: ご請求関連 ===
       // 総合型選抜コース購入有無
       createRadioGroup('main-course-purchase-group', 'main-course-purchase', [
-        { value: '購入する', label: '購入する' },
-        { value: '購入しない', label: '購入しない' }
+        { value: '受講する', label: '受講する' },
+        { value: '受講しない', label: '受講しない' }
       ]);
       
       initCourseCards();
@@ -3046,8 +3046,8 @@
       
       // ENGLISHコース
       createRadioGroup('english-course-group', 'english-course', [
-        { value: '購入する', label: '購入する' },
-        { value: '購入しない', label: '購入しない' }
+        { value: '受講する', label: '受講する' },
+        { value: '受講しない', label: '受講しない' }
       ]);
       
       createCheckboxGroup('english-prep-group', 'english-prep', [
@@ -3328,7 +3328,7 @@
     function toggleMainCourseSection() {
       const section = document.getElementById('main-course-details');
       if (section) {
-        section.style.display = formData['main-course-purchase'] === '購入する' ? 'block' : 'none';
+        section.style.display = formData['main-course-purchase'] === '受講する' ? 'block' : 'none';
       }
     }
     
@@ -3336,7 +3336,7 @@
     function toggleEnglishSection() {
       const section = document.getElementById('english-course-section');
       if (section) {
-        section.style.display = formData['english-course'] === '購入する' ? 'block' : 'none';
+        section.style.display = formData['english-course'] === '受講する' ? 'block' : 'none';
       }
     }
     
@@ -3723,7 +3723,7 @@
       
       // ===== 総合型選抜パック =====
       const mainCoursePurchase = formData['main-course-purchase'];
-      if (mainCoursePurchase === '購入する' && selectedCoursePrice > 0) {
+      if (mainCoursePurchase === '受講する' && selectedCoursePrice > 0) {
         const monthlyLessons = parseInt(document.getElementById('monthly-lessons')?.value) || 0;
         const paymentMonths = parseInt(document.getElementById('payment-months')?.value) || 0;
         
@@ -3774,7 +3774,7 @@
       
       // ===== ENGLISHコース =====
       const englishSelected = formData['english-course'];
-      if (englishSelected === '購入する') {
+      if (englishSelected === '受講する') {
         const englishMonthly = parseInt(document.getElementById('english-monthly-lessons')?.value) || 0;
         const englishMonths = parseInt(document.getElementById('english-payment-months')?.value) || 0;
         
@@ -4378,7 +4378,7 @@
       }
       
       // 総合型選抜コースを購入する場合
-      if (formData['main-course-purchase'] === '購入する') {
+      if (formData['main-course-purchase'] === '受講する') {
         // コース選択
         if (!formData['selected-course']) {
           const courseCards = document.getElementById('course-cards');
@@ -4438,7 +4438,7 @@
       }
       
       // ENGLISHコースを購入する場合
-      if (formData['english-course'] === '購入する') {
+      if (formData['english-course'] === '受講する') {
         const englishMonthly = document.getElementById('english-monthly-lessons')?.value;
         if (!englishMonthly) {
           markError('english-monthly-lessons');
