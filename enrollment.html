@@ -3414,7 +3414,11 @@
         }
       }
       
-      const minDateStr = minDate.toISOString().split('T')[0];
+      // ローカルタイムゾーンで日付文字列を生成（toISOStringはUTCなのでずれる）
+      const year = minDate.getFullYear();
+      const month = String(minDate.getMonth() + 1).padStart(2, '0');
+      const day = String(minDate.getDate()).padStart(2, '0');
+      const minDateStr = `${year}-${month}-${day}`;
       dateInput.min = minDateStr;
       
       // 既存の入力値が最小値より前の場合はクリア
