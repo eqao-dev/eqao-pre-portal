@@ -416,6 +416,16 @@
       margin-top: 12px;
     }
     
+    /* スピナーアニメーション */
+    .spin {
+      animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    
     /* ========================================== */
     /* セクション画面 */
     /* ========================================== */
@@ -2207,11 +2217,11 @@
         
         <!-- 総合型選抜コース購入有無 -->
         <div class="form-group">
-          <label class="form-label">総合型選抜コースを受講しますか？<span class="required">*</span></label>
+          <label class="form-label">総合型選抜コースを購入しますか？<span class="required">*</span></label>
           <div class="option-group inline" id="main-course-purchase-group"></div>
         </div>
         
-        <!-- 総合型選抜コース詳細（受講する場合のみ） -->
+        <!-- 総合型選抜コース詳細（購入する場合のみ） -->
         <div id="main-course-details" style="display: none;">
           <!-- コース選択 -->
           <div class="form-group">
@@ -2687,6 +2697,15 @@
         確認メールをお送りしました。
       </p>
       
+      <!-- 生徒番号表示 -->
+      <div class="student-id-card" id="student-id-card" style="display:none;">
+        <div style="background:#1e3a5f;color:white;padding:20px;border-radius:12px;text-align:center;margin:20px 0;">
+          <p style="font-size:12px;margin-bottom:8px;opacity:0.8;">あなたの生徒番号</p>
+          <p style="font-size:32px;font-weight:bold;letter-spacing:2px;" id="display-student-id">-</p>
+          <p style="font-size:11px;margin-top:12px;opacity:0.7;">※この番号は各種お手続きに必要です。<br>メールにも記載しておりますのでご確認ください。</p>
+        </div>
+      </div>
+      
       <div class="completion-card">
         <div class="completion-card-title">
           <i data-lucide="list-checks" style="width:18px;height:18px;color:#16a34a;"></i>
@@ -2695,19 +2714,26 @@
         <div class="completion-step">
           <div class="completion-step-number">1</div>
           <div class="completion-step-text">
+            <strong>確認メールをチェック</strong><br>
+            生徒番号・ログイン情報をお送りしています。
+          </div>
+        </div>
+        <div class="completion-step">
+          <div class="completion-step-number">2</div>
+          <div class="completion-step-text">
             <strong>請求書の確認</strong><br>
             3営業日以内に請求書をメールでお送りします。
           </div>
         </div>
         <div class="completion-step">
-          <div class="completion-step-number">2</div>
+          <div class="completion-step-number">3</div>
           <div class="completion-step-text">
             <strong>お支払い</strong><br>
             請求書記載の口座へお振込みください。
           </div>
         </div>
         <div class="completion-step">
-          <div class="completion-step-number">3</div>
+          <div class="completion-step-number">4</div>
           <div class="completion-step-text">
             <strong>初回授業の日程調整</strong><br>
             担当よりご連絡いたします。
@@ -3020,8 +3046,8 @@
       // === セクション8: ご請求関連 ===
       // 総合型選抜コース購入有無
       createRadioGroup('main-course-purchase-group', 'main-course-purchase', [
-        { value: '受講する', label: '受講する' },
-        { value: '受講しない', label: '受講しない' }
+        { value: '購入する', label: '購入する' },
+        { value: '購入しない', label: '購入しない' }
       ]);
       
       initCourseCards();
@@ -3046,8 +3072,8 @@
       
       // ENGLISHコース
       createRadioGroup('english-course-group', 'english-course', [
-        { value: '受講する', label: '受講する' },
-        { value: '受講しない', label: '受講しない' }
+        { value: '購入する', label: '購入する' },
+        { value: '購入しない', label: '購入しない' }
       ]);
       
       createCheckboxGroup('english-prep-group', 'english-prep', [
@@ -3328,7 +3354,7 @@
     function toggleMainCourseSection() {
       const section = document.getElementById('main-course-details');
       if (section) {
-        section.style.display = formData['main-course-purchase'] === '受講する' ? 'block' : 'none';
+        section.style.display = formData['main-course-purchase'] === '購入する' ? 'block' : 'none';
       }
     }
     
@@ -3336,7 +3362,7 @@
     function toggleEnglishSection() {
       const section = document.getElementById('english-course-section');
       if (section) {
-        section.style.display = formData['english-course'] === '受講する' ? 'block' : 'none';
+        section.style.display = formData['english-course'] === '購入する' ? 'block' : 'none';
       }
     }
     
@@ -3723,7 +3749,7 @@
       
       // ===== 総合型選抜パック =====
       const mainCoursePurchase = formData['main-course-purchase'];
-      if (mainCoursePurchase === '受講する' && selectedCoursePrice > 0) {
+      if (mainCoursePurchase === '購入する' && selectedCoursePrice > 0) {
         const monthlyLessons = parseInt(document.getElementById('monthly-lessons')?.value) || 0;
         const paymentMonths = parseInt(document.getElementById('payment-months')?.value) || 0;
         
@@ -3774,7 +3800,7 @@
       
       // ===== ENGLISHコース =====
       const englishSelected = formData['english-course'];
-      if (englishSelected === '受講する') {
+      if (englishSelected === '購入する') {
         const englishMonthly = parseInt(document.getElementById('english-monthly-lessons')?.value) || 0;
         const englishMonths = parseInt(document.getElementById('english-payment-months')?.value) || 0;
         
@@ -4378,7 +4404,7 @@
       }
       
       // 総合型選抜コースを購入する場合
-      if (formData['main-course-purchase'] === '受講する') {
+      if (formData['main-course-purchase'] === '購入する') {
         // コース選択
         if (!formData['selected-course']) {
           const courseCards = document.getElementById('course-cards');
@@ -4438,7 +4464,7 @@
       }
       
       // ENGLISHコースを購入する場合
-      if (formData['english-course'] === '受講する') {
+      if (formData['english-course'] === '購入する') {
         const englishMonthly = document.getElementById('english-monthly-lessons')?.value;
         if (!englishMonthly) {
           markError('english-monthly-lessons');
@@ -4768,20 +4794,59 @@
     // ============================================
     // フォーム送信
     // ============================================
-    function submitForm() {
-      // TODO: 実際の送信処理
-      console.log('送信データ:', formData);
+    // GAS WebアプリのURL
+    const GAS_URL = 'https://script.google.com/macros/s/AKfycbyFJMfjgZzOw9v16PEoQQrRqqYe__oSn6zHdajEXdeXaUf6ACxwBhcMaGf449Qju-t-/exec';
+    
+    async function submitForm() {
+      const submitBtn = document.getElementById('submit-btn');
+      const submitHint = document.getElementById('submit-hint');
       
-      // 保存データをクリア
-      localStorage.removeItem(STORAGE_KEY);
-      
-      // 完了画面表示
-      document.getElementById('top-screen').classList.add('hidden');
-      document.getElementById('completion-screen').classList.add('show');
-      document.getElementById('header-back-btn').style.display = 'none';
-      
-      window.scrollTo(0, 0);
+      // ボタンを無効化して送信中表示
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<i data-lucide="loader-2" class="spin" style="width:18px;height:18px;"></i> 送信中...';
+      submitHint.textContent = 'データを送信しています。しばらくお待ちください...';
       lucide.createIcons();
+      
+      try {
+        // フォームデータを送信
+        const response = await fetch(GAS_URL, {
+          method: 'POST',
+          mode: 'no-cors', // CORSを回避
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData)
+        });
+        
+        // no-corsモードではレスポンスを読めないので、成功として扱う
+        // 実際の結果はメール送信で確認
+        
+        // 保存データをクリア
+        localStorage.removeItem(STORAGE_KEY);
+        
+        // 完了画面表示
+        document.getElementById('top-screen').classList.add('hidden');
+        document.getElementById('completion-screen').classList.add('show');
+        document.getElementById('header-back-btn').style.display = 'none';
+        
+        // 生徒番号カードを表示（番号自体はメールで確認）
+        document.getElementById('student-id-card').style.display = 'block';
+        document.getElementById('display-student-id').textContent = 'メールをご確認ください';
+        
+        window.scrollTo(0, 0);
+        lucide.createIcons();
+        
+      } catch (error) {
+        console.error('送信エラー:', error);
+        
+        // エラー時はボタンを復活
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<i data-lucide="send" style="width:18px;height:18px;"></i> 入塾同意書を送信';
+        submitHint.textContent = '送信に失敗しました。もう一度お試しください。';
+        lucide.createIcons();
+        
+        showToast('送信に失敗しました。通信環境をご確認ください。', 'error');
+      }
     }
     
     // ============================================
