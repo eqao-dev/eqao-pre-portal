@@ -45,6 +45,28 @@
       font-size: 16px;
     }
     
+    .back-btn {
+      width: 36px;
+      height: 36px;
+      background: rgba(255,255,255,0.15);
+      border: none;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: white;
+      transition: background 0.3s;
+    }
+    
+    .back-btn:hover {
+      background: rgba(255,255,255,0.25);
+    }
+    
+    .back-btn .material-icons {
+      font-size: 20px;
+    }
+    
     .section-title {
       font-size: 18px;
       font-weight: 700;
@@ -606,6 +628,9 @@
   <div class="container">
     <!-- セクションヘッダー -->
     <div class="section-header">
+      <button class="back-btn" onclick="goBack()">
+        <span class="material-icons">arrow_back</span>
+      </button>
       <div class="section-number">10</div>
       <div class="section-title">同意事項</div>
     </div>
@@ -828,47 +853,47 @@
             <h3 class="price-section-title"><span class="material-icons">school</span>授業料（1コマ90分）</h3>
             <table class="price-table">
               <tr><th>志望校コース</th><th class="price">金額（税込）</th></tr>
-              <tr><td>海外大学・国公立大学</td><td class="price">15,500円/コマ</td></tr>
+              <tr><td>海外大学</td><td class="price">15,500円/コマ</td></tr>
+              <tr><td>国公立大学</td><td class="price">15,500円/コマ</td></tr>
               <tr><td>難関私立大学<br><span class="price-note">早慶上智ICU / GMARCH / 関関同立</span></td><td class="price">13,500円/コマ</td></tr>
               <tr><td>一般私立大学<br><span class="price-note">日東駒専 / 成成明学獨國武 / その他</span></td><td class="price">12,800円/コマ</td></tr>
-              <tr><td>英語資格コース</td><td class="price">12,800円/コマ</td></tr>
+              <tr><td>英語資格</td><td class="price">12,800円/コマ</td></tr>
             </table>
           </div>
           
           <div class="price-section">
-            <h3 class="price-section-title"><span class="material-icons">add_circle</span>オプションメニュー</h3>
+            <h3 class="price-section-title"><span class="material-icons">add_circle</span>オプション：授業関連</h3>
             <table class="price-table">
               <tr><th>オプション</th><th class="price">金額（税込）</th></tr>
-              <tr><td>対面（出張）授業</td><td class="price">+2,200円/コマ</td></tr>
-              <tr><td>難関対面授業</td><td class="price">+2,000円/コマ</td></tr>
-              <tr><td>受験戦略策定<br><span class="price-note">入塾時に購入の場合</span></td><td class="price">11,000円</td></tr>
-              <tr><td>受験戦略策定<br><span class="price-note">入塾後に追加購入の場合</span></td><td class="price">39,800円</td></tr>
-              <tr><td>面接練習（月1回追加）</td><td class="price">15,980円/回</td></tr>
-              <tr><td>春期・夏期合宿</td><td class="price">119,800円/回</td></tr>
-              <tr><td>冬期合宿</td><td class="price">131,780円/回</td></tr>
-              <tr><td>国公立小論対策</td><td class="price">33,000円/回</td></tr>
-              <tr><td>志望理由書執筆代行</td><td class="price">71,280円/冊</td></tr>
-              <tr><td>1分間自己PR動画制作</td><td class="price">59,800円/本</td></tr>
+              <tr><td>講師指名料<br><span class="price-note">特定の講師を指名する場合</span></td><td class="price">2,200円/コマ</td></tr>
+              <tr><td>深夜授業対応<br><span class="price-note">00:00〜9:00の時間帯</span></td><td class="price">+2,000円/コマ</td></tr>
             </table>
           </div>
           
           <div class="price-section">
-            <h3 class="price-section-title"><span class="material-icons">discount</span>割引制度</h3>
+            <h3 class="price-section-title"><span class="material-icons">menu_book</span>オプション：教材・模試</h3>
             <table class="price-table">
-              <tr><th>割引種別</th><th class="price">割引額</th></tr>
-              <tr><td>紹介割引<br><span class="price-note">元塾生やスタッフの知り合いからのご入塾</span></td><td class="price">入塾金 10,000円引</td></tr>
+              <tr><th>オプション</th><th class="price">金額（税込）</th></tr>
+              <tr><td>過去動画教材費<br><span class="price-note">入塾時に購入の場合</span></td><td class="price">11,000円</td></tr>
+              <tr><td>過去動画教材費<br><span class="price-note">入塾後に追加購入の場合</span></td><td class="price">39,800円</td></tr>
+              <tr><td>EQAO模試<br><span class="price-note">10-11月実施 / 2回受験推奨</span></td><td class="price">15,980円/回</td></tr>
             </table>
-            <p class="price-footnote">※その他の割引制度については、お問い合わせください</p>
           </div>
           
           <div class="price-section">
-            <h3 class="price-section-title"><span class="material-icons">info</span>料金に関する注意事項</h3>
-            <ul class="price-notes">
-              <li>上記はすべて税込価格です</li>
-              <li>授業料は月ごとにコマ数に応じて請求いたします</li>
-              <li>料金は予告なく変更される場合があります</li>
-              <li>詳細は担当者にお問い合わせください</li>
-            </ul>
+            <h3 class="price-section-title"><span class="material-icons">auto_awesome</span>オプション：特別プログラム</h3>
+            <table class="price-table">
+              <tr><th>オプション</th><th class="price">金額（税込）</th></tr>
+              <tr><td>EQAO CAMP<br><span class="price-note">2泊3日 / 食事・宿泊代込み</span></td><td class="price">119,800円/回</td></tr>
+              <tr><td>EQAO STUDY TOUR<br><span class="price-note">航空券・食費・宿泊は別途</span></td><td class="price">131,780円/回</td></tr>
+              <tr><td>EQAO FIELD WORK BODY制度<br><span class="price-note">+スタッフ交通費</span></td><td class="price">33,000円/回</td></tr>
+              <tr><td>課題図書対策プログラム<br><span class="price-note">指定図書を踏まえた面接・小論文対策</span></td><td class="price">71,280円/冊</td></tr>
+              <tr><td>動画資料作成サービス<br><span class="price-note">提出用動画の作成サポート</span></td><td class="price">59,800円/本</td></tr>
+            </table>
+          </div>
+          
+          <div class="price-section">
+            <p class="price-footnote">※上記はすべて税込価格です</p>
           </div>
         </div>
       </div>
@@ -1057,7 +1082,7 @@
       
       const consentDate = `${year}年${month}月${day}日`;
       
-      // データを収集
+      // データを収集してlocalStorageに保存
       const formData = {
         section: 10,
         consentDate: consentDate,
@@ -1071,13 +1096,13 @@
         timestamp: new Date().toISOString()
       };
       
+      // localStorageに保存（enrollment.htmlと連携）
+      localStorage.setItem('section10Data', JSON.stringify(formData));
+      
       console.log('Section 10 完了:', formData);
       
-      // 完了メッセージ
-      alert(`同意が完了しました。\n\n同意日: ${consentDate}\n\n入塾申込を続けてください。`);
-      
-      // 必要に応じてリダイレクトや次のセクションへの遷移
-      // window.location.href = 'enrollment-list.html';
+      // enrollment.htmlに戻る（完了フラグ付き）
+      window.location.href = 'enrollment.html?section10=completed';
     }
     
     // ========== イベントリスナー ==========
@@ -1101,6 +1126,13 @@
         });
       }
     });
+    
+    // 一覧に戻る
+    function goBack() {
+      if (confirm('入力内容は保存されません。一覧に戻りますか？')) {
+        window.location.href = 'enrollment.html';
+      }
+    }
   </script>
 </body>
 </html>
