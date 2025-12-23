@@ -293,14 +293,14 @@
     .section-card-number {
       width: 44px;
       height: 44px;
-      background: #f3f4f6;
+      background: #1e3a5f;
       border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 16px;
       font-weight: bold;
-      color: #6b7280;
+      color: white;
       flex-shrink: 0;
     }
     
@@ -695,6 +695,10 @@
       font-size: 14px;
       background: white;
       min-width: 80px;
+    }
+    
+    .date-select.year-select {
+      min-width: 90px;
     }
     
     .date-separator {
@@ -1495,7 +1499,7 @@
       <div class="progress-summary">
         <div class="progress-summary-header">
           <span class="progress-summary-title">入力進捗</span>
-          <span class="progress-summary-count"><strong id="completed-count">0</strong> / <span id="total-count">11</span> 完了</span>
+          <span class="progress-summary-count"><strong id="completed-count">0</strong> / <span id="total-count">10</span> 完了</span>
         </div>
         <div class="progress-bar-large">
           <div class="progress-bar-large-fill" id="progress-fill" style="width: 0%;"></div>
@@ -1580,7 +1584,7 @@
         <div class="form-group">
           <label class="form-label">生年月日<span class="required">*</span></label>
           <div class="date-input-row">
-            <select class="date-select" id="birth-year" data-section="1">
+            <select class="date-select year-select" id="birth-year" data-section="1">
               <option value="">年</option>
             </select>
             <span class="date-separator">年</span>
@@ -2583,7 +2587,7 @@
         <div class="form-group">
           <label class="form-label">同意書記入日<span class="required">*</span></label>
           <div class="date-input-row">
-            <select class="date-select" id="consent-year" data-section="11">
+            <select class="date-select year-select" id="consent-year" data-section="11">
               <option value="">年</option>
             </select>
             <span class="date-separator">年</span>
@@ -2717,16 +2721,28 @@
       initDateSelects();
       initOptionGroups();
       renderSectionCards();
-      checkSavedData();
       
-      // セクション10からの戻りをチェック
-      checkSection10Return();
+      // セクション10からの戻りをチェック（復元モーダルより先に実行）
+      const section10Completed = checkSection10Return();
+      
+      // セクション10完了時は復元モーダルを表示しない
+      if (!section10Completed) {
+        checkSavedData();
+      }
     });
     
     // セクション10完了チェック
     function checkSection10Return() {
       const urlParams = new URLSearchParams(window.location.search);
       if (urlParams.get('section10') === 'completed') {
+        // 既存の保存データを読み込んでからセクション10を完了状態に
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+          const data = JSON.parse(saved);
+          formData = data.formData || {};
+          sectionCompleted = data.sectionCompleted || new Array(TOTAL_SECTIONS).fill(false);
+        }
+        
         // セクション10を完了状態に
         sectionCompleted[9] = true; // 配列は0始まり
         autoSave();
@@ -2735,7 +2751,10 @@
         
         // URLからパラメータを削除（履歴を書き換え）
         window.history.replaceState({}, document.title, window.location.pathname);
+        
+        return true; // セクション10から戻ったことを示す
       }
+      return false;
     }
     
     // ============================================
@@ -4343,6 +4362,41 @@
         toggleFirstChoiceInputs();
         toggleTestPrepDetails();
         toggleGeneralExamDetails();
+        
+        // 総合型選抜コース詳細の表示復元
+        toggleMainCourseSection();
+        
+        // ENGLISHコース詳細の表示復元
+        toggleEnglishSection();
+        
+        // 割引セクションの表示復元
+        if (formData['discount-confirmed']) {
+          const discountSection = document.getElementById('discount-section');
+          if (discountSection) {
+            discountSection.style.display = 'block';
+          }
+        }
+        
+        // 曜日ごとの授業スタイルの復元
+        if (formData['weekday-styles']) {
+          const weekdays = ['月曜日', '火曜日', '水曜日', '木曜日', '金曜日', '土曜日', '日曜日'];
+          const container = document.getElementById('weekday-style-container');
+          if (container) {
+            weekdays.forEach((day, i) => {
+              const value = formData['weekday-styles'][day];
+              if (value) {
+                const radio = container.querySelector(`input[name="weekday-${i}"][value="${value}"]`);
+                if (radio) radio.checked = true;
+              }
+            });
+          }
+        }
+        
+        // 定期テスト「その他」の表示復元
+        toggleTestPrepOther();
+        
+        // 一般入試「その他」の表示復元
+        toggleGeneralExamOther();
         
         // 料金計算
         calculatePrice();
