@@ -2789,7 +2789,7 @@
     // ============================================
     // 設定・定数
     // ============================================
-    const STORAGE_KEY = 'eqao_enrollment_data_v5'; // v5: v4_2請求セクション完成版
+    const STORAGE_KEY = 'eqao_enrollment_data_v6'; // v6: 自動保存・復元ロジック修正版
     const TOTAL_SECTIONS = 10;
     
     // セクション定義
@@ -4053,7 +4053,9 @@
     
     // フォームデータをDOMに復元する関数
     function restoreFormDataToDOM() {
-      // テキスト入力・セレクトの復元
+      console.log('DOM復元開始:', Object.keys(formData).length, '件');
+      
+      // 1. テキスト入力・セレクトの復元
       Object.keys(formData).forEach(key => {
         const element = document.getElementById(key);
         if (element && (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA' || element.tagName === 'SELECT')) {
@@ -4062,6 +4064,142 @@
           }
         }
       });
+      
+      // 2. ラジオボタンの復元
+      document.querySelectorAll('.option-group').forEach(container => {
+        const items = container.querySelectorAll('.option-item[data-value]');
+        if (items.length === 0) return;
+        
+        // data-nameを持つ最初の要素からキー名を取得
+        const firstItem = items[0];
+        const name = firstItem.dataset.name;
+        if (!name || !formData[name]) return;
+        
+        const savedValue = formData[name];
+        
+        // 配列の場合（チェックボックス）
+        if (Array.isArray(savedValue)) {
+          items.forEach(item => {
+            if (savedValue.includes(item.dataset.value)) {
+              item.classList.add('selected');
+            } else {
+              item.classList.remove('selected');
+            }
+          });
+        } else {
+          // 単一値の場合（ラジオボタン）
+          items.forEach(item => {
+            if (item.dataset.value === savedValue) {
+              item.classList.add('selected');
+            } else {
+              item.classList.remove('selected');
+            }
+          });
+        }
+      });
+      
+      // 3. コースカードの復元
+      if (formData['selected-course']) {
+        selectedCourseName = formData['selected-course'];
+        selectedCoursePrice = formData['selected-course-price'] || 0;
+        const courseCards = document.getElementById('course-cards');
+        if (courseCards) {
+          courseCards.querySelectorAll('.course-card').forEach(card => {
+            if (card.dataset.name === selectedCourseName) {
+              card.classList.add('selected');
+            } else {
+              card.classList.remove('selected');
+            }
+          });
+        }
+      }
+      
+      // 4. 曜日別スタイルの復元
+      if (formData['weekday-styles']) {
+        const weekdays = ['月曜日', '火曜日', '水曜日', '木曜日', '金曜日', '土曜日', '日曜日'];
+        const container = document.getElementById('weekday-style-container');
+        if (container) {
+          weekdays.forEach((day, i) => {
+            const value = formData['weekday-styles'][day];
+            if (value) {
+              const radio = container.querySelector(`input[name="weekday-${i}"][value="${value}"]`);
+              if (radio) radio.checked = true;
+            }
+          });
+        }
+      }
+      
+      // 5. スケジュール日程の復元
+      if (formData['schedule-dates'] && Array.isArray(formData['schedule-dates'])) {
+        const scheduleContainer = document.getElementById('schedule-dates-container');
+        if (scheduleContainer && scheduleContainer.children.length === 0) {
+          // まだ復元されていない場合のみ復元
+          formData['schedule-dates'].forEach(schedule => {
+            addScheduleDate();
+            const lastRow = scheduleContainer.lastElementChild;
+            if (lastRow) {
+              const dateInput = lastRow.querySelector('input[type="date"]');
+              const timeSelect = lastRow.querySelector('select');
+              if (dateInput && schedule.date) dateInput.value = schedule.date;
+              if (timeSelect && schedule.time) timeSelect.value = schedule.time;
+            }
+          });
+        } else if (scheduleContainer) {
+          // 既に行がある場合は値を復元
+          const rows = scheduleContainer.querySelectorAll('[id^="schedule-row-"]');
+          formData['schedule-dates'].forEach((schedule, index) => {
+            if (rows[index]) {
+              const dateInput = rows[index].querySelector('input[type="date"]');
+              const timeSelect = rows[index].querySelector('select');
+              if (dateInput && schedule.date) dateInput.value = schedule.date;
+              if (timeSelect && schedule.time) timeSelect.value = schedule.time;
+            }
+          });
+        }
+      }
+      
+      // 6. 条件付き表示の更新
+      updateConditionalSections();
+      
+      console.log('DOM復元完了');
+    }
+    
+    // 条件付きセクションの表示を更新
+    function updateConditionalSections() {
+      // 総合型選抜コース詳細
+      const mainCourseDetails = document.getElementById('main-course-details');
+      if (mainCourseDetails) {
+        mainCourseDetails.style.display = formData['main-course-purchase'] === '受講する' ? 'block' : 'none';
+      }
+      
+      // ENGLISHコース詳細
+      const englishSection = document.getElementById('english-course-section');
+      if (englishSection) {
+        englishSection.style.display = formData['english-course'] === '受講する' ? 'block' : 'none';
+      }
+      
+      // ひとり親書類アップロード
+      const singleParentUpload = document.getElementById('single-parent-upload-container');
+      if (singleParentUpload) {
+        singleParentUpload.style.display = formData['family-discount'] === '母子・父子家庭' ? 'block' : 'none';
+      }
+      
+      // 紹介者名入力
+      const referrerContainer = document.getElementById('referrer-name-container');
+      if (referrerContainer) {
+        referrerContainer.style.display = formData['referral-discount'] === '紹介あり' ? 'block' : 'none';
+      }
+      
+      // 割引オプションセクション
+      if (formData['discount-confirmed']) {
+        const discountSection = document.getElementById('discount-section');
+        if (discountSection) discountSection.style.display = 'block';
+      }
+      
+      // 料金計算を更新
+      if (typeof calculatePrice === 'function') {
+        calculatePrice();
+      }
     }
     
     function goBackToTop() {
@@ -4582,18 +4720,21 @@
     // ============================================
     function autoSave() {
       // input要素からデータ収集（空の値は上書きしない）
-      document.querySelectorAll('.form-input').forEach(input => {
+      document.querySelectorAll('input.form-input, textarea.form-input').forEach(input => {
         if (input.id && input.value && input.value.trim() !== '') {
           formData[input.id] = input.value;
         }
       });
       
-      // date-selectからデータ収集
-      document.querySelectorAll('.date-select').forEach(select => {
+      // select要素からデータ収集
+      document.querySelectorAll('select.form-input, select.date-select').forEach(select => {
         if (select.id && select.value && select.value !== '') {
           formData[select.id] = select.value;
         }
       });
+      
+      // ラジオボタン・チェックボックスはすでにformDataに保存されている
+      // （createRadioGroup, createCheckboxGroupで処理済み）
       
       const saveData = {
         formData: formData,
@@ -4602,6 +4743,7 @@
       };
       
       localStorage.setItem(STORAGE_KEY, JSON.stringify(saveData));
+      console.log('自動保存完了:', Object.keys(formData).length, '件');
     }
     
     // 入力イベントで自動保存 & エラークリア
@@ -4614,8 +4756,11 @@
       }
     });
     
+    // changeイベントで自動保存（select要素用）
     document.addEventListener('change', function(e) {
-      if (e.target.classList.contains('date-select')) {
+      if (e.target.classList.contains('date-select') || 
+          e.target.classList.contains('form-input') ||
+          e.target.tagName === 'SELECT') {
         autoSave();
         // エラーをクリア
         e.target.classList.remove('error');
@@ -4643,6 +4788,8 @@
         const data = JSON.parse(saved);
         formData = data.formData || {};
         
+        console.log('データ復元開始:', Object.keys(formData).length, '件');
+        
         // sectionCompletedの配列サイズを現在のセクション数に調整
         const savedCompleted = data.sectionCompleted || [];
         sectionCompleted = new Array(TOTAL_SECTIONS).fill(false);
@@ -4657,42 +4804,42 @@
           }
         }
         
-        // フォームに復元
+        // 1. テキスト入力・セレクトの復元
         Object.keys(formData).forEach(key => {
           const element = document.getElementById(key);
-          if (element) {
-            element.value = formData[key];
-          }
-        });
-        
-        // ラジオボタン復元
-        Object.keys(formData).forEach(key => {
-          const container = document.querySelector(`[data-name="${key}"]`)?.parentElement;
-          if (container) {
-            container.querySelectorAll('.option-item').forEach(item => {
-              if (item.dataset.value === formData[key]) {
-                item.classList.add('selected');
-              }
-            });
-          }
-        });
-        
-        // チェックボックス復元
-        Object.keys(formData).forEach(key => {
-          if (Array.isArray(formData[key])) {
-            const container = document.getElementById(key.replace(/-/g, '-') + '-group') || 
-                              document.getElementById(key + '-group');
-            if (container) {
-              container.querySelectorAll('.option-item').forEach(item => {
-                if (formData[key].includes(item.dataset.value)) {
-                  item.classList.add('selected');
-                }
-              });
+          if (element && (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA' || element.tagName === 'SELECT')) {
+            if (formData[key]) {
+              element.value = formData[key];
             }
           }
         });
         
-        // コース選択の復元
+        // 2. ラジオボタン・チェックボックスの復元
+        document.querySelectorAll('.option-group').forEach(container => {
+          const items = container.querySelectorAll('.option-item[data-name]');
+          if (items.length === 0) return;
+          
+          const name = items[0].dataset.name;
+          if (!name || formData[name] === undefined) return;
+          
+          const savedValue = formData[name];
+          
+          items.forEach(item => {
+            if (Array.isArray(savedValue)) {
+              // チェックボックス
+              if (savedValue.includes(item.dataset.value)) {
+                item.classList.add('selected');
+              }
+            } else {
+              // ラジオボタン
+              if (item.dataset.value === savedValue) {
+                item.classList.add('selected');
+              }
+            }
+          });
+        });
+        
+        // 3. コース選択の復元
         if (formData['selected-course']) {
           selectedCourseName = formData['selected-course'];
           selectedCoursePrice = formData['selected-course-price'] || 0;
@@ -4787,6 +4934,33 @@
           }
         }
         
+        // スケジュール日程の復元
+        if (formData['schedule-dates'] && Array.isArray(formData['schedule-dates'])) {
+          const scheduleContainer = document.getElementById('schedule-dates-container');
+          if (scheduleContainer) {
+            // 既存の行をクリア
+            scheduleContainer.innerHTML = '';
+            scheduleDateCount = 0;
+            
+            // 保存された日程を復元
+            formData['schedule-dates'].forEach(schedule => {
+              addScheduleDate();
+              const lastRow = scheduleContainer.lastElementChild;
+              if (lastRow) {
+                const dateInput = lastRow.querySelector('input[type="date"]');
+                const timeSelect = lastRow.querySelector('select');
+                if (dateInput && schedule.date) dateInput.value = schedule.date;
+                if (timeSelect && schedule.time) timeSelect.value = schedule.time;
+              }
+            });
+            
+            // 最低1行は表示
+            if (formData['schedule-dates'].length === 0) {
+              addScheduleDate();
+            }
+          }
+        }
+        
         // 定期テスト「その他」の表示復元
         toggleTestPrepOther();
         
@@ -4797,6 +4971,8 @@
         calculatePrice();
         
         renderSectionCards();
+        
+        console.log('データ復元完了:', Object.keys(formData).length, '件');
       }
       
       document.getElementById('restore-modal').classList.remove('show');
@@ -4819,6 +4995,7 @@
         localStorage.removeItem('eqao_enrollment_data_v2'); // v2
         localStorage.removeItem('eqao_enrollment_data_v3'); // v3
         localStorage.removeItem('eqao_enrollment_data_v4'); // v4
+        localStorage.removeItem('eqao_enrollment_data_v5'); // v5
         
         formData = {};
         sectionCompleted = new Array(TOTAL_SECTIONS).fill(false);
