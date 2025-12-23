@@ -2718,7 +2718,25 @@
       initOptionGroups();
       renderSectionCards();
       checkSavedData();
+      
+      // セクション10からの戻りをチェック
+      checkSection10Return();
     });
+    
+    // セクション10完了チェック
+    function checkSection10Return() {
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('section10') === 'completed') {
+        // セクション10を完了状態に
+        sectionCompleted[9] = true; // 配列は0始まり
+        autoSave();
+        renderSectionCards();
+        showToast('セクション10（同意事項）を保存しました', 'success');
+        
+        // URLからパラメータを削除（履歴を書き換え）
+        window.history.replaceState({}, document.title, window.location.pathname);
+      }
+    }
     
     // ============================================
     // 日付セレクト初期化
@@ -3702,6 +3720,12 @@
     // ナビゲーション
     // ============================================
     function goToSection(sectionId) {
+      // セクション10は別ページへ遷移
+      if (sectionId === 10) {
+        window.location.href = 'section10-consent.html';
+        return;
+      }
+      
       // トップ画面を非表示
       document.getElementById('top-screen').classList.add('hidden');
       
