@@ -1130,6 +1130,7 @@
       background: linear-gradient(135deg, #1e3a5f 0%, #2d4a6f 100%);
       border-radius: 16px;
       padding: 20px;
+      padding-bottom: 24px;
       margin-top: 16px;
       color: white;
     }
@@ -1194,17 +1195,20 @@
     }
     
     .price-row.subtotal {
-      margin-top: 8px;
-      padding-top: 8px;
-      border-top: 1px dashed rgba(255,255,255,0.2);
+      margin-top: 10px;
+      padding: 10px 8px;
+      border-top: 1px solid rgba(255,255,255,0.3);
       font-weight: 600;
+      background: rgba(255,255,255,0.05);
+      border-radius: 6px;
+      margin-left: -8px;
+      margin-right: -8px;
     }
     
     .price-total {
       background: rgba(255,255,255,0.1);
-      margin: 0 -20px -20px;
+      margin: 0 -20px;
       padding: 16px 20px;
-      border-radius: 0 0 16px 16px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -1223,9 +1227,20 @@
     
     .price-note {
       font-size: 10px;
-      color: rgba(255,255,255,0.5);
-      margin-top: 12px;
-      line-height: 1.5;
+      color: rgba(255,255,255,0.6);
+      margin-top: 16px;
+      line-height: 1.6;
+      padding: 0 4px;
+    }
+    
+    /* ファイルアップロードエリア */
+    #upload-drop-area:hover {
+      border-color: #1e3a5f;
+      background: #f0f9ff;
+    }
+    
+    #upload-drop-area:active {
+      background: #e0f2fe;
     }
     
     /* 割引確認ボタン */
@@ -2260,8 +2275,35 @@
             <!-- 母子父子家庭 -->
             <div class="form-group" style="margin-bottom: 20px; margin-top: 16px;">
               <label class="form-label" style="font-size: 13px;">ひとり親家庭割引</label>
-              <p class="form-hint">該当される場合、後日証明書類のご提出をお願いする場合があります。</p>
               <div class="option-group" id="family-discount-group"></div>
+              
+              <!-- 書類アップロード（該当する場合のみ表示） -->
+              <div id="single-parent-upload-container" style="display: none; margin-top: 12px;">
+                <p class="form-hint" style="color:#dc2626; margin-bottom:8px;">
+                  <strong>※証明書類のアップロードが必要です</strong>
+                </p>
+                <p class="form-hint" style="margin-bottom:12px;">
+                  ひとり親家庭医療費受給者証、児童扶養手当証書などの証明書類を写真またはPDFでアップロードしてください。<br>
+                  <strong>※PDF形式を推奨</strong>（鮮明に読み取れる画像であれば写真でも可）
+                </p>
+                <label class="form-label" style="font-size: 13px;">証明書類<span class="required">*</span></label>
+                
+                <!-- カスタムアップロードエリア -->
+                <div id="upload-drop-area" onclick="document.getElementById('single-parent-document').click()" style="border: 2px dashed #d1d5db; border-radius: 12px; padding: 30px 20px; text-align: center; cursor: pointer; transition: all 0.2s; background: #f9fafb;">
+                  <div style="width: 50px; height: 50px; margin: 0 auto 12px; background: #e5e7eb; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                    <i data-lucide="plus" style="width: 24px; height: 24px; color: #6b7280;"></i>
+                  </div>
+                  <p style="font-size: 14px; color: #374151; margin-bottom: 4px;">タップしてファイルを選択</p>
+                  <p style="font-size: 12px; color: #9ca3af;">PDF、JPG、PNG、HEIC（最大10MB）</p>
+                </div>
+                <input type="file" id="single-parent-document" accept=".pdf,.jpg,.jpeg,.png,.heic" data-section="8" style="display: none;">
+                
+                <div id="single-parent-file-preview" style="display:none; margin-top:12px; padding:12px; background:#f0fdf4; border-radius:8px; font-size:13px; color:#166534; display:flex; align-items:center; gap:8px;">
+                  <i data-lucide="check-circle" style="width:16px;height:16px;flex-shrink:0;"></i>
+                  <span id="single-parent-file-name" style="flex:1;"></span>
+                  <button type="button" onclick="clearUploadedFile()" style="background:#fee2e2;color:#dc2626;border:none;border-radius:6px;padding:4px 8px;font-size:12px;cursor:pointer;">削除</button>
+                </div>
+              </div>
             </div>
             
             <!-- 紹介割引 -->
@@ -2385,11 +2427,11 @@
             </div>
           </div>
           
-          <!-- 月額費用 -->
-          <div class="price-category" id="monthly-fee-category" style="display: none;">
+          <!-- 総合型選抜パック -->
+          <div class="price-category" id="main-course-category" style="display: none;">
             <div class="price-category-title">
-              <i data-lucide="calendar" style="width:12px;height:12px;"></i>
-              月額費用（毎月発生）
+              <i data-lucide="package" style="width:12px;height:12px;"></i>
+              総合型選抜パック
             </div>
             <div class="price-row">
               <span class="label">在籍基本料</span>
@@ -2399,39 +2441,51 @@
               <span class="label">システムサーバー費</span>
               <span class="value">¥2,980</span>
             </div>
-            <div class="price-row" id="main-lesson-row" style="display: none;">
+            <div class="price-row" id="main-lesson-row">
               <span class="label">
                 総合型選抜 授業料
                 <small id="main-lesson-detail"></small>
               </span>
               <span class="value" id="main-lesson-cost">-</span>
             </div>
-            <div class="price-row" id="english-lesson-row" style="display: none;">
-              <span class="label">
-                ENGLISH 授業料
-                <small id="english-lesson-detail"></small>
-              </span>
-              <span class="value" id="english-lesson-cost">-</span>
-            </div>
             <div class="price-row subtotal">
               <span class="label">月額 小計</span>
-              <span class="value" id="monthly-subtotal">-</span>
-            </div>
-          </div>
-          
-          <!-- 期間費用 -->
-          <div class="price-category" id="period-fee-category" style="display: none;">
-            <div class="price-category-title">
-              <i data-lucide="clock" style="width:12px;height:12px;"></i>
-              <span id="period-months-label">6</span>ヶ月分の費用
+              <span class="value" id="main-monthly-subtotal">-</span>
             </div>
             <div class="price-row">
-              <span class="label">月額費用 × <span id="period-months-text">6</span>ヶ月</span>
-              <span class="value" id="period-subtotal">-</span>
+              <span class="label">上記 × <span id="main-months-text">3</span>ヶ月分</span>
+              <span class="value" id="main-period-subtotal">-</span>
             </div>
             <div class="price-row discount" id="bulk-discount-row" style="display: none;">
               <span class="label">まとめ払い割引</span>
               <span class="value" id="bulk-discount-amount">-</span>
+            </div>
+            <div class="price-row subtotal">
+              <span class="label">総合型選抜パック 合計</span>
+              <span class="value" id="main-course-total">-</span>
+            </div>
+          </div>
+          
+          <!-- ENGLISHコース -->
+          <div class="price-category" id="english-course-category" style="display: none;">
+            <div class="price-category-title">
+              <i data-lucide="globe" style="width:12px;height:12px;"></i>
+              ENGLISHコース
+            </div>
+            <div class="price-row" id="english-lesson-row">
+              <span class="label">
+                ENGLISH 月額授業料
+                <small id="english-lesson-detail"></small>
+              </span>
+              <span class="value" id="english-lesson-cost">-</span>
+            </div>
+            <div class="price-row" id="english-period-row">
+              <span class="label">上記 × <span id="english-months-text">2</span>ヶ月分</span>
+              <span class="value" id="english-period-total">-</span>
+            </div>
+            <div class="price-row subtotal">
+              <span class="label">ENGLISHコース 合計</span>
+              <span class="value" id="english-course-total">-</span>
             </div>
           </div>
           
@@ -3148,6 +3202,52 @@
           });
         }
       });
+      
+      // ひとり親家庭証明書類アップロード
+      const singleParentDoc = document.getElementById('single-parent-document');
+      if (singleParentDoc) {
+        singleParentDoc.addEventListener('change', function() {
+          const file = this.files[0];
+          const preview = document.getElementById('single-parent-file-preview');
+          const fileName = document.getElementById('single-parent-file-name');
+          const dropArea = document.getElementById('upload-drop-area');
+          
+          if (file) {
+            // ファイルサイズチェック（10MB）
+            if (file.size > 10 * 1024 * 1024) {
+              alert('ファイルサイズは10MB以下にしてください。');
+              this.value = '';
+              preview.style.display = 'none';
+              dropArea.style.display = 'block';
+              return;
+            }
+            
+            formData['single-parent-document'] = file.name;
+            fileName.textContent = file.name;
+            preview.style.display = 'flex';
+            dropArea.style.display = 'none';
+            autoSave();
+            lucide.createIcons();
+          } else {
+            delete formData['single-parent-document'];
+            preview.style.display = 'none';
+            dropArea.style.display = 'block';
+          }
+        });
+      }
+    }
+    
+    // アップロードファイル削除
+    function clearUploadedFile() {
+      const input = document.getElementById('single-parent-document');
+      const preview = document.getElementById('single-parent-file-preview');
+      const dropArea = document.getElementById('upload-drop-area');
+      
+      if (input) input.value = '';
+      delete formData['single-parent-document'];
+      if (preview) preview.style.display = 'none';
+      if (dropArea) dropArea.style.display = 'block';
+      autoSave();
     }
     
     // ============================================
@@ -3205,12 +3305,23 @@
           if (name === 'referral-discount') {
             toggleReferrerInput();
           }
+          if (name === 'family-discount') {
+            toggleSingleParentUpload();
+          }
           if (name === 'english-course') {
             toggleEnglishSection();
             calculatePrice();
           }
         });
       });
+    }
+    
+    // ひとり親家庭アップロード欄表示切替
+    function toggleSingleParentUpload() {
+      const container = document.getElementById('single-parent-upload-container');
+      if (container) {
+        container.style.display = formData['family-discount'] === '母子・父子家庭' ? 'block' : 'none';
+      }
     }
     
     // 総合型選抜コースセクション表示切替
@@ -3603,108 +3714,95 @@
       
       document.getElementById('initial-subtotal').textContent = `¥${initialTotal.toLocaleString()}`;
       
-      // 月額費用
-      let monthlyTotal = BASIC_FEE + SYSTEM_FEE;
-      let mainLessonCost = 0;
-      let englishLessonCost = 0;
-      let paymentMonths = 0;
-      let bulkDiscount = 0;
+      // 各コースの合計
+      let mainCourseTotal = 0;
+      let englishCourseTotal = 0;
       
-      const monthlyCategoryEl = document.getElementById('monthly-fee-category');
-      const periodCategoryEl = document.getElementById('period-fee-category');
-      const mainLessonRow = document.getElementById('main-lesson-row');
-      const englishLessonRow = document.getElementById('english-lesson-row');
+      const mainCourseCategoryEl = document.getElementById('main-course-category');
+      const englishCourseCategoryEl = document.getElementById('english-course-category');
       
-      // 総合型選抜コース
+      // ===== 総合型選抜パック =====
       const mainCoursePurchase = formData['main-course-purchase'];
       if (mainCoursePurchase === '購入する' && selectedCoursePrice > 0) {
         const monthlyLessons = parseInt(document.getElementById('monthly-lessons')?.value) || 0;
-        paymentMonths = parseInt(document.getElementById('payment-months')?.value) || 0;
+        const paymentMonths = parseInt(document.getElementById('payment-months')?.value) || 0;
         
-        if (monthlyLessons > 0) {
-          mainLessonCost = selectedCoursePrice * monthlyLessons;
-          monthlyTotal += mainLessonCost;
+        if (monthlyLessons > 0 && paymentMonths > 0) {
+          // 授業料
+          const mainLessonCost = selectedCoursePrice * monthlyLessons;
           
-          if (mainLessonRow) {
-            mainLessonRow.style.display = 'flex';
-            document.getElementById('main-lesson-detail').textContent = `¥${selectedCoursePrice.toLocaleString()} × ${monthlyLessons}コマ`;
-            document.getElementById('main-lesson-cost').textContent = `¥${mainLessonCost.toLocaleString()}`;
-          }
+          // 月額小計（在籍基本料 + システムサーバー費 + 授業料）
+          const mainMonthlySubtotal = BASIC_FEE + SYSTEM_FEE + mainLessonCost;
+          
+          // 期間合計
+          const mainPeriodSubtotal = mainMonthlySubtotal * paymentMonths;
           
           // まとめ払い割引
+          let bulkDiscount = 0;
           if (BULK_DISCOUNTS[paymentMonths]) {
             bulkDiscount = BULK_DISCOUNTS[paymentMonths];
           }
+          
+          // パック合計
+          mainCourseTotal = mainPeriodSubtotal - bulkDiscount;
+          
+          // 表示更新
+          if (mainCourseCategoryEl) {
+            mainCourseCategoryEl.style.display = 'block';
+            document.getElementById('main-lesson-detail').textContent = `¥${selectedCoursePrice.toLocaleString()} × ${monthlyLessons}コマ`;
+            document.getElementById('main-lesson-cost').textContent = `¥${mainLessonCost.toLocaleString()}`;
+            document.getElementById('main-monthly-subtotal').textContent = `¥${mainMonthlySubtotal.toLocaleString()}`;
+            document.getElementById('main-months-text').textContent = paymentMonths;
+            document.getElementById('main-period-subtotal').textContent = `¥${mainPeriodSubtotal.toLocaleString()}`;
+            document.getElementById('main-course-total').textContent = `¥${mainCourseTotal.toLocaleString()}`;
+            
+            // まとめ払い割引表示
+            const bulkDiscountRow = document.getElementById('bulk-discount-row');
+            if (bulkDiscount > 0) {
+              bulkDiscountRow.style.display = 'flex';
+              document.getElementById('bulk-discount-amount').textContent = `-¥${bulkDiscount.toLocaleString()}`;
+            } else {
+              bulkDiscountRow.style.display = 'none';
+            }
+          }
         } else {
-          if (mainLessonRow) mainLessonRow.style.display = 'none';
+          if (mainCourseCategoryEl) mainCourseCategoryEl.style.display = 'none';
         }
       } else {
-        if (mainLessonRow) mainLessonRow.style.display = 'none';
+        if (mainCourseCategoryEl) mainCourseCategoryEl.style.display = 'none';
       }
       
-      // ENGLISHコース
+      // ===== ENGLISHコース =====
       const englishSelected = formData['english-course'];
       if (englishSelected === '購入する') {
         const englishMonthly = parseInt(document.getElementById('english-monthly-lessons')?.value) || 0;
         const englishMonths = parseInt(document.getElementById('english-payment-months')?.value) || 0;
         
-        if (englishMonthly > 0) {
-          englishLessonCost = ENGLISH_PRICE * englishMonthly;
-          monthlyTotal += englishLessonCost;
+        if (englishMonthly > 0 && englishMonths > 0) {
+          // 月額授業料
+          const englishMonthlyCost = ENGLISH_PRICE * englishMonthly;
+          // 合計（月額 × 購入月数）
+          englishCourseTotal = englishMonthlyCost * englishMonths;
           
-          if (englishLessonRow) {
-            englishLessonRow.style.display = 'flex';
+          // 表示更新
+          if (englishCourseCategoryEl) {
+            englishCourseCategoryEl.style.display = 'block';
             document.getElementById('english-lesson-detail').textContent = `¥${ENGLISH_PRICE.toLocaleString()} × ${englishMonthly}コマ`;
-            document.getElementById('english-lesson-cost').textContent = `¥${englishLessonCost.toLocaleString()}`;
-          }
-          
-          // ENGLISHの月数を使用（総合型がない場合）
-          if (paymentMonths === 0) {
-            paymentMonths = englishMonths;
+            document.getElementById('english-lesson-cost').textContent = `¥${englishMonthlyCost.toLocaleString()}`;
+            document.getElementById('english-months-text').textContent = englishMonths;
+            document.getElementById('english-period-total').textContent = `¥${englishCourseTotal.toLocaleString()}`;
+            document.getElementById('english-course-total').textContent = `¥${englishCourseTotal.toLocaleString()}`;
           }
         } else {
-          if (englishLessonRow) englishLessonRow.style.display = 'none';
+          if (englishCourseCategoryEl) englishCourseCategoryEl.style.display = 'none';
         }
       } else {
-        if (englishLessonRow) englishLessonRow.style.display = 'none';
+        if (englishCourseCategoryEl) englishCourseCategoryEl.style.display = 'none';
       }
       
-      // 月額・期間カテゴリの表示
-      if (mainLessonCost > 0 || englishLessonCost > 0) {
-        if (monthlyCategoryEl) {
-          monthlyCategoryEl.style.display = 'block';
-          document.getElementById('monthly-subtotal').textContent = `¥${monthlyTotal.toLocaleString()}`;
-        }
-        
-        if (paymentMonths > 0 && periodCategoryEl) {
-          periodCategoryEl.style.display = 'block';
-          document.getElementById('period-months-label').textContent = paymentMonths;
-          document.getElementById('period-months-text').textContent = paymentMonths;
-          
-          const periodTotal = monthlyTotal * paymentMonths;
-          document.getElementById('period-subtotal').textContent = `¥${periodTotal.toLocaleString()}`;
-          
-          // まとめ払い割引
-          const bulkDiscountRow = document.getElementById('bulk-discount-row');
-          if (bulkDiscount > 0) {
-            bulkDiscountRow.style.display = 'flex';
-            document.getElementById('bulk-discount-amount').textContent = `-¥${bulkDiscount.toLocaleString()}`;
-          } else {
-            bulkDiscountRow.style.display = 'none';
-          }
-          
-          // 合計計算
-          const grandTotal = initialTotal + periodTotal - bulkDiscount;
-          document.getElementById('grand-total').textContent = `¥${grandTotal.toLocaleString()}`;
-        } else {
-          if (periodCategoryEl) periodCategoryEl.style.display = 'none';
-          document.getElementById('grand-total').textContent = `¥${initialTotal.toLocaleString()}`;
-        }
-      } else {
-        if (monthlyCategoryEl) monthlyCategoryEl.style.display = 'none';
-        if (periodCategoryEl) periodCategoryEl.style.display = 'none';
-        document.getElementById('grand-total').textContent = `¥${initialTotal.toLocaleString()}`;
-      }
+      // ===== 初回お支払い総額 =====
+      const grandTotal = initialTotal + mainCourseTotal + englishCourseTotal;
+      document.getElementById('grand-total').textContent = `¥${grandTotal.toLocaleString()}`;
       
       lucide.createIcons();
     }
@@ -4329,6 +4427,16 @@
         }
       }
       
+      // ひとり親家庭の場合、証明書類必須
+      if (formData['family-discount'] === '母子・父子家庭') {
+        const singleParentDoc = document.getElementById('single-parent-document');
+        if (!singleParentDoc?.files?.length) {
+          markError('single-parent-document');
+          showToast('ひとり親家庭の証明書類をアップロードしてください', 'error');
+          isValid = false;
+        }
+      }
+      
       // ENGLISHコースを購入する場合
       if (formData['english-course'] === '購入する') {
         const englishMonthly = document.getElementById('english-monthly-lessons')?.value;
@@ -4546,6 +4654,24 @@
           const referrerContainer = document.getElementById('referrer-name-container');
           if (referrerContainer) {
             referrerContainer.style.display = 'block';
+          }
+        }
+        
+        // ひとり親家庭アップロード欄の表示復元
+        if (formData['family-discount'] === '母子・父子家庭') {
+          toggleSingleParentUpload();
+          // ファイル名の復元（ファイル自体は復元できないので表示のみ）
+          if (formData['single-parent-document']) {
+            const preview = document.getElementById('single-parent-file-preview');
+            const fileName = document.getElementById('single-parent-file-name');
+            const dropArea = document.getElementById('upload-drop-area');
+            if (preview && fileName) {
+              fileName.textContent = formData['single-parent-document'] + '（再アップロードが必要です）';
+              preview.style.display = 'flex';
+              preview.style.background = '#fef3c7';
+              preview.style.color = '#92400e';
+            }
+            // 再アップロードが必要なのでdropAreaは表示したまま
           }
         }
         
