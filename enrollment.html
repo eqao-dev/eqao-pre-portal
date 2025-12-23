@@ -2789,7 +2789,7 @@
     // ============================================
     // 設定・定数
     // ============================================
-    const STORAGE_KEY = 'eqao_enrollment_data_v6'; // v6: 自動保存・復元ロジック修正版
+    const STORAGE_KEY = 'eqao_enrollment_data_v7'; // v7: セクション10復帰時のDOM復元修正
     const TOTAL_SECTIONS = 10;
     
     // セクション定義
@@ -2840,6 +2840,11 @@
           const data = JSON.parse(saved);
           formData = data.formData || {};
           sectionCompleted = data.sectionCompleted || new Array(TOTAL_SECTIONS).fill(false);
+          
+          console.log('セクション10から復帰: formData件数=', Object.keys(formData).length);
+          
+          // 全DOMにformDataを反映（ページ読み込み直後なので全セクション対象）
+          restoreAllDataToDOM();
         }
         
         // セクション10を完了状態に
@@ -2854,6 +2859,134 @@
         return true; // セクション10から戻ったことを示す
       }
       return false;
+    }
+    
+    // 全セクションのDOMにformDataを反映する関数
+    function restoreAllDataToDOM() {
+      console.log('全DOM復元開始');
+      
+      // 1. テキスト入力・セレクトの復元
+      Object.keys(formData).forEach(key => {
+        const element = document.getElementById(key);
+        if (element && (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA' || element.tagName === 'SELECT')) {
+          if (formData[key]) {
+            element.value = formData[key];
+          }
+        }
+      });
+      
+      // 2. ラジオボタン・チェックボックスの復元
+      document.querySelectorAll('.option-group').forEach(container => {
+        const items = container.querySelectorAll('.option-item[data-name]');
+        if (items.length === 0) return;
+        
+        const name = items[0].dataset.name;
+        if (!name || formData[name] === undefined) return;
+        
+        const savedValue = formData[name];
+        
+        items.forEach(item => {
+          if (Array.isArray(savedValue)) {
+            // チェックボックス
+            if (savedValue.includes(item.dataset.value)) {
+              item.classList.add('selected');
+            } else {
+              item.classList.remove('selected');
+            }
+          } else {
+            // ラジオボタン
+            if (item.dataset.value === savedValue) {
+              item.classList.add('selected');
+            } else {
+              item.classList.remove('selected');
+            }
+          }
+        });
+      });
+      
+      // 3. コースカードの復元
+      if (formData['selected-course']) {
+        selectedCourseName = formData['selected-course'];
+        selectedCoursePrice = formData['selected-course-price'] || 0;
+        const courseCards = document.getElementById('course-cards');
+        if (courseCards) {
+          courseCards.querySelectorAll('.course-card').forEach(card => {
+            if (card.dataset.name === selectedCourseName) {
+              card.classList.add('selected');
+            }
+          });
+        }
+      }
+      
+      // 4. 曜日別スタイルの復元
+      if (formData['weekday-styles']) {
+        const weekdays = ['月曜日', '火曜日', '水曜日', '木曜日', '金曜日', '土曜日', '日曜日'];
+        const container = document.getElementById('weekday-style-container');
+        if (container) {
+          weekdays.forEach((day, i) => {
+            const value = formData['weekday-styles'][day];
+            if (value) {
+              const radio = container.querySelector(`input[name="weekday-${i}"][value="${value}"]`);
+              if (radio) radio.checked = true;
+            }
+          });
+        }
+      }
+      
+      // 5. スケジュール日程の復元
+      if (formData['schedule-dates'] && Array.isArray(formData['schedule-dates']) && formData['schedule-dates'].length > 0) {
+        const scheduleContainer = document.getElementById('schedule-dates-container');
+        if (scheduleContainer) {
+          scheduleContainer.innerHTML = '';
+          scheduleDateCount = 0;
+          formData['schedule-dates'].forEach(schedule => {
+            addScheduleDate();
+            const lastRow = scheduleContainer.lastElementChild;
+            if (lastRow) {
+              const dateInput = lastRow.querySelector('input[type="date"]');
+              const timeSelect = lastRow.querySelector('select');
+              if (dateInput && schedule.date) dateInput.value = schedule.date;
+              if (timeSelect && schedule.time) timeSelect.value = schedule.time;
+            }
+          });
+        }
+      }
+      
+      // 6. 割引確認状態の復元
+      if (formData['discount-confirmed']) {
+        discountConfirmed = true;
+        const btn = document.getElementById('discount-confirm-btn');
+        if (btn) {
+          btn.classList.remove('not-confirmed');
+          btn.classList.add('confirmed');
+          document.getElementById('discount-btn-text').textContent = '確認済み';
+        }
+        const status = document.getElementById('discount-status');
+        if (status) {
+          status.classList.remove('pending');
+          status.classList.add('completed');
+          status.innerHTML = '<i data-lucide="check-circle" style="width:14px;height:14px;"></i><span>確認が完了しました。</span>';
+        }
+        const discountSection = document.getElementById('discount-section');
+        if (discountSection) discountSection.style.display = 'block';
+      }
+      
+      // 7. 条件付きセクションの表示更新
+      toggleFirstChoiceInputs();
+      toggleTestPrepDetails();
+      toggleTestPrepOther();
+      toggleGeneralExamDetails();
+      toggleGeneralExamOther();
+      toggleMainCourseSection();
+      toggleEnglishSection();
+      toggleSingleParentUpload();
+      toggleReferrerInput();
+      
+      // 8. 料金計算
+      calculatePrice();
+      
+      console.log('全DOM復元完了');
+      lucide.createIcons();
     }
     
     // ============================================
@@ -4996,6 +5129,8 @@
         localStorage.removeItem('eqao_enrollment_data_v3'); // v3
         localStorage.removeItem('eqao_enrollment_data_v4'); // v4
         localStorage.removeItem('eqao_enrollment_data_v5'); // v5
+        localStorage.removeItem('eqao_enrollment_data_v6'); // v6
+        localStorage.removeItem('eqao_enrollment_data_v7'); // v7
         
         formData = {};
         sectionCompleted = new Array(TOTAL_SECTIONS).fill(false);
