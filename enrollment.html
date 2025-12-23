@@ -1811,7 +1811,8 @@
         <div class="form-group">
           <label class="form-label">現時点で確定している最新の評定平均<span class="required">*</span></label>
           <p class="form-hint">小数第1位まで半角数字で入力してください（例：4.2、3.8）</p>
-          <input type="text" class="form-input" id="current-gpa" placeholder="例：4.2" data-section="4">
+          <input type="text" class="form-input" id="current-gpa" placeholder="例：4.2" inputmode="decimal" data-section="4">
+          <p class="form-hint" id="current-gpa-hint" style="display:none; color:#dc2626;">0.0〜5.0の範囲で小数第1位まで入力してください</p>
         </div>
         
         <!-- 第一志望校 -->
@@ -1897,7 +1898,8 @@
         <div class="form-group">
           <label class="form-label">目標とする評定平均<span class="required">*</span></label>
           <p class="form-hint">小数第1位まで半角数字で入力してください（例：4.5、4.0）</p>
-          <input type="text" class="form-input" id="target-gpa" placeholder="例：4.5" data-section="5">
+          <input type="text" class="form-input" id="target-gpa" placeholder="例：4.5" inputmode="decimal" data-section="5">
+          <p class="form-hint" id="target-gpa-hint" style="display:none; color:#dc2626;">0.0〜5.0の範囲で小数第1位まで入力してください</p>
         </div>
         
         <!-- 評定を上げたい気持ち -->
@@ -3101,6 +3103,51 @@
           });
         }
       });
+      
+      // 評定平均：半角数字と小数点のみ、0.0〜5.0、小数第1位まで
+      const gpaInputs = [
+        { id: 'current-gpa', hintId: 'current-gpa-hint' },
+        { id: 'target-gpa', hintId: 'target-gpa-hint' }
+      ];
+      gpaInputs.forEach(({ id, hintId }) => {
+        const input = document.getElementById(id);
+        const hint = document.getElementById(hintId);
+        if (input) {
+          input.addEventListener('input', function() {
+            // 半角数字と小数点以外を削除
+            this.value = this.value.replace(/[^0-9.]/g, '');
+            // 小数点が2つ以上ある場合は最初の1つだけ残す
+            const parts = this.value.split('.');
+            if (parts.length > 2) {
+              this.value = parts[0] + '.' + parts.slice(1).join('');
+            }
+            // 小数第2位以降を削除
+            if (parts.length === 2 && parts[1].length > 1) {
+              this.value = parts[0] + '.' + parts[1].charAt(0);
+            }
+          });
+          
+          input.addEventListener('blur', function() {
+            const value = this.value.trim();
+            if (value && hint) {
+              const num = parseFloat(value);
+              const isValidFormat = /^\d(\.\d)?$/.test(value);
+              const isValidRange = !isNaN(num) && num >= 0 && num <= 5;
+              
+              if (!isValidFormat || !isValidRange) {
+                hint.style.display = 'block';
+                this.classList.add('error');
+              } else {
+                hint.style.display = 'none';
+                this.classList.remove('error');
+              }
+            } else if (hint) {
+              hint.style.display = 'none';
+              this.classList.remove('error');
+            }
+          });
+        }
+      });
     }
     
     // ============================================
@@ -4092,6 +4139,16 @@
       if (!currentGpa) {
         markError('current-gpa');
         isValid = false;
+      } else {
+        // 評定平均の形式チェック
+        const num = parseFloat(currentGpa);
+        const isValidFormat = /^\d(\.\d)?$/.test(currentGpa);
+        const isValidRange = !isNaN(num) && num >= 0 && num <= 5;
+        if (!isValidFormat || !isValidRange) {
+          markError('current-gpa');
+          document.getElementById('current-gpa-hint').style.display = 'block';
+          isValid = false;
+        }
       }
       
       if (!formData['first-choice-undecided']) {
@@ -4133,6 +4190,16 @@
       if (!targetGpa) {
         markError('target-gpa');
         isValid = false;
+      } else {
+        // 評定平均の形式チェック
+        const num = parseFloat(targetGpa);
+        const isValidFormat = /^\d(\.\d)?$/.test(targetGpa);
+        const isValidRange = !isNaN(num) && num >= 0 && num <= 5;
+        if (!isValidFormat || !isValidRange) {
+          markError('target-gpa');
+          document.getElementById('target-gpa-hint').style.display = 'block';
+          isValid = false;
+        }
       }
       
       if (!formData['gpa-motivation']) {
