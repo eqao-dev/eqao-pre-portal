@@ -3991,6 +3991,29 @@
         }
       });
       
+      // フリガナ：カタカナチェック
+      const furigana = document.getElementById('student-furigana')?.value;
+      if (furigana && !/^[ァ-ヶー\s　]*$/.test(furigana)) {
+        markError('student-furigana');
+        document.getElementById('furigana-hint').style.display = 'block';
+        isValid = false;
+      }
+      
+      // 電話番号：数字のみ＆桁数チェック
+      const phone = document.getElementById('student-phone')?.value;
+      if (phone && (!/^[0-9]+$/.test(phone) || phone.length < 10)) {
+        markError('student-phone');
+        isValid = false;
+      }
+      
+      // メールアドレス：@を含みスペースなし
+      const email = document.getElementById('student-email')?.value.trim();
+      if (email && (!email.includes('@') || /\s/.test(email))) {
+        markError('student-email');
+        document.getElementById('student-email-hint').style.display = 'block';
+        isValid = false;
+      }
+      
       const optionGroups = [
         { id: 'grade-group', key: 'grade' },
         { id: 'school-type-group', key: 'school-type' },
@@ -4024,6 +4047,21 @@
           isValid = false;
         }
       });
+      
+      // 電話番号：数字のみ＆桁数チェック
+      const phone = document.getElementById('parent-phone')?.value;
+      if (phone && (!/^[0-9]+$/.test(phone) || phone.length < 10)) {
+        markError('parent-phone');
+        isValid = false;
+      }
+      
+      // メールアドレス：@を含みスペースなし
+      const email = document.getElementById('parent-email')?.value.trim();
+      if (email && (!email.includes('@') || /\s/.test(email))) {
+        markError('parent-email');
+        document.getElementById('parent-email-hint').style.display = 'block';
+        isValid = false;
+      }
       
       return isValid;
     }
