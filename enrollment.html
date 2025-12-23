@@ -4849,74 +4849,37 @@
     // GAS WebアプリのURL
     const GAS_URL = 'https://script.google.com/macros/s/AKfycbyFJMfjgZzOw9v16PEoQQrRqqYe__oSn6zHdajEXdeXaUf6ACxwBhcMaGf449Qju-t-/exec';
     
-    // 送信前にすべてのフォームデータを収集
+    // 送信前にフォームデータを準備（キー名変換）
     function collectAllFormData() {
       // フォームID → GASキー名のマッピング
       const keyMapping = {
         'school-name': 'high-school',
         'first-choice-univ': 'first-choice-school',
+        'first-choice-faculty': 'first-choice-faculty',
+        'first-choice-dept': 'first-choice-dept',
         'reason-first-choice': 'motivation',
-        'other-choices': 'other-requests',
+        'other-choices': 'other-universities',
         'test-prep-other': 'test-prep-detail',
         'general-exam-other': 'general-exam-detail',
         'instructor-detail': 'instructor-request',
-        'schedule-notes': 'schedule-request'
+        'schedule-notes': 'schedule-request',
+        'consent-main': 'consent-items'
       };
       
-      console.log('=== データ収集開始 ===');
-      console.log('収集前のformData:', Object.keys(formData).length, '件');
+      console.log('=== 送信データ準備開始 ===');
+      console.log('formData件数:', Object.keys(formData).length);
       
-      // 1. 全てのinput[type="text"], input[type="tel"], input[type="email"], input[type="number"]を収集
-      document.querySelectorAll('input[type="text"], input[type="tel"], input[type="email"], input[type="number"]').forEach(input => {
-        if (input.id && input.value && input.value.trim() !== '') {
-          const key = keyMapping[input.id] || input.id;
-          formData[key] = input.value.trim();
-          console.log(`input収集: ${input.id} → ${key} = "${input.value}"`);
-        }
+      // formDataをキー変換してコピー
+      const dataToSend = {};
+      Object.keys(formData).forEach(key => {
+        const newKey = keyMapping[key] || key;
+        dataToSend[newKey] = formData[key];
       });
       
-      // 2. 全てのtextareaを収集
-      document.querySelectorAll('textarea').forEach(textarea => {
-        if (textarea.id && textarea.value && textarea.value.trim() !== '') {
-          const key = keyMapping[textarea.id] || textarea.id;
-          formData[key] = textarea.value.trim();
-          console.log(`textarea収集: ${textarea.id} → ${key} = "${textarea.value.substring(0, 30)}..."`);
-        }
-      });
+      console.log('送信データ件数:', Object.keys(dataToSend).length);
+      console.log('送信データ:', dataToSend);
       
-      // 3. 全てのselectを収集
-      document.querySelectorAll('select').forEach(select => {
-        if (select.id && select.value && select.value !== '') {
-          const key = keyMapping[select.id] || select.id;
-          formData[key] = select.value;
-          console.log(`select収集: ${select.id} → ${key} = "${select.value}"`);
-        }
-      });
-      
-      // 4. 生年月日を明示的に収集
-      const birthYear = document.getElementById('birth-year');
-      const birthMonth = document.getElementById('birth-month');
-      const birthDay = document.getElementById('birth-day');
-      if (birthYear && birthYear.value) formData['birth-year'] = birthYear.value;
-      if (birthMonth && birthMonth.value) formData['birth-month'] = birthMonth.value;
-      if (birthDay && birthDay.value) formData['birth-day'] = birthDay.value;
-      
-      // 5. 月コマ数・支払月数を明示的に収集
-      const monthlyLessons = document.getElementById('monthly-lessons');
-      const paymentMonths = document.getElementById('payment-months');
-      const englishMonthlyLessons = document.getElementById('english-monthly-lessons');
-      const englishPaymentMonths = document.getElementById('english-payment-months');
-      
-      if (monthlyLessons && monthlyLessons.value) formData['monthly-lessons'] = monthlyLessons.value;
-      if (paymentMonths && paymentMonths.value) formData['payment-months'] = paymentMonths.value;
-      if (englishMonthlyLessons && englishMonthlyLessons.value) formData['english-monthly-lessons'] = englishMonthlyLessons.value;
-      if (englishPaymentMonths && englishPaymentMonths.value) formData['english-payment-months'] = englishPaymentMonths.value;
-      
-      console.log('=== データ収集完了 ===');
-      console.log('収集後のformData:', Object.keys(formData).length, '件');
-      console.log('formData全体:', formData);
-      
-      return formData;
+      return dataToSend;
     }
     
     async function submitForm() {
