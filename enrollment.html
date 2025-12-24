@@ -2810,9 +2810,6 @@
     const STORAGE_KEY = 'eqao_enrollment_data_v7'; // v7: セクション10復帰時のDOM復元修正
     const TOTAL_SECTIONS = 10;
     
-    // 受付開始日時: 2025年12月25日 12:00 JST
-    const ENROLLMENT_START = new Date('2025-12-25T12:00:00+09:00');
-    
     // セクション定義
     const SECTIONS = [
       { id: 1, name: '生徒情報', icon: 'user', desc: '氏名、学校、連絡先など' },
@@ -4286,17 +4283,7 @@
       const submitBtn = document.getElementById('submit-btn');
       const submitHint = document.getElementById('submit-hint');
       
-      // 受付開始前チェック
-      const now = new Date();
-      const isBeforeStart = now < ENROLLMENT_START;
-      
-      if (isBeforeStart) {
-        // 受付開始前
-        submitBtn.disabled = true;
-        submitHint.innerHTML = '<i data-lucide="clock" style="width:14px;height:14px;display:inline-block;vertical-align:middle;margin-right:4px;"></i> 受付開始前です（12/25 12:00〜）';
-        submitHint.style.color = '#f59e0b';
-        lucide.createIcons();
-      } else if (completed === TOTAL_SECTIONS) {
+      if (completed === TOTAL_SECTIONS) {
         // 全セクション完了
         submitBtn.disabled = false;
         submitHint.textContent = '準備完了！送信できます';
