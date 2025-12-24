@@ -2726,12 +2726,16 @@
         確認メールをお送りしました。
       </p>
       
-      <!-- 生徒番号表示 -->
-      <div class="student-id-card" id="student-id-card" style="display:none;">
+      <!-- メール送信内容の説明 -->
+      <div id="student-id-card" style="display:none;">
         <div style="background:#1e3a5f;color:white;padding:20px;border-radius:12px;text-align:center;margin:20px 0;">
-          <p style="font-size:12px;margin-bottom:8px;opacity:0.8;">あなたの生徒番号</p>
-          <p style="font-size:32px;font-weight:bold;letter-spacing:2px;" id="display-student-id">-</p>
-          <p style="font-size:11px;margin-top:12px;opacity:0.7;">※この番号は各種お手続きに必要です。<br>メールにも記載しておりますのでご確認ください。</p>
+          <p style="font-size:13px;margin-bottom:12px;opacity:0.9;"><i data-lucide="mail" style="width:16px;height:16px;display:inline-block;vertical-align:middle;margin-right:6px;"></i>メールでお送りした内容</p>
+          <div style="text-align:left;background:rgba(255,255,255,0.1);border-radius:8px;padding:14px 16px;font-size:13px;line-height:1.8;">
+            <p style="display:flex;align-items:center;gap:8px;margin-bottom:6px;"><i data-lucide="user" style="width:14px;height:14px;opacity:0.8;"></i>生徒番号</p>
+            <p style="display:flex;align-items:center;gap:8px;margin-bottom:6px;"><i data-lucide="key" style="width:14px;height:14px;opacity:0.8;"></i>初期パスワード</p>
+            <p style="display:flex;align-items:center;gap:8px;"><i data-lucide="external-link" style="width:14px;height:14px;opacity:0.8;"></i>EQAO PORTAL のリンク</p>
+          </div>
+          <p style="font-size:11px;margin-top:12px;opacity:0.7;">届いていない場合は迷惑メールフォルダをご確認ください。</p>
         </div>
       </div>
       
@@ -2751,7 +2755,7 @@
           <div class="completion-step-number">2</div>
           <div class="completion-step-text">
             <strong>請求書の確認</strong><br>
-            3営業日以内に請求書をメールでお送りします。
+            3営業日以内に請求書を、保護者様のメールアドレスへお送りします。
           </div>
         </div>
         <div class="completion-step">
@@ -5428,9 +5432,8 @@
         document.getElementById('completion-screen').classList.add('show');
         document.getElementById('header-back-btn').style.display = 'none';
         
-        // 生徒番号カードを表示（番号自体はメールで確認）
+        // メール送信内容カードを表示
         document.getElementById('student-id-card').style.display = 'block';
-        document.getElementById('display-student-id').textContent = 'メールをご確認ください';
         
         window.scrollTo(0, 0);
         lucide.createIcons();
