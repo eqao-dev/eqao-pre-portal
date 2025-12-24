@@ -2669,15 +2669,15 @@
         <div class="form-group">
           <label class="form-label">同意書記入日<span class="required">*</span></label>
           <div class="date-input-row">
-            <select class="date-select year-select" id="consent-year" data-section="11">
+            <select class="date-select year-select" id="consent-year" data-section="10">
               <option value="">年</option>
             </select>
             <span class="date-separator">年</span>
-            <select class="date-select" id="consent-month" data-section="11">
+            <select class="date-select" id="consent-month" data-section="10">
               <option value="">月</option>
             </select>
             <span class="date-separator">月</span>
-            <select class="date-select" id="consent-day" data-section="11">
+            <select class="date-select" id="consent-day" data-section="10">
               <option value="">日</option>
             </select>
             <span class="date-separator">日</span>
@@ -2792,6 +2792,9 @@
     const STORAGE_KEY = 'eqao_enrollment_data_v7'; // v7: セクション10復帰時のDOM復元修正
     const TOTAL_SECTIONS = 10;
     
+    // 受付開始日時: 2025年12月25日 12:00 JST
+    const ENROLLMENT_START = new Date('2025-12-25T12:00:00+09:00');
+    
     // セクション定義
     const SECTIONS = [
       { id: 1, name: '生徒情報', icon: 'user', desc: '氏名、学校、連絡先など' },
@@ -2842,10 +2845,38 @@
           sectionCompleted = data.sectionCompleted || new Array(TOTAL_SECTIONS).fill(false);
           
           console.log('セクション10から復帰: formData件数=', Object.keys(formData).length);
-          
-          // 全DOMにformDataを反映（ページ読み込み直後なので全セクション対象）
-          restoreAllDataToDOM();
         }
+        
+        // section10Dataを読み込んでformDataにマージ
+        const section10Saved = localStorage.getItem('section10Data');
+        if (section10Saved) {
+          const section10Data = JSON.parse(section10Saved);
+          console.log('section10Data読み込み:', section10Data);
+          
+          // 同意日を解析してformDataに追加（形式: "2025年12月25日"）
+          if (section10Data.consentDate) {
+            const match = section10Data.consentDate.match(/(\d+)年(\d+)月(\d+)日/);
+            if (match) {
+              formData['consent-year'] = match[1];
+              formData['consent-month'] = match[2];
+              formData['consent-day'] = match[3];
+            }
+          }
+          
+          // 同意状態をformDataに追加
+          if (section10Data.finalConsent) {
+            formData['consent-main'] = ['同意する'];
+          }
+          
+          // section10の生データも保存（送信時に使えるように）
+          formData['section10-data'] = section10Data;
+          
+          // section10Dataをクリア（重複読み込み防止）
+          localStorage.removeItem('section10Data');
+        }
+        
+        // 全DOMにformDataを反映（ページ読み込み直後なので全セクション対象）
+        restoreAllDataToDOM();
         
         // セクション10を完了状態に
         sectionCompleted[9] = true; // 配列は0始まり
@@ -4132,11 +4163,23 @@
       const submitBtn = document.getElementById('submit-btn');
       const submitHint = document.getElementById('submit-hint');
       
-      if (completed === TOTAL_SECTIONS) {
+      // 受付開始前チェック
+      const now = new Date();
+      const isBeforeStart = now < ENROLLMENT_START;
+      
+      if (isBeforeStart) {
+        // 受付開始前
+        submitBtn.disabled = true;
+        submitHint.innerHTML = '<i data-lucide="clock" style="width:14px;height:14px;display:inline-block;vertical-align:middle;margin-right:4px;"></i> 受付開始前です（12/25 12:00〜）';
+        submitHint.style.color = '#f59e0b';
+        lucide.createIcons();
+      } else if (completed === TOTAL_SECTIONS) {
+        // 全セクション完了
         submitBtn.disabled = false;
         submitHint.textContent = '準備完了！送信できます';
         submitHint.style.color = '#16a34a';
       } else {
+        // セクション未完了
         submitBtn.disabled = true;
         submitHint.textContent = `あと ${TOTAL_SECTIONS - completed} セクション入力してください`;
         submitHint.style.color = '#9ca3af';
@@ -4336,6 +4379,9 @@
     }
     
     function goBackToTop() {
+      // 現在のセクションのデータを保存
+      autoSave();
+      
       // セクションを非表示
       document.querySelectorAll('.section-screen').forEach(s => s.classList.remove('active'));
       
@@ -4937,6 +4983,35 @@
           }
         }
         
+        // section10Dataがあればマージ（ブラウザクラッシュ等で残っている場合）
+        const section10Saved = localStorage.getItem('section10Data');
+        if (section10Saved) {
+          const section10Data = JSON.parse(section10Saved);
+          console.log('section10Data復元:', section10Data);
+          
+          // 同意日を解析してformDataに追加
+          if (section10Data.consentDate) {
+            const match = section10Data.consentDate.match(/(\d+)年(\d+)月(\d+)日/);
+            if (match) {
+              formData['consent-year'] = match[1];
+              formData['consent-month'] = match[2];
+              formData['consent-day'] = match[3];
+            }
+          }
+          
+          // 同意状態をformDataに追加
+          if (section10Data.finalConsent) {
+            formData['consent-main'] = ['同意する'];
+            sectionCompleted[9] = true; // セクション10を完了状態に
+          }
+          
+          // section10の生データも保存
+          formData['section10-data'] = section10Data;
+          
+          // section10Dataをクリア
+          localStorage.removeItem('section10Data');
+        }
+        
         // 1. テキスト入力・セレクトの復元
         Object.keys(formData).forEach(key => {
           const element = document.getElementById(key);
@@ -5115,6 +5190,7 @@
     
     function startFresh() {
       localStorage.removeItem(STORAGE_KEY);
+      localStorage.removeItem('section10Data'); // セクション10のデータも削除
       formData = {};
       sectionCompleted = new Array(TOTAL_SECTIONS).fill(false);
       document.getElementById('restore-modal').classList.remove('show');
@@ -5131,6 +5207,7 @@
         localStorage.removeItem('eqao_enrollment_data_v5'); // v5
         localStorage.removeItem('eqao_enrollment_data_v6'); // v6
         localStorage.removeItem('eqao_enrollment_data_v7'); // v7
+        localStorage.removeItem('section10Data'); // セクション10のデータも削除
         
         formData = {};
         sectionCompleted = new Array(TOTAL_SECTIONS).fill(false);

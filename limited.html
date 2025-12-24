@@ -383,19 +383,23 @@
     <!-- フォームカード -->
     <div class="form-cards-grid">
       <!-- 入塾仮予約 -->
-      <div class="form-card">
+      <div class="form-card" id="reserve-card">
         <div class="form-icon reserve">
           <i data-lucide="calendar-clock" style="width:28px;height:28px;"></i>
         </div>
         <h2 class="form-title">入塾仮予約</h2>
-        <p class="form-description">
+        <p class="form-description" id="reserve-description">
           正式な受付開始前に、入塾の仮予約ができます。<br>
           定員に達し次第、募集を締め切らせていただきます。
         </p>
-        <button class="form-button reserve" onclick="openUrl('https://forms.gle/UTTEjNEWir2uRxrS6')">
+        <button class="form-button reserve" id="reserve-button" onclick="openUrl('https://forms.gle/UTTEjNEWir2uRxrS6')">
           <i data-lucide="edit" style="width:18px;height:18px;"></i>
           仮予約フォームへ
         </button>
+        <div class="unavailable-message" id="reserve-closed-message" style="display:none;">
+          <i data-lucide="check-circle" style="width:16px;height:16px;"></i>
+          <span>仮予約の受付は終了しました。<br>本入塾申込からお手続きください。</span>
+        </div>
       </div>
       
       <!-- 本入塾申込 -->
@@ -408,13 +412,13 @@
           保護者同意のうえ、正式な入塾手続きを行います。<br>
           必要事項をご入力ください。
         </p>
-        <button class="form-button enroll" id="enroll-button" onclick="openUrl('https://forms.gle/FZy3KqW5TJDGNrucA')">
+        <button class="form-button enroll" id="enroll-button" onclick="location.href='/enrollment.html'">
           <i data-lucide="check-circle" style="width:18px;height:18px;"></i>
-          本入塾申込フォームへ
+          入塾同意書へ進む
         </button>
         <div class="unavailable-message" id="unavailable-message" style="display:none;">
           <i data-lucide="alert-triangle" style="width:16px;height:16px;"></i>
-          <span>現在、本入塾申込の受付期間外です。<br>12月25日以降に受付を開始いたします。</span>
+          <span>現在、本入塾申込の受付期間外です。<br>12月25日 12:00より受付を開始いたします。</span>
         </div>
       </div>
     </div>
@@ -427,33 +431,57 @@
   </main>
   
   <script>
+    // 受付開始日時: 2024年12月25日 12:00 JST
+    const ENROLLMENT_START = new Date('2025-12-25T12:00:00+09:00');
+    
     // 初期化
     document.addEventListener('DOMContentLoaded', function() {
       lucide.createIcons();
-      checkEnrollAvailability();
+      checkAvailability();
     });
     
-    // 本入塾フォームの利用可否チェック
-    function checkEnrollAvailability() {
+    // 利用可否チェック
+    function checkAvailability() {
       const now = new Date();
-      const year = now.getFullYear();
-      const month = now.getMonth() + 1; // 0-indexed
-      const day = now.getDate();
+      const isAfterStart = now >= ENROLLMENT_START;
       
-      // 12/1〜12/24は利用不可
-      const isUnavailable = (month === 12 && day >= 1 && day <= 24);
+      // 仮予約カード
+      const reserveCard = document.getElementById('reserve-card');
+      const reserveButton = document.getElementById('reserve-button');
+      const reserveClosedMessage = document.getElementById('reserve-closed-message');
       
-      if (isUnavailable) {
-        const card = document.getElementById('enroll-card');
-        const button = document.getElementById('enroll-button');
-        const message = document.getElementById('unavailable-message');
+      // 本入塾カード
+      const enrollCard = document.getElementById('enroll-card');
+      const enrollButton = document.getElementById('enroll-button');
+      const unavailableMessage = document.getElementById('unavailable-message');
+      
+      if (isAfterStart) {
+        // 12/25 12:00以降: 仮予約終了、本入塾開始
+        reserveCard.classList.add('disabled');
+        reserveButton.classList.add('disabled');
+        reserveButton.classList.remove('reserve');
+        reserveButton.onclick = null;
+        reserveButton.innerHTML = '<i data-lucide="x-circle" style="width:18px;height:18px;"></i> 受付終了';
+        reserveClosedMessage.style.display = 'flex';
         
-        card.classList.add('disabled');
-        button.classList.add('disabled');
-        button.classList.remove('enroll');
-        button.onclick = null;
-        message.style.display = 'flex';
+        // 本入塾は有効
+        enrollCard.classList.remove('disabled');
+        enrollButton.classList.remove('disabled');
+        unavailableMessage.style.display = 'none';
+      } else {
+        // 12/25 12:00より前: 仮予約有効、本入塾無効
+        reserveCard.classList.remove('disabled');
+        reserveClosedMessage.style.display = 'none';
+        
+        enrollCard.classList.add('disabled');
+        enrollButton.classList.add('disabled');
+        enrollButton.classList.remove('enroll');
+        enrollButton.onclick = null;
+        unavailableMessage.style.display = 'flex';
       }
+      
+      // アイコン再描画
+      lucide.createIcons();
     }
     
     // URL を開く
