@@ -2176,8 +2176,15 @@
         
         <!-- 希望日程入力 -->
         <div class="form-group">
-          <label class="form-label">授業希望日と開始希望時間<span class="required">*</span></label>
-          <p class="form-hint">希望する日付と授業の開始希望時間を選択してください（複数選択可）</p>
+          <label class="form-label">授業希望日と希望時間<span class="required">*</span></label>
+          <p class="form-hint">希望する日付と授業可能な時間帯を選択してください（複数選択可）</p>
+          <div class="notice-box" style="margin-bottom:12px;background:#eff6ff;border-color:#bfdbfe;">
+            <div class="notice-box-title" style="color:#1e40af;"><i data-lucide="info" style="width:14px;height:14px;"></i>できるだけ多くの候補日をご提出ください</div>
+            <div class="notice-box-text" style="color:#1e3a8a;">
+              講師とのマッチングをスムーズに行うため、希望コマ数の<strong>2倍以上</strong>の候補日をご提出いただくことをお勧めします。<br>
+              例：月8コマ希望の場合 → 16日以上の候補日があると調整しやすくなります。
+            </div>
+          </div>
           <div id="schedule-dates-container" style="margin-top: 12px;"></div>
           <button type="button" class="nav-btn secondary" style="margin-top:12px;flex:none;padding:10px 16px;" onclick="addScheduleDate()">
             <i data-lucide="plus" style="width:16px;height:16px;"></i>
@@ -2300,14 +2307,18 @@
               
               <!-- 書類アップロード（該当する場合のみ表示） -->
               <div id="single-parent-upload-container" style="display: none; margin-top: 12px;">
-                <p class="form-hint" style="color:#dc2626; margin-bottom:8px;">
-                  <strong>※証明書類のアップロードが必要です</strong>
+                <div class="notice-box" style="margin-bottom:12px;background:#fef3c7;border-color:#fcd34d;">
+                  <div class="notice-box-title" style="color:#92400e;"><i data-lucide="lock" style="width:14px;height:14px;"></i>書類のご提出について</div>
+                  <div class="notice-box-text" style="color:#78350f;">
+                    割引適用の確認のため、ひとり親家庭であることがわかる書類のご提出をお願いしております。<br>
+                    ご提出いただいた書類は厳重に管理し、割引適用の確認以外の目的には使用いたしません。
+                  </div>
+                </div>
+                <label class="form-label" style="font-size: 13px;">確認書類<span class="required">*</span></label>
+                <p class="form-hint" style="margin-bottom:10px;">
+                  写真またはPDFでアップロードしてください。<br>
+                  <span style="color:#6b7280;">※内容が確認できれば形式は問いません</span>
                 </p>
-                <p class="form-hint" style="margin-bottom:12px;">
-                  ひとり親家庭医療費受給者証、児童扶養手当証書などの証明書類を写真またはPDFでアップロードしてください。<br>
-                  <strong>※PDF形式を推奨</strong>（鮮明に読み取れる画像であれば写真でも可）
-                </p>
-                <label class="form-label" style="font-size: 13px;">証明書類<span class="required">*</span></label>
                 
                 <!-- カスタムアップロードエリア -->
                 <div id="upload-drop-area" onclick="document.getElementById('single-parent-document').click()" style="border: 2px dashed #d1d5db; border-radius: 12px; padding: 30px 20px; text-align: center; cursor: pointer; transition: all 0.2s; background: #f9fafb;">
@@ -2340,6 +2351,16 @@
                   <i data-lucide="alert-circle" style="width:12px;height:12px;flex-shrink:0;margin-top:2px;"></i>
                   <span>紹介者のお名前が正確に記載されていない場合、割引が適用できないことがあります。</span>
                 </p>
+              </div>
+            </div>
+            
+            <!-- 割引に関する注意事項 -->
+            <div class="notice-box" style="background:#f0f9ff;border-color:#bae6fd;margin-top:8px;">
+              <div class="notice-box-title" style="color:#0369a1;"><i data-lucide="info" style="width:14px;height:14px;"></i>割引適用について</div>
+              <div class="notice-box-text" style="color:#0c4a6e;">
+                ひとり親家庭割引・紹介割引は、運営にて確認後に適用いたします。<br>
+                そのため、<strong>この画面の料金内訳には割引額は反映されません。</strong><br>
+                割引が認められた場合は、請求書に割引適用後の金額を記載いたします。
               </div>
             </div>
           </div>
@@ -2975,9 +2996,12 @@
             const lastRow = scheduleContainer.lastElementChild;
             if (lastRow) {
               const dateInput = lastRow.querySelector('input[type="date"]');
-              const timeSelect = lastRow.querySelector('select');
+              const selects = lastRow.querySelectorAll('select');
               if (dateInput && schedule.date) dateInput.value = schedule.date;
-              if (timeSelect && schedule.time) timeSelect.value = schedule.time;
+              if (selects[0] && schedule.startTime) selects[0].value = schedule.startTime;
+              if (selects[1] && schedule.endTime) selects[1].value = schedule.endTime;
+              // 旧形式（timeのみ）の互換性対応
+              if (selects[0] && schedule.time && !schedule.startTime) selects[0].value = schedule.time;
             }
           });
         }
@@ -3407,7 +3431,7 @@
       // ひとり親家庭証明書類アップロード
       const singleParentDoc = document.getElementById('single-parent-document');
       if (singleParentDoc) {
-        singleParentDoc.addEventListener('change', function() {
+        singleParentDoc.addEventListener('change', async function() {
           const file = this.files[0];
           const preview = document.getElementById('single-parent-file-preview');
           const fileName = document.getElementById('single-parent-file-name');
@@ -3423,12 +3447,24 @@
               return;
             }
             
-            formData['single-parent-document'] = file.name;
-            fileName.textContent = file.name;
-            preview.style.display = 'flex';
-            dropArea.style.display = 'none';
-            autoSave();
-            lucide.createIcons();
+            // ファイルをBase64に変換
+            try {
+              const base64Data = await fileToBase64(file);
+              formData['single-parent-document'] = {
+                fileName: file.name,
+                mimeType: file.type || 'application/octet-stream',
+                base64: base64Data
+              };
+              fileName.textContent = file.name;
+              preview.style.display = 'flex';
+              dropArea.style.display = 'none';
+              autoSave();
+              lucide.createIcons();
+            } catch (error) {
+              console.error('ファイル読み込みエラー:', error);
+              alert('ファイルの読み込みに失敗しました。もう一度お試しください。');
+              this.value = '';
+            }
           } else {
             delete formData['single-parent-document'];
             preview.style.display = 'none';
@@ -3436,6 +3472,20 @@
           }
         });
       }
+    }
+    
+    // ファイルをBase64に変換する関数
+    function fileToBase64(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => {
+          // data:image/png;base64,XXXXX の形式から base64部分のみ抽出
+          const base64 = reader.result.split(',')[1];
+          resolve(base64);
+        };
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
     }
     
     // アップロードファイル削除
@@ -3692,45 +3742,63 @@
       
       const row = document.createElement('div');
       row.id = `schedule-row-${id}`;
-      row.style.cssText = 'display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap;';
+      row.style.cssText = 'display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap;background:#f9fafb;padding:12px;border-radius:10px;';
       
       // 日付選択
       const dateInput = document.createElement('input');
       dateInput.type = 'date';
       dateInput.className = 'form-input';
-      dateInput.style.cssText = 'flex:1;min-width:140px;max-width:180px;';
+      dateInput.style.cssText = 'flex:0 0 auto;min-width:130px;max-width:160px;';
       dateInput.name = `schedule-date-${id}`;
       
       // 最小日付を設定（来月1日から）
       updateDateMinimum(dateInput);
       
-      // 時間選択（7時〜23時、30分刻み）
-      const timeSelect = document.createElement('select');
-      timeSelect.className = 'date-select';
-      timeSelect.style.cssText = 'min-width:120px;';
-      timeSelect.name = `schedule-time-${id}`;
-      
+      // 時間選択肢を生成（7時〜23時）
       const times = [];
       for (let h = 7; h <= 23; h++) {
         times.push(`${h.toString().padStart(2, '0')}:00`);
-        if (h < 23) {
-          times.push(`${h.toString().padStart(2, '0')}:30`);
-        }
       }
-      timeSelect.innerHTML = '<option value="">開始希望時間</option>' + times.map(t => `<option value="${t}">${t}</option>`).join('');
+      
+      // 開始時間選択
+      const startTimeSelect = document.createElement('select');
+      startTimeSelect.className = 'date-select';
+      startTimeSelect.style.cssText = 'min-width:80px;';
+      startTimeSelect.name = `schedule-start-${id}`;
+      startTimeSelect.innerHTML = '<option value="">--</option>' + times.map(t => `<option value="${t}">${t}</option>`).join('');
+      
+      // 「〜」ラベル
+      const toLabel = document.createElement('span');
+      toLabel.textContent = '〜';
+      toLabel.style.cssText = 'color:#6b7280;font-size:14px;';
+      
+      // 終了時間選択
+      const endTimeSelect = document.createElement('select');
+      endTimeSelect.className = 'date-select';
+      endTimeSelect.style.cssText = 'min-width:80px;';
+      endTimeSelect.name = `schedule-end-${id}`;
+      endTimeSelect.innerHTML = '<option value="">--</option>' + times.map(t => `<option value="${t}">${t}</option>`).join('');
+      
+      // 「の間で授業可能」ラベル
+      const availableLabel = document.createElement('span');
+      availableLabel.textContent = 'の間で授業可能';
+      availableLabel.style.cssText = 'color:#374151;font-size:13px;white-space:nowrap;';
       
       // 削除ボタン
       const deleteBtn = document.createElement('button');
       deleteBtn.type = 'button';
       deleteBtn.innerHTML = '<i data-lucide="x" style="width:16px;height:16px;"></i>';
-      deleteBtn.style.cssText = 'padding:8px;background:#fee2e2;color:#dc2626;border:none;border-radius:8px;cursor:pointer;display:flex;align-items:center;';
+      deleteBtn.style.cssText = 'padding:8px;background:#fee2e2;color:#dc2626;border:none;border-radius:8px;cursor:pointer;display:flex;align-items:center;margin-left:auto;';
       deleteBtn.onclick = () => {
         row.remove();
         updateScheduleData();
       };
       
       row.appendChild(dateInput);
-      row.appendChild(timeSelect);
+      row.appendChild(startTimeSelect);
+      row.appendChild(toLabel);
+      row.appendChild(endTimeSelect);
+      row.appendChild(availableLabel);
       row.appendChild(deleteBtn);
       container.appendChild(row);
       
@@ -3738,7 +3806,32 @@
       
       // イベントリスナー
       dateInput.addEventListener('change', updateScheduleData);
-      timeSelect.addEventListener('change', updateScheduleData);
+      startTimeSelect.addEventListener('change', () => {
+        // 開始時間が選択されたら、終了時間の選択肢を更新
+        updateEndTimeOptions(startTimeSelect, endTimeSelect);
+        updateScheduleData();
+      });
+      endTimeSelect.addEventListener('change', updateScheduleData);
+    }
+    
+    // 終了時間の選択肢を開始時間以降に制限
+    function updateEndTimeOptions(startSelect, endSelect) {
+      const startValue = startSelect.value;
+      if (!startValue) return;
+      
+      const startHour = parseInt(startValue.split(':')[0]);
+      const times = [];
+      for (let h = startHour + 1; h <= 23; h++) {
+        times.push(`${h.toString().padStart(2, '0')}:00`);
+      }
+      
+      const currentEnd = endSelect.value;
+      endSelect.innerHTML = '<option value="">終了</option>' + times.map(t => `<option value="${t}">${t}</option>`).join('');
+      
+      // 以前の値が有効なら復元
+      if (currentEnd && times.includes(currentEnd)) {
+        endSelect.value = currentEnd;
+      }
     }
     
     // 日付の最小値を更新（緊急対応に応じて）
@@ -3808,9 +3901,11 @@
       
       rows.forEach(row => {
         const date = row.querySelector('input[type="date"]').value;
-        const time = row.querySelector('select').value;
-        if (date && time) {
-          schedules.push({ date, time });
+        const selects = row.querySelectorAll('select');
+        const startTime = selects[0]?.value || '';
+        const endTime = selects[1]?.value || '';
+        if (date && startTime && endTime) {
+          schedules.push({ date, startTime, endTime });
         }
       });
       
@@ -4315,9 +4410,12 @@
             const lastRow = scheduleContainer.lastElementChild;
             if (lastRow) {
               const dateInput = lastRow.querySelector('input[type="date"]');
-              const timeSelect = lastRow.querySelector('select');
+              const selects = lastRow.querySelectorAll('select');
               if (dateInput && schedule.date) dateInput.value = schedule.date;
-              if (timeSelect && schedule.time) timeSelect.value = schedule.time;
+              if (selects[0] && schedule.startTime) selects[0].value = schedule.startTime;
+              if (selects[1] && schedule.endTime) selects[1].value = schedule.endTime;
+              // 旧形式互換
+              if (selects[0] && schedule.time && !schedule.startTime) selects[0].value = schedule.time;
             }
           });
         } else if (scheduleContainer) {
@@ -4326,9 +4424,12 @@
           formData['schedule-dates'].forEach((schedule, index) => {
             if (rows[index]) {
               const dateInput = rows[index].querySelector('input[type="date"]');
-              const timeSelect = rows[index].querySelector('select');
+              const selects = rows[index].querySelectorAll('select');
               if (dateInput && schedule.date) dateInput.value = schedule.date;
-              if (timeSelect && schedule.time) timeSelect.value = schedule.time;
+              if (selects[0] && schedule.startTime) selects[0].value = schedule.startTime;
+              if (selects[1] && schedule.endTime) selects[1].value = schedule.endTime;
+              // 旧形式互換
+              if (selects[0] && schedule.time && !schedule.startTime) selects[0].value = schedule.time;
             }
           });
         }
@@ -4817,10 +4918,12 @@
       
       // ひとり親家庭の場合、証明書類必須
       if (formData['family-discount'] === '母子・父子家庭') {
-        const singleParentDoc = document.getElementById('single-parent-document');
-        if (!singleParentDoc?.files?.length) {
+        const docData = formData['single-parent-document'];
+        // Base64データがあるか、またはファイルが選択されているかチェック
+        const hasValidDoc = docData && docData.base64 && docData.fileName;
+        if (!hasValidDoc) {
           markError('single-parent-document');
-          showToast('ひとり親家庭の証明書類をアップロードしてください', 'error');
+          showToast('確認書類をアップロードしてください', 'error');
           isValid = false;
         }
       }
@@ -5093,18 +5196,29 @@
         // ひとり親家庭アップロード欄の表示復元
         if (formData['family-discount'] === '母子・父子家庭') {
           toggleSingleParentUpload();
-          // ファイル名の復元（ファイル自体は復元できないので表示のみ）
-          if (formData['single-parent-document']) {
+          // ファイルデータの復元（Base64データがあれば復元済みとして表示）
+          const docData = formData['single-parent-document'];
+          if (docData && docData.base64 && docData.fileName) {
             const preview = document.getElementById('single-parent-file-preview');
             const fileName = document.getElementById('single-parent-file-name');
             const dropArea = document.getElementById('upload-drop-area');
             if (preview && fileName) {
-              fileName.textContent = formData['single-parent-document'] + '（再アップロードが必要です）';
+              fileName.textContent = docData.fileName;
+              preview.style.display = 'flex';
+              preview.style.background = '#f0fdf4';
+              preview.style.color = '#166534';
+              if (dropArea) dropArea.style.display = 'none';
+            }
+          } else if (docData && typeof docData === 'string') {
+            // 旧形式（ファイル名のみ）の場合は再アップロード必要
+            const preview = document.getElementById('single-parent-file-preview');
+            const fileName = document.getElementById('single-parent-file-name');
+            if (preview && fileName) {
+              fileName.textContent = docData + '（再アップロードが必要です）';
               preview.style.display = 'flex';
               preview.style.background = '#fef3c7';
               preview.style.color = '#92400e';
             }
-            // 再アップロードが必要なのでdropAreaは表示したまま
           }
         }
         
@@ -5156,9 +5270,12 @@
               const lastRow = scheduleContainer.lastElementChild;
               if (lastRow) {
                 const dateInput = lastRow.querySelector('input[type="date"]');
-                const timeSelect = lastRow.querySelector('select');
+                const selects = lastRow.querySelectorAll('select');
                 if (dateInput && schedule.date) dateInput.value = schedule.date;
-                if (timeSelect && schedule.time) timeSelect.value = schedule.time;
+                if (selects[0] && schedule.startTime) selects[0].value = schedule.startTime;
+                if (selects[1] && schedule.endTime) selects[1].value = schedule.endTime;
+                // 旧形式互換
+                if (selects[0] && schedule.time && !schedule.startTime) selects[0].value = schedule.time;
               }
             });
             
