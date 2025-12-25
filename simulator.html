@@ -1234,6 +1234,46 @@
     </div>
   </div>
   
+  <!-- 認証スクリプト（ボタンより後に読み込む） -->
+  <script>
+    const AUTH_PASSWORD = 'eqaotrial1234';
+    const AUTH_STORAGE_KEY = 'eqao_simulator_auth';
+    
+    function checkAuth() {
+      const isAuthenticated = sessionStorage.getItem(AUTH_STORAGE_KEY) === 'true';
+      if (isAuthenticated) {
+        document.getElementById('auth-overlay').classList.add('hidden');
+      }
+    }
+    
+    function submitAuth() {
+      const input = document.getElementById('auth-input');
+      const error = document.getElementById('auth-error');
+      const password = input.value;
+      
+      if (password === AUTH_PASSWORD) {
+        sessionStorage.setItem(AUTH_STORAGE_KEY, 'true');
+        document.getElementById('auth-overlay').classList.add('hidden');
+      } else {
+        input.classList.add('error');
+        error.classList.add('show');
+      }
+    }
+    
+    document.getElementById('auth-input').addEventListener('input', function() {
+      this.classList.remove('error');
+      document.getElementById('auth-error').classList.remove('show');
+    });
+    
+    document.getElementById('auth-input').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        submitAuth();
+      }
+    });
+    
+    checkAuth();
+  </script>
+  
   <!-- ヘッダー -->
   <header class="header">
     <div class="header-content">
@@ -1777,49 +1817,6 @@
   
   <script>
     // ============================================
-    // 認証設定
-    // ============================================
-    const AUTH_PASSWORD = 'eqaotrial1234';
-    const AUTH_STORAGE_KEY = 'eqao_simulator_auth';
-    
-    // ============================================
-    // 認証チェック
-    // ============================================
-    function checkAuth() {
-      const isAuthenticated = sessionStorage.getItem(AUTH_STORAGE_KEY) === 'true';
-      if (isAuthenticated) {
-        document.getElementById('auth-overlay').classList.add('hidden');
-      }
-    }
-    
-    function submitAuth() {
-      const input = document.getElementById('auth-input');
-      const error = document.getElementById('auth-error');
-      const password = input.value;
-      
-      if (password === AUTH_PASSWORD) {
-        sessionStorage.setItem(AUTH_STORAGE_KEY, 'true');
-        document.getElementById('auth-overlay').classList.add('hidden');
-      } else {
-        input.classList.add('error');
-        error.classList.add('show');
-      }
-    }
-    
-    // 入力時にエラー解除
-    document.getElementById('auth-input').addEventListener('input', function() {
-      this.classList.remove('error');
-      document.getElementById('auth-error').classList.remove('show');
-    });
-    
-    // Enterキーでパスワード送信
-    document.getElementById('auth-input').addEventListener('keydown', function(e) {
-      if (e.key === 'Enter') {
-        submitAuth();
-      }
-    });
-    
-    // ============================================
     // 料金設定
     // ============================================
     const ENROLLMENT_FEE = 39800;  // 入塾金
@@ -1834,7 +1831,6 @@
     let months = 6;
     
     document.addEventListener('DOMContentLoaded', function() {
-      checkAuth();
       lucide.createIcons();
       calculate();
     });
