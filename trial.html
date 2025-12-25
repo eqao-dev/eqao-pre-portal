@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>体験授業受講者限定 | EQAO</title>
+  <title>体験授業の前に | EQAO</title>
   
   <!-- OGP -->
-  <meta property="og:title" content="体験授業受講者限定 | EQAO">
-  <meta property="og:description" content="EQAO教育グループ 体験授業受講者限定ページ">
+  <meta property="og:title" content="体験授業の前に | EQAO">
+  <meta property="og:description" content="体験授業をより充実させるための動画をご覧ください">
   <meta property="og:type" content="website">
   
   <!-- Google Fonts -->
@@ -72,23 +72,23 @@
     }
     
     .logo {
-    width: 36px;
-    height: 36px;
-    background: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    overflow: hidden;
-    padding: 4px;
-   }
-
-  .logo img {
-   width: 100%;
-   height: 100%;
-   object-fit: contain;
-   }
+      width: 36px;
+      height: 36px;
+      background: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      overflow: hidden;
+      padding: 4px;
+    }
+    
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
     
     .header-title {
       color: white;
@@ -99,188 +99,523 @@
     
     /* メインコンテンツ */
     .main {
-      max-width: 400px;
+      max-width: 500px;
       margin: 0 auto;
-      padding: 16px;
-      padding-bottom: 100px;
+      padding: 20px 16px;
+      padding-bottom: 120px;
     }
     
-    /* 限定バッジ */
-    .limited-badge {
-      display: flex;
+    /* ヒーロー */
+    .hero {
+      text-align: center;
+      margin-bottom: 24px;
+      padding: 20px 0;
+    }
+    
+    .hero-label {
+      display: inline-flex;
       align-items: center;
-      justify-content: center;
-      gap: 8px;
-      background: linear-gradient(135deg, #1e3a5f 0%, #2d4a6f 100%);
+      gap: 6px;
+      background: #1e3a5f;
       color: white;
-      padding: 12px 16px;
-      border-radius: 12px;
-      margin-bottom: 16px;
-      font-size: 14px;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12px;
       font-weight: bold;
-      box-shadow: 0 4px 12px rgba(30, 58, 95, 0.3);
-    }
-    
-    /* 説明テキスト */
-    .description {
-      background: white;
-      border-radius: 12px;
-      padding: 16px;
-      margin-bottom: 20px;
-      font-size: 13px;
-      line-height: 1.6;
-      color: #4b5563;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    }
-    
-    .description p {
-      margin-bottom: 8px;
-    }
-    
-    .description p:last-child {
-      margin-bottom: 0;
-    }
-    
-    /* フォームカード */
-    .form-card {
-      background: white;
-      border-radius: 16px;
-      padding: 20px;
-      margin-bottom: 16px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    
-    .form-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
-    }
-    
-    .form-card.disabled {
-      opacity: 0.6;
-      pointer-events: none;
-    }
-    
-    .form-card.disabled:hover {
-      transform: none;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-    
-    .form-icon {
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       margin-bottom: 12px;
     }
     
-    .form-icon.reserve {
-      background: #dbeafe;
-      color: #2563eb;
-    }
-    
-    .form-icon.enroll {
-      background: #dcfce7;
-      color: #16a34a;
-    }
-    
-    .form-title {
-      font-size: 18px;
+    .hero-title {
+      font-size: 22px;
       font-weight: bold;
       color: #1e3a5f;
       margin-bottom: 8px;
     }
     
-    .form-description {
+    .hero-description {
       font-size: 13px;
       color: #6b7280;
+      line-height: 1.6;
+    }
+    
+    /* セクション */
+    .section {
+      margin-bottom: 24px;
+    }
+    
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    
+    .section-icon {
+      width: 28px;
+      height: 28px;
+      background: #1e3a5f;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+    
+    .section-title {
+      font-size: 16px;
+      font-weight: bold;
+      color: #1e3a5f;
+    }
+    
+    .section-subtitle {
+      font-size: 12px;
+      color: #6b7280;
+      margin-left: auto;
+    }
+    
+    /* 動画カード */
+    .video-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    .video-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      gap: 12px;
+    }
+    
+    .video-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    }
+    
+    .video-card:active {
+      transform: translateY(0);
+    }
+    
+    .video-thumbnail {
+      width: 140px;
+      height: 79px;
+      flex-shrink: 0;
+      position: relative;
+      background: #e5e7eb;
+    }
+    
+    .video-thumbnail img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .video-play-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 32px;
+      height: 32px;
+      background: rgba(0,0,0,0.7);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+    
+    .video-content {
+      flex: 1;
+      padding: 12px 12px 12px 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    
+    .video-number {
+      font-size: 11px;
+      color: #1e3a5f;
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+    
+    .video-title {
+      font-size: 13px;
+      font-weight: 500;
+      color: #374151;
+      line-height: 1.4;
+    }
+    
+    /* 体験授業の内容セクション */
+    .trial-content-section {
+      background: white;
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    
+    .trial-content-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
       margin-bottom: 16px;
+    }
+    
+    .trial-content-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #d97706;
+    }
+    
+    .trial-content-title {
+      font-size: 15px;
+      font-weight: bold;
+      color: #1e3a5f;
+    }
+    
+    .trial-content-subtitle {
+      font-size: 11px;
+      color: #6b7280;
+    }
+    
+    .trial-highlight {
+      background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .trial-highlight-icon {
+      width: 36px;
+      height: 36px;
+      background: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #10b981;
+      flex-shrink: 0;
+    }
+    
+    .trial-highlight-text {
+      font-size: 13px;
+      color: #065f46;
       line-height: 1.5;
     }
     
-    .form-button {
+    .trial-highlight-text strong {
+      color: #047857;
+    }
+    
+    .trial-group {
+      margin-bottom: 16px;
+    }
+    
+    .trial-group:last-child {
+      margin-bottom: 0;
+    }
+    
+    .trial-group-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 12px;
+      background: #f8fafc;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    
+    .trial-group-header:hover {
+      background: #f1f5f9;
+    }
+    
+    .trial-group-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    
+    .trial-group-icon.blue { background: #dbeafe; color: #2563eb; }
+    .trial-group-icon.green { background: #d1fae5; color: #059669; }
+    .trial-group-icon.yellow { background: #fef3c7; color: #d97706; }
+    .trial-group-icon.purple { background: #f3e8ff; color: #9333ea; }
+    
+    .trial-group-title {
+      flex: 1;
+      font-size: 13px;
+      font-weight: 600;
+      color: #374151;
+    }
+    
+    .trial-group-arrow {
+      color: #9ca3af;
+      transition: transform 0.2s;
+    }
+    
+    .trial-group.open .trial-group-arrow {
+      transform: rotate(180deg);
+    }
+    
+    .trial-group-content {
+      display: none;
+      padding: 0 8px 8px;
+    }
+    
+    .trial-group.open .trial-group-content {
+      display: block;
+    }
+    
+    .trial-item {
+      padding: 12px;
+      background: #fafafa;
+      border-radius: 8px;
+      margin-bottom: 8px;
+    }
+    
+    .trial-item:last-child {
+      margin-bottom: 0;
+    }
+    
+    .trial-item-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: #1e3a5f;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    
+    .trial-item-title::before {
+      content: '';
+      width: 4px;
+      height: 4px;
+      background: #1e3a5f;
+      border-radius: 50%;
+    }
+    
+    .trial-item-text {
+      font-size: 12px;
+      color: #6b7280;
+      line-height: 1.7;
+      padding-left: 10px;
+    }
+    
+    .trial-item-list {
+      margin-top: 8px;
+      padding-left: 10px;
+      list-style: none;
+    }
+    
+    .trial-item-list li {
+      font-size: 12px;
+      color: #6b7280;
+      line-height: 1.6;
+      margin-bottom: 4px;
+      position: relative;
+      padding-left: 14px;
+    }
+    
+    .trial-item-list li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: #9ca3af;
+    }
+    
+    /* 校舎への行き方 */
+    .access-section {
+      background: white;
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    
+    .access-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    
+    .access-icon {
+      width: 40px;
+      height: 40px;
+      background: #dcfce7;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #16a34a;
+    }
+    
+    .access-title {
+      font-size: 15px;
+      font-weight: bold;
+      color: #1e3a5f;
+    }
+    
+    .access-subtitle {
+      font-size: 11px;
+      color: #6b7280;
+    }
+    
+    .access-address {
+      background: #f9fafb;
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 12px;
+      font-size: 12px;
+      color: #4b5563;
+      line-height: 1.6;
+    }
+    
+    .access-video {
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+    }
+    
+    .access-video img {
+      width: 100%;
+      display: block;
+    }
+    
+    .access-video .video-play-icon {
+      width: 48px;
+      height: 48px;
+    }
+    
+    /* フローティングCTA */
+    .floating-cta {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 12px 16px;
+      background: rgba(255,255,255,0.98);
+      backdrop-filter: blur(8px);
+      border-top: 1px solid #e5e7eb;
+      z-index: 100;
+    }
+    
+    .floating-content {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    
+    .floating-note {
+      text-align: center;
+      font-size: 11px;
+      color: #6b7280;
+      margin-bottom: 8px;
+    }
+    
+    .floating-button {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
       width: 100%;
-      padding: 14px 16px;
+      padding: 16px;
+      background: linear-gradient(135deg, #1e3a5f 0%, #2d4a6f 100%);
+      color: white;
       border: none;
       border-radius: 12px;
-      font-size: 14px;
+      font-size: 15px;
       font-weight: bold;
       cursor: pointer;
-      transition: transform 0.2s, opacity 0.2s;
+      box-shadow: 0 4px 12px rgba(30, 58, 95, 0.3);
+      transition: transform 0.2s;
     }
     
-    .form-button:hover {
-      opacity: 0.9;
+    .floating-button:hover {
+      transform: scale(1.02);
     }
     
-    .form-button:active {
+    .floating-button:active {
       transform: scale(0.98);
     }
     
-    .form-button.reserve {
-      background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
-      color: white;
-    }
-    
-    .form-button.enroll {
-      background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%);
-      color: white;
-    }
-    
-    .form-button.disabled {
-      background: #d1d5db;
-      color: #6b7280;
+    .floating-button.disabled {
+      background: #9ca3af;
       cursor: not-allowed;
+      box-shadow: none;
     }
     
-    .form-button.disabled:hover {
-      opacity: 1;
-    }
-    
-    .form-button.disabled:active {
+    .floating-button.disabled:hover {
       transform: none;
     }
     
-    /* 期間外メッセージ */
-    .unavailable-message {
-      background: #fef3c7;
-      border: 1px solid #fcd34d;
-      border-radius: 8px;
-      padding: 12px;
-      margin-top: 12px;
-      font-size: 12px;
-      color: #92400e;
+    /* 確認チェックボックス */
+    .confirm-check {
       display: flex;
-      align-items: flex-start;
-      gap: 8px;
+      align-items: center;
+      gap: 10px;
+      background: #f9fafb;
+      border-radius: 10px;
+      padding: 12px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      transition: background 0.2s;
     }
     
-    .unavailable-message i {
-      flex-shrink: 0;
-      margin-top: 2px;
+    .confirm-check:hover {
+      background: #f3f4f6;
     }
     
-    /* 戻るリンク */
-    .back-link {
+    .confirm-checkbox {
+      width: 24px;
+      height: 24px;
+      border: 2px solid #d1d5db;
+      border-radius: 6px;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
-      color: #6b7280;
-      font-size: 13px;
-      text-decoration: none;
-      padding: 12px;
-      transition: color 0.2s;
+      transition: all 0.2s;
+      flex-shrink: 0;
     }
     
-    .back-link:hover {
-      color: #1e3a5f;
+    .confirm-check.checked .confirm-checkbox {
+      background: #22c55e;
+      border-color: #22c55e;
+      color: white;
+    }
+    
+    .confirm-checkbox i {
+      display: none;
+    }
+    
+    .confirm-check.checked .confirm-checkbox i {
+      display: block;
+    }
+    
+    .confirm-label {
+      font-size: 13px;
+      color: #374151;
+      font-weight: 500;
     }
     
     /* ===========================================
@@ -294,75 +629,82 @@
       }
       
       .main {
-        max-width: 600px;
-        padding: 24px;
-        padding-bottom: 120px;
+        max-width: 700px;
+        padding: 28px 24px;
+        padding-bottom: 140px;
       }
       
-      .limited-badge {
-        padding: 14px 20px;
-        font-size: 15px;
-        border-radius: 14px;
+      .hero-title {
+        font-size: 26px;
       }
       
-      .description {
-        padding: 20px;
-        font-size: 14px;
-        border-radius: 14px;
+      .video-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
       }
       
-      .video-section {
-        padding: 24px;
-        border-radius: 20px;
+      .video-card {
+        flex-direction: column;
       }
       
-      .video-title {
-        font-size: 18px;
+      .video-thumbnail {
+        width: 100%;
+        height: 120px;
       }
       
-      .video-subtitle {
-        font-size: 13px;
+      .video-content {
+        padding: 14px;
       }
       
-      .form-card {
+      .access-section {
         padding: 24px;
         border-radius: 20px;
       }
       
-      .form-title {
-        font-size: 20px;
+      .floating-cta {
+        padding: 16px 24px;
       }
       
-      .form-description {
-        font-size: 14px;
-      }
-      
-      .form-button {
-        padding: 16px 20px;
-        font-size: 15px;
+      .floating-content {
+        max-width: 700px;
+        margin: 0 auto;
       }
     }
     
     /* デスクトップ (1024px以上) */
     @media (min-width: 1024px) {
       .header-content {
-        max-width: 800px;
+        max-width: 900px;
       }
       
       .main {
-        max-width: 700px;
-        padding: 32px;
+        max-width: 900px;
+        padding: 36px 32px;
+        padding-bottom: 140px;
       }
       
-      /* フォームカードを横並びに */
-      .form-cards-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
+      .hero-title {
+        font-size: 28px;
       }
       
-      .form-card {
-        margin-bottom: 0;
+      .video-list {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      
+      .video-thumbnail {
+        height: 140px;
+      }
+      
+      .floating-content {
+        max-width: 500px;
+      }
+    }
+    
+    /* 大画面 (1280px以上) */
+    @media (min-width: 1280px) {
+      .video-list {
+        grid-template-columns: repeat(4, 1fr);
       }
     }
   </style>
@@ -375,131 +717,425 @@
         <i data-lucide="arrow-left" style="width:20px;height:20px;"></i>
       </a>
       <div class="logo"><img src="/logo.png" alt="EQAO"></div>
-      <h1 class="header-title">EQAO 入塾前ポータル</h1>
+      <h1 class="header-title">体験授業の前に</h1>
     </div>
   </header>
   
   <!-- メインコンテンツ -->
   <main class="main">
-    <!-- 限定バッジ -->
-    <div class="limited-badge">
-      <i data-lucide="lock" style="width:18px;height:18px;"></i>
-      体験授業受講者限定ページ
+    <!-- ヒーロー -->
+    <div class="hero">
+      <div class="hero-label">
+        <i data-lucide="play-circle" style="width:14px;height:14px;"></i>
+        MOVIE
+      </div>
+      <h1 class="hero-title">受講前に必ずチェック！</h1>
+      <p class="hero-description">
+        体験授業の前に以下の動画をご覧ください。<br>
+        事前に視聴いただくと、より充実した体験になります。
+      </p>
     </div>
     
-    <!-- 説明 -->
-    <div class="description">
-      <p>無料体験授業のご受講ありがとうございました！</p>
-      <p>こちらから入塾に関するお手続きが可能です。ご不明な点がございましたら、お気軽にお問い合わせください。</p>
-    </div>
-    
-    <!-- フォームカード -->
-    <div class="form-cards-grid">
-      <!-- 入塾仮予約 -->
-      <div class="form-card" id="reserve-card">
-        <div class="form-icon reserve">
-          <i data-lucide="calendar-clock" style="width:28px;height:28px;"></i>
+    <!-- 動画一覧 -->
+    <section class="section">
+      <div class="section-header">
+        <div class="section-icon">
+          <i data-lucide="video" style="width:16px;height:16px;"></i>
         </div>
-        <h2 class="form-title">入塾仮予約</h2>
-        <p class="form-description" id="reserve-description">
-          正式な受付開始前に、入塾の仮予約ができます。<br>
-          定員に達し次第、募集を締め切らせていただきます。
-        </p>
-        <button class="form-button reserve" id="reserve-button" onclick="openUrl('https://forms.gle/UTTEjNEWir2uRxrS6')">
-          <i data-lucide="edit" style="width:18px;height:18px;"></i>
-          仮予約フォームへ
-        </button>
-        <div class="unavailable-message" id="reserve-closed-message" style="display:none;">
-          <i data-lucide="check-circle" style="width:16px;height:16px;"></i>
-          <span>仮予約の受付は終了しました。<br>本入塾申込からお手続きください。</span>
+        <h2 class="section-title">EQAOを知る動画</h2>
+        <span class="section-subtitle">全10本</span>
+      </div>
+      
+      <div class="video-list">
+        <div class="video-card" onclick="openVideo('D2UkGJkQTwc')">
+          <div class="video-thumbnail">
+            <img src="https://img.youtube.com/vi/D2UkGJkQTwc/mqdefault.jpg" alt="">
+            <div class="video-play-icon">
+              <i data-lucide="play" style="width:16px;height:16px;"></i>
+            </div>
+          </div>
+          <div class="video-content">
+            <span class="video-number">01</span>
+            <span class="video-title">EQAOってどんな塾？</span>
+          </div>
+        </div>
+        
+        <div class="video-card" onclick="openVideo('u2AOQfVHQB8')">
+          <div class="video-thumbnail">
+            <img src="https://img.youtube.com/vi/u2AOQfVHQB8/mqdefault.jpg" alt="">
+            <div class="video-play-icon">
+              <i data-lucide="play" style="width:16px;height:16px;"></i>
+            </div>
+          </div>
+          <div class="video-content">
+            <span class="video-number">02</span>
+            <span class="video-title">どんなサポートが受けられるの？</span>
+          </div>
+        </div>
+        
+        <div class="video-card" onclick="openVideo('qFpcwKeT88s')">
+          <div class="video-thumbnail">
+            <img src="https://img.youtube.com/vi/qFpcwKeT88s/mqdefault.jpg" alt="">
+            <div class="video-play-icon">
+              <i data-lucide="play" style="width:16px;height:16px;"></i>
+            </div>
+          </div>
+          <div class="video-content">
+            <span class="video-number">03</span>
+            <span class="video-title">EQAOはどうやって生まれた？</span>
+          </div>
+        </div>
+        
+        <div class="video-card" onclick="openVideo('fqemGhlxWno')">
+          <div class="video-thumbnail">
+            <img src="https://img.youtube.com/vi/fqemGhlxWno/mqdefault.jpg" alt="">
+            <div class="video-play-icon">
+              <i data-lucide="play" style="width:16px;height:16px;"></i>
+            </div>
+          </div>
+          <div class="video-content">
+            <span class="video-number">04</span>
+            <span class="video-title">月額の費用はどれくらい？</span>
+          </div>
+        </div>
+        
+        <div class="video-card" onclick="openVideo('43bCa32jG3o')">
+          <div class="video-thumbnail">
+            <img src="https://img.youtube.com/vi/43bCa32jG3o/mqdefault.jpg" alt="">
+            <div class="video-play-icon">
+              <i data-lucide="play" style="width:16px;height:16px;"></i>
+            </div>
+          </div>
+          <div class="video-content">
+            <span class="video-number">05</span>
+            <span class="video-title">体験授業では何をするの？</span>
+          </div>
+        </div>
+        
+        <div class="video-card" onclick="openVideo('O_vDljIYAD0')">
+          <div class="video-thumbnail">
+            <img src="https://img.youtube.com/vi/O_vDljIYAD0/mqdefault.jpg" alt="">
+            <div class="video-play-icon">
+              <i data-lucide="play" style="width:16px;height:16px;"></i>
+            </div>
+          </div>
+          <div class="video-content">
+            <span class="video-number">06</span>
+            <span class="video-title">入塾に条件はあるの？</span>
+          </div>
+        </div>
+        
+        <div class="video-card" onclick="openVideo('cnIsN4cTgUA')">
+          <div class="video-thumbnail">
+            <img src="https://img.youtube.com/vi/cnIsN4cTgUA/mqdefault.jpg" alt="">
+            <div class="video-play-icon">
+              <i data-lucide="play" style="width:16px;height:16px;"></i>
+            </div>
+          </div>
+          <div class="video-content">
+            <span class="video-number">07</span>
+            <span class="video-title">合格者の声を聞いてみよう！</span>
+          </div>
+        </div>
+        
+        <div class="video-card" onclick="openVideo('A8OmKPTIXd4')">
+          <div class="video-thumbnail">
+            <img src="https://img.youtube.com/vi/A8OmKPTIXd4/mqdefault.jpg" alt="">
+            <div class="video-play-icon">
+              <i data-lucide="play" style="width:16px;height:16px;"></i>
+            </div>
+          </div>
+          <div class="video-content">
+            <span class="video-number">08</span>
+            <span class="video-title">本当に実績はあるの？</span>
+          </div>
+        </div>
+        
+        <div class="video-card" onclick="openVideo('8flVvu6jxBM')">
+          <div class="video-thumbnail">
+            <img src="https://img.youtube.com/vi/8flVvu6jxBM/mqdefault.jpg" alt="">
+            <div class="video-play-icon">
+              <i data-lucide="play" style="width:16px;height:16px;"></i>
+            </div>
+          </div>
+          <div class="video-content">
+            <span class="video-number">09</span>
+            <span class="video-title">どんなカリキュラムで学ぶの？</span>
+          </div>
+        </div>
+        
+        <div class="video-card" onclick="openVideo('h1dgPEKrkUs')">
+          <div class="video-thumbnail">
+            <img src="https://img.youtube.com/vi/h1dgPEKrkUs/mqdefault.jpg" alt="">
+            <div class="video-play-icon">
+              <i data-lucide="play" style="width:16px;height:16px;"></i>
+            </div>
+          </div>
+          <div class="video-content">
+            <span class="video-number">10</span>
+            <span class="video-title">この1本で全体を把握！</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- 体験授業でお伝えすること -->
+    <section class="trial-content-section">
+      <div class="trial-content-header">
+        <div class="trial-content-icon">
+          <i data-lucide="sparkles" style="width:20px;height:20px;"></i>
+        </div>
+        <div>
+          <h2 class="trial-content-title">体験授業でお伝えすること</h2>
+          <p class="trial-content-subtitle">生徒一人ひとりに最適な進路戦略と学習設計を行います</p>
         </div>
       </div>
       
-      <!-- 本入塾申込 -->
-      <div class="form-card" id="enroll-card">
-        <div class="form-icon enroll">
-          <i data-lucide="user-check" style="width:28px;height:28px;"></i>
+      <div class="trial-highlight">
+        <div class="trial-highlight-icon">
+          <i data-lucide="heart-handshake" style="width:18px;height:18px;"></i>
         </div>
-        <h2 class="form-title">本入塾申込</h2>
-        <p class="form-description">
-          保護者同意のうえ、正式な入塾手続きを行います。<br>
-          必要事項をご入力ください。
-        </p>
-        <button class="form-button enroll" id="enroll-button" onclick="location.href='/enrollment.html'">
-          <i data-lucide="check-circle" style="width:18px;height:18px;"></i>
-          入塾同意書へ進む
-        </button>
-        <div class="unavailable-message" id="unavailable-message" style="display:none;">
-          <i data-lucide="alert-triangle" style="width:16px;height:16px;"></i>
-          <span>現在、本入塾申込の受付準備中です。<br>受付開始までしばらくお待ちください。</span>
+        <div class="trial-highlight-text">
+          <strong>営業は1割以下！</strong><br>
+          9割以上を純粋な指導に充て、指導の質と姿勢で信頼を得るというEQAOの方針を徹底しています。
         </div>
       </div>
-    </div>
+      
+      <!-- グループ1: 分析・戦略 -->
+      <div class="trial-group" id="group-analysis">
+        <div class="trial-group-header" onclick="toggleTrialGroup('group-analysis')">
+          <div class="trial-group-icon blue">
+            <i data-lucide="search" style="width:14px;height:14px;"></i>
+          </div>
+          <span class="trial-group-title">分析・戦略</span>
+          <i data-lucide="chevron-down" class="trial-group-arrow" style="width:16px;height:16px;"></i>
+        </div>
+        <div class="trial-group-content">
+          <div class="trial-item">
+            <div class="trial-item-title">学力状況と英語資格の精密分析</div>
+            <div class="trial-item-text">
+              高校の偏差値・評定平均・英語資格を確認し、志望校に対してどの位置にあるか客観的に分析します。
+            </div>
+            <ul class="trial-item-list">
+              <li>評定平均：偏差値と照らし合わせて伸びしろや注意点をアドバイス</li>
+              <li>英語資格：英検・TEAP・IELTSの受験計画や対策進捗をチェック</li>
+              <li>過去の合格者がどのように資格を活用したかの具体例も共有</li>
+            </ul>
+          </div>
+          <div class="trial-item">
+            <div class="trial-item-title">志望校・学部の選定と妥当性チェック</div>
+            <div class="trial-item-text">
+              志望校や学部が本人の希望に基づいているかを確認し、以下の観点から検証します。
+            </div>
+            <ul class="trial-item-list">
+              <li>学びたい内容との一致：学部で扱う内容と本人のテーマに齟齬がないか</li>
+              <li>向き不向きの確認：性格や志向性と学部の特色が噛み合っているか</li>
+              <li>実現可能性の検証：現在の学力や経験から挑戦可能か判断</li>
+            </ul>
+          </div>
+          <div class="trial-item">
+            <div class="trial-item-title">併願校戦略の仮設立案</div>
+            <div class="trial-item-text">
+              学力・地域・日程・志望内容などを考慮しながら、現実的かつ戦略的な併願校案を提案します。
+            </div>
+            <ul class="trial-item-list">
+              <li>安全校としてリスク分散のために受けておくべき視点も強調</li>
+              <li>推薦型、講義型、面接型、小論文型など方式を踏まえてバランス良く設計</li>
+              <li>仮決定として、入塾後の精査により変更可能</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <!-- グループ2: 自己分析・基礎知識 -->
+      <div class="trial-group" id="group-self">
+        <div class="trial-group-header" onclick="toggleTrialGroup('group-self')">
+          <div class="trial-group-icon green">
+            <i data-lucide="user-search" style="width:14px;height:14px;"></i>
+          </div>
+          <span class="trial-group-title">自己分析・基礎知識</span>
+          <i data-lucide="chevron-down" class="trial-group-arrow" style="width:16px;height:16px;"></i>
+        </div>
+        <div class="trial-group-content">
+          <div class="trial-item">
+            <div class="trial-item-title">生徒の背景・個性・経験の棚卸し</div>
+            <div class="trial-item-text">
+              志望理由書や自己推薦書、面接の基盤となる「これまでの自分」を丁寧に掘り下げ、素材を可視化します。
+            </div>
+            <ul class="trial-item-list">
+              <li>留学経験、部活動、委員会活動、ボランティアなどをヒアリング</li>
+              <li>どのような経験を、どのようなモチベーションで取り組んできたか</li>
+              <li>過去の体験・家庭環境・趣味関心から志望理由や研究テーマの「軸」を浮き彫りに</li>
+            </ul>
+          </div>
+          <div class="trial-item">
+            <div class="trial-item-title">総合型選抜の本質と基礎知識の徹底説明</div>
+            <div class="trial-item-text">
+              総合型選抜の制度を誤解しているケースが非常に多いため、基礎から本質まで明確に伝えます。
+            </div>
+            <ul class="trial-item-list">
+              <li>大学は研究機関であること：学びたいことの「学術性」が問われる</li>
+              <li>志望理由書の本質：「研究したいこと」「その理由」「自分であるべき理由」を論理的に構成</li>
+              <li>評価される3要素：①テーマに本気 ②あなたでなければならない理由 ③その分野での強み</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <!-- グループ3: 具体的な方針 -->
+      <div class="trial-group" id="group-plan">
+        <div class="trial-group-header" onclick="toggleTrialGroup('group-plan')">
+          <div class="trial-group-icon yellow">
+            <i data-lucide="compass" style="width:14px;height:14px;"></i>
+          </div>
+          <span class="trial-group-title">具体的な方針</span>
+          <i data-lucide="chevron-down" class="trial-group-arrow" style="width:16px;height:16px;"></i>
+        </div>
+        <div class="trial-group-content">
+          <div class="trial-item">
+            <div class="trial-item-title">自学自習・活動内容の具体的な方針提示</div>
+            <div class="trial-item-text">
+              入塾後に必要な行動や、今から準備すべきことを明確にし、実行可能な状態にまで落とし込みます。
+            </div>
+            <ul class="trial-item-list">
+              <li>論文・書籍の読み方：どのテーマで、どの分野の論文を読めば良いか具体的に提示</li>
+              <li>フィールドワークの考え方：現地調査・インタビュー・アンケートの実施方法を解説</li>
+              <li>ボランティア・取材活動の設計：過去の事例を紹介しながら解説</li>
+            </ul>
+          </div>
+          <div class="trial-item">
+            <div class="trial-item-title">倍率対策などのテクニック</div>
+            <div class="trial-item-text">
+              志望校の倍率を下げるための実質的なテクニックも、戦略設計の一環として簡潔に紹介します。
+            </div>
+          </div>
+          <div class="trial-item">
+            <div class="trial-item-title">これからのスケジュールと受講ペース</div>
+            <div class="trial-item-text">
+              体験後すぐに動き出せるよう、今後の授業スケジュールやペース配分の見通しを共有します。
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- グループ4: 入塾準備 -->
+      <div class="trial-group" id="group-prep">
+        <div class="trial-group-header" onclick="toggleTrialGroup('group-prep')">
+          <div class="trial-group-icon purple">
+            <i data-lucide="clipboard-check" style="width:14px;height:14px;"></i>
+          </div>
+          <span class="trial-group-title">入塾準備</span>
+          <i data-lucide="chevron-down" class="trial-group-arrow" style="width:16px;height:16px;"></i>
+        </div>
+        <div class="trial-group-content">
+          <div class="trial-item">
+            <div class="trial-item-title">生徒・保護者との質疑応答</div>
+            <div class="trial-item-text">
+              保護者・生徒からの質問タイムを設け、あらゆる不安や疑問を解消する時間を取ります。
+            </div>
+          </div>
+          <div class="trial-item">
+            <div class="trial-item-title">入塾後のルールと必須行動の説明</div>
+            <div class="trial-item-text">
+              入塾後のスムーズなスタートを切るため、EQAOで守ってほしいルールを明確に伝えます。
+            </div>
+            <ul class="trial-item-list">
+              <li>オンライン配信の視聴必須</li>
+              <li>自学自習の重視</li>
+            </ul>
+          </div>
+          <div class="trial-item">
+            <div class="trial-item-title">手続き・カリキュラム・EQAOの特徴の説明</div>
+            <div class="trial-item-text">
+              入塾手続きの流れや、EQAOのカリキュラム・指導体制・サポート体制・他塾との違いをすべて丁寧に説明します。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
     
-    <!-- 戻るリンク -->
-    <a href="/" class="back-link">
-      <i data-lucide="arrow-left" style="width:16px;height:16px;"></i>
-      トップページに戻る
-    </a>
+    <!-- 校舎への行き方 -->
+    <section class="access-section">
+      <div class="access-header">
+        <div class="access-icon">
+          <i data-lucide="map-pin" style="width:20px;height:20px;"></i>
+        </div>
+        <div>
+          <h2 class="access-title">校舎への行き方</h2>
+          <p class="access-subtitle">対面での体験授業をご希望の方へ</p>
+        </div>
+      </div>
+      
+      <div class="access-address">
+        📍 東京都港区芝大門2-8-9 3F<br>
+        📍 東京都港区芝大門2-7-10 3F
+      </div>
+      
+      <div class="access-video" onclick="openVideo('QRdyqsyBnrc')">
+        <img src="https://img.youtube.com/vi/QRdyqsyBnrc/mqdefault.jpg" alt="校舎への行き方">
+        <div class="video-play-icon">
+          <i data-lucide="play" style="width:20px;height:20px;"></i>
+        </div>
+      </div>
+    </section>
   </main>
   
+  <!-- フローティングCTA -->
+  <div class="floating-cta">
+    <div class="floating-content">
+      <div class="confirm-check" id="confirm-check" onclick="toggleConfirm()">
+        <div class="confirm-checkbox">
+          <i data-lucide="check" style="width:16px;height:16px;"></i>
+        </div>
+        <span class="confirm-label">全ての動画を視聴しました</span>
+      </div>
+      <button class="floating-button disabled" id="submit-button" onclick="openForm()" disabled>
+        <i data-lucide="calendar-check" style="width:20px;height:20px;"></i>
+        無料体験授業に申し込む
+      </button>
+    </div>
+  </div>
+  
   <script>
-    // 受付開始日時: 開放済み
-    const ENROLLMENT_START = new Date('2024-01-01T00:00:00+09:00');
+    // 申し込みフォームURL
+    const FORM_URL = 'https://forms.gle/CgUDoreqhgu1xC276';
+    let isConfirmed = false;
     
-    // 初期化
     document.addEventListener('DOMContentLoaded', function() {
       lucide.createIcons();
-      checkAvailability();
     });
     
-    // 利用可否チェック
-    function checkAvailability() {
-      const now = new Date();
-      const isAfterStart = now >= ENROLLMENT_START;
+    function openVideo(videoId) {
+      window.open('https://www.youtube.com/watch?v=' + videoId, '_blank');
+    }
+    
+    function toggleConfirm() {
+      isConfirmed = !isConfirmed;
+      const confirmCheck = document.getElementById('confirm-check');
+      const submitButton = document.getElementById('submit-button');
       
-      // 仮予約カード
-      const reserveCard = document.getElementById('reserve-card');
-      const reserveButton = document.getElementById('reserve-button');
-      const reserveClosedMessage = document.getElementById('reserve-closed-message');
-      
-      // 本入塾カード
-      const enrollCard = document.getElementById('enroll-card');
-      const enrollButton = document.getElementById('enroll-button');
-      const unavailableMessage = document.getElementById('unavailable-message');
-      
-      if (isAfterStart) {
-        // 12/25 12:00以降: 仮予約終了、本入塾開始
-        reserveCard.classList.add('disabled');
-        reserveButton.classList.add('disabled');
-        reserveButton.classList.remove('reserve');
-        reserveButton.onclick = null;
-        reserveButton.innerHTML = '<i data-lucide="x-circle" style="width:18px;height:18px;"></i> 受付終了';
-        reserveClosedMessage.style.display = 'flex';
-        
-        // 本入塾は有効
-        enrollCard.classList.remove('disabled');
-        enrollButton.classList.remove('disabled');
-        unavailableMessage.style.display = 'none';
+      if (isConfirmed) {
+        confirmCheck.classList.add('checked');
+        submitButton.classList.remove('disabled');
+        submitButton.disabled = false;
       } else {
-        // 12/25 12:00より前: 仮予約有効、本入塾無効
-        reserveCard.classList.remove('disabled');
-        reserveClosedMessage.style.display = 'none';
-        
-        enrollCard.classList.add('disabled');
-        enrollButton.classList.add('disabled');
-        enrollButton.classList.remove('enroll');
-        enrollButton.onclick = null;
-        unavailableMessage.style.display = 'flex';
+        confirmCheck.classList.remove('checked');
+        submitButton.classList.add('disabled');
+        submitButton.disabled = true;
       }
       
-      // アイコン再描画
       lucide.createIcons();
     }
     
-    // URL を開く
-    function openUrl(url) {
-      window.open(url, '_blank');
+    function openForm() {
+      if (isConfirmed) {
+        window.open(FORM_URL, '_blank');
+      }
+    }
+    
+    function toggleTrialGroup(groupId) {
+      const group = document.getElementById(groupId);
+      group.classList.toggle('open');
     }
   </script>
 </body>
