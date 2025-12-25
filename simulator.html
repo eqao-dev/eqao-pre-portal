@@ -1211,31 +1211,11 @@
       }
     }
   </style>
-</head>
-<body>
-  <!-- パスワード認証画面 -->
-  <div class="auth-overlay" id="auth-overlay">
-    <div class="auth-card">
-      <div class="auth-icon">
-        <i data-lucide="lock" style="width:28px;height:28px;"></i>
-      </div>
-      <h2 class="auth-title">パスワードを入力</h2>
-      <p class="auth-description">
-        このページは体験授業受講者限定です。<br>
-        体験授業後にお伝えしたパスワードを入力してください。
-      </p>
-      <input type="password" class="auth-input" id="auth-input" placeholder="パスワード">
-      <p class="auth-error" id="auth-error">パスワードが正しくありません</p>
-      <button class="auth-button" onclick="submitAuth()">確認</button>
-      <p class="auth-hint">
-        まだ体験授業を受講されていない方は<br>
-        <a href="/trial.html">無料体験授業に申し込む →</a>
-      </p>
-    </div>
-  </div>
   
-  <!-- 認証スクリプト（ボタンより後に読み込む） -->
   <script>
+    // ============================================
+    // 認証設定
+    // ============================================
     const AUTH_PASSWORD = 'eqaotrial1234';
     const AUTH_STORAGE_KEY = 'eqao_simulator_auth';
     
@@ -1260,19 +1240,91 @@
       }
     }
     
-    document.getElementById('auth-input').addEventListener('input', function() {
-      this.classList.remove('error');
-      document.getElementById('auth-error').classList.remove('show');
-    });
+    // ============================================
+    // 料金設定
+    // ============================================
+    const ENROLLMENT_FEE = 39800;
+    const MATERIAL_FEE = 19800;
+    const ACCOUNT_FEE = 550;
+    const BASIC_FEE = 11980;
+    const SYSTEM_FEE = 2980;
     
-    document.getElementById('auth-input').addEventListener('keydown', function(e) {
-      if (e.key === 'Enter') {
-        submitAuth();
-      }
-    });
+    let selectedCoursePrice = 13500;
+    let lessonsPerMonth = 8;
+    let months = 6;
     
-    checkAuth();
+    function selectCourse(element) {
+      document.querySelectorAll('.course-option').forEach(opt => {
+        opt.classList.remove('selected');
+      });
+      element.classList.add('selected');
+      selectedCoursePrice = parseInt(element.dataset.price);
+      calculate();
+    }
+    
+    function updateLessons(value) {
+      lessonsPerMonth = parseInt(value);
+      document.getElementById('lessons-value').textContent = value;
+      calculate();
+    }
+    
+    function updateMonths(value) {
+      months = parseInt(value);
+      document.getElementById('months-value').textContent = value;
+      document.getElementById('months-label').textContent = value;
+      calculate();
+    }
+    
+    function calculate() {
+      const initialCost = ENROLLMENT_FEE + MATERIAL_FEE + ACCOUNT_FEE;
+      const lessonCost = selectedCoursePrice * lessonsPerMonth;
+      const monthlyCost = BASIC_FEE + SYSTEM_FEE + lessonCost;
+      const totalCost = initialCost + (monthlyCost * months);
+      
+      document.getElementById('initial-cost').textContent = formatPrice(initialCost);
+      document.getElementById('monthly-cost').textContent = formatPrice(monthlyCost);
+      document.getElementById('lesson-cost-display').textContent = formatPrice(lessonCost);
+      document.getElementById('total-cost').textContent = formatPrice(totalCost);
+    }
+    
+    function formatPrice(price) {
+      return price.toLocaleString() + '円';
+    }
+    
+    function showOptionModal() {
+      document.getElementById('option-modal-overlay').classList.add('show');
+      document.body.style.overflow = 'hidden';
+      lucide.createIcons();
+    }
+    
+    function hideOptionModal(event) {
+      if (event && event.target !== event.currentTarget) return;
+      document.getElementById('option-modal-overlay').classList.remove('show');
+      document.body.style.overflow = '';
+    }
   </script>
+</head>
+<body>
+  <!-- パスワード認証画面 -->
+  <div class="auth-overlay" id="auth-overlay">
+    <div class="auth-card">
+      <div class="auth-icon">
+        <i data-lucide="lock" style="width:28px;height:28px;"></i>
+      </div>
+      <h2 class="auth-title">パスワードを入力</h2>
+      <p class="auth-description">
+        このページは体験授業受講者限定です。<br>
+        体験授業後にお伝えしたパスワードを入力してください。
+      </p>
+      <input type="password" class="auth-input" id="auth-input" placeholder="パスワード">
+      <p class="auth-error" id="auth-error">パスワードが正しくありません</p>
+      <button class="auth-button" onclick="submitAuth()">確認</button>
+      <p class="auth-hint">
+        まだ体験授業を受講されていない方は<br>
+        <a href="/trial.html">無料体験授業に申し込む →</a>
+      </p>
+    </div>
+  </div>
   
   <!-- ヘッダー -->
   <header class="header">
@@ -1816,90 +1868,22 @@
   </main>
   
   <script>
-    // ============================================
-    // 料金設定
-    // ============================================
-    const ENROLLMENT_FEE = 39800;  // 入塾金
-    const MATERIAL_FEE = 19800;    // 教材費
-    const ACCOUNT_FEE = 550;       // アカウント設定費用
-    const BASIC_FEE = 11980;       // 在籍基本料（月額）
-    const SYSTEM_FEE = 2980;       // システムサーバー費（月額）
-    
-    // 初期値
-    let selectedCoursePrice = 13500; // 最難関私大
-    let lessonsPerMonth = 8;
-    let months = 6;
-    
+    // 初期化
     document.addEventListener('DOMContentLoaded', function() {
+      checkAuth();
+      
+      document.getElementById('auth-input').addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') submitAuth();
+      });
+      
+      document.getElementById('auth-input').addEventListener('input', function() {
+        this.classList.remove('error');
+        document.getElementById('auth-error').classList.remove('show');
+      });
+      
       lucide.createIcons();
       calculate();
     });
-    
-    // コース選択
-    function selectCourse(element) {
-      // 選択状態をリセット
-      document.querySelectorAll('.course-option').forEach(opt => {
-        opt.classList.remove('selected');
-      });
-      
-      // 選択
-      element.classList.add('selected');
-      selectedCoursePrice = parseInt(element.dataset.price);
-      
-      calculate();
-    }
-    
-    // コマ数更新
-    function updateLessons(value) {
-      lessonsPerMonth = parseInt(value);
-      document.getElementById('lessons-value').textContent = value;
-      calculate();
-    }
-    
-    // 月数更新
-    function updateMonths(value) {
-      months = parseInt(value);
-      document.getElementById('months-value').textContent = value;
-      document.getElementById('months-label').textContent = value;
-      calculate();
-    }
-    
-    // 計算
-    function calculate() {
-      // 初回費用（入塾金 + 教材費 + アカウント設定費用）
-      const initialCost = ENROLLMENT_FEE + MATERIAL_FEE + ACCOUNT_FEE;
-      
-      // 授業料
-      const lessonCost = selectedCoursePrice * lessonsPerMonth;
-      
-      // 月額（在籍基本料 + システムサーバー費 + 授業料）
-      const monthlyCost = BASIC_FEE + SYSTEM_FEE + lessonCost;
-      
-      // 総額
-      const totalCost = initialCost + (monthlyCost * months);
-      
-      // 表示更新
-      document.getElementById('initial-cost').textContent = formatPrice(initialCost);
-      document.getElementById('monthly-cost').textContent = formatPrice(monthlyCost);
-      document.getElementById('lesson-cost-display').textContent = formatPrice(lessonCost);
-      document.getElementById('total-cost').textContent = formatPrice(totalCost);
-    }
-    
-    // 金額フォーマット
-    function formatPrice(price) {
-      return price.toLocaleString() + '円';
-    }
-    
-    // オプションモーダル表示
-    function showOptionModal() {
-      document.getElementById('option-modal-overlay').classList.add('show');
-      document.body.style.overflow = 'hidden';
-      lucide.createIcons();
-    }
-    
-    // オプションモーダル非表示
-    function hideOptionModal(event) {
-      // イベントがある場合はオーバーレイクリック時のみ閉じる
-      if (event && event.target !== event.currentTarget) return;
-      document.getElementById('option-modal-overlay').classList.remove('show');
-      document.body.style.overflo
+  </script>
+</body>
+</html>
