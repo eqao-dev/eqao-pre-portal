@@ -1408,10 +1408,10 @@
     const SPREADSHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQtY17_5p5tLBubM7hv0vHVYy5rBIgEo_Ri8p7h2q2ycu-jZ67c9oWXtlZ-g_T2yO5116wECliCsG5L/pub?gid=772755875&single=true&output=csv';
     
     // 限定コンテンツのパスワード
-    const LIMITED_PASSWORD = 'eqao000';
+    const LIMITED_PASSWORD = 'eqaotrial1234';
     
-    // 限定コンテンツのURL
-    const LIMITED_CONTENT_URL = '/limited.html';
+    // クリックされたアイテムのURLを保存
+    let pendingLockedUrl = '';
     
     // ============================================
     // メニューアイテムのデータ
@@ -1547,7 +1547,8 @@
         icon: 'calculator', 
         url: '/simulator.html',
         bgColor: '#d1fae5',
-        iconColor: '#059669'
+        iconColor: '#059669',
+        requiresPassword: true  // パスワード必要
       },
       { 
         id: 'locked-2', 
@@ -1555,15 +1556,17 @@
         icon: 'git-branch', 
         url: '/lesson-flow.html',
         bgColor: '#fce7f3',
-        iconColor: '#db2777'
+        iconColor: '#db2777',
+        requiresPassword: true  // パスワード必要
       },
       { 
         id: 'locked-3', 
         title: '入塾仮予約\n入塾希望', 
         icon: 'clipboard-check', 
-        url: '/limited.html', // 準備中
+        url: '/limited.html',
         bgColor: '#e0e7ff',
-        iconColor: '#6366f1'
+        iconColor: '#6366f1',
+        requiresPassword: true  // パスワード必要
       },
     ];
     
@@ -1737,10 +1740,17 @@
       const item = lockedMenuItems.find(i => i.id === id);
       if (!item) return;
       
-      if (item.url) {
-        openUrl(item.url);
-      } else {
+      if (!item.url) {
         showToast('準備中です\nもうしばらくお待ちください');
+        return;
+      }
+      
+      // パスワードが必要な場合はモーダル表示
+      if (item.requiresPassword) {
+        pendingLockedUrl = item.url;
+        showModal();
+      } else {
+        openUrl(item.url);
       }
     }
     
@@ -1837,7 +1847,10 @@
       
       if (password === LIMITED_PASSWORD) {
         hideModal();
-        openUrl(LIMITED_CONTENT_URL);
+        if (pendingLockedUrl) {
+          openUrl(pendingLockedUrl);
+          pendingLockedUrl = '';
+        }
       } else {
         document.getElementById('modal-error').classList.add('show');
       }
