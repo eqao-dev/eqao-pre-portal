@@ -1305,6 +1305,7 @@
             <div class="course-radio"></div>
             <div class="course-info">
               <div class="course-name">EQAO ENGLISH対策</div>
+              <div class="course-price-sub">英語資格対策（英検・IELTS・TEAP）専門 / 総合型選抜コースと併用可能</div>
               <div class="course-price">12,800円 / コマ</div>
             </div>
           </div>
@@ -1728,16 +1729,32 @@
                 <span class="option-item-price">-10,000円</span>
               </div>
               <div class="option-item option-discount">
+                <span class="option-item-name">5ヶ月まとめ払い</span>
+                <span class="option-item-price">-12,500円</span>
+              </div>
+              <div class="option-item option-discount">
                 <span class="option-item-name">6ヶ月まとめ払い</span>
                 <span class="option-item-price">-15,000円</span>
+              </div>
+              <div class="option-item option-discount">
+                <span class="option-item-name">7ヶ月まとめ払い</span>
+                <span class="option-item-price">-17,500円</span>
               </div>
               <div class="option-item option-discount">
                 <span class="option-item-name">8ヶ月まとめ払い</span>
                 <span class="option-item-price">-20,000円</span>
               </div>
               <div class="option-item option-discount">
+                <span class="option-item-name">9ヶ月まとめ払い</span>
+                <span class="option-item-price">-25,000円</span>
+              </div>
+              <div class="option-item option-discount">
                 <span class="option-item-name">10ヶ月まとめ払い</span>
                 <span class="option-item-price">-30,000円</span>
+              </div>
+              <div class="option-item option-discount">
+                <span class="option-item-name">11ヶ月まとめ払い</span>
+                <span class="option-item-price">-35,000円</span>
               </div>
               <div class="option-item option-discount">
                 <span class="option-item-name">12ヶ月まとめ払い</span>
@@ -1758,7 +1775,7 @@
     </div>
   </main>
   
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  <script>
     // ============================================
     // 認証設定
     // ============================================
@@ -1789,17 +1806,17 @@
       }
     }
     
+    // 入力時にエラー解除
+    document.getElementById('auth-input').addEventListener('input', function() {
+      this.classList.remove('error');
+      document.getElementById('auth-error').classList.remove('show');
+    });
+    
     // Enterキーでパスワード送信
     document.getElementById('auth-input').addEventListener('keydown', function(e) {
       if (e.key === 'Enter') {
         submitAuth();
       }
-    });
-    
-    // 入力時にエラー解除
-    document.getElementById('auth-input').addEventListener('input', function() {
-      this.classList.remove('error');
-      document.getElementById('auth-error').classList.remove('show');
     });
     
     // ============================================
