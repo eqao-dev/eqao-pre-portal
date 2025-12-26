@@ -1,32 +1,33 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>入塾同意書 | EQAO</title>
-  
+
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
-  
+
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
-  
+
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-    
+
     body {
       font-family: 'Noto Sans JP', sans-serif;
       background: #f1f5f9;
       min-height: 100vh;
       color: #374151;
     }
-    
+
     /* ヘッダー */
     .header {
       background: #1e3a5f;
@@ -36,7 +37,7 @@
       z-index: 100;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
-    
+
     .header-content {
       display: flex;
       align-items: center;
@@ -46,13 +47,13 @@
       margin: 0 auto;
       position: relative;
     }
-    
+
     .back-button {
       position: absolute;
       left: 0;
       width: 36px;
       height: 36px;
-      background: rgba(255,255,255,0.15);
+      background: rgba(255, 255, 255, 0.15);
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -63,11 +64,11 @@
       transition: background 0.2s;
       border: none;
     }
-    
+
     .back-button:hover {
-      background: rgba(255,255,255,0.25);
+      background: rgba(255, 255, 255, 0.25);
     }
-    
+
     .logo {
       width: 32px;
       height: 32px;
@@ -79,19 +80,19 @@
       overflow: hidden;
       padding: 4px;
     }
-    
+
     .logo img {
       width: 100%;
       height: 100%;
       object-fit: contain;
     }
-    
+
     .header-title {
       color: white;
       font-size: 15px;
       font-weight: bold;
     }
-    
+
     /* メインコンテンツ */
     .main {
       max-width: 1000px;
@@ -99,23 +100,23 @@
       padding: 20px 16px;
       padding-bottom: 120px;
     }
-    
+
     /* ========================================== */
     /* トップ画面（セクション一覧） */
     /* ========================================== */
     .top-screen {
       display: block;
     }
-    
+
     .top-screen.hidden {
       display: none;
     }
-    
+
     .top-hero {
       text-align: center;
       padding: 24px 0;
     }
-    
+
     .top-hero-icon {
       width: 72px;
       height: 72px;
@@ -127,51 +128,51 @@
       margin: 0 auto 16px;
       color: #16a34a;
     }
-    
+
     .top-hero-title {
       font-size: 22px;
       font-weight: bold;
       color: #1e3a5f;
       margin-bottom: 8px;
     }
-    
+
     .top-hero-subtitle {
       font-size: 13px;
       color: #6b7280;
       line-height: 1.6;
     }
-    
+
     /* 進捗サマリー */
     .progress-summary {
       background: white;
       border-radius: 16px;
       padding: 20px;
       margin-bottom: 20px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
     }
-    
+
     .progress-summary-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
       margin-bottom: 12px;
     }
-    
+
     .progress-summary-title {
       font-size: 14px;
       font-weight: bold;
       color: #1e3a5f;
     }
-    
+
     .progress-summary-count {
       font-size: 13px;
       color: #6b7280;
     }
-    
+
     .progress-summary-count strong {
       color: #16a34a;
     }
-    
+
     .progress-bar-large {
       height: 12px;
       background: #e5e7eb;
@@ -179,14 +180,14 @@
       overflow: hidden;
       margin-bottom: 12px;
     }
-    
+
     .progress-bar-large-fill {
       height: 100%;
       background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%);
       border-radius: 6px;
       transition: width 0.5s ease;
     }
-    
+
     .progress-summary-hint {
       font-size: 11px;
       color: #9ca3af;
@@ -194,7 +195,7 @@
       align-items: center;
       gap: 6px;
     }
-    
+
     /* 自動保存通知 */
     .autosave-notice {
       background: #eff6ff;
@@ -206,7 +207,7 @@
       align-items: flex-start;
       gap: 12px;
     }
-    
+
     .autosave-notice-icon {
       width: 36px;
       height: 36px;
@@ -218,24 +219,24 @@
       color: #2563eb;
       flex-shrink: 0;
     }
-    
+
     .autosave-notice-content {
       flex: 1;
     }
-    
+
     .autosave-notice-title {
       font-size: 13px;
       font-weight: bold;
       color: #1e40af;
       margin-bottom: 4px;
     }
-    
+
     .autosave-notice-text {
       font-size: 12px;
       color: #3b82f6;
       line-height: 1.5;
     }
-    
+
     .autosave-notice-warning {
       font-size: 11px;
       color: #dc2626;
@@ -244,21 +245,21 @@
       align-items: center;
       gap: 4px;
     }
-    
+
     /* セクションカード一覧 */
     .section-cards {
       display: grid;
       grid-template-columns: 1fr;
       gap: 14px;
     }
-    
+
     @media (min-width: 640px) {
       .section-cards {
         grid-template-columns: repeat(2, 1fr);
         gap: 16px;
       }
     }
-    
+
     .section-card {
       background: white;
       border-radius: 16px;
@@ -268,28 +269,28 @@
       gap: 14px;
       cursor: pointer;
       transition: all 0.2s;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
       border: 2px solid transparent;
       min-height: 140px;
     }
-    
+
     .section-card:hover {
       border-color: #1e3a5f;
       transform: translateY(-3px);
-      box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
     }
-    
+
     .section-card.completed {
       border-color: #22c55e;
       background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
     }
-    
+
     .section-card-header {
       display: flex;
       align-items: center;
       gap: 12px;
     }
-    
+
     .section-card-number {
       width: 44px;
       height: 44px;
@@ -303,29 +304,29 @@
       color: white;
       flex-shrink: 0;
     }
-    
+
     .section-card.completed .section-card-number {
       background: #22c55e;
       color: white;
     }
-    
+
     .section-card-content {
       flex: 1;
     }
-    
+
     .section-card-title {
       font-size: 16px;
       font-weight: 700;
       color: #1e3a5f;
       margin-bottom: 6px;
     }
-    
+
     .section-card-desc {
       font-size: 13px;
       color: #6b7280;
       line-height: 1.5;
     }
-    
+
     .section-card-footer {
       display: flex;
       align-items: center;
@@ -333,7 +334,7 @@
       padding-top: 12px;
       border-top: 1px solid #f3f4f6;
     }
-    
+
     .section-card-status {
       display: flex;
       align-items: center;
@@ -342,11 +343,11 @@
       color: #9ca3af;
       font-weight: 500;
     }
-    
+
     .section-card.completed .section-card-status {
       color: #16a34a;
     }
-    
+
     .section-card-arrow {
       width: 32px;
       height: 32px;
@@ -358,28 +359,28 @@
       color: #9ca3af;
       transition: all 0.2s;
     }
-    
+
     .section-card:hover .section-card-arrow {
       background: #1e3a5f;
       color: white;
     }
-    
+
     .section-card.completed .section-card-arrow {
       background: #dcfce7;
       color: #16a34a;
     }
-    
+
     .section-card.completed:hover .section-card-arrow {
       background: #16a34a;
       color: white;
     }
-    
+
     /* 送信ボタン（トップ画面） */
     .submit-section {
       margin-top: 24px;
       text-align: center;
     }
-    
+
     .submit-btn {
       width: 100%;
       max-width: 320px;
@@ -398,64 +399,69 @@
       transition: all 0.2s;
       box-shadow: 0 4px 12px rgba(22, 163, 74, 0.3);
     }
-    
+
     .submit-btn:hover:not(:disabled) {
       transform: translateY(-2px);
       box-shadow: 0 6px 16px rgba(22, 163, 74, 0.4);
     }
-    
+
     .submit-btn:disabled {
       background: #d1d5db;
       cursor: not-allowed;
       box-shadow: none;
     }
-    
+
     .submit-hint {
       font-size: 12px;
       color: #9ca3af;
       margin-top: 12px;
     }
-    
+
     /* スピナーアニメーション */
     .spin {
       animation: spin 1s linear infinite;
     }
-    
+
     @keyframes spin {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
     }
-    
+
     /* ========================================== */
     /* セクション画面 */
     /* ========================================== */
     .section-screen {
       display: none;
     }
-    
+
     .section-screen.active {
       display: block;
     }
-    
+
     /* セクションヘッダー */
     .section-header-bar {
       background: white;
       border-radius: 16px;
       padding: 20px;
       margin-bottom: 20px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
       max-width: 700px;
       margin-left: auto;
       margin-right: auto;
     }
-    
+
     .section-header-top {
       display: flex;
       align-items: center;
       gap: 12px;
       margin-bottom: 12px;
     }
-    
+
     .section-header-icon {
       width: 44px;
       height: 44px;
@@ -466,30 +472,30 @@
       justify-content: center;
       color: white;
     }
-    
+
     .section-header-info {
       flex: 1;
     }
-    
+
     .section-header-step {
       font-size: 11px;
       color: #6b7280;
       margin-bottom: 2px;
     }
-    
+
     .section-header-title {
       font-size: 18px;
       font-weight: bold;
       color: #1e3a5f;
     }
-    
+
     /* ミニプログレス */
     .mini-progress {
       display: flex;
       align-items: center;
       gap: 6px;
     }
-    
+
     .mini-progress-dot {
       width: 10px;
       height: 10px;
@@ -497,42 +503,42 @@
       border-radius: 50%;
       transition: all 0.2s;
     }
-    
+
     .mini-progress-dot.completed {
       background: #22c55e;
     }
-    
+
     .mini-progress-dot.current {
       background: #1e3a5f;
       transform: scale(1.2);
     }
-    
+
     /* フォームコンテンツ */
     .section-form {
       background: white;
       border-radius: 16px;
       padding: 24px 20px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
       max-width: 700px;
       margin-left: auto;
       margin-right: auto;
     }
-    
+
     @media (min-width: 768px) {
       .section-form {
         padding: 32px;
       }
     }
-    
+
     /* フォーム要素 */
     .form-group {
       margin-bottom: 24px;
     }
-    
+
     .form-group:last-child {
       margin-bottom: 0;
     }
-    
+
     .form-label {
       display: block;
       font-size: 14px;
@@ -540,19 +546,19 @@
       color: #374151;
       margin-bottom: 8px;
     }
-    
+
     .form-label .required {
       color: #ef4444;
       margin-left: 4px;
     }
-    
+
     .form-hint {
       font-size: 12px;
       color: #6b7280;
       margin-top: 4px;
       line-height: 1.5;
     }
-    
+
     .form-input {
       width: 100%;
       padding: 12px 14px;
@@ -563,55 +569,55 @@
       transition: border-color 0.2s, box-shadow 0.2s;
       background: white;
     }
-    
+
     .form-input:focus {
       outline: none;
       border-color: #1e3a5f;
       box-shadow: 0 0 0 3px rgba(30, 58, 95, 0.1);
     }
-    
+
     .form-input::placeholder {
       color: #9ca3af;
     }
-    
+
     /* エラー状態 */
     .form-input.error {
       border-color: #ef4444;
       background: #fef2f2;
     }
-    
+
     .form-input.error:focus {
       border-color: #ef4444;
       box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
     }
-    
+
     .option-group.error .option-item {
       border-color: #fca5a5;
       background: #fef2f2;
     }
-    
+
     .form-group.error .form-label {
       color: #dc2626;
     }
-    
+
     .date-select.error {
       border-color: #ef4444;
       background: #fef2f2;
     }
-    
+
     /* ラジオ・チェックボックス */
     .option-group {
       display: flex;
       flex-direction: column;
       gap: 10px;
     }
-    
+
     .option-group.inline {
       flex-direction: row;
       flex-wrap: wrap;
       gap: 8px;
     }
-    
+
     .option-item {
       display: flex;
       align-items: center;
@@ -624,17 +630,17 @@
       transition: all 0.2s;
       user-select: none;
     }
-    
+
     .option-item:hover {
       background: #f3f4f6;
       border-color: #d1d5db;
     }
-    
+
     .option-item.selected {
       background: #eff6ff;
       border-color: #1e3a5f;
     }
-    
+
     .option-radio,
     .option-checkbox {
       width: 20px;
@@ -647,17 +653,17 @@
       transition: all 0.2s;
       flex-shrink: 0;
     }
-    
+
     .option-checkbox {
       border-radius: 6px;
     }
-    
+
     .option-item.selected .option-radio,
     .option-item.selected .option-checkbox {
       background: #1e3a5f;
       border-color: #1e3a5f;
     }
-    
+
     .option-radio::after {
       content: '';
       width: 8px;
@@ -667,11 +673,11 @@
       opacity: 0;
       transition: opacity 0.2s;
     }
-    
+
     .option-item.selected .option-radio::after {
       opacity: 1;
     }
-    
+
     .check-icon {
       color: white;
       opacity: 0;
@@ -679,17 +685,17 @@
       width: 14px;
       height: 14px;
     }
-    
+
     .option-item.selected .check-icon {
       opacity: 1;
     }
-    
+
     .option-label {
       font-size: 14px;
       color: #374151;
       line-height: 1.4;
     }
-    
+
     /* 日付入力 */
     .date-input-row {
       display: flex;
@@ -697,7 +703,7 @@
       gap: 8px;
       flex-wrap: wrap;
     }
-    
+
     .date-select {
       padding: 10px 12px;
       border: 1px solid #d1d5db;
@@ -706,16 +712,16 @@
       background: white;
       min-width: 80px;
     }
-    
+
     .date-select.year-select {
       min-width: 90px;
     }
-    
+
     .date-separator {
       color: #6b7280;
       font-size: 14px;
     }
-    
+
     /* セクションディバイダー */
     .section-divider {
       display: flex;
@@ -723,19 +729,19 @@
       gap: 12px;
       margin: 28px 0;
     }
-    
+
     .section-divider-line {
       flex: 1;
       height: 1px;
       background: #e5e7eb;
     }
-    
+
     .section-divider-text {
       font-size: 12px;
       color: #6b7280;
       font-weight: 500;
     }
-    
+
     /* 注意ボックス */
     .notice-box {
       background: #fffbeb;
@@ -744,12 +750,12 @@
       padding: 14px 16px;
       margin-bottom: 16px;
     }
-    
+
     .notice-box.info {
       background: #eff6ff;
       border-color: #bfdbfe;
     }
-    
+
     .notice-box-title {
       font-size: 13px;
       font-weight: bold;
@@ -759,21 +765,21 @@
       align-items: center;
       gap: 6px;
     }
-    
+
     .notice-box.info .notice-box-title {
       color: #1e40af;
     }
-    
+
     .notice-box-text {
       font-size: 12px;
       color: #78350f;
       line-height: 1.6;
     }
-    
+
     .notice-box.info .notice-box-text {
       color: #1e3a8a;
     }
-    
+
     /* ナビゲーションボタン */
     .section-nav {
       display: flex;
@@ -782,7 +788,7 @@
       padding-top: 20px;
       border-top: 1px solid #e5e7eb;
     }
-    
+
     .nav-btn {
       flex: 1;
       padding: 14px 20px;
@@ -796,28 +802,28 @@
       gap: 8px;
       transition: all 0.2s;
     }
-    
+
     .nav-btn.secondary {
       background: white;
       border: 2px solid #e5e7eb;
       color: #6b7280;
     }
-    
+
     .nav-btn.secondary:hover {
       border-color: #1e3a5f;
       color: #1e3a5f;
     }
-    
+
     .nav-btn.primary {
       background: linear-gradient(135deg, #1e3a5f 0%, #2d4a6f 100%);
       border: none;
       color: white;
     }
-    
+
     .nav-btn.primary:hover {
       opacity: 0.9;
     }
-    
+
     /* ========================================== */
     /* 完了画面 */
     /* ========================================== */
@@ -826,11 +832,11 @@
       text-align: center;
       padding: 40px 20px;
     }
-    
+
     .completion-screen.show {
       display: block;
     }
-    
+
     .completion-icon {
       width: 100px;
       height: 100px;
@@ -842,30 +848,30 @@
       margin: 0 auto 24px;
       color: #16a34a;
     }
-    
+
     .completion-title {
       font-size: 24px;
       font-weight: bold;
       color: #1e3a5f;
       margin-bottom: 12px;
     }
-    
+
     .completion-text {
       font-size: 14px;
       color: #6b7280;
       line-height: 1.7;
       margin-bottom: 32px;
     }
-    
+
     .completion-card {
       background: white;
       border-radius: 16px;
       padding: 24px;
       margin-bottom: 24px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
       text-align: left;
     }
-    
+
     .completion-card-title {
       font-size: 14px;
       font-weight: bold;
@@ -875,7 +881,7 @@
       align-items: center;
       gap: 8px;
     }
-    
+
     .completion-step {
       display: flex;
       align-items: flex-start;
@@ -883,11 +889,11 @@
       padding: 12px 0;
       border-bottom: 1px solid #f3f4f6;
     }
-    
+
     .completion-step:last-child {
       border-bottom: none;
     }
-    
+
     .completion-step-number {
       width: 24px;
       height: 24px;
@@ -901,13 +907,13 @@
       font-weight: bold;
       flex-shrink: 0;
     }
-    
+
     .completion-step-text {
       font-size: 13px;
       color: #374151;
       line-height: 1.5;
     }
-    
+
     /* ========================================== */
     /* 復元モーダル */
     /* ========================================== */
@@ -917,74 +923,74 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba(0,0,0,0.6);
+      background: rgba(0, 0, 0, 0.6);
       display: none;
       align-items: center;
       justify-content: center;
       z-index: 500;
       padding: 20px;
     }
-    
+
     .restore-modal-overlay.show {
       display: flex;
     }
-    
+
     .restore-modal {
       background: white;
       border-radius: 20px;
       max-width: 400px;
       width: 100%;
       overflow: hidden;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
     }
-    
+
     .restore-modal-header {
       background: linear-gradient(135deg, #1e3a5f 0%, #2d4a6f 100%);
       padding: 24px;
       text-align: center;
       color: white;
     }
-    
+
     .restore-modal-icon {
       width: 56px;
       height: 56px;
-      background: rgba(255,255,255,0.2);
+      background: rgba(255, 255, 255, 0.2);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       margin: 0 auto 16px;
     }
-    
+
     .restore-modal-title {
       font-size: 18px;
       font-weight: bold;
     }
-    
+
     .restore-modal-body {
       padding: 24px;
       text-align: center;
     }
-    
+
     .restore-modal-text {
       font-size: 14px;
       color: #374151;
       line-height: 1.7;
       margin-bottom: 8px;
     }
-    
+
     .restore-modal-date {
       font-size: 12px;
       color: #6b7280;
       margin-bottom: 20px;
     }
-    
+
     .restore-modal-buttons {
       display: flex;
       flex-direction: column;
       gap: 10px;
     }
-    
+
     .restore-btn {
       width: 100%;
       padding: 14px;
@@ -994,23 +1000,23 @@
       cursor: pointer;
       transition: all 0.2s;
     }
-    
+
     .restore-btn.primary {
       background: linear-gradient(135deg, #1e3a5f 0%, #2d4a6f 100%);
       color: white;
       border: none;
     }
-    
+
     .restore-btn.secondary {
       background: white;
       color: #6b7280;
       border: 2px solid #e5e7eb;
     }
-    
+
     .restore-btn:hover {
       opacity: 0.9;
     }
-    
+
     /* トースト */
     .toast {
       position: fixed;
@@ -1028,33 +1034,33 @@
       text-align: center;
       max-width: 90%;
     }
-    
+
     .toast.show {
       transform: translateX(-50%) translateY(0);
       opacity: 1;
     }
-    
+
     .toast.error {
       background: #ef4444;
     }
-    
+
     .toast.success {
       background: #16a34a;
     }
-    
+
     /* コース選択カード */
     .course-cards {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 12px;
     }
-    
+
     @media (max-width: 500px) {
       .course-cards {
         grid-template-columns: 1fr;
       }
     }
-    
+
     .course-card {
       border: 2px solid #e5e7eb;
       border-radius: 12px;
@@ -1063,24 +1069,24 @@
       transition: all 0.2s;
       background: white;
     }
-    
+
     .course-card:hover {
       border-color: #1e3a5f;
       background: #f8fafc;
     }
-    
+
     .course-card.selected {
       border-color: #1e3a5f;
       background: #eff6ff;
     }
-    
+
     .course-card-header {
       display: flex;
       align-items: center;
       gap: 10px;
       margin-bottom: 8px;
     }
-    
+
     .course-card-radio {
       width: 20px;
       height: 20px;
@@ -1092,12 +1098,12 @@
       flex-shrink: 0;
       transition: all 0.2s;
     }
-    
+
     .course-card.selected .course-card-radio {
       background: #1e3a5f;
       border-color: #1e3a5f;
     }
-    
+
     .course-card-radio::after {
       content: '';
       width: 8px;
@@ -1107,45 +1113,45 @@
       opacity: 0;
       transition: opacity 0.2s;
     }
-    
+
     .course-card.selected .course-card-radio::after {
       opacity: 1;
     }
-    
+
     .course-card-name {
       font-weight: 600;
       font-size: 14px;
       color: #1e3a5f;
     }
-    
+
     .course-card-examples {
       font-size: 11px;
       color: #6b7280;
       margin: 8px 0;
       line-height: 1.4;
     }
-    
+
     .course-card.selected .course-card-examples {
       color: #4b5563;
     }
-    
+
     .course-card-price {
       font-size: 20px;
       font-weight: bold;
       color: #16a34a;
     }
-    
+
     .course-card-price span {
       font-size: 12px;
       font-weight: normal;
       color: #6b7280;
     }
-    
+
     .course-cards.error .course-card {
       border-color: #fca5a5;
       background: #fef2f2;
     }
-    
+
     /* 料金サマリー */
     .price-summary {
       background: linear-gradient(135deg, #1e3a5f 0%, #2d4a6f 100%);
@@ -1155,7 +1161,7 @@
       margin-top: 16px;
       color: white;
     }
-    
+
     .price-summary-title {
       font-size: 14px;
       font-weight: bold;
@@ -1164,7 +1170,7 @@
       align-items: center;
       gap: 8px;
     }
-    
+
     .price-summary-title .tax-badge {
       background: rgba(253, 224, 71, 0.3);
       color: #fde047;
@@ -1172,22 +1178,22 @@
       border-radius: 10px;
       font-size: 10px;
     }
-    
+
     .price-category {
       margin-bottom: 16px;
       padding-bottom: 16px;
-      border-bottom: 1px solid rgba(255,255,255,0.15);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
     }
-    
+
     .price-category-title {
       font-size: 12px;
-      color: rgba(255,255,255,0.7);
+      color: rgba(255, 255, 255, 0.7);
       margin-bottom: 8px;
       display: flex;
       align-items: center;
       gap: 6px;
     }
-    
+
     .price-row {
       display: flex;
       justify-content: space-between;
@@ -1195,75 +1201,75 @@
       padding: 4px 0;
       font-size: 13px;
     }
-    
+
     .price-row .label {
-      color: rgba(255,255,255,0.8);
+      color: rgba(255, 255, 255, 0.8);
     }
-    
+
     .price-row .label small {
       display: block;
       font-size: 10px;
-      color: rgba(255,255,255,0.5);
+      color: rgba(255, 255, 255, 0.5);
       margin-top: 2px;
     }
-    
+
     .price-row .value {
       font-weight: 600;
     }
-    
+
     .price-row.discount .value {
       color: #fde047;
     }
-    
+
     .price-row.subtotal {
       margin-top: 10px;
       padding: 10px 8px;
-      border-top: 1px solid rgba(255,255,255,0.3);
+      border-top: 1px solid rgba(255, 255, 255, 0.3);
       font-weight: 600;
-      background: rgba(255,255,255,0.05);
+      background: rgba(255, 255, 255, 0.05);
       border-radius: 6px;
       margin-left: -8px;
       margin-right: -8px;
     }
-    
+
     .price-total {
-      background: rgba(255,255,255,0.1);
+      background: rgba(255, 255, 255, 0.1);
       margin: 0 -20px;
       padding: 16px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
-    
+
     .price-total .label {
       font-size: 14px;
       font-weight: bold;
     }
-    
+
     .price-total .value {
       font-size: 24px;
       font-weight: bold;
       color: #fde047;
     }
-    
+
     .price-note {
       font-size: 10px;
-      color: rgba(255,255,255,0.6);
+      color: rgba(255, 255, 255, 0.6);
       margin-top: 16px;
       line-height: 1.6;
       padding: 0 4px;
     }
-    
+
     /* ファイルアップロードエリア */
     #upload-drop-area:hover {
       border-color: #1e3a5f;
       background: #f0f9ff;
     }
-    
+
     #upload-drop-area:active {
       background: #e0f2fe;
     }
-    
+
     /* 割引確認ボタン */
     .discount-confirm-btn {
       width: 100%;
@@ -1279,30 +1285,40 @@
       transition: all 0.2s;
       border: none;
     }
-    
+
     .discount-confirm-btn.not-confirmed {
       background: #fef3c7;
       color: #92400e;
     }
-    
+
     .discount-confirm-btn.error {
       background: #fef2f2;
       color: #dc2626;
       border: 2px solid #dc2626;
       animation: shake 0.5s ease-in-out;
     }
-    
+
     @keyframes shake {
-      0%, 100% { transform: translateX(0); }
-      25% { transform: translateX(-5px); }
-      75% { transform: translateX(5px); }
+
+      0%,
+      100% {
+        transform: translateX(0);
+      }
+
+      25% {
+        transform: translateX(-5px);
+      }
+
+      75% {
+        transform: translateX(5px);
+      }
     }
-    
+
     .discount-confirm-btn.confirmed {
       background: #dcfce7;
       color: #166534;
     }
-    
+
     .discount-confirm-status {
       margin-top: 8px;
       padding: 10px 12px;
@@ -1312,23 +1328,23 @@
       align-items: center;
       gap: 6px;
     }
-    
+
     .discount-confirm-status.pending {
       background: #fef3c7;
       color: #92400e;
     }
-    
+
     .discount-confirm-status.error {
       background: #fef2f2;
       color: #dc2626;
       border: 1px solid #fca5a5;
     }
-    
+
     .discount-confirm-status.completed {
       background: #dcfce7;
       color: #166534;
     }
-    
+
     /* 割引モーダル（v4_2形式） */
     .modal-overlay {
       position: fixed;
@@ -1336,18 +1352,18 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba(0,0,0,0.6);
+      background: rgba(0, 0, 0, 0.6);
       display: none;
       align-items: center;
       justify-content: center;
       z-index: 300;
       padding: 20px;
     }
-    
+
     .modal-overlay.show {
       display: flex;
     }
-    
+
     .modal-content {
       background: white;
       border-radius: 16px;
@@ -1355,9 +1371,9 @@
       width: 100%;
       max-height: 80vh;
       overflow-y: auto;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
     }
-    
+
     .modal-header {
       background: #1e3a5f;
       padding: 16px 20px;
@@ -1367,29 +1383,29 @@
       position: sticky;
       top: 0;
     }
-    
+
     .modal-header-icon {
       width: 32px;
       height: 32px;
-      background: rgba(255,255,255,0.2);
+      background: rgba(255, 255, 255, 0.2);
       border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
       color: white;
     }
-    
+
     .modal-header-title {
       color: white;
       font-size: 16px;
       font-weight: bold;
       flex: 1;
     }
-    
+
     .modal-close {
       width: 32px;
       height: 32px;
-      background: rgba(255,255,255,0.1);
+      background: rgba(255, 255, 255, 0.1);
       border: none;
       border-radius: 50%;
       color: white;
@@ -1399,27 +1415,27 @@
       justify-content: center;
       transition: background 0.2s;
     }
-    
+
     .modal-close:hover {
-      background: rgba(255,255,255,0.2);
+      background: rgba(255, 255, 255, 0.2);
     }
-    
+
     .modal-body {
       padding: 20px;
     }
-    
+
     .modal-section {
       margin-bottom: 20px;
       padding-bottom: 20px;
       border-bottom: 1px solid #e5e7eb;
     }
-    
+
     .modal-section:last-child {
       margin-bottom: 0;
       padding-bottom: 0;
       border-bottom: none;
     }
-    
+
     .modal-section-title {
       font-size: 14px;
       font-weight: bold;
@@ -1429,7 +1445,7 @@
       align-items: center;
       gap: 6px;
     }
-    
+
     .modal-section-title .number {
       width: 22px;
       height: 22px;
@@ -1441,25 +1457,25 @@
       justify-content: center;
       font-size: 12px;
     }
-    
+
     .modal-section-text {
       font-size: 13px;
       color: #374151;
       line-height: 1.7;
     }
-    
+
     .modal-section-text .highlight {
       background: #fef3c7;
       padding: 2px 4px;
       border-radius: 4px;
       font-weight: 500;
     }
-    
+
     .modal-section-text .warning {
       color: #dc2626;
       font-weight: 500;
     }
-    
+
     .modal-footer {
       padding: 16px 20px;
       background: #f9fafb;
@@ -1467,7 +1483,7 @@
       display: flex;
       gap: 12px;
     }
-    
+
     .modal-btn {
       flex: 1;
       padding: 12px;
@@ -1482,16 +1498,16 @@
       gap: 6px;
       border: none;
     }
-    
+
     .modal-btn.primary {
       background: #1e3a5f;
       color: white;
     }
-    
+
     .modal-btn.primary:hover {
       background: #2d4a6f;
     }
-    
+
     /* レスポンシブ */
     @media (min-width: 768px) {
       .main {
@@ -1499,8 +1515,90 @@
         padding-bottom: 120px;
       }
     }
+
+    /* 5段階スケール */
+    .scale-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .scale-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    .scale-label {
+      font-size: 11px;
+      color: #6b7280;
+      font-weight: 400;
+      width: 100px;
+      min-width: 100px;
+      max-width: 100px;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .scale-label.left {
+      text-align: right;
+    }
+
+    .scale-label.right {
+      text-align: left;
+    }
+
+    .scale-options {
+      display: flex;
+      gap: 6px;
+      justify-content: center;
+    }
+
+    .scale-option {
+      width: 36px;
+      height: 36px;
+      border: 2px solid #d1d5db;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 600;
+      color: #9ca3af;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: white;
+    }
+
+    .scale-option:hover {
+      border-color: #1e3a5f;
+      color: #1e3a5f;
+    }
+
+    .scale-option.selected {
+      background: #1e3a5f;
+      border-color: #1e3a5f;
+      color: white;
+    }
+
+    @media (max-width: 480px) {
+      .scale-label {
+        width: 70px;
+        min-width: 70px;
+        max-width: 70px;
+        font-size: 10px;
+      }
+
+      .scale-option {
+        width: 32px;
+        height: 32px;
+        font-size: 12px;
+      }
+    }
   </style>
 </head>
+
 <body>
   <!-- ヘッダー -->
   <header class="header">
@@ -1512,10 +1610,10 @@
       <h1 class="header-title">入塾同意書</h1>
     </div>
   </header>
-  
+
   <!-- メインコンテンツ -->
   <main class="main">
-    
+
     <!-- ========================================== -->
     <!-- トップ画面 -->
     <!-- ========================================== -->
@@ -1530,12 +1628,13 @@
           途中保存も可能です。
         </p>
       </div>
-      
+
       <!-- 進捗サマリー -->
       <div class="progress-summary">
         <div class="progress-summary-header">
           <span class="progress-summary-title">入力進捗</span>
-          <span class="progress-summary-count"><strong id="completed-count">0</strong> / <span id="total-count">10</span> 完了</span>
+          <span class="progress-summary-count"><strong id="completed-count">0</strong> / <span
+              id="total-count">10</span> 完了</span>
         </div>
         <div class="progress-bar-large">
           <div class="progress-bar-large-fill" id="progress-fill" style="width: 0%;"></div>
@@ -1545,7 +1644,7 @@
           すべてのセクションを完了すると送信できます
         </div>
       </div>
-      
+
       <!-- 自動保存通知 -->
       <div class="autosave-notice">
         <div class="autosave-notice-icon">
@@ -1563,12 +1662,12 @@
           </div>
         </div>
       </div>
-      
+
       <!-- セクションカード一覧 -->
       <div class="section-cards" id="section-cards">
         <!-- JavaScriptで生成 -->
       </div>
-      
+
       <!-- 送信ボタン -->
       <div class="submit-section">
         <button class="submit-btn" id="submit-btn" disabled onclick="submitForm()">
@@ -1577,15 +1676,16 @@
         </button>
         <p class="submit-hint" id="submit-hint">すべてのセクションを完了してください</p>
       </div>
-      
+
       <!-- リセットボタン -->
       <div style="text-align:center;margin-top:20px;">
-        <button type="button" onclick="confirmReset()" style="background:none;border:none;color:#9ca3af;font-size:12px;cursor:pointer;text-decoration:underline;">
+        <button type="button" onclick="confirmReset()"
+          style="background:none;border:none;color:#9ca3af;font-size:12px;cursor:pointer;text-decoration:underline;">
           入力内容をリセットする
         </button>
       </div>
     </div>
-    
+
     <!-- ========================================== -->
     <!-- セクション1: 生徒情報 -->
     <!-- ========================================== -->
@@ -1602,21 +1702,21 @@
         </div>
         <div class="mini-progress" id="mini-progress-1"></div>
       </div>
-      
+
       <div class="section-form">
         <!-- 氏名 -->
         <div class="form-group">
           <label class="form-label">氏名（受講者本人）<span class="required">*</span></label>
           <input type="text" class="form-input" id="student-name" placeholder="例：山田 太郎" data-section="1">
         </div>
-        
+
         <!-- フリガナ -->
         <div class="form-group">
           <label class="form-label">フリガナ<span class="required">*</span></label>
           <input type="text" class="form-input" id="student-furigana" placeholder="例：ヤマダ タロウ" data-section="1">
           <p class="form-hint" id="furigana-hint" style="display:none; color:#dc2626;">カタカナで入力してください</p>
         </div>
-        
+
         <!-- 生年月日 -->
         <div class="form-group">
           <label class="form-label">生年月日<span class="required">*</span></label>
@@ -1635,83 +1735,85 @@
             <span class="date-separator">日</span>
           </div>
         </div>
-        
+
         <!-- 学年 -->
         <div class="form-group">
           <label class="form-label">学年<span class="required">*</span></label>
           <div class="option-group" id="grade-group"></div>
         </div>
-        
+
         <div class="section-divider">
           <div class="section-divider-line"></div>
           <span class="section-divider-text">学校情報</span>
           <div class="section-divider-line"></div>
         </div>
-        
+
         <!-- 高校名 -->
         <div class="form-group">
           <label class="form-label">高校名（正式名称）<span class="required">*</span></label>
           <input type="text" class="form-input" id="school-name" placeholder="例：東京都立○○高等学校" data-section="1">
           <p class="form-hint">※正式名称でご記入ください（例：都立○○高校 → 東京都立○○高等学校）</p>
         </div>
-        
+
         <!-- 公立/私立 -->
         <div class="form-group">
           <label class="form-label">学校区分<span class="required">*</span></label>
           <div class="option-group inline" id="school-type-group"></div>
         </div>
-        
+
         <!-- 共学/別学 -->
         <div class="form-group">
           <label class="form-label">男女区分<span class="required">*</span></label>
           <div class="option-group inline" id="school-gender-group"></div>
         </div>
-        
+
         <!-- 附属校 -->
         <div class="form-group">
           <label class="form-label">附属校かどうか<span class="required">*</span></label>
           <div class="option-group inline" id="school-attached-group"></div>
         </div>
-        
+
         <!-- 通信制 -->
         <div class="form-group">
           <label class="form-label">通信制かどうか<span class="required">*</span></label>
           <div class="option-group inline" id="school-correspondence-group"></div>
         </div>
-        
+
         <div class="section-divider">
           <div class="section-divider-line"></div>
           <span class="section-divider-text">連絡先</span>
           <div class="section-divider-line"></div>
         </div>
-        
+
         <!-- 住所 -->
         <div class="form-group">
           <label class="form-label">住所<span class="required">*</span></label>
           <input type="text" class="form-input" id="address" placeholder="例：東京都渋谷区○○1-2-3" data-section="1">
         </div>
-        
+
         <!-- 電話番号 -->
         <div class="form-group">
           <label class="form-label">電話番号（受講者本人）<span class="required">*</span></label>
-          <input type="tel" class="form-input" id="student-phone" placeholder="例：09012345678" inputmode="numeric" data-section="1">
+          <input type="tel" class="form-input" id="student-phone" placeholder="例：09012345678" inputmode="numeric"
+            data-section="1">
           <p class="form-hint">ハイフンなし・半角数字で入力してください</p>
         </div>
-        
+
         <!-- メールアドレス -->
         <div class="form-group">
           <label class="form-label">メールアドレス（受講者本人）<span class="required">*</span></label>
           <input type="email" class="form-input" id="student-email" placeholder="例：taro@example.com" data-section="1">
           <p class="form-hint" id="student-email-hint" style="display:none; color:#dc2626;">正しいメールアドレス形式で入力してください</p>
         </div>
-        
+
         <!-- 資格情報 -->
         <div class="form-group">
           <label class="form-label">資格情報</label>
-          <textarea class="form-input" id="qualifications" rows="3" placeholder="例：英検2級、TOEIC 650点" data-section="1"></textarea>
+          <textarea class="form-input" id="qualifications" rows="3" placeholder="例：英検2級、TOEIC 650点"
+            data-section="1"></textarea>
           <p class="form-hint">お持ちの資格があればご記入ください（任意）</p>
         </div>
-        
+
         <!-- ナビゲーション -->
         <div class="section-nav">
           <button class="nav-btn secondary" onclick="goBackToTop()">
@@ -1725,7 +1827,7 @@
         </div>
       </div>
     </div>
-    
+
     <!-- ========================================== -->
     <!-- セクション2: 保護者情報 -->
     <!-- ========================================== -->
@@ -1742,21 +1844,22 @@
         </div>
         <div class="mini-progress" id="mini-progress-2"></div>
       </div>
-      
+
       <div class="section-form">
         <!-- 保護者氏名 -->
         <div class="form-group">
           <label class="form-label">氏名（保護者様）<span class="required">*</span></label>
           <input type="text" class="form-input" id="parent-name" placeholder="例：山田 花子" data-section="2">
         </div>
-        
+
         <!-- 保護者電話番号 -->
         <div class="form-group">
           <label class="form-label">電話番号（保護者様）<span class="required">*</span></label>
-          <input type="tel" class="form-input" id="parent-phone" placeholder="例：09012345678" inputmode="numeric" data-section="2">
+          <input type="tel" class="form-input" id="parent-phone" placeholder="例：09012345678" inputmode="numeric"
+            data-section="2">
           <p class="form-hint">ハイフンなし・半角数字で入力してください</p>
         </div>
-        
+
         <!-- 保護者メールアドレス -->
         <div class="form-group">
           <label class="form-label">メールアドレス（保護者様）<span class="required">*</span></label>
@@ -1764,14 +1867,14 @@
           <p class="form-hint">請求書等のご連絡はこちらのメールアドレスに送信いたします</p>
           <p class="form-hint" id="parent-email-hint" style="display:none; color:#dc2626;">正しいメールアドレス形式で入力してください</p>
         </div>
-        
+
         <!-- 保護者職業 -->
         <div class="form-group">
           <label class="form-label">ご職業（保護者様）</label>
           <p class="form-hint" style="margin-bottom: 10px;">今後のご案内やサポート体制の参考にさせていただきます（任意）</p>
           <div class="option-group" id="parent-job-group"></div>
         </div>
-        
+
         <!-- ナビゲーション -->
         <div class="section-nav">
           <button class="nav-btn secondary" onclick="goBackToTop()">
@@ -1785,12 +1888,12 @@
         </div>
       </div>
     </div>
-    
+
     <!-- ========================================== -->
     <!-- セクション3〜11は長いため、プレースホルダーとして構造のみ -->
     <!-- 実際の実装では同様のパターンで追加 -->
     <!-- ========================================== -->
-    
+
     <!-- セクション3: 受講情報 -->
     <div class="section-screen" id="section-3">
       <div class="section-header-bar">
@@ -1811,13 +1914,13 @@
           <label class="form-label">授業を受講する際のデバイス<span class="required">*</span></label>
           <div class="option-group" id="device-group"></div>
         </div>
-        
+
         <!-- 対策内容 -->
         <div class="form-group">
           <label class="form-label">対策内容（複数選択可）<span class="required">*</span></label>
           <div class="option-group" id="course-group"></div>
         </div>
-        
+
         <div class="section-nav">
           <button class="nav-btn secondary" onclick="goBackToTop()">
             <i data-lucide="layout-grid" style="width:16px;height:16px;"></i>
@@ -1830,7 +1933,7 @@
         </div>
       </div>
     </div>
-    
+
     <!-- セクション4〜10: プレースホルダー -->
     <div class="section-screen" id="section-4">
       <div class="section-header-bar">
@@ -1847,78 +1950,87 @@
         <div class="form-group">
           <label class="form-label">現時点で確定している最新の評定平均<span class="required">*</span></label>
           <p class="form-hint">小数第1位まで半角数字で入力してください（例：4.2、3.8）</p>
-          <input type="text" class="form-input" id="current-gpa" placeholder="例：4.2" inputmode="decimal" data-section="4">
+          <input type="text" class="form-input" id="current-gpa" placeholder="例：4.2" inputmode="decimal"
+            data-section="4">
           <p class="form-hint" id="current-gpa-hint" style="display:none; color:#dc2626;">0.0〜5.0の範囲で小数第1位まで入力してください</p>
         </div>
-        
+
         <!-- 第一志望校 -->
         <div class="form-group">
           <label class="form-label">第一志望の大学・学部・学科<span class="required">*</span></label>
           <p class="form-hint">※第一志望校によって授業料が異なるため、必須項目となります。</p>
-          
+
           <!-- 未定チェック -->
           <div class="option-group inline" id="first-choice-undecided-group" style="margin: 12px 0;"></div>
-          
+
           <!-- 志望校が決まっている場合のみ表示 -->
           <div id="first-choice-decided-section">
             <div id="first-choice-inputs">
               <div style="display:flex;flex-direction:column;gap:10px;">
-                <input type="text" class="form-input" id="first-choice-univ" placeholder="大学名（例：早稲田大学）" data-section="4">
-                <input type="text" class="form-input" id="first-choice-faculty" placeholder="学部（例：政治経済学部）" data-section="4">
+                <input type="text" class="form-input" id="first-choice-univ" placeholder="大学名（例：早稲田大学）"
+                  data-section="4">
+                <input type="text" class="form-input" id="first-choice-faculty" placeholder="学部（例：政治経済学部）"
+                  data-section="4">
                 <input type="text" class="form-input" id="first-choice-dept" placeholder="学科（例：政治学科）" data-section="4">
               </div>
             </div>
           </div>
         </div>
-        
+
         <!-- 志望校が決まっている場合のみ表示するセクション -->
         <div id="decided-only-section">
           <!-- 併願校 -->
           <div class="form-group">
             <label class="form-label">併願校（大学名と学部・学科）<span class="required">*</span></label>
             <p class="form-hint">決まっていない場合は「未定」と入力してください。</p>
-            <textarea class="form-input" id="other-choices" rows="3" placeholder="例：慶應義塾大学 法学部 政治学科&#10;上智大学 法学部 国際関係法学科&#10;&#10;決まっていない場合は「未定」と入力" data-section="4"></textarea>
+            <textarea class="form-input" id="other-choices" rows="3"
+              placeholder="例：慶應義塾大学 法学部 政治学科&#10;上智大学 法学部 国際関係法学科&#10;&#10;決まっていない場合は「未定」と入力"
+              data-section="4"></textarea>
           </div>
-          
+
           <!-- 志望理由 -->
           <div class="form-group">
             <label class="form-label">第一志望を志望する主な理由<span class="required">*</span></label>
-            <textarea class="form-input" id="reason-first-choice" rows="2" placeholder="例：国際政治について深く学びたいため" data-section="4"></textarea>
+            <textarea class="form-input" id="reason-first-choice" rows="2" placeholder="例：国際政治について深く学びたいため"
+              data-section="4"></textarea>
           </div>
-          
+
           <!-- その他対策 -->
           <div class="form-group">
             <label class="form-label">書類・小論文・面接以外に対策必要なもの</label>
-            <input type="text" class="form-input" id="other-prep" placeholder="例：プレゼンテーション、グループディスカッション" data-section="4">
+            <input type="text" class="form-input" id="other-prep" placeholder="例：プレゼンテーション、グループディスカッション"
+              data-section="4">
           </div>
-          
+
           <!-- 筆記試験科目 -->
           <div class="form-group">
             <label class="form-label">筆記試験がある場合、その科目名</label>
             <input type="text" class="form-input" id="written-exam-subjects" placeholder="例：英語、小論文" data-section="4">
           </div>
-          
+
           <!-- 筆記試験対策状況 -->
           <div class="form-group">
             <label class="form-label">筆記試験の対策状況</label>
             <div class="option-group" id="written-exam-status-group"></div>
           </div>
         </div>
-        
+
         <!-- 指定校推薦（常に表示） -->
         <div class="form-group">
           <label class="form-label">指定校推薦を視野に入れている場合の志望校</label>
           <p class="form-hint">指定校推薦を検討している場合のみご記入ください</p>
           <input type="text" class="form-input" id="designated-school" placeholder="例：明治大学 商学部 商学科" data-section="4">
         </div>
-        
+
         <div class="section-nav">
-          <button class="nav-btn secondary" onclick="goBackToTop()"><i data-lucide="layout-grid" style="width:16px;height:16px;"></i>一覧に戻る</button>
-          <button class="nav-btn primary" onclick="completeAndNext(4, 5)">次へ進む<i data-lucide="arrow-right" style="width:16px;height:16px;"></i></button>
+          <button class="nav-btn secondary" onclick="goBackToTop()"><i data-lucide="layout-grid"
+              style="width:16px;height:16px;"></i>一覧に戻る</button>
+          <button class="nav-btn primary" onclick="completeAndNext(4, 5)">次へ進む<i data-lucide="arrow-right"
+              style="width:16px;height:16px;"></i></button>
         </div>
       </div>
     </div>
-    
+
     <div class="section-screen" id="section-5">
       <div class="section-header-bar">
         <div class="section-header-top">
@@ -1934,22 +2046,23 @@
         <div class="form-group">
           <label class="form-label">目標とする評定平均<span class="required">*</span></label>
           <p class="form-hint">小数第1位まで半角数字で入力してください（例：4.5、4.0）</p>
-          <input type="text" class="form-input" id="target-gpa" placeholder="例：4.5" inputmode="decimal" data-section="5">
+          <input type="text" class="form-input" id="target-gpa" placeholder="例：4.5" inputmode="decimal"
+            data-section="5">
           <p class="form-hint" id="target-gpa-hint" style="display:none; color:#dc2626;">0.0〜5.0の範囲で小数第1位まで入力してください</p>
         </div>
-        
+
         <!-- 評定を上げたい気持ち -->
         <div class="form-group">
           <label class="form-label">評定を上げたい気持ちの強さ<span class="required">*</span></label>
           <div class="option-group" id="gpa-motivation-group"></div>
         </div>
-        
+
         <!-- 定期テスト対策希望 -->
         <div class="form-group">
           <label class="form-label">定期テスト対策をEQAOで行いたいですか？<span class="required">*</span></label>
           <div class="option-group" id="test-prep-want-group"></div>
         </div>
-        
+
         <!-- 定期テスト対策詳細（はい選択時のみ表示） -->
         <div id="test-prep-details-section" style="display:none;">
           <div class="form-group">
@@ -1957,27 +2070,28 @@
             <p class="form-hint">科目によって異なる場合は『その他』を選び、次の設問にて詳細をご記入ください。</p>
             <div class="option-group" id="test-prep-type-group"></div>
           </div>
-          
+
           <!-- その他選択時のテキストエリア -->
           <div class="form-group" id="test-prep-other-container" style="display:none;">
             <label class="form-label">一つ前の設問で『その他』を選んだ方は、希望する定期テスト対策の内容を具体的にご記入ください</label>
             <p class="form-hint">科目名や希望するサポートの形があれば、あわせてお書きください。</p>
-            <textarea class="form-input" id="test-prep-other" rows="3" placeholder="例：数学はスケジューリングのみ、英語は内容指導もお願いしたい" data-section="5"></textarea>
+            <textarea class="form-input" id="test-prep-other" rows="3" placeholder="例：数学はスケジューリングのみ、英語は内容指導もお願いしたい"
+              data-section="5"></textarea>
           </div>
         </div>
-        
+
         <div class="section-divider">
           <div class="section-divider-line"></div>
           <span class="section-divider-text">一般入試について</span>
           <div class="section-divider-line"></div>
         </div>
-        
+
         <!-- 一般入試併用 -->
         <div class="form-group">
           <label class="form-label">一般入試との併用について、現時点での状況を教えてください<span class="required">*</span></label>
           <div class="option-group" id="general-exam-group"></div>
         </div>
-        
+
         <!-- 一般入試対策詳細（併用を考えている場合のみ表示） -->
         <div id="general-exam-details-section" style="display:none;">
           <div class="form-group">
@@ -1985,22 +2099,25 @@
             <p class="form-hint">科目によって異なる場合は『その他』を選び、次の設問にて詳細をご記入ください。</p>
             <div class="option-group" id="general-exam-type-group"></div>
           </div>
-          
+
           <!-- その他選択時のテキストエリア -->
           <div class="form-group" id="general-exam-other-container" style="display:none;">
             <label class="form-label">一つ前の設問で『その他』を選んだ方は、希望する一般入試対策の内容を具体的にご記入ください</label>
             <p class="form-hint">科目名や希望するサポートの形があれば、あわせてお書きください。</p>
-            <textarea class="form-input" id="general-exam-other" rows="3" placeholder="例：日本史は内容指導、英語はスケジューリングのみ" data-section="5"></textarea>
+            <textarea class="form-input" id="general-exam-other" rows="3" placeholder="例：日本史は内容指導、英語はスケジューリングのみ"
+              data-section="5"></textarea>
           </div>
         </div>
-        
+
         <div class="section-nav">
-          <button class="nav-btn secondary" onclick="goBackToTop()"><i data-lucide="layout-grid" style="width:16px;height:16px;"></i>一覧に戻る</button>
-          <button class="nav-btn primary" onclick="completeAndNext(5, 6)">次へ進む<i data-lucide="arrow-right" style="width:16px;height:16px;"></i></button>
+          <button class="nav-btn secondary" onclick="goBackToTop()"><i data-lucide="layout-grid"
+              style="width:16px;height:16px;"></i>一覧に戻る</button>
+          <button class="nav-btn primary" onclick="completeAndNext(5, 6)">次へ進む<i data-lucide="arrow-right"
+              style="width:16px;height:16px;"></i></button>
         </div>
       </div>
     </div>
-    
+
     <div class="section-screen" id="section-6">
       <div class="section-header-bar">
         <div class="section-header-top">
@@ -2016,77 +2133,77 @@
           <div class="notice-box-title"><i data-lucide="info" style="width:14px;height:14px;"></i>講師マッチングについて</div>
           <div class="notice-box-text">以下の情報は講師のアテンドの参考にさせていただきます。ご希望に添えない場合もございますが、相性が合わない場合は講師の交代も可能です。</div>
         </div>
-        
+
         <!-- 講師の希望性別 -->
         <div class="form-group">
           <label class="form-label">担当講師の希望性別<span class="required">*</span></label>
           <div class="option-group inline" id="instructor-gender-group"></div>
         </div>
-        
+
         <div class="section-divider">
           <div class="section-divider-line"></div>
           <span class="section-divider-text">あなたの個性プロフィール</span>
           <div class="section-divider-line"></div>
         </div>
-        
+
         <!-- 思考タイプ -->
         <div class="form-group">
           <label class="form-label">あなたの思考タイプ<span class="required">*</span></label>
-          <p class="form-hint">各項目で、より自分に近い方を選んでください</p>
-          
+          <p class="form-hint">各項目で、より自分に近い方を選んでください（1〜5で選択）</p>
+
           <div style="margin-top: 12px;">
             <p style="font-size:13px;font-weight:600;color:#374151;margin-bottom:8px;">① 考え方のスタイル</p>
-            <div class="option-group inline" id="thinking-style-group"></div>
+           <div class="scale-group" id="thinking-style-group" data-name="thinking-style" data-left="即断即決" data-right="じっくり派"></div>
           </div>
-          
+
           <div style="margin-top: 16px;">
             <p style="font-size:13px;font-weight:600;color:#374151;margin-bottom:8px;">② 判断の基準</p>
-            <div class="option-group inline" id="judgment-style-group"></div>
+            <div class="scale-group" id="judgment-style-group" data-name="judgment-style" data-left="論理重視" data-right="直感重視"></div>
           </div>
-          
+
           <div style="margin-top: 16px;">
             <p style="font-size:13px;font-weight:600;color:#374151;margin-bottom:8px;">③ フィードバックの受け方</p>
-            <div class="option-group inline" id="feedback-style-group"></div>
+            <div class="scale-group" id="feedback-style-group" data-name="feedback-style" data-left="ストレート" data-right="やわらかく"></div>
           </div>
-          
+
           <div style="margin-top: 16px;">
             <p style="font-size:13px;font-weight:600;color:#374151;margin-bottom:8px;">④ 学習スタイル</p>
-            <div class="option-group inline" id="learning-style-group"></div>
+            <div class="scale-group" id="learning-style-group" data-name="learning-style" data-left="自主的に" data-right="伴走希望"></div>
           </div>
         </div>
-        
+
         <div class="section-divider">
           <div class="section-divider-line"></div>
           <span class="section-divider-text">希望の指導スタイル</span>
           <div class="section-divider-line"></div>
         </div>
-        
+
         <!-- 指導スタイル -->
         <div class="form-group">
           <label class="form-label">希望する指導スタイル<span class="required">*</span></label>
-          <p class="form-hint">各項目で、より希望に近い方を選んでください</p>
-          
+          <p class="form-hint">各項目で、より希望に近い方を選んでください（1〜5で選択）</p>
+
           <div style="margin-top: 12px;">
             <p style="font-size:13px;font-weight:600;color:#374151;margin-bottom:8px;">① 指導の厳しさ</p>
-            <div class="option-group inline" id="strictness-group"></div>
+            <div class="scale-group" id="strictness-group" data-name="strictness" data-left="厳しめ" data-right="優しめ"></div>
           </div>
-          
+
           <div style="margin-top: 16px;">
             <p style="font-size:13px;font-weight:600;color:#374151;margin-bottom:8px;">② 課題の量</p>
-            <div class="option-group inline" id="homework-amount-group"></div>
+            <div class="scale-group" id="homework-amount-group" data-name="homework-amount" data-left="多め" data-right="少なめ"></div>
           </div>
-          
+
           <div style="margin-top: 16px;">
             <p style="font-size:13px;font-weight:600;color:#374151;margin-bottom:8px;">③ フィードバック頻度</p>
-            <div class="option-group inline" id="feedback-freq-group"></div>
+            <div class="scale-group" id="feedback-freq-group" data-name="feedback-freq" data-left="こまめに" data-right="控えめに"></div>
           </div>
-          
+
           <div style="margin-top: 16px;">
             <p style="font-size:13px;font-weight:600;color:#374151;margin-bottom:8px;">④ モチベーション管理</p>
-            <div class="option-group inline" id="motivation-group"></div>
+            <div class="scale-group" id="motivation-group" data-name="motivation-style" data-left="管理希望" data-right="自己管理"></div>
           </div>
         </div>
-        
+
         <!-- MBTI -->
         <div class="form-group">
           <label class="form-label">あなたのMBTI（性格タイプ）<span class="required">*</span></label>
@@ -2112,20 +2229,23 @@
             <option value="わからない">わからない</option>
           </select>
         </div>
-        
+
         <!-- その他希望 -->
         <div class="form-group">
           <label class="form-label">講師への具体的な希望（任意）</label>
-          <textarea class="form-input" id="instructor-detail" rows="3" placeholder="例：明るく話しやすい雰囲気の講師がいい、法学部出身の講師を希望" data-section="7"></textarea>
+          <textarea class="form-input" id="instructor-detail" rows="3" placeholder="例：明るく話しやすい雰囲気の講師がいい、法学部出身の講師を希望"
+            data-section="7"></textarea>
         </div>
-        
+
         <div class="section-nav">
-          <button class="nav-btn secondary" onclick="goBackToTop()"><i data-lucide="layout-grid" style="width:16px;height:16px;"></i>一覧に戻る</button>
-          <button class="nav-btn primary" onclick="completeAndNext(6, 7)">次へ進む<i data-lucide="arrow-right" style="width:16px;height:16px;"></i></button>
+          <button class="nav-btn secondary" onclick="goBackToTop()"><i data-lucide="layout-grid"
+              style="width:16px;height:16px;"></i>一覧に戻る</button>
+          <button class="nav-btn primary" onclick="completeAndNext(6, 7)">次へ進む<i data-lucide="arrow-right"
+              style="width:16px;height:16px;"></i></button>
         </div>
       </div>
     </div>
-    
+
     <div class="section-screen" id="section-7">
       <div class="section-header-bar">
         <div class="section-header-top">
@@ -2147,74 +2267,80 @@
             </ul>
           </div>
         </div>
-        
+
         <div class="section-divider">
           <div class="section-divider-line"></div>
           <span class="section-divider-text">曜日ごとの授業スタイル</span>
           <div class="section-divider-line"></div>
         </div>
-        
+
         <!-- 曜日ごとの授業スタイル -->
         <div class="form-group">
           <label class="form-label">各曜日の希望授業スタイル<span class="required">*</span></label>
           <p class="form-hint">それぞれの曜日について、希望する授業形式を選択してください</p>
           <div id="weekday-style-container" style="margin-top: 12px;"></div>
         </div>
-        
+
         <div class="section-divider">
           <div class="section-divider-line"></div>
           <span class="section-divider-text">初回授業の希望日程</span>
           <div class="section-divider-line"></div>
         </div>
-        
+
         <!-- 緊急対応 -->
         <div class="form-group">
           <label class="form-label">緊急対応を希望しますか？</label>
           <p class="form-hint">通常は5日後以降から選択可能です（今月の残り日数が7日未満の場合は翌月からとなります）。緊急対応を希望される場合は2日後から選択できます。</p>
           <div class="option-group inline" id="urgent-request-group"></div>
         </div>
-        
+
         <!-- 希望日程入力 -->
         <div class="form-group">
           <label class="form-label">授業希望日と希望時間<span class="required">*</span></label>
           <p class="form-hint">希望する日付と授業可能な時間帯を選択してください（複数選択可）</p>
           <div class="notice-box" style="margin-bottom:12px;background:#eff6ff;border-color:#bfdbfe;">
-            <div class="notice-box-title" style="color:#1e40af;"><i data-lucide="info" style="width:14px;height:14px;"></i>できるだけ多くの候補日をご提出ください</div>
+            <div class="notice-box-title" style="color:#1e40af;"><i data-lucide="info"
+                style="width:14px;height:14px;"></i>できるだけ多くの候補日をご提出ください</div>
             <div class="notice-box-text" style="color:#1e3a8a;">
               講師とのマッチングをスムーズに行うため、希望コマ数の<strong>2倍以上</strong>の候補日をご提出いただくことをお勧めします。<br>
               例：月8コマ希望の場合 → 16日以上の候補日があると調整しやすくなります。
             </div>
           </div>
           <div id="schedule-dates-container" style="margin-top: 12px;"></div>
-          <button type="button" class="nav-btn secondary" style="margin-top:12px;flex:none;padding:10px 16px;" onclick="addScheduleDate()">
+          <button type="button" class="nav-btn secondary" style="margin-top:12px;flex:none;padding:10px 16px;"
+            onclick="addScheduleDate()">
             <i data-lucide="plus" style="width:16px;height:16px;"></i>
             日程を追加
           </button>
         </div>
-        
+
         <!-- 補足事項 -->
         <div class="form-group">
           <label class="form-label">スケジュールに関する補足</label>
           <p class="form-hint">テストや予定に関する補足があればご記入ください</p>
-          <textarea class="form-input" id="schedule-notes" rows="3" placeholder="例：来月10日以降でお願いしたい、水曜は部活があるので遅め希望" data-section="7"></textarea>
+          <textarea class="form-input" id="schedule-notes" rows="3" placeholder="例：来月10日以降でお願いしたい、水曜は部活があるので遅め希望"
+            data-section="7"></textarea>
         </div>
-        
+
         <!-- 同意チェック -->
         <div class="form-group">
           <div class="notice-box" style="margin-bottom:12px;">
-            <div class="notice-box-title"><i data-lucide="alert-triangle" style="width:14px;height:14px;"></i>ご確認ください</div>
+            <div class="notice-box-title"><i data-lucide="alert-triangle" style="width:14px;height:14px;"></i>ご確認ください
+            </div>
             <div class="notice-box-text">講師の空き状況や授業枠の都合により、ご希望の日程・授業スタイルに添えない場合がございます。あらかじめご了承ください。</div>
           </div>
           <div class="option-group" id="schedule-consent-group"></div>
         </div>
-        
+
         <div class="section-nav">
-          <button class="nav-btn secondary" onclick="goBackToTop()"><i data-lucide="layout-grid" style="width:16px;height:16px;"></i>一覧に戻る</button>
-          <button class="nav-btn primary" onclick="completeAndNext(7, 8)">次へ進む<i data-lucide="arrow-right" style="width:16px;height:16px;"></i></button>
+          <button class="nav-btn secondary" onclick="goBackToTop()"><i data-lucide="layout-grid"
+              style="width:16px;height:16px;"></i>一覧に戻る</button>
+          <button class="nav-btn primary" onclick="completeAndNext(7, 8)">次へ進む<i data-lucide="arrow-right"
+              style="width:16px;height:16px;"></i></button>
         </div>
       </div>
     </div>
-    
+
     <div class="section-screen" id="section-8">
       <div class="section-header-bar">
         <div class="section-header-top">
@@ -2226,19 +2352,19 @@
         </div>
       </div>
       <div class="section-form">
-        
+
         <div class="section-divider" style="margin-top: 0;">
           <div class="section-divider-line"></div>
           <span class="section-divider-text">総合型選抜コース</span>
           <div class="section-divider-line"></div>
         </div>
-        
+
         <!-- 総合型選抜コース受講有無 -->
         <div class="form-group">
           <label class="form-label">総合型選抜コースを受講しますか？<span class="required">*</span></label>
           <div class="option-group inline" id="main-course-purchase-group"></div>
         </div>
-        
+
         <!-- 総合型選抜コース詳細（受講する場合のみ） -->
         <div id="main-course-details" style="display: none;">
           <!-- コース選択 -->
@@ -2247,19 +2373,22 @@
             <p class="form-hint">コースによって1コマあたりの料金が異なります。</p>
             <div class="course-cards" id="course-cards"></div>
           </div>
-          
+
           <!-- 月あたり希望コマ数 -->
           <div class="form-group">
             <label class="form-label">月あたりの希望コマ数<span class="required">*</span></label>
-            <p class="form-hint">高校3年生には<strong>月8コマ（週2回程度）</strong>の受講を推奨しております。<br>※毎月の具体的なスケジュールは、生徒様の申請フォームで調整できます。</p>
-            <input type="number" class="form-input" id="monthly-lessons" placeholder="例：8" min="1" max="30" style="max-width:200px;" data-section="8" oninput="calculatePrice()">
+            <p class="form-hint">高校3年生には<strong>月8コマ（週2回程度）</strong>の受講を推奨しております。<br>※毎月の具体的なスケジュールは、生徒様の申請フォームで調整できます。
+            </p>
+            <input type="number" class="form-input" id="monthly-lessons" placeholder="例：8" min="1" max="30"
+              style="max-width:200px;" data-section="8" oninput="calculatePrice()">
           </div>
-          
+
           <!-- 初回支払い月数 -->
           <div class="form-group">
             <label class="form-label">初回のお支払いは何ヶ月分をご希望されますか？<span class="required">*</span></label>
             <p class="form-hint">※初回は<strong>3ヶ月分〜</strong>のご案内となります</p>
-            <select class="form-input" id="payment-months" style="max-width:320px;" data-section="8" onchange="calculatePrice()">
+            <select class="form-input" id="payment-months" style="max-width:320px;" data-section="8"
+              onchange="calculatePrice()">
               <option value="">選択してください</option>
               <option value="3">3ヶ月分</option>
               <option value="4">4ヶ月分（まとめ払い割引 -¥10,000）</option>
@@ -2278,18 +2407,19 @@
             </div>
           </div>
         </div>
-        
+
         <!-- 割引制度 -->
         <div class="section-divider">
           <div class="section-divider-line"></div>
           <span class="section-divider-text">割引制度</span>
           <div class="section-divider-line"></div>
         </div>
-        
+
         <div class="form-group">
           <label class="form-label">割引制度について<span class="required">*</span></label>
           <div class="discount-confirm-area">
-            <button type="button" class="discount-confirm-btn not-confirmed" id="discount-confirm-btn" onclick="openDiscountModal()">
+            <button type="button" class="discount-confirm-btn not-confirmed" id="discount-confirm-btn"
+              onclick="openDiscountModal()">
               <i data-lucide="alert-circle" style="width:16px;height:16px;"></i>
               <span id="discount-btn-text">注意事項を確認する（必須）</span>
             </button>
@@ -2298,17 +2428,18 @@
               <span>まだ確認が完了していません。上のボタンから確認してください。</span>
             </div>
           </div>
-          
+
           <div id="discount-section" style="display: none;">
             <!-- 母子父子家庭 -->
             <div class="form-group" style="margin-bottom: 20px; margin-top: 16px;">
               <label class="form-label" style="font-size: 13px;">ひとり親家庭割引</label>
               <div class="option-group" id="family-discount-group"></div>
-              
+
               <!-- 書類アップロード（該当する場合のみ表示） -->
               <div id="single-parent-upload-container" style="display: none; margin-top: 12px;">
                 <div class="notice-box" style="margin-bottom:12px;background:#fef3c7;border-color:#fcd34d;">
-                  <div class="notice-box-title" style="color:#92400e;"><i data-lucide="lock" style="width:14px;height:14px;"></i>書類のご提出について</div>
+                  <div class="notice-box-title" style="color:#92400e;"><i data-lucide="lock"
+                      style="width:14px;height:14px;"></i>書類のご提出について</div>
                   <div class="notice-box-text" style="color:#78350f;">
                     割引適用の確認のため、ひとり親家庭であることがわかる書類のご提出をお願いしております。<br>
                     ご提出いただいた書類は厳重に管理し、割引適用の確認以外の目的には使用いたしません。
@@ -2319,30 +2450,34 @@
                   写真またはPDFでアップロードしてください。複数ファイル選択可能です。<br>
                   <span style="color:#6b7280;">※内容が確認できれば形式は問いません（例：表面・裏面など）</span>
                 </p>
-                
+
                 <!-- アップロード済みファイル一覧 -->
                 <div id="single-parent-files-list" style="margin-bottom:10px;"></div>
-                
+
                 <!-- カスタムアップロードエリア -->
-                <div id="upload-drop-area" onclick="document.getElementById('single-parent-document').click()" style="border: 2px dashed #d1d5db; border-radius: 12px; padding: 20px; text-align: center; cursor: pointer; transition: all 0.2s; background: #f9fafb;">
-                  <div style="width: 40px; height: 40px; margin: 0 auto 8px; background: #e5e7eb; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                <div id="upload-drop-area" onclick="document.getElementById('single-parent-document').click()"
+                  style="border: 2px dashed #d1d5db; border-radius: 12px; padding: 20px; text-align: center; cursor: pointer; transition: all 0.2s; background: #f9fafb;">
+                  <div
+                    style="width: 40px; height: 40px; margin: 0 auto 8px; background: #e5e7eb; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
                     <i data-lucide="plus" style="width: 20px; height: 20px; color: #6b7280;"></i>
                   </div>
                   <p style="font-size: 14px; color: #374151; margin-bottom: 4px;">タップしてファイルを追加</p>
                   <p style="font-size: 12px; color: #9ca3af;">PDF、JPG、PNG、HEIC（1ファイル最大10MB）</p>
                 </div>
-                <input type="file" id="single-parent-document" accept=".pdf,.jpg,.jpeg,.png,.heic" multiple data-section="8" style="display: none;">
+                <input type="file" id="single-parent-document" accept=".pdf,.jpg,.jpeg,.png,.heic" multiple
+                  data-section="8" style="display: none;">
               </div>
             </div>
-            
+
             <!-- 紹介割引 -->
             <div class="form-group" style="margin-bottom: 20px;">
               <label class="form-label" style="font-size: 13px;">紹介割引</label>
               <div class="option-group" id="referral-discount-group"></div>
-              
+
               <div id="referral-input-container" style="display: none; margin-top: 12px;">
                 <label class="form-label" style="font-size: 13px;">紹介者のお名前<span class="required">*</span></label>
-                <input type="text" class="form-input" id="referrer-name" placeholder="例：山田 太郎（フルネーム）" style="max-width: 300px;" data-section="8">
+                <input type="text" class="form-input" id="referrer-name" placeholder="例：山田 太郎（フルネーム）"
+                  style="max-width: 300px;" data-section="8">
                 <p class="form-hint" style="margin-top: 6px;"><strong>※必ずフルネーム（姓名）でご記入ください。</strong></p>
                 <p style="font-size:12px;color:#dc2626;margin-top:4px;display:flex;align-items:flex-start;gap:4px;">
                   <i data-lucide="alert-circle" style="width:12px;height:12px;flex-shrink:0;margin-top:2px;"></i>
@@ -2350,10 +2485,11 @@
                 </p>
               </div>
             </div>
-            
+
             <!-- 割引に関する注意事項 -->
             <div class="notice-box" style="background:#f0f9ff;border-color:#bae6fd;margin-top:8px;">
-              <div class="notice-box-title" style="color:#0369a1;"><i data-lucide="info" style="width:14px;height:14px;"></i>割引適用について</div>
+              <div class="notice-box-title" style="color:#0369a1;"><i data-lucide="info"
+                  style="width:14px;height:14px;"></i>割引適用について</div>
               <div class="notice-box-text" style="color:#0c4a6e;">
                 ひとり親家庭割引・紹介割引は、運営にて確認後に適用いたします。<br>
                 そのため、<strong>この画面の料金内訳には割引額は反映されません。</strong><br>
@@ -2362,7 +2498,7 @@
             </div>
           </div>
         </div>
-        
+
         <!-- 動画教材 -->
         <div class="form-group">
           <label class="form-label">過去の動画教材を購入しますか？</label>
@@ -2377,31 +2513,33 @@
           </div>
           <div class="option-group inline" id="video-material-group"></div>
         </div>
-        
+
         <!-- EQAO ENGLISH コース -->
         <div class="section-divider">
           <div class="section-divider-line"></div>
           <span class="section-divider-text">EQAO ENGLISH コース（任意）</span>
           <div class="section-divider-line"></div>
         </div>
-        
+
         <div class="form-group">
           <label class="form-label">EQAO ENGLISHコースを受講しますか？</label>
           <p class="form-hint">英語資格対策（英検・IELTS・TEAP）専門のコースです。</p>
           <div class="option-group inline" id="english-course-group"></div>
         </div>
-        
+
         <!-- ENGLISHコース詳細 -->
         <div id="english-course-section" style="display: none;">
           <div class="form-group">
             <label class="form-label">月あたりの希望コマ数（EQAO ENGLISH）<span class="required">*</span></label>
-            <input type="number" class="form-input" id="english-monthly-lessons" placeholder="例：4" min="1" max="20" style="max-width: 200px;" data-section="8" oninput="calculatePrice()">
+            <input type="number" class="form-input" id="english-monthly-lessons" placeholder="例：4" min="1" max="20"
+              style="max-width: 200px;" data-section="8" oninput="calculatePrice()">
           </div>
-          
+
           <div class="form-group">
             <label class="form-label">何ヶ月分を受講しますか？<span class="required">*</span></label>
             <p class="form-hint">※ENGLISHコースにはまとめ払い割引はありません</p>
-            <select class="form-input" id="english-payment-months" style="max-width: 200px;" data-section="8" onchange="calculatePrice()">
+            <select class="form-input" id="english-payment-months" style="max-width: 200px;" data-section="8"
+              onchange="calculatePrice()">
               <option value="">選択してください</option>
               <option value="1">1ヶ月分</option>
               <option value="2">2ヶ月分</option>
@@ -2417,20 +2555,20 @@
               <option value="12">12ヶ月分</option>
             </select>
           </div>
-          
+
           <div class="form-group">
             <label class="form-label">どの対策を希望しますか？（複数選択可）<span class="required">*</span></label>
             <div class="option-group" id="english-prep-group"></div>
           </div>
         </div>
-        
+
         <!-- 最終確認 -->
         <div class="section-divider">
           <div class="section-divider-line"></div>
           <span class="section-divider-text">お支払い概算</span>
           <div class="section-divider-line"></div>
         </div>
-        
+
         <!-- 料金サマリー -->
         <div class="price-summary" id="price-summary">
           <div class="price-summary-title">
@@ -2438,7 +2576,7 @@
             お支払い概算
             <span class="tax-badge">税込</span>
           </div>
-          
+
           <!-- 初回費用 -->
           <div class="price-category" id="initial-fee-category">
             <div class="price-category-title">
@@ -2466,7 +2604,7 @@
               <span class="value" id="initial-subtotal">¥60,150</span>
             </div>
           </div>
-          
+
           <!-- 総合型選抜パック -->
           <div class="price-category" id="main-course-category" style="display: none;">
             <div class="price-category-title">
@@ -2505,7 +2643,7 @@
               <span class="value" id="main-course-total">-</span>
             </div>
           </div>
-          
+
           <!-- ENGLISHコース -->
           <div class="price-category" id="english-course-category" style="display: none;">
             <div class="price-category-title">
@@ -2528,21 +2666,22 @@
               <span class="value" id="english-course-total">-</span>
             </div>
           </div>
-          
+
           <!-- 合計 -->
           <div class="price-total">
             <span class="label">初回お支払い総額</span>
             <span class="value" id="grand-total">¥60,150</span>
           </div>
-          
+
           <p class="price-note">
             ※上記は概算です。割引適用後の正確な金額は請求書にてご確認ください。<br>
             ※講師指名料等のオプションは含まれておりません。
           </p>
         </div>
-        
+
         <!-- 請求確認同意 -->
-        <div class="form-group" style="background:#fffbeb;border:1px solid #fde68a;border-radius:12px;padding:16px;margin-top:20px;">
+        <div class="form-group"
+          style="background:#fffbeb;border:1px solid #fde68a;border-radius:12px;padding:16px;margin-top:20px;">
           <label class="form-label" style="color:#92400e;">ご請求に関する確認事項<span class="required">*</span></label>
           <ol style="font-size:13px;color:#78350f;line-height:1.8;padding-left:20px;margin-bottom:12px;">
             <li>イベント参加費および追加コマのお申込みにつきましては、<strong>その都度ご請求</strong>となります。</li>
@@ -2552,14 +2691,16 @@
           </ol>
           <div class="option-group" id="billing-consent-group"></div>
         </div>
-        
+
         <div class="section-nav">
-          <button class="nav-btn secondary" onclick="goBackToTop()"><i data-lucide="layout-grid" style="width:16px;height:16px;"></i>一覧に戻る</button>
-          <button class="nav-btn primary" onclick="completeAndNext(8, 9)">次へ進む<i data-lucide="arrow-right" style="width:16px;height:16px;"></i></button>
+          <button class="nav-btn secondary" onclick="goBackToTop()"><i data-lucide="layout-grid"
+              style="width:16px;height:16px;"></i>一覧に戻る</button>
+          <button class="nav-btn primary" onclick="completeAndNext(8, 9)">次へ進む<i data-lucide="arrow-right"
+              style="width:16px;height:16px;"></i></button>
         </div>
       </div>
     </div>
-    
+
     <!-- 割引制度注意事項モーダル -->
     <div class="modal-overlay" id="discount-modal">
       <div class="modal-content">
@@ -2579,11 +2720,12 @@
               割引制度の申告について（重要）
             </div>
             <div class="modal-section-text">
-              親子家庭割引（母子家庭・父子家庭）、紹介割引、その他キャンペーン割引など、入塾時に適用される全ての割引制度は、<span class="highlight">「入塾時に申告された場合のみ」適用</span>となります。<br><br>
+              親子家庭割引（母子家庭・父子家庭）、紹介割引、その他キャンペーン割引など、入塾時に適用される全ての割引制度は、<span
+                class="highlight">「入塾時に申告された場合のみ」適用</span>となります。<br><br>
               入塾後に申告漏れが発覚した場合、<span class="warning">割引の遡及適用は一切できません</span>。申告漏れは、保護者様・ご家庭側の責任となりますので、必ず入塾時にご確認ください。
             </div>
           </div>
-          
+
           <div class="modal-section">
             <div class="modal-section-title">
               <span class="number">2</span>
@@ -2595,14 +2737,15 @@
               あくまで入塾時点での状況を基準として審査・適用いたします。
             </div>
           </div>
-          
+
           <div class="modal-section">
             <div class="modal-section-title">
               <span class="number">3</span>
               事前説明と確認の徹底
             </div>
             <div class="modal-section-text">
-              割引制度については、入塾手続きの際に事前説明を行います。保護者様には、内容をご理解いただき、<span class="highlight">必ず入塾時の申込フォーム内で該当項目を選択・申告</span>していただく必要があります。
+              割引制度については、入塾手続きの際に事前説明を行います。保護者様には、内容をご理解いただき、<span
+                class="highlight">必ず入塾時の申込フォーム内で該当項目を選択・申告</span>していただく必要があります。
             </div>
           </div>
         </div>
@@ -2614,7 +2757,7 @@
         </div>
       </div>
     </div>
-    
+
     <div class="section-screen" id="section-9">
       <div class="section-header-bar">
         <div class="section-header-top">
@@ -2631,20 +2774,22 @@
           <label class="form-label">EQAOを選んだ理由（複数選択可）<span class="required">*</span></label>
           <div class="option-group" id="reason-group"></div>
         </div>
-        
+
         <!-- EQAOへの期待 -->
         <div class="form-group">
           <label class="form-label">EQAOにどんなことを期待しますか？（複数選択可）<span class="required">*</span></label>
           <div class="option-group" id="expectation-group"></div>
         </div>
-        
+
         <div class="section-nav">
-          <button class="nav-btn secondary" onclick="goBackToTop()"><i data-lucide="layout-grid" style="width:16px;height:16px;"></i>一覧に戻る</button>
-          <button class="nav-btn primary" onclick="completeAndNext(9, 10)">次へ進む<i data-lucide="arrow-right" style="width:16px;height:16px;"></i></button>
+          <button class="nav-btn secondary" onclick="goBackToTop()"><i data-lucide="layout-grid"
+              style="width:16px;height:16px;"></i>一覧に戻る</button>
+          <button class="nav-btn primary" onclick="completeAndNext(9, 10)">次へ進む<i data-lucide="arrow-right"
+              style="width:16px;height:16px;"></i></button>
         </div>
       </div>
     </div>
-    
+
     <div class="section-screen" id="section-10">
       <div class="section-header-bar">
         <div class="section-header-top">
@@ -2657,33 +2802,37 @@
       </div>
       <div class="section-form">
         <div class="notice-box" style="background:#fef2f2;border-color:#fecaca;">
-          <div class="notice-box-title" style="color:#991b1b;"><i data-lucide="alert-triangle" style="width:14px;height:14px;"></i>重要：ご確認ください</div>
+          <div class="notice-box-title" style="color:#991b1b;"><i data-lucide="alert-triangle"
+              style="width:14px;height:14px;"></i>重要：ご確認ください</div>
           <div class="notice-box-text" style="color:#7f1d1d;">以下の資料をご確認のうえ、同意いただける場合はチェックを入れてください。</div>
         </div>
-        
+
         <!-- 同意チェック -->
         <div class="form-group" style="margin-top:20px;">
           <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:16px;margin-bottom:12px;">
             <p style="font-size:13px;color:#374151;margin-bottom:12px;">以下のリンクから各資料をご確認ください：</p>
             <div style="display:flex;flex-direction:column;gap:8px;">
-              <a href="/curriculum.html" target="_blank" style="display:inline-flex;align-items:center;gap:6px;color:#1e3a5f;font-size:13px;font-weight:500;text-decoration:none;">
+              <a href="/curriculum.html" target="_blank"
+                style="display:inline-flex;align-items:center;gap:6px;color:#1e3a5f;font-size:13px;font-weight:500;text-decoration:none;">
                 <i data-lucide="external-link" style="width:14px;height:14px;"></i>
                 基本事項規定・カリキュラム
               </a>
-              <a href="/lesson-flow.html" target="_blank" style="display:inline-flex;align-items:center;gap:6px;color:#1e3a5f;font-size:13px;font-weight:500;text-decoration:none;">
+              <a href="/lesson-flow.html" target="_blank"
+                style="display:inline-flex;align-items:center;gap:6px;color:#1e3a5f;font-size:13px;font-weight:500;text-decoration:none;">
                 <i data-lucide="external-link" style="width:14px;height:14px;"></i>
                 授業の流れ・生徒ルール
               </a>
-              <a href="/pricing.html" target="_blank" style="display:inline-flex;align-items:center;gap:6px;color:#1e3a5f;font-size:13px;font-weight:500;text-decoration:none;">
+              <a href="/pricing.html" target="_blank"
+                style="display:inline-flex;align-items:center;gap:6px;color:#1e3a5f;font-size:13px;font-weight:500;text-decoration:none;">
                 <i data-lucide="external-link" style="width:14px;height:14px;"></i>
                 料金表
               </a>
             </div>
           </div>
-          
+
           <div class="option-group" id="consent-group"></div>
         </div>
-        
+
         <!-- 同意書記入日 -->
         <div class="form-group">
           <label class="form-label">同意書記入日<span class="required">*</span></label>
@@ -2702,9 +2851,10 @@
             <span class="date-separator">日</span>
           </div>
         </div>
-        
+
         <div class="section-nav">
-          <button class="nav-btn secondary" onclick="goBackToTop()"><i data-lucide="layout-grid" style="width:16px;height:16px;"></i>一覧に戻る</button>
+          <button class="nav-btn secondary" onclick="goBackToTop()"><i data-lucide="layout-grid"
+              style="width:16px;height:16px;"></i>一覧に戻る</button>
           <button class="nav-btn primary" onclick="completeAndGoTop(10)">
             <i data-lucide="check" style="width:16px;height:16px;"></i>
             完了して一覧へ
@@ -2712,7 +2862,7 @@
         </div>
       </div>
     </div>
-    
+
     <!-- ========================================== -->
     <!-- 完了画面 -->
     <!-- ========================================== -->
@@ -2726,20 +2876,26 @@
         ご登録いただいたメールアドレスに<br>
         確認メールをお送りしました。
       </p>
-      
+
       <!-- メール送信内容の説明 -->
       <div id="student-id-card" style="display:none;">
         <div style="background:#1e3a5f;color:white;padding:20px;border-radius:12px;text-align:center;margin:20px 0;">
-          <p style="font-size:13px;margin-bottom:12px;opacity:0.9;"><i data-lucide="mail" style="width:16px;height:16px;display:inline-block;vertical-align:middle;margin-right:6px;"></i>メールでお送りした内容</p>
-          <div style="text-align:left;background:rgba(255,255,255,0.1);border-radius:8px;padding:14px 16px;font-size:13px;line-height:1.8;">
-            <p style="display:flex;align-items:center;gap:8px;margin-bottom:6px;"><i data-lucide="user" style="width:14px;height:14px;opacity:0.8;"></i>生徒番号</p>
-            <p style="display:flex;align-items:center;gap:8px;margin-bottom:6px;"><i data-lucide="key" style="width:14px;height:14px;opacity:0.8;"></i>初期パスワード</p>
-            <p style="display:flex;align-items:center;gap:8px;"><i data-lucide="external-link" style="width:14px;height:14px;opacity:0.8;"></i>EQAO PORTAL のリンク</p>
+          <p style="font-size:13px;margin-bottom:12px;opacity:0.9;"><i data-lucide="mail"
+              style="width:16px;height:16px;display:inline-block;vertical-align:middle;margin-right:6px;"></i>メールでお送りした内容
+          </p>
+          <div
+            style="text-align:left;background:rgba(255,255,255,0.1);border-radius:8px;padding:14px 16px;font-size:13px;line-height:1.8;">
+            <p style="display:flex;align-items:center;gap:8px;margin-bottom:6px;"><i data-lucide="user"
+                style="width:14px;height:14px;opacity:0.8;"></i>生徒番号</p>
+            <p style="display:flex;align-items:center;gap:8px;margin-bottom:6px;"><i data-lucide="key"
+                style="width:14px;height:14px;opacity:0.8;"></i>初期パスワード</p>
+            <p style="display:flex;align-items:center;gap:8px;"><i data-lucide="external-link"
+                style="width:14px;height:14px;opacity:0.8;"></i>EQAO PORTAL のリンク</p>
           </div>
           <p style="font-size:11px;margin-top:12px;opacity:0.7;">届いていない場合は迷惑メールフォルダをご確認ください。</p>
         </div>
       </div>
-      
+
       <div class="completion-card">
         <div class="completion-card-title">
           <i data-lucide="list-checks" style="width:18px;height:18px;color:#16a34a;"></i>
@@ -2775,9 +2931,9 @@
         </div>
       </div>
     </div>
-    
+
   </main>
-  
+
   <!-- 復元モーダル -->
   <div class="restore-modal-overlay" id="restore-modal">
     <div class="restore-modal">
@@ -2804,17 +2960,17 @@
       </div>
     </div>
   </div>
-  
+
   <!-- トースト -->
   <div class="toast" id="toast"></div>
-  
+
   <script>
     // ============================================
     // 設定・定数
     // ============================================
     const STORAGE_KEY = 'eqao_enrollment_data_v7'; // v7: セクション10復帰時のDOM復元修正
     const TOTAL_SECTIONS = 10;
-    
+
     // セクション定義
     const SECTIONS = [
       { id: 1, name: '生徒情報', icon: 'user', desc: '氏名、学校、連絡先など' },
@@ -2828,31 +2984,31 @@
       { id: 9, name: 'EQAOについて', icon: 'heart', desc: 'EQAOを選んだ理由' },
       { id: 10, name: '同意事項', icon: 'shield-check', desc: '規定・ルールへの同意' }
     ];
-    
+
     // 状態
     let formData = {};
     let sectionCompleted = new Array(TOTAL_SECTIONS).fill(false);
     let currentSection = 0; // 0 = トップ画面
-    
+
     // ============================================
     // 初期化
     // ============================================
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       lucide.createIcons();
       initDateSelects();
       initOptionGroups();
       initInputValidation();
       renderSectionCards();
-      
+
       // セクション10からの戻りをチェック（復元モーダルより先に実行）
       const section10Completed = checkSection10Return();
-      
+
       // セクション10完了時は復元モーダルを表示しない
       if (!section10Completed) {
         checkSavedData();
       }
     });
-    
+
     // セクション10完了チェック
     function checkSection10Return() {
       const urlParams = new URLSearchParams(window.location.search);
@@ -2863,16 +3019,16 @@
           const data = JSON.parse(saved);
           formData = data.formData || {};
           sectionCompleted = data.sectionCompleted || new Array(TOTAL_SECTIONS).fill(false);
-          
+
           console.log('セクション10から復帰: formData件数=', Object.keys(formData).length);
         }
-        
+
         // section10Dataを読み込んでformDataにマージ
         const section10Saved = localStorage.getItem('section10Data');
         if (section10Saved) {
           const section10Data = JSON.parse(section10Saved);
           console.log('section10Data読み込み:', section10Data);
-          
+
           // 同意日を解析してformDataに追加（形式: "2025年12月25日"）
           if (section10Data.consentDate) {
             const match = section10Data.consentDate.match(/(\d+)年(\d+)月(\d+)日/);
@@ -2882,40 +3038,40 @@
               formData['consent-day'] = match[3];
             }
           }
-          
+
           // 同意状態をformDataに追加
           if (section10Data.finalConsent) {
             formData['consent-main'] = ['同意する'];
           }
-          
+
           // section10の生データも保存（送信時に使えるように）
           formData['section10-data'] = section10Data;
-          
+
           // section10Dataをクリア（重複読み込み防止）
           localStorage.removeItem('section10Data');
         }
-        
+
         // 全DOMにformDataを反映（ページ読み込み直後なので全セクション対象）
         restoreAllDataToDOM();
-        
+
         // セクション10を完了状態に
         sectionCompleted[9] = true; // 配列は0始まり
         autoSave();
         renderSectionCards();
         showToast('セクション10（同意事項）を保存しました', 'success');
-        
+
         // URLからパラメータを削除（履歴を書き換え）
         window.history.replaceState({}, document.title, window.location.pathname);
-        
+
         return true; // セクション10から戻ったことを示す
       }
       return false;
     }
-    
+
     // 全セクションのDOMにformDataを反映する関数
     function restoreAllDataToDOM() {
       console.log('全DOM復元開始');
-      
+
       // 1. テキスト入力・セレクトの復元
       Object.keys(formData).forEach(key => {
         const element = document.getElementById(key);
@@ -2925,17 +3081,17 @@
           }
         }
       });
-      
+
       // 2. ラジオボタン・チェックボックスの復元
       document.querySelectorAll('.option-group').forEach(container => {
         const items = container.querySelectorAll('.option-item[data-name]');
         if (items.length === 0) return;
-        
+
         const name = items[0].dataset.name;
         if (!name || formData[name] === undefined) return;
-        
+
         const savedValue = formData[name];
-        
+
         items.forEach(item => {
           if (Array.isArray(savedValue)) {
             // チェックボックス
@@ -2954,7 +3110,7 @@
           }
         });
       });
-      
+
       // 3. コースカードの復元
       if (formData['selected-course']) {
         selectedCourseName = formData['selected-course'];
@@ -2968,7 +3124,7 @@
           });
         }
       }
-      
+
       // 4. 曜日別スタイルの復元
       if (formData['weekday-styles']) {
         const weekdays = ['月曜日', '火曜日', '水曜日', '木曜日', '金曜日', '土曜日', '日曜日'];
@@ -2983,7 +3139,7 @@
           });
         }
       }
-      
+
       // 5. スケジュール日程の復元
       if (formData['schedule-dates'] && Array.isArray(formData['schedule-dates']) && formData['schedule-dates'].length > 0) {
         const scheduleContainer = document.getElementById('schedule-dates-container');
@@ -3005,7 +3161,7 @@
           });
         }
       }
-      
+
       // 6. 割引確認状態の復元
       if (formData['discount-confirmed']) {
         discountConfirmed = true;
@@ -3024,7 +3180,7 @@
         const discountSection = document.getElementById('discount-section');
         if (discountSection) discountSection.style.display = 'block';
       }
-      
+
       // 7. 条件付きセクションの表示更新
       toggleFirstChoiceInputs();
       toggleTestPrepDetails();
@@ -3035,14 +3191,34 @@
       toggleEnglishSection();
       toggleSingleParentUpload();
       toggleReferrerInput();
-      
+
       // 8. 料金計算
       calculatePrice();
-      
+
       console.log('全DOM復元完了');
       lucide.createIcons();
+
+      // 9. 5段階スケールの復元
+      const scaleGroups = [
+        'thinking-style-group', 'judgment-style-group', 'feedback-style-group', 'learning-style-group',
+        'strictness-group', 'homework-amount-group', 'feedback-freq-group', 'motivation-group'
+      ];
+      scaleGroups.forEach(groupId => {
+        const container = document.getElementById(groupId);
+        if (container) {
+          const name = container.dataset.name;
+          const savedValue = formData[name];
+          if (savedValue) {
+            container.querySelectorAll('.scale-option').forEach(opt => {
+              if (opt.dataset.text === savedValue) {
+                opt.classList.add('selected');
+              }
+            });
+          }
+        }
+      });
     }
-    
+
     // ============================================
     // 日付セレクト初期化
     // ============================================
@@ -3055,7 +3231,7 @@
         option.textContent = y;
         yearSelect.appendChild(option);
       }
-      
+
       // 月
       const monthSelect = document.getElementById('birth-month');
       for (let m = 1; m <= 12; m++) {
@@ -3064,7 +3240,7 @@
         option.textContent = m;
         monthSelect.appendChild(option);
       }
-      
+
       // 日
       const daySelect = document.getElementById('birth-day');
       for (let d = 1; d <= 31; d++) {
@@ -3074,7 +3250,7 @@
         daySelect.appendChild(option);
       }
     }
-    
+
     // ============================================
     // オプショングループ初期化
     // ============================================
@@ -3087,29 +3263,29 @@
         { value: '既卒生', label: '既卒生' },
         { value: 'その他', label: 'その他' }
       ]);
-      
+
       createRadioGroup('school-type-group', 'school-type', [
         { value: '公立', label: '公立' },
         { value: '私立', label: '私立' },
         { value: '国立', label: '国立' }
       ]);
-      
+
       createRadioGroup('school-gender-group', 'school-gender', [
         { value: '共学', label: '共学' },
         { value: '男子校', label: '男子校' },
         { value: '女子校', label: '女子校' }
       ]);
-      
+
       createRadioGroup('school-attached-group', 'school-attached', [
         { value: '附属校', label: '附属校' },
         { value: '附属校ではない', label: '附属校ではない' }
       ]);
-      
+
       createRadioGroup('school-correspondence-group', 'school-correspondence', [
         { value: '通信制', label: '通信制' },
         { value: '全日制', label: '全日制' }
       ]);
-      
+
       // === セクション2: 保護者情報 ===
       createRadioGroup('parent-job-group', 'parent-job', [
         { value: '公務員', label: '公務員' },
@@ -3119,7 +3295,7 @@
         { value: '専業主婦・主夫', label: '専業主婦・主夫' },
         { value: 'その他', label: 'その他' }
       ]);
-      
+
       // === セクション3: 受講情報 ===
       createRadioGroup('device-group', 'device', [
         { value: 'スマートフォン', label: 'スマートフォン' },
@@ -3127,19 +3303,19 @@
         { value: 'タブレット', label: 'タブレット（iPad等）' },
         { value: 'デスクトップPC', label: 'デスクトップPC' }
       ]);
-      
+
       createCheckboxGroup('course-group', 'course', [
         { value: '総合型選抜（書類作成〜面接）', label: '総合型選抜（書類作成〜面接）' },
         { value: '英語資格（IELTS・英検・TEAP）', label: '英語資格（IELTS・英検・TEAP）' },
         { value: '一般入試対策', label: '一般入試対策（日本史・世界史・現代文・古文・漢文）' }
       ]);
-      
+
       // === セクション4: 学習状況 ===
       createRadioGroup('first-choice-undecided-group', 'first-choice-undecided', [
         { value: '決まっている', label: '志望校が決まっている' },
         { value: '未定', label: '未定（まだ決まっていない）' }
       ]);
-      
+
       createRadioGroup('written-exam-status-group', 'written-exam-status', [
         { value: 'ほとんど対策していない', label: 'ほとんど対策していない' },
         { value: '少しだけ対策している', label: '少しだけ対策している' },
@@ -3147,7 +3323,7 @@
         { value: 'かなり対策できている', label: 'かなり対策できている' },
         { value: 'ほぼ仕上がっている', label: 'ほぼ仕上がっている' }
       ]);
-      
+
       // === セクション5: 評定・定期テスト対策 ===
       createRadioGroup('gpa-motivation-group', 'gpa-motivation', [
         { value: '5：絶対に上げたい', label: '5：絶対に上げたい' },
@@ -3156,135 +3332,105 @@
         { value: '2：特に意識していない', label: '2：特に意識していない' },
         { value: '1：上げる必要はない', label: '1：上げる必要はない' }
       ]);
-      
+
       createRadioGroup('test-prep-want-group', 'test-prep-want', [
         { value: 'はい', label: 'はい' },
         { value: 'いいえ', label: 'いいえ（他塾または自分で対策している）' }
       ]);
-      
+
       createRadioGroup('test-prep-type-group', 'test-prep-type', [
         { value: 'スケジューリング／コーチング', label: 'スケジューリング／コーチング（例：次の授業までにやるべきことの提示、宿題の提示、確認テストの実施など）' },
         { value: '勉強内容そのものの指導', label: '勉強内容そのものの指導' },
         { value: 'その他', label: 'その他' }
       ]);
-      
+
       // === 一般入試対策 ===
       createRadioGroup('general-exam-group', 'general-exam', [
         { value: '併用を考えており、すでに対策している', label: '併用を考えており、すでに対策している' },
         { value: '併用を考えているが、まだ対策していない', label: '併用を考えているが、まだ対策していない' },
         { value: '併用は考えていない', label: '併用は考えていない' }
       ]);
-      
+
       createRadioGroup('general-exam-type-group', 'general-exam-type', [
         { value: 'スケジューリング／コーチング', label: 'スケジューリング／コーチング（例：次の授業までにやるべきことの提示、宿題の提示、確認テストの実施など）' },
         { value: '勉強内容そのものの指導', label: '勉強内容そのものの指導' },
         { value: 'その他', label: 'その他' }
       ]);
-      
+
       // === セクション6: 講師への希望 ===
       createRadioGroup('instructor-gender-group', 'instructor-gender', [
         { value: '男性', label: '男性希望' },
         { value: '女性', label: '女性希望' },
         { value: 'どちらでも', label: 'どちらでも可' }
       ]);
-      
-      createRadioGroup('thinking-style-group', 'thinking-style', [
-        { value: '即答型', label: '即答型（すぐに答えるタイプ）' },
-        { value: '熟考型', label: '熟考型（じっくり考えるタイプ）' }
-      ]);
-      
-      createRadioGroup('judgment-style-group', 'judgment-style', [
-        { value: '論理重視', label: '論理重視タイプ' },
-        { value: '感覚重視', label: '感覚重視タイプ' }
-      ]);
-      
-      createRadioGroup('feedback-style-group', 'feedback-style', [
-        { value: '率直なフィードバック希望', label: '率直なフィードバックを希望' },
-        { value: '配慮のあるフィードバック希望', label: '配慮のあるフィードバックを希望' }
-      ]);
-      
-      createRadioGroup('learning-style-group', 'learning-style', [
-        { value: '自主性高め', label: '自主的に進めたい' },
-        { value: '伴走型希望', label: '講師と一緒に進めたい' }
-      ]);
-      
-      createRadioGroup('strictness-group', 'strictness', [
-        { value: '厳格な指導希望', label: '厳格な指導を希望' },
-        { value: '寄り添い型指導希望', label: '寄り添い型の指導を希望' }
-      ]);
-      
-      createRadioGroup('homework-amount-group', 'homework-amount', [
-        { value: '多めの課題希望', label: '多めの課題を希望' },
-        { value: '少なめの課題希望', label: '少なめの課題を希望' }
-      ]);
-      
-      createRadioGroup('feedback-freq-group', 'feedback-freq', [
-        { value: '頻繁なフィードバック希望', label: '頻繁なフィードバックを希望' },
-        { value: '自分のペース希望', label: '自分のペースで進めたい' }
-      ]);
-      
-      createRadioGroup('motivation-group', 'motivation-style', [
-        { value: 'モチベーション管理希望', label: 'モチベーション管理を希望' },
-        { value: '自己管理可能', label: '自己管理が可能' }
-      ]);
-      
+
+      // 5段階スケールグループの初期化
+      createScaleGroup('thinking-style-group');
+      createScaleGroup('judgment-style-group');
+      createScaleGroup('feedback-style-group');
+      createScaleGroup('learning-style-group');
+      createScaleGroup('strictness-group');
+      createScaleGroup('homework-amount-group');
+      createScaleGroup('feedback-freq-group');
+      createScaleGroup('motivation-group');
+
       // === セクション8: スケジュール調整 ===
       initWeekdayStyleInputs();
       initScheduleDateInputs();
-      
+
       createRadioGroup('urgent-request-group', 'urgent-request', [
         { value: 'いいえ', label: 'いいえ（通常対応）' },
         { value: 'はい', label: 'はい（緊急対応を希望）' }
       ]);
-      
+
       createCheckboxGroup('schedule-consent-group', 'schedule-consent', [
         { value: '同意する', label: '上記内容を確認し、講師の空き状況等により希望に添えない場合があることに同意します' }
       ]);
-      
+
       // === セクション8: ご請求関連 ===
       // 総合型選抜コース受講有無
       createRadioGroup('main-course-purchase-group', 'main-course-purchase', [
         { value: '受講する', label: '受講する' },
         { value: '受講しない', label: '受講しない' }
       ]);
-      
+
       initCourseCards();
       initPaymentMonthsSelect();
-      
+
       // 動画教材
       createRadioGroup('video-material-group', 'video-material', [
         { value: '購入する', label: '購入する（¥11,000）' },
         { value: '購入しない', label: '購入しない' }
       ]);
-      
+
       // 割引関連
       createRadioGroup('family-discount-group', 'family-discount', [
         { value: '母子・父子家庭', label: '母子・父子家庭' },
         { value: '該当なし', label: '該当なし／回答を希望しない' }
       ]);
-      
+
       createRadioGroup('referral-discount-group', 'referral-discount', [
         { value: '紹介あり', label: '紹介あり' },
         { value: '紹介なし', label: '紹介なし' }
       ]);
-      
+
       // ENGLISHコース
       createRadioGroup('english-course-group', 'english-course', [
         { value: '受講する', label: '受講する' },
         { value: '受講しない', label: '受講しない' }
       ]);
-      
+
       createCheckboxGroup('english-prep-group', 'english-prep', [
         { value: '英検', label: '英検' },
         { value: 'IELTS', label: 'IELTS' },
         { value: 'TEAP', label: 'TEAP' },
         { value: 'その他', label: 'その他' }
       ]);
-      
+
       createCheckboxGroup('billing-consent-group', 'billing-consent', [
         { value: '同意する', label: '上記内容を確認し、同意いたします' }
       ]);
-      
+
       // === セクション10: EQAOについて ===
       createCheckboxGroup('reason-group', 'reason', [
         { value: 'カリキュラム', label: 'カリキュラム' },
@@ -3298,7 +3444,7 @@
         { value: '代表者の考え方・人柄', label: '代表者の考え方・人柄' },
         { value: 'その他', label: 'その他' }
       ]);
-      
+
       createCheckboxGroup('expectation-group', 'expectation', [
         { value: '志望校合格のための具体的な指導', label: '志望校合格のための具体的な指導' },
         { value: '学習習慣の定着・学習管理', label: '学習習慣の定着・学習管理' },
@@ -3308,15 +3454,15 @@
         { value: '定期テスト対策', label: '定期テスト対策' },
         { value: 'その他', label: 'その他' }
       ]);
-      
+
       // === セクション11: 同意事項 ===
       createCheckboxGroup('consent-group', 'consent-main', [
         { value: '同意する', label: '上記すべての内容を確認し、同意のうえ入塾を希望します' }
       ]);
-      
+
       initConsentDateSelects();
     }
-    
+
     // ============================================
     // 入力バリデーション
     // ============================================
@@ -3325,7 +3471,7 @@
       const furiganaInput = document.getElementById('student-furigana');
       const furiganaHint = document.getElementById('furigana-hint');
       if (furiganaInput) {
-        furiganaInput.addEventListener('input', function() {
+        furiganaInput.addEventListener('input', function () {
           // 全角カタカナ、半角カタカナ、全角スペース、半角スペースを許可
           const katakanaRegex = /^[ァ-ヶー\s　]*$/;
           if (this.value && !katakanaRegex.test(this.value)) {
@@ -3337,19 +3483,19 @@
           }
         });
       }
-      
+
       // 電話番号：半角数字のみ許可（入力時に自動変換）
       const phoneInputs = ['student-phone', 'parent-phone'];
       phoneInputs.forEach(id => {
         const input = document.getElementById(id);
         if (input) {
-          input.addEventListener('input', function() {
+          input.addEventListener('input', function () {
             // 数字以外を削除
             this.value = this.value.replace(/[^0-9]/g, '');
           });
         }
       });
-      
+
       // メールアドレス：@を含みスペースを含まない
       const emailInputs = [
         { id: 'student-email', hintId: 'student-email-hint' },
@@ -3359,14 +3505,14 @@
         const input = document.getElementById(id);
         const hint = document.getElementById(hintId);
         if (input && hint) {
-          input.addEventListener('blur', function() {
+          input.addEventListener('blur', function () {
             const value = this.value.trim();
             // 空でなければバリデーション
             if (value) {
               const hasAt = value.includes('@');
               const hasSpace = /\s/.test(value);
               const isValid = hasAt && !hasSpace;
-              
+
               if (!isValid) {
                 hint.style.display = 'block';
                 this.classList.add('error');
@@ -3381,7 +3527,7 @@
           });
         }
       });
-      
+
       // 評定平均：半角数字と小数点のみ、0.0〜5.0、小数第1位まで
       const gpaInputs = [
         { id: 'current-gpa', hintId: 'current-gpa-hint' },
@@ -3391,7 +3537,7 @@
         const input = document.getElementById(id);
         const hint = document.getElementById(hintId);
         if (input) {
-          input.addEventListener('input', function() {
+          input.addEventListener('input', function () {
             // 半角数字と小数点以外を削除
             this.value = this.value.replace(/[^0-9.]/g, '');
             // 小数点が2つ以上ある場合は最初の1つだけ残す
@@ -3404,14 +3550,14 @@
               this.value = parts[0] + '.' + parts[1].charAt(0);
             }
           });
-          
-          input.addEventListener('blur', function() {
+
+          input.addEventListener('blur', function () {
             const value = this.value.trim();
             if (value && hint) {
               const num = parseFloat(value);
               const isValidFormat = /^\d(\.\d)?$/.test(value);
               const isValidRange = !isNaN(num) && num >= 0 && num <= 5;
-              
+
               if (!isValidFormat || !isValidRange) {
                 hint.style.display = 'block';
                 this.classList.add('error');
@@ -3426,20 +3572,20 @@
           });
         }
       });
-      
+
       // ひとり親家庭証明書類アップロード（複数ファイル対応）
       const singleParentDoc = document.getElementById('single-parent-document');
       if (singleParentDoc) {
-        singleParentDoc.addEventListener('change', async function() {
+        singleParentDoc.addEventListener('change', async function () {
           const files = Array.from(this.files);
-          
+
           if (files.length === 0) return;
-          
+
           // 既存のファイルデータを取得（なければ空配列）
           if (!formData['single-parent-documents']) {
             formData['single-parent-documents'] = [];
           }
-          
+
           // 各ファイルを処理
           for (const file of files) {
             // ファイルサイズチェック（10MB）
@@ -3447,13 +3593,13 @@
               alert(`「${file.name}」のファイルサイズが10MBを超えています。`);
               continue;
             }
-            
+
             // 同名ファイルの重複チェック
             if (formData['single-parent-documents'].some(f => f.fileName === file.name)) {
               alert(`「${file.name}」は既に追加されています。`);
               continue;
             }
-            
+
             // ファイルをBase64に変換
             try {
               const base64Data = await fileToBase64(file);
@@ -3467,17 +3613,17 @@
               alert(`「${file.name}」の読み込みに失敗しました。`);
             }
           }
-          
+
           // ファイル一覧を更新
           updateSingleParentFilesList();
           autoSave();
-          
+
           // inputをリセット（同じファイルを再度選択できるように）
           this.value = '';
         });
       }
     }
-    
+
     // ファイルをBase64に変換する関数
     function fileToBase64(file) {
       return new Promise((resolve, reject) => {
@@ -3491,19 +3637,19 @@
         reader.readAsDataURL(file);
       });
     }
-    
+
     // ファイル一覧を更新
     function updateSingleParentFilesList() {
       const listContainer = document.getElementById('single-parent-files-list');
       if (!listContainer) return;
-      
+
       const files = formData['single-parent-documents'] || [];
-      
+
       if (files.length === 0) {
         listContainer.innerHTML = '';
         return;
       }
-      
+
       listContainer.innerHTML = files.map((file, index) => `
         <div style="display:flex;align-items:center;gap:8px;padding:10px 12px;background:#f0fdf4;border-radius:8px;margin-bottom:8px;">
           <i data-lucide="file-check" style="width:16px;height:16px;color:#166534;flex-shrink:0;"></i>
@@ -3511,52 +3657,52 @@
           <button type="button" onclick="removeSingleParentFile(${index})" style="background:#fee2e2;color:#dc2626;border:none;border-radius:6px;padding:4px 8px;font-size:12px;cursor:pointer;flex-shrink:0;">削除</button>
         </div>
       `).join('');
-      
+
       lucide.createIcons();
     }
-    
+
     // 個別ファイルを削除
     function removeSingleParentFile(index) {
       if (!formData['single-parent-documents']) return;
-      
+
       formData['single-parent-documents'].splice(index, 1);
       updateSingleParentFilesList();
       autoSave();
     }
-    
+
     // 全ファイル削除（旧関数の互換性維持）
     function clearUploadedFile() {
       formData['single-parent-documents'] = [];
       updateSingleParentFilesList();
       autoSave();
     }
-    
+
     // ============================================
     // ラジオグループ生成
     // ============================================
     function createRadioGroup(containerId, name, options) {
       const container = document.getElementById(containerId);
       if (!container) return;
-      
+
       container.innerHTML = options.map(opt => `
         <div class="option-item" data-name="${name}" data-value="${opt.value}">
           <span class="option-radio"></span>
           <span class="option-label">${opt.label}</span>
         </div>
       `).join('');
-      
+
       container.querySelectorAll('.option-item').forEach(item => {
-        item.addEventListener('click', function() {
+        item.addEventListener('click', function () {
           container.querySelectorAll('.option-item').forEach(i => i.classList.remove('selected'));
           this.classList.add('selected');
           formData[name] = this.dataset.value;
           autoSave();
           updateProgress();
-          
+
           // エラーをクリア
           container.classList.remove('error');
           container.closest('.form-group')?.classList.remove('error');
-          
+
           // 特定の名前に対するコールバック
           if (name === 'urgent-request') {
             onUrgentRequestChange();
@@ -3596,7 +3742,52 @@
         });
       });
     }
-    
+
+    // ============================================
+    // 5段階スケールグループ生成
+    // ============================================
+    function createScaleGroup(containerId) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+
+      const name = container.dataset.name;
+      const leftLabel = container.dataset.left;
+      const rightLabel = container.dataset.right;
+
+      // 保存値のマッピング
+      const valueMap = {
+        1: `${leftLabel}`,
+        2: `やや${leftLabel}`,
+        3: 'どちらでもない',
+        4: `やや${rightLabel}`,
+        5: `${rightLabel}`
+      };
+
+      container.innerHTML = `
+    <div class="scale-row">
+      <span class="scale-label left">${leftLabel}</span>
+      <div class="scale-options">
+        ${[1, 2, 3, 4, 5].map(n => `<div class="scale-option" data-value="${n}" data-text="${valueMap[n]}">${n}</div>`).join('')}
+      </div>
+      <span class="scale-label right">${rightLabel}</span>
+    </div>
+  `;
+
+      container.querySelectorAll('.scale-option').forEach(option => {
+        option.addEventListener('click', function () {
+          container.querySelectorAll('.scale-option').forEach(o => o.classList.remove('selected'));
+          this.classList.add('selected');
+          formData[name] = this.dataset.text;
+          autoSave();
+          updateProgress();
+
+          // エラーをクリア
+          container.classList.remove('error');
+          container.closest('.form-group')?.classList.remove('error');
+        });
+      });
+    }
+
     // ひとり親家庭アップロード欄表示切替
     function toggleSingleParentUpload() {
       const container = document.getElementById('single-parent-upload-container');
@@ -3604,7 +3795,7 @@
         container.style.display = formData['family-discount'] === '母子・父子家庭' ? 'block' : 'none';
       }
     }
-    
+
     // 総合型選抜コースセクション表示切替
     function toggleMainCourseSection() {
       const section = document.getElementById('main-course-details');
@@ -3612,7 +3803,7 @@
         section.style.display = formData['main-course-purchase'] === '受講する' ? 'block' : 'none';
       }
     }
-    
+
     // ENGLISHコースセクション表示切替
     function toggleEnglishSection() {
       const section = document.getElementById('english-course-section');
@@ -3620,7 +3811,7 @@
         section.style.display = formData['english-course'] === '受講する' ? 'block' : 'none';
       }
     }
-    
+
     // 定期テスト対策詳細の表示切り替え
     function toggleTestPrepDetails() {
       const show = formData['test-prep-want'] === 'はい';
@@ -3629,7 +3820,7 @@
         section.style.display = show ? 'block' : 'none';
       }
     }
-    
+
     // 定期テスト対策「その他」の表示切り替え
     function toggleTestPrepOther() {
       const show = formData['test-prep-type'] === 'その他';
@@ -3638,7 +3829,7 @@
         container.style.display = show ? 'block' : 'none';
       }
     }
-    
+
     // 一般入試対策詳細の表示切り替え
     function toggleGeneralExamDetails() {
       const show = formData['general-exam'] !== '併用は考えていない';
@@ -3647,7 +3838,7 @@
         section.style.display = show ? 'block' : 'none';
       }
     }
-    
+
     // 一般入試対策「その他」の表示切り替え
     function toggleGeneralExamOther() {
       const show = formData['general-exam-type'] === 'その他';
@@ -3656,13 +3847,13 @@
         container.style.display = show ? 'block' : 'none';
       }
     }
-    
+
     // 第一志望の入力欄表示切り替え
     function toggleFirstChoiceInputs() {
       const isUndecided = formData['first-choice-undecided'] === '未定';
       const decidedSection = document.getElementById('first-choice-decided-section');
       const decidedOnlySection = document.getElementById('decided-only-section');
-      
+
       if (decidedSection) {
         decidedSection.style.display = isUndecided ? 'none' : 'block';
       }
@@ -3670,25 +3861,25 @@
         decidedOnlySection.style.display = isUndecided ? 'none' : 'block';
       }
     }
-    
+
     // ============================================
     // チェックボックスグループ生成
     // ============================================
     function createCheckboxGroup(containerId, name, options) {
       const container = document.getElementById(containerId);
       if (!container) return;
-      
+
       container.innerHTML = options.map(opt => `
         <div class="option-item" data-name="${name}" data-value="${opt.value}">
           <span class="option-checkbox"><i data-lucide="check" class="check-icon"></i></span>
           <span class="option-label">${opt.label}</span>
         </div>
       `).join('');
-      
+
       container.querySelectorAll('.option-item').forEach(item => {
-        item.addEventListener('click', function() {
+        item.addEventListener('click', function () {
           this.classList.toggle('selected');
-          
+
           // 選択された値を配列として保存
           const selected = [];
           container.querySelectorAll('.option-item.selected').forEach(sel => {
@@ -3697,25 +3888,25 @@
           formData[name] = selected;
           autoSave();
           updateProgress();
-          
+
           // エラーをクリア
           container.classList.remove('error');
           container.closest('.form-group')?.classList.remove('error');
         });
       });
-      
+
       lucide.createIcons();
     }
-    
+
     // ============================================
     // 曜日ごとの授業スタイル入力
     // ============================================
     function initWeekdayStyleInputs() {
       const container = document.getElementById('weekday-style-container');
       if (!container) return;
-      
+
       const weekdays = ['月曜日', '火曜日', '水曜日', '木曜日', '金曜日', '土曜日', '日曜日'];
-      
+
       container.innerHTML = weekdays.map((day, index) => `
         <div style="display:flex;align-items:center;gap:12px;padding:12px;background:#f9fafb;border-radius:10px;margin-bottom:8px;">
           <span style="font-size:14px;font-weight:600;color:#374151;min-width:60px;">${day}</span>
@@ -3739,10 +3930,10 @@
           </div>
         </div>
       `).join('');
-      
+
       // イベントリスナー追加
       container.querySelectorAll('input[type="radio"]').forEach(radio => {
-        radio.addEventListener('change', function() {
+        radio.addEventListener('change', function () {
           const weekdayStyles = {};
           weekdays.forEach((day, i) => {
             const selected = container.querySelector(`input[name="weekday-${i}"]:checked`);
@@ -3753,67 +3944,67 @@
         });
       });
     }
-    
+
     // ============================================
     // 希望日程入力
     // ============================================
     let scheduleDateCount = 0;
-    
+
     function initScheduleDateInputs() {
       addScheduleDate(); // 最初の1行を追加
     }
-    
+
     function addScheduleDate() {
       const container = document.getElementById('schedule-dates-container');
       if (!container) return;
-      
+
       scheduleDateCount++;
       const id = scheduleDateCount;
-      
+
       const row = document.createElement('div');
       row.id = `schedule-row-${id}`;
       row.style.cssText = 'display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap;background:#f9fafb;padding:12px;border-radius:10px;';
-      
+
       // 日付選択
       const dateInput = document.createElement('input');
       dateInput.type = 'date';
       dateInput.className = 'form-input';
       dateInput.style.cssText = 'flex:0 0 auto;min-width:130px;max-width:160px;';
       dateInput.name = `schedule-date-${id}`;
-      
+
       // 最小日付を設定（来月1日から）
       updateDateMinimum(dateInput);
-      
+
       // 時間選択肢を生成（7時〜23時）
       const times = [];
       for (let h = 7; h <= 23; h++) {
         times.push(`${h.toString().padStart(2, '0')}:00`);
       }
-      
+
       // 開始時間選択
       const startTimeSelect = document.createElement('select');
       startTimeSelect.className = 'date-select';
       startTimeSelect.style.cssText = 'min-width:80px;';
       startTimeSelect.name = `schedule-start-${id}`;
       startTimeSelect.innerHTML = '<option value="">--</option>' + times.map(t => `<option value="${t}">${t}</option>`).join('');
-      
+
       // 「〜」ラベル
       const toLabel = document.createElement('span');
       toLabel.textContent = '〜';
       toLabel.style.cssText = 'color:#6b7280;font-size:14px;';
-      
+
       // 終了時間選択
       const endTimeSelect = document.createElement('select');
       endTimeSelect.className = 'date-select';
       endTimeSelect.style.cssText = 'min-width:80px;';
       endTimeSelect.name = `schedule-end-${id}`;
       endTimeSelect.innerHTML = '<option value="">--</option>' + times.map(t => `<option value="${t}">${t}</option>`).join('');
-      
+
       // 「の間で授業可能」ラベル
       const availableLabel = document.createElement('span');
       availableLabel.textContent = 'の間で授業可能';
       availableLabel.style.cssText = 'color:#374151;font-size:13px;white-space:nowrap;';
-      
+
       // 削除ボタン
       const deleteBtn = document.createElement('button');
       deleteBtn.type = 'button';
@@ -3823,7 +4014,7 @@
         row.remove();
         updateScheduleData();
       };
-      
+
       row.appendChild(dateInput);
       row.appendChild(startTimeSelect);
       row.appendChild(toLabel);
@@ -3831,9 +4022,9 @@
       row.appendChild(availableLabel);
       row.appendChild(deleteBtn);
       container.appendChild(row);
-      
+
       lucide.createIcons();
-      
+
       // イベントリスナー
       dateInput.addEventListener('change', updateScheduleData);
       startTimeSelect.addEventListener('change', () => {
@@ -3843,34 +4034,34 @@
       });
       endTimeSelect.addEventListener('change', updateScheduleData);
     }
-    
+
     // 終了時間の選択肢を開始時間以降に制限
     function updateEndTimeOptions(startSelect, endSelect) {
       const startValue = startSelect.value;
       if (!startValue) return;
-      
+
       const startHour = parseInt(startValue.split(':')[0]);
       const times = [];
       for (let h = startHour + 1; h <= 23; h++) {
         times.push(`${h.toString().padStart(2, '0')}:00`);
       }
-      
+
       const currentEnd = endSelect.value;
       endSelect.innerHTML = '<option value="">終了</option>' + times.map(t => `<option value="${t}">${t}</option>`).join('');
-      
+
       // 以前の値が有効なら復元
       if (currentEnd && times.includes(currentEnd)) {
         endSelect.value = currentEnd;
       }
     }
-    
+
     // 日付の最小値を更新（緊急対応に応じて）
     function updateDateMinimum(dateInput) {
       const isUrgent = formData['urgent-request'] === 'はい';
       const today = new Date();
       today.setHours(0, 0, 0, 0); // 時刻をリセット
       let minDate;
-      
+
       if (isUrgent) {
         // 緊急対応：2日後から
         minDate = new Date(today);
@@ -3879,14 +4070,14 @@
         // 通常：5日後から
         const fiveDaysLater = new Date(today);
         fiveDaysLater.setDate(today.getDate() + 5);
-        
+
         // 今月末を計算
         const endOfMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0);
         endOfMonth.setHours(0, 0, 0, 0);
-        
+
         // 5日後から今月末までの日数を計算（両日を含む）
         const daysUntilEndOfMonth = Math.floor((endOfMonth - fiveDaysLater) / (1000 * 60 * 60 * 24)) + 1;
-        
+
         if (daysUntilEndOfMonth >= 7) {
           // 7日以上あれば5日後から選択可能
           minDate = fiveDaysLater;
@@ -3895,21 +4086,21 @@
           minDate = new Date(today.getFullYear(), today.getMonth() + 1, 1);
         }
       }
-      
+
       // ローカルタイムゾーンで日付文字列を生成（toISOStringはUTCなのでずれる）
       const year = minDate.getFullYear();
       const month = String(minDate.getMonth() + 1).padStart(2, '0');
       const day = String(minDate.getDate()).padStart(2, '0');
       const minDateStr = `${year}-${month}-${day}`;
       dateInput.min = minDateStr;
-      
+
       // 既存の入力値が最小値より前の場合はクリア
       if (dateInput.value && dateInput.value < minDateStr) {
         dateInput.value = '';
         updateScheduleData();
       }
     }
-    
+
     // 緊急対応が変更されたときに全日付入力の最小値を更新＆値をクリア
     function onUrgentRequestChange() {
       const container = document.getElementById('schedule-dates-container');
@@ -3923,12 +4114,12 @@
         updateScheduleData();
       }
     }
-    
+
     function updateScheduleData() {
       const container = document.getElementById('schedule-dates-container');
       const rows = container.querySelectorAll('[id^="schedule-row-"]');
       const schedules = [];
-      
+
       rows.forEach(row => {
         const date = row.querySelector('input[type="date"]').value;
         const selects = row.querySelectorAll('select');
@@ -3938,17 +4129,17 @@
           schedules.push({ date, startTime, endTime });
         }
       });
-      
+
       formData['schedule-dates'] = schedules;
       autoSave();
     }
-    
+
     // ============================================
     // コースカード初期化
     // ============================================
     let selectedCoursePrice = 0;
     let selectedCourseName = '';
-    
+
     // 料金定数
     const ENROLLMENT_FEE = 39800;  // 入塾金
     const MATERIAL_FEE = 19800;    // 教材費
@@ -3956,7 +4147,7 @@
     const VIDEO_FEE = 11000;       // 動画教材
     const BASIC_FEE = 11980;       // 在籍基本料
     const SYSTEM_FEE = 2980;       // システムサーバー費
-    
+
     const BULK_DISCOUNTS = {
       4: 10000,
       5: 12500,
@@ -3968,34 +4159,34 @@
       11: 35000,
       12: 40000
     };
-    
+
     function initCourseCards() {
       const container = document.getElementById('course-cards');
       if (!container) return;
-      
+
       const courses = [
-        { 
-          name: '海外大学', 
+        {
+          name: '海外大学',
           price: 15500,
           examples: ''
         },
-        { 
-          name: '難関国公立大学', 
+        {
+          name: '難関国公立大学',
           price: 15500,
           examples: ''
         },
-        { 
-          name: '最難関私大', 
+        {
+          name: '最難関私大',
           price: 13500,
           examples: '早慶上智ICU / GMARCH / 関関同立'
         },
-        { 
-          name: '難関私大', 
+        {
+          name: '難関私大',
           price: 12800,
           examples: '日東駒専 / 成成明学獨國武 / その他'
         }
       ];
-      
+
       container.innerHTML = courses.map(course => `
         <div class="course-card" data-name="${course.name}" data-price="${course.price}">
           <div class="course-card-header">
@@ -4006,49 +4197,49 @@
           <div class="course-card-price">¥${course.price.toLocaleString()}<span>/コマ</span></div>
         </div>
       `).join('');
-      
+
       container.querySelectorAll('.course-card').forEach(card => {
-        card.addEventListener('click', function() {
+        card.addEventListener('click', function () {
           container.querySelectorAll('.course-card').forEach(c => c.classList.remove('selected'));
           this.classList.add('selected');
           selectedCoursePrice = parseInt(this.dataset.price);
           selectedCourseName = this.dataset.name;
           formData['selected-course'] = selectedCourseName;
           formData['selected-course-price'] = selectedCoursePrice;
-          
+
           // エラーをクリア
           container.classList.remove('error');
           container.closest('.form-group')?.classList.remove('error');
-          
+
           autoSave();
           calculatePrice();
         });
       });
     }
-    
+
     // ============================================
     // 支払い月数セレクト
     // ============================================
     function initPaymentMonthsSelect() {
       const select = document.getElementById('payment-months');
       if (select) {
-        select.addEventListener('change', function() {
+        select.addEventListener('change', function () {
           formData['payment-months'] = this.value;
           autoSave();
           calculatePrice();
         });
       }
     }
-    
+
     // ============================================
     // 料金計算（v4_2形式）
     // ============================================
     const ENGLISH_PRICE = 12800; // ENGLISHコースの単価
-    
+
     function calculatePrice() {
       // 初回費用
       let initialTotal = ENROLLMENT_FEE + MATERIAL_FEE + ACCOUNT_FEE;
-      
+
       // 動画教材
       const videoSelected = formData['video-material'];
       const videoFeeRow = document.getElementById('video-fee-row');
@@ -4058,41 +4249,41 @@
       } else {
         if (videoFeeRow) videoFeeRow.style.display = 'none';
       }
-      
+
       document.getElementById('initial-subtotal').textContent = `¥${initialTotal.toLocaleString()}`;
-      
+
       // 各コースの合計
       let mainCourseTotal = 0;
       let englishCourseTotal = 0;
-      
+
       const mainCourseCategoryEl = document.getElementById('main-course-category');
       const englishCourseCategoryEl = document.getElementById('english-course-category');
-      
+
       // ===== 総合型選抜パック =====
       const mainCoursePurchase = formData['main-course-purchase'];
       if (mainCoursePurchase === '受講する' && selectedCoursePrice > 0) {
         const monthlyLessons = parseInt(document.getElementById('monthly-lessons')?.value) || 0;
         const paymentMonths = parseInt(document.getElementById('payment-months')?.value) || 0;
-        
+
         if (monthlyLessons > 0 && paymentMonths > 0) {
           // 授業料
           const mainLessonCost = selectedCoursePrice * monthlyLessons;
-          
+
           // 月額小計（在籍基本料 + システムサーバー費 + 授業料）
           const mainMonthlySubtotal = BASIC_FEE + SYSTEM_FEE + mainLessonCost;
-          
+
           // 期間合計
           const mainPeriodSubtotal = mainMonthlySubtotal * paymentMonths;
-          
+
           // まとめ払い割引
           let bulkDiscount = 0;
           if (BULK_DISCOUNTS[paymentMonths]) {
             bulkDiscount = BULK_DISCOUNTS[paymentMonths];
           }
-          
+
           // パック合計
           mainCourseTotal = mainPeriodSubtotal - bulkDiscount;
-          
+
           // 表示更新
           if (mainCourseCategoryEl) {
             mainCourseCategoryEl.style.display = 'block';
@@ -4102,7 +4293,7 @@
             document.getElementById('main-months-text').textContent = paymentMonths;
             document.getElementById('main-period-subtotal').textContent = `¥${mainPeriodSubtotal.toLocaleString()}`;
             document.getElementById('main-course-total').textContent = `¥${mainCourseTotal.toLocaleString()}`;
-            
+
             // まとめ払い割引表示
             const bulkDiscountRow = document.getElementById('bulk-discount-row');
             if (bulkDiscount > 0) {
@@ -4118,19 +4309,19 @@
       } else {
         if (mainCourseCategoryEl) mainCourseCategoryEl.style.display = 'none';
       }
-      
+
       // ===== ENGLISHコース =====
       const englishSelected = formData['english-course'];
       if (englishSelected === '受講する') {
         const englishMonthly = parseInt(document.getElementById('english-monthly-lessons')?.value) || 0;
         const englishMonths = parseInt(document.getElementById('english-payment-months')?.value) || 0;
-        
+
         if (englishMonthly > 0 && englishMonths > 0) {
           // 月額授業料
           const englishMonthlyCost = ENGLISH_PRICE * englishMonthly;
           // 合計（月額 × 購入月数）
           englishCourseTotal = englishMonthlyCost * englishMonths;
-          
+
           // 表示更新
           if (englishCourseCategoryEl) {
             englishCourseCategoryEl.style.display = 'block';
@@ -4146,55 +4337,55 @@
       } else {
         if (englishCourseCategoryEl) englishCourseCategoryEl.style.display = 'none';
       }
-      
+
       // ===== 初回お支払い総額 =====
       const grandTotal = initialTotal + mainCourseTotal + englishCourseTotal;
       document.getElementById('grand-total').textContent = `¥${grandTotal.toLocaleString()}`;
-      
+
       lucide.createIcons();
     }
-    
+
     // ============================================
     // 割引モーダル
     // ============================================
     let discountConfirmed = false;
-    
+
     function openDiscountModal() {
       document.getElementById('discount-modal').classList.add('show');
       lucide.createIcons();
     }
-    
+
     function closeDiscountModal() {
       document.getElementById('discount-modal').classList.remove('show');
     }
-    
+
     function confirmDiscountTerms() {
       discountConfirmed = true;
       formData['discount-confirmed'] = true;
-      
+
       // ボタン状態を更新（エラー状態もクリア）
       const btn = document.getElementById('discount-confirm-btn');
       btn.classList.remove('not-confirmed', 'error');
       btn.classList.add('confirmed');
       document.getElementById('discount-btn-text').textContent = '確認済み';
-      
+
       // ステータス更新（エラー状態もクリア）
       const status = document.getElementById('discount-status');
       status.classList.remove('pending', 'error');
       status.classList.add('completed');
       status.innerHTML = '<i data-lucide="check-circle" style="width:14px;height:14px;"></i><span>確認が完了しました。割引オプションを選択できます。</span>';
-      
+
       // 割引オプションセクションを表示
       const discountSection = document.getElementById('discount-section');
       if (discountSection) {
         discountSection.style.display = 'block';
       }
-      
+
       closeDiscountModal();
       lucide.createIcons();
       autoSave();
     }
-    
+
     // 紹介割引の表示切替
     function toggleReferrerInput() {
       const show = formData['referral-discount'] === '紹介あり';
@@ -4203,13 +4394,13 @@
         container.style.display = show ? 'block' : 'none';
       }
     }
-    
+
     // ============================================
     // 同意日セレクト初期化
     // ============================================
     function initConsentDateSelects() {
       const today = new Date();
-      
+
       // 年
       const yearSelect = document.getElementById('consent-year');
       if (yearSelect) {
@@ -4221,7 +4412,7 @@
         }
         yearSelect.value = today.getFullYear();
       }
-      
+
       // 月
       const monthSelect = document.getElementById('consent-month');
       if (monthSelect) {
@@ -4233,7 +4424,7 @@
         }
         monthSelect.value = today.getMonth() + 1;
       }
-      
+
       // 日
       const daySelect = document.getElementById('consent-day');
       if (daySelect) {
@@ -4246,7 +4437,7 @@
         daySelect.value = today.getDate();
       }
     }
-    
+
     // ============================================
     // セクションカード描画
     // ============================================
@@ -4273,25 +4464,25 @@
           </div>
         </div>
       `).join('');
-      
+
       lucide.createIcons();
       updateProgress();
     }
-    
+
     // ============================================
     // 進捗更新
     // ============================================
     function updateProgress() {
       const completed = sectionCompleted.filter(Boolean).length;
       const percent = (completed / TOTAL_SECTIONS) * 100;
-      
+
       document.getElementById('completed-count').textContent = completed;
       document.getElementById('progress-fill').style.width = `${percent}%`;
-      
+
       // 送信ボタン
       const submitBtn = document.getElementById('submit-btn');
       const submitHint = document.getElementById('submit-hint');
-      
+
       if (completed === TOTAL_SECTIONS) {
         // 全セクション完了
         submitBtn.disabled = false;
@@ -4304,7 +4495,7 @@
         submitHint.style.color = '#9ca3af';
       }
     }
-    
+
     // ============================================
     // ナビゲーション
     // ============================================
@@ -4314,27 +4505,27 @@
         window.location.href = 'section10-consent.html';
         return;
       }
-      
+
       // トップ画面を非表示
       document.getElementById('top-screen').classList.add('hidden');
-      
+
       // 全セクションを非表示
       document.querySelectorAll('.section-screen').forEach(s => s.classList.remove('active'));
-      
+
       // 対象セクションを表示
       document.getElementById(`section-${sectionId}`).classList.add('active');
-      
+
       // 戻るボタン表示
       document.getElementById('header-back-btn').style.display = 'flex';
-      
+
       currentSection = sectionId;
       window.scrollTo(0, 0);
-      
+
       // フォームデータをDOMに復元
       restoreFormDataToDOM();
-      
+
       lucide.createIcons();
-      
+
       // セクション7を開く時は日付の最小値を再計算
       if (sectionId === 7) {
         const container = document.getElementById('schedule-dates-container');
@@ -4345,11 +4536,11 @@
         }
       }
     }
-    
+
     // フォームデータをDOMに復元する関数
     function restoreFormDataToDOM() {
       console.log('DOM復元開始:', Object.keys(formData).length, '件');
-      
+
       // 1. テキスト入力・セレクトの復元
       Object.keys(formData).forEach(key => {
         const element = document.getElementById(key);
@@ -4359,19 +4550,19 @@
           }
         }
       });
-      
+
       // 2. ラジオボタンの復元
       document.querySelectorAll('.option-group').forEach(container => {
         const items = container.querySelectorAll('.option-item[data-value]');
         if (items.length === 0) return;
-        
+
         // data-nameを持つ最初の要素からキー名を取得
         const firstItem = items[0];
         const name = firstItem.dataset.name;
         if (!name || !formData[name]) return;
-        
+
         const savedValue = formData[name];
-        
+
         // 配列の場合（チェックボックス）
         if (Array.isArray(savedValue)) {
           items.forEach(item => {
@@ -4392,7 +4583,7 @@
           });
         }
       });
-      
+
       // 3. コースカードの復元
       if (formData['selected-course']) {
         selectedCourseName = formData['selected-course'];
@@ -4408,7 +4599,7 @@
           });
         }
       }
-      
+
       // 4. 曜日別スタイルの復元
       if (formData['weekday-styles']) {
         const weekdays = ['月曜日', '火曜日', '水曜日', '木曜日', '金曜日', '土曜日', '日曜日'];
@@ -4423,7 +4614,7 @@
           });
         }
       }
-      
+
       // 5. スケジュール日程の復元
       if (formData['schedule-dates'] && Array.isArray(formData['schedule-dates'])) {
         const scheduleContainer = document.getElementById('schedule-dates-container');
@@ -4458,13 +4649,34 @@
           });
         }
       }
-      
+
       // 6. 条件付き表示の更新
       updateConditionalSections();
-      
+
       console.log('DOM復元完了');
+
+      // 7. 5段階スケールの復元
+      const scaleGroups = [
+        'thinking-style-group', 'judgment-style-group', 'feedback-style-group', 'learning-style-group',
+        'strictness-group', 'homework-amount-group', 'feedback-freq-group', 'motivation-group'
+      ];
+      scaleGroups.forEach(groupId => {
+        const container = document.getElementById(groupId);
+        if (container) {
+          const name = container.dataset.name;
+          const savedValue = formData[name];
+          if (savedValue) {
+            container.querySelectorAll('.scale-option').forEach(opt => {
+              if (opt.dataset.text === savedValue) {
+                opt.classList.add('selected');
+              }
+            });
+          }
+        }
+      });
+      console.log('DOM復元完了'); 
     }
-    
+
     // 条件付きセクションの表示を更新
     function updateConditionalSections() {
       // 総合型選抜コース詳細
@@ -4472,55 +4684,55 @@
       if (mainCourseDetails) {
         mainCourseDetails.style.display = formData['main-course-purchase'] === '受講する' ? 'block' : 'none';
       }
-      
+
       // ENGLISHコース詳細
       const englishSection = document.getElementById('english-course-section');
       if (englishSection) {
         englishSection.style.display = formData['english-course'] === '受講する' ? 'block' : 'none';
       }
-      
+
       // ひとり親書類アップロード
       const singleParentUpload = document.getElementById('single-parent-upload-container');
       if (singleParentUpload) {
         singleParentUpload.style.display = formData['family-discount'] === '母子・父子家庭' ? 'block' : 'none';
       }
-      
+
       // 紹介者名入力
       const referrerContainer = document.getElementById('referrer-name-container');
       if (referrerContainer) {
         referrerContainer.style.display = formData['referral-discount'] === '紹介あり' ? 'block' : 'none';
       }
-      
+
       // 割引オプションセクション
       if (formData['discount-confirmed']) {
         const discountSection = document.getElementById('discount-section');
         if (discountSection) discountSection.style.display = 'block';
       }
-      
+
       // 料金計算を更新
       if (typeof calculatePrice === 'function') {
         calculatePrice();
       }
     }
-    
+
     function goBackToTop() {
       // 現在のセクションのデータを保存
       autoSave();
-      
+
       // セクションを非表示
       document.querySelectorAll('.section-screen').forEach(s => s.classList.remove('active'));
-      
+
       // トップ画面を表示
       document.getElementById('top-screen').classList.remove('hidden');
-      
+
       // 戻るボタン非表示
       document.getElementById('header-back-btn').style.display = 'none';
-      
+
       currentSection = 0;
       renderSectionCards();
       window.scrollTo(0, 0);
     }
-    
+
     // セクション完了して次へ
     function completeAndNext(currentSectionId, nextSectionId) {
       // バリデーション
@@ -4528,17 +4740,17 @@
         showToast('必須項目を入力してください', 'error');
         return;
       }
-      
+
       // 現在のセクションを完了としてマーク
       sectionCompleted[currentSectionId - 1] = true;
       autoSave();
-      
+
       // 次のセクションへ移動
       goToSection(nextSectionId);
-      
+
       showToast(`セクション${currentSectionId}を保存しました`, 'success');
     }
-    
+
     // セクション完了してトップへ
     function completeAndGoTop(sectionId) {
       // バリデーション
@@ -4546,27 +4758,27 @@
         showToast('必須項目を入力してください', 'error');
         return;
       }
-      
+
       // セクションを完了としてマーク
       sectionCompleted[sectionId - 1] = true;
       autoSave();
-      
+
       // トップへ戻る
       goBackToTop();
-      
+
       showToast('すべてのセクションを入力しました！', 'success');
     }
-    
+
     // ============================================
     // バリデーション
     // ============================================
     function validateSection(sectionId) {
       // まず全エラーをクリア
       clearErrors(sectionId);
-      
+
       let isValid = true;
-      
-      switch(sectionId) {
+
+      switch (sectionId) {
         case 1:
           isValid = validateSection1();
           break;
@@ -4600,19 +4812,19 @@
         default:
           isValid = true;
       }
-      
+
       return isValid;
     }
-    
+
     // エラー表示をクリア
     function clearErrors(sectionId) {
       const section = document.getElementById(`section-${sectionId}`);
       if (!section) return;
-      
+
       section.querySelectorAll('.error').forEach(el => el.classList.remove('error'));
       section.querySelectorAll('.form-group.error').forEach(el => el.classList.remove('error'));
     }
-    
+
     // 入力フィールドにエラーマーク
     function markError(elementId) {
       const el = document.getElementById(elementId);
@@ -4621,7 +4833,7 @@
         el.closest('.form-group')?.classList.add('error');
       }
     }
-    
+
     // オプショングループにエラーマーク
     function markOptionError(groupId) {
       const group = document.getElementById(groupId);
@@ -4630,10 +4842,10 @@
         group.closest('.form-group')?.classList.add('error');
       }
     }
-    
+
     function validateSection1() {
       let isValid = true;
-      
+
       const fields = [
         { id: 'student-name', check: () => document.getElementById('student-name')?.value.trim() },
         { id: 'student-furigana', check: () => document.getElementById('student-furigana')?.value.trim() },
@@ -4645,14 +4857,14 @@
         { id: 'student-phone', check: () => document.getElementById('student-phone')?.value.trim() },
         { id: 'student-email', check: () => document.getElementById('student-email')?.value.trim() }
       ];
-      
+
       fields.forEach(field => {
         if (!field.check()) {
           markError(field.id);
           isValid = false;
         }
       });
-      
+
       // フリガナ：カタカナチェック
       const furigana = document.getElementById('student-furigana')?.value;
       if (furigana && !/^[ァ-ヶー\s　]*$/.test(furigana)) {
@@ -4660,14 +4872,14 @@
         document.getElementById('furigana-hint').style.display = 'block';
         isValid = false;
       }
-      
+
       // 電話番号：数字のみ＆桁数チェック
       const phone = document.getElementById('student-phone')?.value;
       if (phone && (!/^[0-9]+$/.test(phone) || phone.length < 10)) {
         markError('student-phone');
         isValid = false;
       }
-      
+
       // メールアドレス：@を含みスペースなし
       const email = document.getElementById('student-email')?.value.trim();
       if (email && (!email.includes('@') || /\s/.test(email))) {
@@ -4675,7 +4887,7 @@
         document.getElementById('student-email-hint').style.display = 'block';
         isValid = false;
       }
-      
+
       const optionGroups = [
         { id: 'grade-group', key: 'grade' },
         { id: 'school-type-group', key: 'school-type' },
@@ -4683,40 +4895,40 @@
         { id: 'school-attached-group', key: 'school-attached' },
         { id: 'school-correspondence-group', key: 'school-correspondence' }
       ];
-      
+
       optionGroups.forEach(group => {
         if (!formData[group.key]) {
           markOptionError(group.id);
           isValid = false;
         }
       });
-      
+
       return isValid;
     }
-    
+
     function validateSection2() {
       let isValid = true;
-      
+
       const fields = [
         { id: 'parent-name', check: () => document.getElementById('parent-name')?.value.trim() },
         { id: 'parent-phone', check: () => document.getElementById('parent-phone')?.value.trim() },
         { id: 'parent-email', check: () => document.getElementById('parent-email')?.value.trim() }
       ];
-      
+
       fields.forEach(field => {
         if (!field.check()) {
           markError(field.id);
           isValid = false;
         }
       });
-      
+
       // 電話番号：数字のみ＆桁数チェック
       const phone = document.getElementById('parent-phone')?.value;
       if (phone && (!/^[0-9]+$/.test(phone) || phone.length < 10)) {
         markError('parent-phone');
         isValid = false;
       }
-      
+
       // メールアドレス：@を含みスペースなし
       const email = document.getElementById('parent-email')?.value.trim();
       if (email && (!email.includes('@') || /\s/.test(email))) {
@@ -4724,13 +4936,13 @@
         document.getElementById('parent-email-hint').style.display = 'block';
         isValid = false;
       }
-      
+
       return isValid;
     }
-    
+
     function validateSection3() {
       let isValid = true;
-      
+
       if (!formData['device']) {
         markOptionError('device-group');
         isValid = false;
@@ -4739,13 +4951,13 @@
         markOptionError('course-group');
         isValid = false;
       }
-      
+
       return isValid;
     }
-    
+
     function validateSection4() {
       let isValid = true;
-      
+
       const currentGpa = document.getElementById('current-gpa')?.value.trim();
       if (!currentGpa) {
         markError('current-gpa');
@@ -4761,12 +4973,12 @@
           isValid = false;
         }
       }
-      
+
       if (!formData['first-choice-undecided']) {
         markOptionError('first-choice-undecided-group');
         isValid = false;
       }
-      
+
       // 志望校が決まっている場合のみ追加バリデーション
       if (formData['first-choice-undecided'] === '決まっている') {
         // 大学名
@@ -4775,14 +4987,14 @@
           markError('first-choice-univ');
           isValid = false;
         }
-        
+
         // 併願校
         const otherChoices = document.getElementById('other-choices')?.value.trim();
         if (!otherChoices) {
           markError('other-choices');
           isValid = false;
         }
-        
+
         // 志望理由
         const reasonFirstChoice = document.getElementById('reason-first-choice')?.value.trim();
         if (!reasonFirstChoice) {
@@ -4790,13 +5002,13 @@
           isValid = false;
         }
       }
-      
+
       return isValid;
     }
-    
+
     function validateSection5() {
       let isValid = true;
-      
+
       const targetGpa = document.getElementById('target-gpa')?.value.trim();
       if (!targetGpa) {
         markError('target-gpa');
@@ -4812,7 +5024,7 @@
           isValid = false;
         }
       }
-      
+
       if (!formData['gpa-motivation']) {
         markOptionError('gpa-motivation-group');
         isValid = false;
@@ -4825,13 +5037,13 @@
         markOptionError('general-exam-group');
         isValid = false;
       }
-      
+
       return isValid;
     }
-    
+
     function validateSection6() {
       let isValid = true;
-      
+
       const optionGroups = [
         { id: 'instructor-gender-group', key: 'instructor-gender' },
         { id: 'thinking-style-group', key: 'thinking-style' },
@@ -4843,26 +5055,26 @@
         { id: 'feedback-freq-group', key: 'feedback-freq' },
         { id: 'motivation-group', key: 'motivation-style' }
       ];
-      
+
       optionGroups.forEach(group => {
         if (!formData[group.key]) {
           markOptionError(group.id);
           isValid = false;
         }
       });
-      
+
       const mbti = document.getElementById('mbti')?.value;
       if (!mbti) {
         markError('mbti');
         isValid = false;
       }
-      
+
       return isValid;
     }
-    
+
     function validateSection7() {
       let isValid = true;
-      
+
       // スケジュール調整：希望日程が必要
       const schedules = formData['schedule-dates'];
       if (!schedules || schedules.length === 0) {
@@ -4870,26 +5082,26 @@
         if (container) container.closest('.form-group')?.classList.add('error');
         isValid = false;
       }
-      
+
       // 同意チェック
       const consent = formData['schedule-consent'] && formData['schedule-consent'].includes('同意する');
       if (!consent) {
         markOptionError('schedule-consent-group');
         isValid = false;
       }
-      
+
       return isValid;
     }
-    
+
     function validateSection8() {
       let isValid = true;
-      
+
       // 総合型選抜コース購入有無の確認
       if (!formData['main-course-purchase']) {
         markOptionError('main-course-purchase-group');
         isValid = false;
       }
-      
+
       // 総合型選抜コースを購入する場合
       if (formData['main-course-purchase'] === '受講する') {
         // コース選択
@@ -4901,20 +5113,20 @@
           }
           isValid = false;
         }
-        
+
         const monthlyLessons = document.getElementById('monthly-lessons')?.value;
         if (!monthlyLessons) {
           markError('monthly-lessons');
           isValid = false;
         }
-        
+
         const paymentMonths = document.getElementById('payment-months')?.value;
         if (!paymentMonths) {
           markError('payment-months');
           isValid = false;
         }
       }
-      
+
       // 割引確認
       if (!discountConfirmed && !formData['discount-confirmed']) {
         showToast('割引制度の注意事項を確認してください', 'error');
@@ -4930,7 +5142,7 @@
         }
         isValid = false;
       }
-      
+
       // 紹介ありの場合、紹介者名必須
       if (formData['referral-discount'] === '紹介あり') {
         const referrerName = document.getElementById('referrer-name')?.value.trim();
@@ -4939,7 +5151,7 @@
           isValid = false;
         }
       }
-      
+
       // ひとり親家庭の場合、証明書類必須
       if (formData['family-discount'] === '母子・父子家庭') {
         const docs = formData['single-parent-documents'];
@@ -4951,7 +5163,7 @@
           isValid = false;
         }
       }
-      
+
       // ENGLISHコースを購入する場合
       if (formData['english-course'] === '受講する') {
         const englishMonthly = document.getElementById('english-monthly-lessons')?.value;
@@ -4959,31 +5171,31 @@
           markError('english-monthly-lessons');
           isValid = false;
         }
-        
+
         const englishPaymentMonths = document.getElementById('english-payment-months')?.value;
         if (!englishPaymentMonths) {
           markError('english-payment-months');
           isValid = false;
         }
-        
+
         if (!formData['english-prep'] || formData['english-prep'].length === 0) {
           markOptionError('english-prep-group');
           isValid = false;
         }
       }
-      
+
       const billingConsent = formData['billing-consent'] && formData['billing-consent'].includes('同意する');
       if (!billingConsent) {
         markOptionError('billing-consent-group');
         isValid = false;
       }
-      
+
       return isValid;
     }
-    
+
     function validateSection9() {
       let isValid = true;
-      
+
       if (!formData['reason'] || formData['reason'].length === 0) {
         markOptionError('reason-group');
         isValid = false;
@@ -4992,35 +5204,35 @@
         markOptionError('expectation-group');
         isValid = false;
       }
-      
+
       return isValid;
     }
-    
+
     function validateSection10() {
       let isValid = true;
-      
+
       const fields = [
         { id: 'consent-year', check: () => document.getElementById('consent-year')?.value },
         { id: 'consent-month', check: () => document.getElementById('consent-month')?.value },
         { id: 'consent-day', check: () => document.getElementById('consent-day')?.value }
       ];
-      
+
       fields.forEach(field => {
         if (!field.check()) {
           markError(field.id);
           isValid = false;
         }
       });
-      
+
       const mainConsent = formData['consent-main'] && formData['consent-main'].includes('同意する');
       if (!mainConsent) {
         markOptionError('consent-group');
         isValid = false;
       }
-      
+
       return isValid;
     }
-    
+
     // ============================================
     // 自動保存
     // ============================================
@@ -5031,29 +5243,29 @@
           formData[input.id] = input.value;
         }
       });
-      
+
       // select要素からデータ収集
       document.querySelectorAll('select.form-input, select.date-select').forEach(select => {
         if (select.id && select.value && select.value !== '') {
           formData[select.id] = select.value;
         }
       });
-      
+
       // ラジオボタン・チェックボックスはすでにformDataに保存されている
       // （createRadioGroup, createCheckboxGroupで処理済み）
-      
+
       const saveData = {
         formData: formData,
         sectionCompleted: sectionCompleted,
         savedAt: new Date().toISOString()
       };
-      
+
       localStorage.setItem(STORAGE_KEY, JSON.stringify(saveData));
       console.log('自動保存完了:', Object.keys(formData).length, '件');
     }
-    
+
     // 入力イベントで自動保存 & エラークリア
-    document.addEventListener('input', function(e) {
+    document.addEventListener('input', function (e) {
       if (e.target.classList.contains('form-input') || e.target.classList.contains('date-select')) {
         autoSave();
         // エラーをクリア
@@ -5061,19 +5273,19 @@
         e.target.closest('.form-group')?.classList.remove('error');
       }
     });
-    
+
     // changeイベントで自動保存（select要素用）
-    document.addEventListener('change', function(e) {
-      if (e.target.classList.contains('date-select') || 
-          e.target.classList.contains('form-input') ||
-          e.target.tagName === 'SELECT') {
+    document.addEventListener('change', function (e) {
+      if (e.target.classList.contains('date-select') ||
+        e.target.classList.contains('form-input') ||
+        e.target.tagName === 'SELECT') {
         autoSave();
         // エラーをクリア
         e.target.classList.remove('error');
         e.target.closest('.form-group')?.classList.remove('error');
       }
     });
-    
+
     // ============================================
     // データ復元チェック
     // ============================================
@@ -5082,24 +5294,24 @@
       if (saved) {
         const data = JSON.parse(saved);
         const savedDate = new Date(data.savedAt);
-        document.getElementById('restore-date').textContent = 
+        document.getElementById('restore-date').textContent =
           `最終保存: ${savedDate.toLocaleDateString('ja-JP')} ${savedDate.toLocaleTimeString('ja-JP', { hour: '2-digit', minute: '2-digit' })}`;
         document.getElementById('restore-modal').classList.add('show');
       }
     }
-    
+
     function restoreData() {
       const saved = localStorage.getItem(STORAGE_KEY);
       if (saved) {
         const data = JSON.parse(saved);
         formData = data.formData || {};
-        
+
         console.log('データ復元開始:', Object.keys(formData).length, '件');
-        
+
         // sectionCompletedの配列サイズを現在のセクション数に調整
         const savedCompleted = data.sectionCompleted || [];
         sectionCompleted = new Array(TOTAL_SECTIONS).fill(false);
-        
+
         // 古いデータ（セクション数が異なる）の場合は完了状態をリセット
         if (savedCompleted.length !== TOTAL_SECTIONS) {
           console.log('セクション構成が変更されたため、完了状態をリセットしました');
@@ -5109,13 +5321,13 @@
             sectionCompleted[i] = savedCompleted[i] || false;
           }
         }
-        
+
         // section10Dataがあればマージ（ブラウザクラッシュ等で残っている場合）
         const section10Saved = localStorage.getItem('section10Data');
         if (section10Saved) {
           const section10Data = JSON.parse(section10Saved);
           console.log('section10Data復元:', section10Data);
-          
+
           // 同意日を解析してformDataに追加
           if (section10Data.consentDate) {
             const match = section10Data.consentDate.match(/(\d+)年(\d+)月(\d+)日/);
@@ -5125,20 +5337,20 @@
               formData['consent-day'] = match[3];
             }
           }
-          
+
           // 同意状態をformDataに追加
           if (section10Data.finalConsent) {
             formData['consent-main'] = ['同意する'];
             sectionCompleted[9] = true; // セクション10を完了状態に
           }
-          
+
           // section10の生データも保存
           formData['section10-data'] = section10Data;
-          
+
           // section10Dataをクリア
           localStorage.removeItem('section10Data');
         }
-        
+
         // 1. テキスト入力・セレクトの復元
         Object.keys(formData).forEach(key => {
           const element = document.getElementById(key);
@@ -5148,17 +5360,17 @@
             }
           }
         });
-        
+
         // 2. ラジオボタン・チェックボックスの復元
         document.querySelectorAll('.option-group').forEach(container => {
           const items = container.querySelectorAll('.option-item[data-name]');
           if (items.length === 0) return;
-          
+
           const name = items[0].dataset.name;
           if (!name || formData[name] === undefined) return;
-          
+
           const savedValue = formData[name];
-          
+
           items.forEach(item => {
             if (Array.isArray(savedValue)) {
               // チェックボックス
@@ -5173,7 +5385,7 @@
             }
           });
         });
-        
+
         // 3. コース選択の復元
         if (formData['selected-course']) {
           selectedCourseName = formData['selected-course'];
@@ -5187,7 +5399,7 @@
             });
           }
         }
-        
+
         // 割引確認状態の復元
         if (formData['discount-confirmed']) {
           discountConfirmed = true;
@@ -5208,7 +5420,7 @@
             discountOptions.style.display = 'block';
           }
         }
-        
+
         // 紹介者名入力欄の表示復元
         if (formData['referral-discount'] === '紹介あり') {
           const referrerContainer = document.getElementById('referrer-name-container');
@@ -5216,7 +5428,7 @@
             referrerContainer.style.display = 'block';
           }
         }
-        
+
         // ひとり親家庭アップロード欄の表示復元
         if (formData['family-discount'] === '母子・父子家庭') {
           toggleSingleParentUpload();
@@ -5236,18 +5448,18 @@
             }
           }
         }
-        
+
         // 条件付き表示の復元
         toggleFirstChoiceInputs();
         toggleTestPrepDetails();
         toggleGeneralExamDetails();
-        
+
         // 総合型選抜コース詳細の表示復元
         toggleMainCourseSection();
-        
+
         // ENGLISHコース詳細の表示復元
         toggleEnglishSection();
-        
+
         // 割引セクションの表示復元
         if (formData['discount-confirmed']) {
           const discountSection = document.getElementById('discount-section');
@@ -5255,7 +5467,7 @@
             discountSection.style.display = 'block';
           }
         }
-        
+
         // 曜日ごとの授業スタイルの復元
         if (formData['weekday-styles']) {
           const weekdays = ['月曜日', '火曜日', '水曜日', '木曜日', '金曜日', '土曜日', '日曜日'];
@@ -5270,7 +5482,7 @@
             });
           }
         }
-        
+
         // スケジュール日程の復元
         if (formData['schedule-dates'] && Array.isArray(formData['schedule-dates'])) {
           const scheduleContainer = document.getElementById('schedule-dates-container');
@@ -5278,7 +5490,7 @@
             // 既存の行をクリア
             scheduleContainer.innerHTML = '';
             scheduleDateCount = 0;
-            
+
             // 保存された日程を復元
             formData['schedule-dates'].forEach(schedule => {
               addScheduleDate();
@@ -5293,33 +5505,53 @@
                 if (selects[0] && schedule.time && !schedule.startTime) selects[0].value = schedule.time;
               }
             });
-            
+
             // 最低1行は表示
             if (formData['schedule-dates'].length === 0) {
               addScheduleDate();
             }
           }
         }
-        
+
         // 定期テスト「その他」の表示復元
         toggleTestPrepOther();
-        
+
         // 一般入試「その他」の表示復元
         toggleGeneralExamOther();
-        
+
         // 料金計算
         calculatePrice();
-        
+
         renderSectionCards();
-        
+
         console.log('データ復元完了:', Object.keys(formData).length, '件');
       }
-      
+
       document.getElementById('restore-modal').classList.remove('show');
       showToast('入力内容を復元しました', 'success');
       lucide.createIcons();
+
+      // 5段階スケールの復元
+      const scaleGroups = [
+        'thinking-style-group', 'judgment-style-group', 'feedback-style-group', 'learning-style-group',
+        'strictness-group', 'homework-amount-group', 'feedback-freq-group', 'motivation-group'
+      ];
+      scaleGroups.forEach(groupId => {
+        const container = document.getElementById(groupId);
+        if (container) {
+          const name = container.dataset.name;
+          const savedValue = formData[name];
+          if (savedValue) {
+            container.querySelectorAll('.scale-option').forEach(opt => {
+              if (opt.dataset.text === savedValue) {
+                opt.classList.add('selected');
+              }
+            });
+          }
+        }
+      });
     }
-    
+
     function startFresh() {
       localStorage.removeItem(STORAGE_KEY);
       localStorage.removeItem('section10Data'); // セクション10のデータも削除
@@ -5327,7 +5559,7 @@
       sectionCompleted = new Array(TOTAL_SECTIONS).fill(false);
       document.getElementById('restore-modal').classList.remove('show');
     }
-    
+
     function confirmReset() {
       if (confirm('入力内容をすべてリセットしますか？\nこの操作は取り消せません。')) {
         // 新旧全てのストレージキーを削除
@@ -5340,13 +5572,13 @@
         localStorage.removeItem('eqao_enrollment_data_v6'); // v6
         localStorage.removeItem('eqao_enrollment_data_v7'); // v7
         localStorage.removeItem('section10Data'); // セクション10のデータも削除
-        
+
         formData = {};
         sectionCompleted = new Array(TOTAL_SECTIONS).fill(false);
         discountConfirmed = false;
         selectedCoursePrice = 0;
         selectedCourseName = '';
-        
+
         // フォームをクリア
         document.querySelectorAll('.form-input').forEach(input => {
           input.value = '';
@@ -5357,19 +5589,19 @@
         document.querySelectorAll('.date-select').forEach(select => {
           select.selectedIndex = 0;
         });
-        
+
         renderSectionCards();
         updateProgress();
         showToast('入力内容をリセットしました', 'success');
       }
     }
-    
+
     // ============================================
     // フォーム送信
     // ============================================
     // GAS WebアプリのURL
     const GAS_URL = 'https://script.google.com/macros/s/AKfycbyFJMfjgZzOw9v16PEoQQrRqqYe__oSn6zHdajEXdeXaUf6ACxwBhcMaGf449Qju-t-/exec';
-    
+
     // 送信前にフォームデータを準備（キー名変換）
     function collectAllFormData() {
       // フォームID → GASキー名のマッピング
@@ -5386,37 +5618,37 @@
         'schedule-notes': 'schedule-request',
         'consent-main': 'consent-items'
       };
-      
+
       console.log('=== 送信データ準備開始 ===');
       console.log('formData件数:', Object.keys(formData).length);
-      
+
       // formDataをキー変換してコピー
       const dataToSend = {};
       Object.keys(formData).forEach(key => {
         const newKey = keyMapping[key] || key;
         dataToSend[newKey] = formData[key];
       });
-      
+
       console.log('送信データ件数:', Object.keys(dataToSend).length);
       console.log('送信データ:', dataToSend);
-      
+
       return dataToSend;
     }
-    
+
     async function submitForm() {
       const submitBtn = document.getElementById('submit-btn');
       const submitHint = document.getElementById('submit-hint');
-      
+
       // ボタンを無効化して送信中表示
       submitBtn.disabled = true;
       submitBtn.innerHTML = '<i data-lucide="loader-2" class="spin" style="width:18px;height:18px;"></i> 送信中...';
       submitHint.textContent = 'データを送信しています。しばらくお待ちください...';
       lucide.createIcons();
-      
+
       try {
         // 送信前にすべてのデータを収集
         const dataToSend = collectAllFormData();
-        
+
         // GASに送信（Google Apps Script用の形式）
         const response = await fetch(GAS_URL, {
           method: 'POST',
@@ -5426,36 +5658,36 @@
           },
           body: JSON.stringify(dataToSend)
         });
-        
+
         // no-corsモードではレスポンスを読めないので、成功として扱う
-        
+
         // 保存データをクリア
         localStorage.removeItem(STORAGE_KEY);
-        
+
         // 完了画面表示
         document.getElementById('top-screen').classList.add('hidden');
         document.getElementById('completion-screen').classList.add('show');
         document.getElementById('header-back-btn').style.display = 'none';
-        
+
         // メール送信内容カードを表示
         document.getElementById('student-id-card').style.display = 'block';
-        
+
         window.scrollTo(0, 0);
         lucide.createIcons();
-        
+
       } catch (error) {
         console.error('送信エラー:', error);
-        
+
         // エラー時はボタンを復活
         submitBtn.disabled = false;
         submitBtn.innerHTML = '<i data-lucide="send" style="width:18px;height:18px;"></i> 入塾同意書を送信';
         submitHint.textContent = '送信に失敗しました。もう一度お試しください。';
         lucide.createIcons();
-        
+
         showToast('送信に失敗しました。通信環境をご確認ください。', 'error');
       }
     }
-    
+
     // ============================================
     // トースト
     // ============================================
@@ -5463,11 +5695,12 @@
       const toast = document.getElementById('toast');
       toast.textContent = message;
       toast.className = 'toast show ' + type;
-      
+
       setTimeout(() => {
         toast.classList.remove('show');
       }, 4000);
     }
   </script>
 </body>
+
 </html>
