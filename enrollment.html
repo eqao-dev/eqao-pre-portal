@@ -2153,22 +2153,26 @@
 
           <div style="margin-top: 12px;">
             <p style="font-size:13px;font-weight:600;color:#374151;margin-bottom:8px;">① 考え方のスタイル</p>
-           <div class="scale-group" id="thinking-style-group" data-name="thinking-style" data-left="即断即決" data-right="じっくり派"></div>
+            <div class="scale-group" id="thinking-style-group" data-name="thinking-style" data-left="即断即決"
+              data-right="じっくり派"></div>
           </div>
 
           <div style="margin-top: 16px;">
             <p style="font-size:13px;font-weight:600;color:#374151;margin-bottom:8px;">② 判断の基準</p>
-            <div class="scale-group" id="judgment-style-group" data-name="judgment-style" data-left="論理重視" data-right="直感重視"></div>
+            <div class="scale-group" id="judgment-style-group" data-name="judgment-style" data-left="論理重視"
+              data-right="直感重視"></div>
           </div>
 
           <div style="margin-top: 16px;">
             <p style="font-size:13px;font-weight:600;color:#374151;margin-bottom:8px;">③ フィードバックの受け方</p>
-            <div class="scale-group" id="feedback-style-group" data-name="feedback-style" data-left="ストレート" data-right="やわらかく"></div>
+            <div class="scale-group" id="feedback-style-group" data-name="feedback-style" data-left="ストレート"
+              data-right="やわらかく"></div>
           </div>
 
           <div style="margin-top: 16px;">
             <p style="font-size:13px;font-weight:600;color:#374151;margin-bottom:8px;">④ 学習スタイル</p>
-            <div class="scale-group" id="learning-style-group" data-name="learning-style" data-left="自主的に" data-right="伴走希望"></div>
+            <div class="scale-group" id="learning-style-group" data-name="learning-style" data-left="自主的に"
+              data-right="伴走希望"></div>
           </div>
         </div>
 
@@ -2185,22 +2189,26 @@
 
           <div style="margin-top: 12px;">
             <p style="font-size:13px;font-weight:600;color:#374151;margin-bottom:8px;">① 指導の厳しさ</p>
-            <div class="scale-group" id="strictness-group" data-name="strictness" data-left="厳しめ" data-right="優しめ"></div>
+            <div class="scale-group" id="strictness-group" data-name="strictness" data-left="厳しめ" data-right="優しめ">
+            </div>
           </div>
 
           <div style="margin-top: 16px;">
             <p style="font-size:13px;font-weight:600;color:#374151;margin-bottom:8px;">② 課題の量</p>
-            <div class="scale-group" id="homework-amount-group" data-name="homework-amount" data-left="多め" data-right="少なめ"></div>
+            <div class="scale-group" id="homework-amount-group" data-name="homework-amount" data-left="多め"
+              data-right="少なめ"></div>
           </div>
 
           <div style="margin-top: 16px;">
             <p style="font-size:13px;font-weight:600;color:#374151;margin-bottom:8px;">③ フィードバック頻度</p>
-            <div class="scale-group" id="feedback-freq-group" data-name="feedback-freq" data-left="こまめに" data-right="控えめに"></div>
+            <div class="scale-group" id="feedback-freq-group" data-name="feedback-freq" data-left="こまめに"
+              data-right="控えめに"></div>
           </div>
 
           <div style="margin-top: 16px;">
             <p style="font-size:13px;font-weight:600;color:#374151;margin-bottom:8px;">④ モチベーション管理</p>
-            <div class="scale-group" id="motivation-group" data-name="motivation-style" data-left="管理希望" data-right="自己管理"></div>
+            <div class="scale-group" id="motivation-group" data-name="motivation-style" data-left="管理希望"
+              data-right="自己管理"></div>
           </div>
         </div>
 
@@ -2359,14 +2367,8 @@
           <div class="section-divider-line"></div>
         </div>
 
-        <!-- 総合型選抜コース受講有無 -->
-        <div class="form-group">
-          <label class="form-label">総合型選抜コースを受講しますか？<span class="required">*</span></label>
-          <div class="option-group inline" id="main-course-purchase-group"></div>
-        </div>
-
-        <!-- 総合型選抜コース詳細（受講する場合のみ） -->
-        <div id="main-course-details" style="display: none;">
+        <!-- 総合型選抜コース詳細（常に表示） -->
+        <div id="main-course-details">
           <!-- コース選択 -->
           <div class="form-group">
             <label class="form-label">希望するコースを選択してください<span class="required">*</span></label>
@@ -3388,11 +3390,6 @@
       ]);
 
       // === セクション8: ご請求関連 ===
-      // 総合型選抜コース受講有無
-      createRadioGroup('main-course-purchase-group', 'main-course-purchase', [
-        { value: '受講する', label: '受講する' },
-        { value: '受講しない', label: '受講しない' }
-      ]);
 
       initCourseCards();
       initPaymentMonthsSelect();
@@ -3796,12 +3793,9 @@
       }
     }
 
-    // 総合型選抜コースセクション表示切替
+    // 総合型選抜コースセクション表示切替（常に表示）
     function toggleMainCourseSection() {
-      const section = document.getElementById('main-course-details');
-      if (section) {
-        section.style.display = formData['main-course-purchase'] === '受講する' ? 'block' : 'none';
-      }
+      // 何もしない（常に表示）
     }
 
     // ENGLISHコースセクション表示切替
@@ -4260,8 +4254,7 @@
       const englishCourseCategoryEl = document.getElementById('english-course-category');
 
       // ===== 総合型選抜パック =====
-      const mainCoursePurchase = formData['main-course-purchase'];
-      if (mainCoursePurchase === '受講する' && selectedCoursePrice > 0) {
+      if (selectedCoursePrice > 0) {
         const monthlyLessons = parseInt(document.getElementById('monthly-lessons')?.value) || 0;
         const paymentMonths = parseInt(document.getElementById('payment-months')?.value) || 0;
 
@@ -4674,17 +4667,11 @@
           }
         }
       });
-      console.log('DOM復元完了'); 
+      console.log('DOM復元完了');
     }
 
     // 条件付きセクションの表示を更新
     function updateConditionalSections() {
-      // 総合型選抜コース詳細
-      const mainCourseDetails = document.getElementById('main-course-details');
-      if (mainCourseDetails) {
-        mainCourseDetails.style.display = formData['main-course-purchase'] === '受講する' ? 'block' : 'none';
-      }
-
       // ENGLISHコース詳細
       const englishSection = document.getElementById('english-course-section');
       if (englishSection) {
@@ -5096,14 +5083,7 @@
     function validateSection8() {
       let isValid = true;
 
-      // 総合型選抜コース購入有無の確認
-      if (!formData['main-course-purchase']) {
-        markOptionError('main-course-purchase-group');
-        isValid = false;
-      }
-
-      // 総合型選抜コースを購入する場合
-      if (formData['main-course-purchase'] === '受講する') {
+      {
         // コース選択
         if (!formData['selected-course']) {
           const courseCards = document.getElementById('course-cards');
