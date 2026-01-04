@@ -2379,9 +2379,10 @@
           <!-- 月あたり希望コマ数 -->
           <div class="form-group">
             <label class="form-label">月あたりの希望コマ数<span class="required">*</span></label>
-            <p class="form-hint">高校3年生には<strong>月8コマ（週2回程度）</strong>の受講を推奨しております。<br>※毎月の具体的なスケジュールは、生徒様の申請フォームで調整できます。
+            <p class="form-hint">
+              高校3年生には<strong>月8コマ（週2回程度）</strong>の受講を推奨しております。<br>※最低4コマからのお申し込みとなります（継続的な指導と学習効果を確保するため）。<br>※毎月の具体的なスケジュールは、生徒様の申請フォームで調整できます。
             </p>
-            <input type="number" class="form-input" id="monthly-lessons" placeholder="例：8" min="1" max="30"
+            <input type="number" class="form-input" id="monthly-lessons" placeholder="例：8" min="4" max="30"
               style="max-width:200px;" data-section="8" oninput="calculatePrice()">
           </div>
 
@@ -3802,7 +3803,29 @@
     function toggleEnglishSection() {
       const section = document.getElementById('english-course-section');
       if (section) {
-        section.style.display = formData['english-course'] === '受講する' ? 'block' : 'none';
+        const isEnglish = formData['english-course'] === '受講する';
+        section.style.display = isEnglish ? 'block' : 'none';
+
+        // 受講しない場合は関連データをクリア
+        if (!isEnglish) {
+          delete formData['english-monthly-lessons'];
+          delete formData['english-payment-months'];
+          delete formData['english-prep'];
+
+          // DOM上の値もクリア
+          const monthlyInput = document.getElementById('english-monthly-lessons');
+          const paymentSelect = document.getElementById('english-payment-months');
+          if (monthlyInput) monthlyInput.value = '';
+          if (paymentSelect) paymentSelect.value = '';
+
+          // チェックボックスもクリア
+          const prepGroup = document.getElementById('english-prep-group');
+          if (prepGroup) {
+            prepGroup.querySelectorAll('.option-item').forEach(item => {
+              item.classList.remove('selected');
+            });
+          }
+        }
       }
     }
 
