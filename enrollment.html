@@ -5629,7 +5629,15 @@
       const dataToSend = {};
       Object.keys(formData).forEach(key => {
         const newKey = keyMapping[key] || key;
-        dataToSend[newKey] = formData[key];
+
+        // schedule-datesを人間が読める形式に変換
+        if (key === 'schedule-dates' && Array.isArray(formData[key])) {
+          dataToSend[newKey] = formData[key].map(s =>
+            `${s.date} ${s.startTime}〜${s.endTime}`
+          ).join('\n');
+        } else {
+          dataToSend[newKey] = formData[key];
+        }
       });
 
       console.log('送信データ件数:', Object.keys(dataToSend).length);
