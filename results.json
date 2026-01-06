@@ -139,6 +139,18 @@
   },
   {
     "university": "中央大学",
+    "faculty": "国際情報学部",
+    "department": "",
+    "count": 1
+  },
+  {
+    "university": "中央大学",
+    "faculty": "国際経営学部",
+    "department": "",
+    "count": 1
+  },
+  {
+    "university": "中央大学",
     "faculty": "国際経営学部",
     "department": "国際経営学科",
     "count": 2
@@ -164,7 +176,19 @@
   {
     "university": "中央大学",
     "faculty": "経済学部",
+    "department": "国際経済学科",
+    "count": 1
+  },
+  {
+    "university": "中央大学",
+    "faculty": "経済学部",
     "department": "経済学科",
+    "count": 1
+  },
+  {
+    "university": "二松学舎大学",
+    "faculty": "",
+    "department": "",
     "count": 1
   },
   {
@@ -192,9 +216,21 @@
     "count": 1
   },
   {
+    "university": "千葉工業大学",
+    "faculty": "情報変革科学部",
+    "department": "",
+    "count": 1
+  },
+  {
     "university": "南山大学",
     "faculty": "外国語学部",
     "department": "英米学科",
+    "count": 1
+  },
+  {
+    "university": "南山大学",
+    "faculty": "理工学部",
+    "department": "",
     "count": 1
   },
   {
@@ -225,6 +261,12 @@
     "university": "名桜大学",
     "faculty": "人間健康学部",
     "department": "健康スポーツ学科",
+    "count": 1
+  },
+  {
+    "university": "国士舘大学",
+    "faculty": "21世紀アジア学部",
+    "department": "",
     "count": 1
   },
   {
@@ -274,6 +316,24 @@
     "faculty": "観光まちづくり学部",
     "department": "観光まちづくり学科",
     "count": 16
+  },
+  {
+    "university": "大妻女子大学",
+    "faculty": "文学部",
+    "department": "",
+    "count": 1
+  },
+  {
+    "university": "大東文化大学",
+    "faculty": "法学部",
+    "department": "法律学科",
+    "count": 1
+  },
+  {
+    "university": "大東文化大学",
+    "faculty": "経済学部",
+    "department": "現代経済学科",
+    "count": 1
   },
   {
     "university": "学習院大学",
@@ -379,9 +439,27 @@
   },
   {
     "university": "日本大学",
+    "faculty": "スポーツ科学部",
+    "department": "",
+    "count": 1
+  },
+  {
+    "university": "日本大学",
+    "faculty": "商学部",
+    "department": "",
+    "count": 1
+  },
+  {
+    "university": "日本大学",
     "faculty": "商学部",
     "department": "商業学科",
     "count": 2
+  },
+  {
+    "university": "日本大学",
+    "faculty": "文理学部",
+    "department": "社会福祉学科",
+    "count": 1
   },
   {
     "university": "日本女子大学",
@@ -408,6 +486,18 @@
     "count": 4
   },
   {
+    "university": "日本女子大学",
+    "faculty": "文学部",
+    "department": "英米文学科",
+    "count": 1
+  },
+  {
+    "university": "明治大学",
+    "faculty": "商学部",
+    "department": "",
+    "count": 1
+  },
+  {
     "university": "明治大学",
     "faculty": "国際日本学部",
     "department": "国際日本学科",
@@ -429,6 +519,12 @@
     "university": "明治学院大学",
     "faculty": "心理学部",
     "department": "教育発達学科",
+    "count": 1
+  },
+  {
+    "university": "明治学院大学",
+    "faculty": "文学部",
+    "department": "フランス文学科",
     "count": 1
   },
   {
@@ -471,6 +567,12 @@
     "university": "東京女子大学",
     "faculty": "現代教養学部",
     "department": "社会コミュニケーション学科",
+    "count": 1
+  },
+  {
+    "university": "東京都市大学",
+    "faculty": "情報工学部",
+    "department": "",
     "count": 1
   },
   {
@@ -571,8 +673,20 @@
   },
   {
     "university": "法政大学",
+    "faculty": "法学部",
+    "department": "国際政治学科",
+    "count": 1
+  },
+  {
+    "university": "法政大学",
     "faculty": "現代福祉学部",
     "department": "コミュニティ学科",
+    "count": 1
+  },
+  {
+    "university": "法政大学",
+    "faculty": "社会学部",
+    "department": "社会学科",
     "count": 1
   },
   {
@@ -606,6 +720,18 @@
     "count": 1
   },
   {
+    "university": "獨協大学",
+    "faculty": "法学部",
+    "department": "国際関係法学科",
+    "count": 1
+  },
+  {
+    "university": "獨協大学",
+    "faculty": "経済学部",
+    "department": "経営学科",
+    "count": 1
+  },
+  {
     "university": "甲南大学",
     "faculty": "経営学部",
     "department": "経営学科",
@@ -616,6 +742,12 @@
     "faculty": "文学部",
     "department": "フランス語フランス文学科",
     "count": 1
+  },
+  {
+    "university": "目白大学",
+    "faculty": "メディア学部",
+    "department": "メディア学科",
+    "count": 2
   },
   {
     "university": "神奈川大学",
@@ -704,6 +836,12 @@
   {
     "university": "立教大学",
     "faculty": "コミュニティ福祉学部",
+    "department": "",
+    "count": 1
+  },
+  {
+    "university": "立教大学",
+    "faculty": "コミュニティ福祉学部",
     "department": "コミュニティ政策学科",
     "count": 1
   },
@@ -715,8 +853,20 @@
   },
   {
     "university": "立教大学",
+    "faculty": "スポーツウェルネス学部",
+    "department": "",
+    "count": 1
+  },
+  {
+    "university": "立教大学",
     "faculty": "国際経営学部",
     "department": "国際経営学科",
+    "count": 1
+  },
+  {
+    "university": "立教大学",
+    "faculty": "文学部",
+    "department": "",
     "count": 1
   },
   {
@@ -765,7 +915,7 @@
     "university": "芝浦工業大学",
     "faculty": "工学部",
     "department": "",
-    "count": 1
+    "count": 2
   },
   {
     "university": "近畿大学",
@@ -843,6 +993,24 @@
     "university": "順天堂大学",
     "faculty": "国際教養学部",
     "department": "国際教養学科",
+    "count": 2
+  },
+  {
+    "university": "駒澤大学",
+    "faculty": "仏教学部",
+    "department": "",
+    "count": 1
+  },
+  {
+    "university": "駒澤大学",
+    "faculty": "文学部",
+    "department": "",
+    "count": 1
+  },
+  {
+    "university": "駒澤大学",
+    "faculty": "法学部",
+    "department": "",
     "count": 1
   },
   {
