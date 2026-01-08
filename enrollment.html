@@ -5640,8 +5640,16 @@
         }
       });
 
+      // 総合型選抜コースを選択している場合は「受講する」フラグを追加
+      if (formData['selected-course']) {
+        dataToSend['main-course-purchase'] = '受講する';
+      }
+
       console.log('送信データ件数:', Object.keys(dataToSend).length);
       console.log('送信データ:', dataToSend);
+
+      console.log('★ selected-course:', formData['selected-course']);
+      console.log('★ main-course-purchase追加後:', dataToSend['main-course-purchase']);
 
       return dataToSend;
     }
