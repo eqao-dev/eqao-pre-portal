@@ -16,47 +16,55 @@
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
       background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 100%);
       min-height: 100vh;
-      padding: 16px;
+      padding: 40px;
       padding-bottom: 100px;
     }
     
     .container {
-      max-width: 500px;
+      max-width: 800px;
       margin: 0 auto;
-    }
-    
-    /* 戻るボタン */
-    .back-button {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      color: rgba(255,255,255,0.7);
-      text-decoration: none;
-      font-size: 14px;
-      margin-bottom: 16px;
-      transition: color 0.2s;
-    }
-    
-    .back-button:hover {
-      color: #ffffff;
     }
     
     /* ヘッダー */
     .header {
-      text-align: center;
-      margin-bottom: 20px;
+      background: transparent;
+      padding: 0;
+      margin-bottom: 32px;
     }
     
-    .header h1 {
-      color: #ffffff;
-      font-size: 22px;
-      font-weight: 700;
-      margin-bottom: 6px;
+    .header-content {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      max-width: 800px;
+      margin: 0 auto;
     }
     
-    .header p {
-      color: rgba(255,255,255,0.7);
-      font-size: 13px;
+    .back-button {
+      background: rgba(255,255,255,0.15);
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: white;
+      transition: all 0.2s;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+    
+    .back-button:hover {
+      background: rgba(255,255,255,0.25);
+    }
+    
+    .header-title {
+      color: white;
+      font-size: 20px;
+      font-weight: bold;
+      flex: 1;
     }
     
     /* 検索ボックス */
@@ -508,14 +516,14 @@
 </head>
 <body>
   <div class="container">
-    <a href="/index.html" class="back-button">
-      <i data-lucide="arrow-left" style="width:16px;height:16px;"></i>
-      ポータルに戻る
-    </a>
-    
+    <!-- ヘッダー -->
     <div class="header">
-      <h1>よくある質問</h1>
-      <p>総合型選抜・EQAOについてのQ&A</p>
+      <div class="header-content">
+        <a href="/" class="back-button">
+          <i data-lucide="arrow-left" style="width:20px;height:20px;"></i>
+        </a>
+        <span class="header-title">よくある質問</span>
+      </div>
     </div>
     
     <!-- 検索ボックス -->

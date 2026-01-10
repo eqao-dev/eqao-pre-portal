@@ -34,71 +34,44 @@
     
     /* ヘッダー */
     .header {
-      background: rgba(30, 58, 95, 0.95);
-      backdrop-filter: blur(8px);
-      padding: 16px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      background: transparent;
+      padding: 0;
+      margin-bottom: 24px;
     }
     
     .header-content {
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 12px;
-      max-width: 400px;
+      gap: 16px;
+      max-width: 500px;
       margin: 0 auto;
-      position: relative;
     }
     
     .back-button {
-      position: absolute;
-      left: 0;
-      width: 36px;
-      height: 36px;
       background: rgba(255,255,255,0.15);
+      border: none;
       border-radius: 50%;
+      width: 40px;
+      height: 40px;
       display: flex;
       align-items: center;
       justify-content: center;
+      cursor: pointer;
       color: white;
+      transition: all 0.2s;
       text-decoration: none;
-      transition: background 0.2s;
+      flex-shrink: 0;
     }
     
     .back-button:hover {
       background: rgba(255,255,255,0.25);
     }
     
-    .logo {
-      width: 36px;
-      height: 36px;
-      background: white;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      color: #1e3a5f;
-      font-size: 14px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-　 　  overflow: hidden;
-      padding: 4px;
-    }
-
-   .logo img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    }
-    
     .header-title {
       color: white;
-      font-size: 16px;
+      font-size: 20px;
       font-weight: bold;
-      letter-spacing: 0.5px;
+      flex: 1;
     }
     
     /* メインコンテンツ */
@@ -400,19 +373,18 @@
   </style>
 </head>
 <body>
-  <!-- ヘッダー -->
-  <header class="header">
-    <div class="header-content">
-      <a href="/" class="back-button">
-        <i data-lucide="arrow-left" style="width:20px;height:20px;"></i>
-      </a>
-      <div class="logo"><img src="/logo.png" alt="EQAO"></div>
-      <h1 class="header-title">EQAO 入塾前ポータル</h1>
-    </div>
-  </header>
-  
   <!-- メインコンテンツ -->
   <main class="main">
+    <!-- ヘッダー -->
+    <div class="header">
+      <div class="header-content">
+        <a href="/" class="back-button">
+          <i data-lucide="arrow-left" style="width:20px;height:20px;"></i>
+        </a>
+        <h1 class="header-title">無料特典</h1>
+      </div>
+    </div>
+    
     <!-- ヒーロー -->
     <div class="hero">
       <div class="hero-badge">
